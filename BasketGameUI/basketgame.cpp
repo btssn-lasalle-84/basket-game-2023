@@ -1,92 +1,149 @@
 #include "basketgame.h"
 #include "ui_basketgame.h"
 
-basketgame::basketgame(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::basketgame)
+Basketgame::Basketgame(QWidget* parent) :
+    QMainWindow(parent), ui(new Ui::basketgame), tempsPartie(new QTime),
+    tempsManche(new QTime), timerPartie(new QTimer(this)),
+    timerManche(new QTimer), etatPartie(false), etatManche(false),
+    couleurEquipe(true)
 {
-    ui->setupUi(this);
-    connect(timerPartie, SIGNAL(timeout()), this, SLOT(ticTempsPartie()));
-    connect(timerManche, SIGNAL(timeout()), this, SLOT(ticTempsManche()));
+    qDebug() << Q_FUNC_INFO;
+    initialiserIHM();
+    initialiserEvenements();
 }
 
-basketgame::~basketgame()
+Basketgame::~Basketgame()
 {
     delete ui;
+    qDebug() << Q_FUNC_INFO;
 }
 
-void basketgame::on_boutonDebutPartie_clicked()
+void Basketgame::demarrerPartie()
 {
-    if(boutonCommencerPartie == true)
+    if(!etatPartie)
     {
-        *afficherTimerPartie = ui->editerTempsPartie->time();
-        ui->UiTempsPartie->setText(afficherTimerPartie->toString("hh:mm:ss"));
-        timerPartie->start(1000);
+        *tempsPartie = ui->editionTempsPartie->time();
+        ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
+        qDebug() << Q_FUNC_INFO << "tempsPartie"
+                 << tempsPartie->toString("hh:mm:ss");
+        /**
+         * @fixme Si le temps est 00:00:00 ?
+         */
+        timerPartie->start(TIC_HORLOGE);
+        etatPartie = true;
+        ui->boutonDebutPartie->setEnabled(false);
+        ui->boutonDebutManche->setEnabled(true);
     }
 }
 
-void basketgame::ticTempsPartie()
+void Basketgame::demarrerManche()
 {
-    QTime newTime = afficherTimerPartie->addSecs(-1);
-    afficherTimerPartie->setHMS(newTime.hour(),newTime.minute(),newTime.second());
-    ui->UiTempsPartie->setText(afficherTimerPartie->toString("hh:mm:ss"));
-    if(afficherTimerPartie->hour() != 0 ||
-            afficherTimerPartie->minute() != 0 ||
-            afficherTimerPartie->second() != 0)
+    if(!etatManche)
     {
-        timerPartie->start(1000);
+        *tempsManche = ui->editionTempsManche->time();
+        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
+        qDebug() << Q_FUNC_INFO << "tempsManche"
+                 << tempsManche->toString("hh:mm:ss");
+        /**
+         * @fixme Si le temps est 00:00:00 ?
+         */
+        timerManche->start(TIC_HORLOGE);
+        etatManche = true;
+        ui->boutonDebutManche->setEnabled(true);
     }
-    else
+}
+
+void Basketgame::arreterPartie()
+{
+    /**
+     * @todo Gérer la fin d'une partie
+     */
+    timerManche->stop();
+    timerPartie->stop();
+    ui->UiEquipe->setStyleSheet("background-color: white; color: black;");
+    ui->UiEquipe->setText("FIN DE LA PARTIE");
+    ui->boutonDebutPartie->setEnabled(true);
+    ui->boutonDebutManche->setEnabled(false);
+    etatPartie = false;
+}
+
+void Basketgame::arreterManche()
+{
+    /**
+     * @todo Gérer la fin d'une manche
+     */
+    etatManche = false;
+}
+
+void Basketgame::chronometrerPartie()
+{
+    // Voir aussi : QElapsedTimer
+    QTime tempsEcoule = tempsPartie->addSecs(-1);
+    tempsPartie->setHMS(tempsEcoule.hour(),
+                        tempsEcoule.minute(),
+                        tempsEcoule.second());
+    qDebug() << Q_FUNC_INFO << "tempsPartie"
+             << tempsPartie->toString("hh:mm:ss");
+    ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
+    if(*tempsPartie == QTime(0, 0))
     {
-        timerPartie->stop();
+        arreterPartie();
+    }
+}
+
+void Basketgame::chronometrerManche()
+{
+    // Voir aussi : QElapsedTimer
+    QTime tempsEcoule = tempsManche->addSecs(-1);
+    tempsManche->setHMS(tempsEcoule.hour(),
+                        tempsEcoule.minute(),
+                        tempsEcoule.second());
+    qDebug() << Q_FUNC_INFO << "tempsManche"
+             << tempsManche->toString("hh:mm:ss");
+    ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
+    if(*tempsManche == QTime(0, 0))
+    {
         timerManche->stop();
-        ui->UiEquipe->setStyleSheet("background-color: white; color: black;");
-        ui->UiEquipe->setText("FIN DE LA PARTIE");
-
-    }
-}
-
-void basketgame::on_boutonDebutManche_clicked()
-{
-    if(boutonCommencerManche == true)
-    {
-        *afficherTimerManche = ui->editerTempsManche->time();
-        ui->UiTempsManche->setText(afficherTimerManche->toString("hh:mm:ss"));
-        timerManche->start(1000);
-    }
-}
-
-void basketgame::ticTempsManche()
-{
-    QTime temps2 = afficherTimerManche->addSecs(-1);
-    afficherTimerManche->setHMS(temps2.hour(),temps2.minute(),temps2.second());
-    ui->UiTempsManche->setText(afficherTimerManche->toString("hh:mm:ss"));
-    if(afficherTimerManche->hour() != 0 ||
-            afficherTimerManche->minute() != 0 ||
-            afficherTimerManche->second() != 0)
-    {
-        timerManche->start(1000);
-    }
-    else
-    {
-        timerManche->stop();
-
-        *afficherTimerManche = ui->editerTempsManche->time();
-        ui->UiTempsManche->setText(afficherTimerManche->toString("hh:mm:ss"));
+        *tempsManche = ui->editionTempsManche->time();
+        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
         timerManche->start(1000);
 
         if(couleurEquipe == true)
         {
-        couleurEquipe = false;
-        ui->UiEquipe->setStyleSheet("background-color: red; color: black;");
-        ui->UiEquipe->setText("EQUIPE A");
+            couleurEquipe = false;
+            ui->UiEquipe->setStyleSheet("background-color: red; color: black;");
+            ui->UiEquipe->setText("EQUIPE A");
         }
         else
         {
             couleurEquipe = true;
-            ui->UiEquipe->setStyleSheet("background-color: yellow; color: black;");
+            ui->UiEquipe->setStyleSheet(
+              "background-color: yellow; color: black;");
             ui->UiEquipe->setText("EQUIPE B");
-
         }
     }
+}
+
+void Basketgame::initialiserIHM()
+{
+    ui->setupUi(this);
+    ui->boutonDebutPartie->setEnabled(true);
+    ui->boutonDebutManche->setEnabled(false);
+}
+
+void Basketgame::initialiserEvenements()
+{
+    // les boutons
+    connect(ui->boutonDebutManche,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(demarrerManche()));
+    connect(ui->boutonDebutPartie,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(demarrerPartie()));
+
+    // les minuteurs
+    connect(timerPartie, SIGNAL(timeout()), this, SLOT(chronometrerPartie()));
+    connect(timerManche, SIGNAL(timeout()), this, SLOT(chronometrerManche()));
 }
