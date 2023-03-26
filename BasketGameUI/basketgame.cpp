@@ -2,7 +2,7 @@
  * @file basketgame.cpp
  *
  * @brief Définition de la classe Basketgame
- * @author @author Nathanael CHANSARD
+ * @author Nathanael CHANSARD
  * @version 0.1
  */
 
@@ -39,32 +39,31 @@ Basketgame::~Basketgame()
 }
 
 /**
- * @fn IHMPikawa::afficherPage(IHMPikawa::Page page)
- * @brief Selectionne la fenetre grace à l'index passé en paramètre
- * @details Pages empilées (Stacked Widget)
+ * @fn Basketgame::afficherEcran(Basketgame::Ecran ecran)
+ * @brief Selectionne la fenêtre et l'affiche
  */
-void Basketgame::afficherPage(Basketgame::Ecran ecran)
+void Basketgame::afficherEcran(Basketgame::Ecran ecran)
 {
     ui->ecrans->setCurrentIndex(ecran);
 }
 
-void Basketgame::afficherPageAcceuil()
+void Basketgame::afficherEcranAcceuil()
 {
-    afficherPage(Basketgame::Ecran::Accueil);
+    afficherEcran(Basketgame::Ecran::Accueil);
 }
 
-void Basketgame::afficherPagePartie()
+void Basketgame::afficherEcranPartie()
 {
     ui->boutonDebutPartie->setEnabled(true);
     ui->editionTempsPartie->setEnabled(true);
     ui->boutonDebutManche->setEnabled(false);
     ui->editionTempsManche->setEnabled(false);
-    afficherPage(Basketgame::Ecran::Partie);
+    afficherEcran(Basketgame::Ecran::Partie);
 }
 
-void Basketgame::afficherPageManche()
+void Basketgame::afficherEcranManche()
 {
-    afficherPage(Basketgame::Ecran::Manche);
+    afficherEcran(Basketgame::Ecran::Manche);
 }
 
 void Basketgame::demarrerPartie()
@@ -199,7 +198,7 @@ void Basketgame::initialiserIHM()
                    qApp->desktop()->availableGeometry(this).height());
     // showMaximized();
 #endif
-    afficherPageAcceuil();
+    afficherEcranAcceuil();
 }
 
 void Basketgame::initialiserEvenements()
@@ -208,7 +207,7 @@ void Basketgame::initialiserEvenements()
     connect(ui->boutonDemarrer,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(afficherPagePartie()));
+            SLOT(afficherEcranPartie()));
     connect(ui->boutonDebutPartie,
             SIGNAL(clicked(bool)),
             this,

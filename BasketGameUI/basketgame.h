@@ -1,6 +1,14 @@
 #ifndef BASKETGAME_H
 #define BASKETGAME_H
 
+/**
+ * @file basketgame.h
+ *
+ * @brief Déclaration de la classe Basketgame
+ * @author Nathanael CHANSARD
+ * @version 0.1
+ */
+
 #include <QtWidgets>
 
 /**
@@ -26,13 +34,17 @@ namespace Ui
 class basketgame;
 }
 
+/**
+ * @class Basketgame
+ * @brief La GUI de l'application Basketgame
+ */
 class Basketgame : public QMainWindow
 {
     Q_OBJECT
 
     /**
      * @enum Ecran
-     * @brief Les différentes écran de l'affichage
+     * @brief Les différents écrans de l'affichage
      */
     enum Ecran
     {
@@ -50,10 +62,10 @@ class Basketgame : public QMainWindow
     void arreterManche();
 
   public slots:
-    void afficherPage(Basketgame::Ecran ecran);
-    void afficherPageAcceuil();
-    void afficherPagePartie();
-    void afficherPageManche();
+    void afficherEcran(Basketgame::Ecran ecran);
+    void afficherEcranAcceuil();
+    void afficherEcranPartie();
+    void afficherEcranManche();
     void chronometrerPartie();
     void chronometrerManche();
 
