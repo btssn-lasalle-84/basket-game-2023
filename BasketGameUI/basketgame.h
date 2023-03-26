@@ -4,10 +4,22 @@
 #include <QtWidgets>
 
 /**
+ * @def PLEIN_ECRAN_RPI
+ * @brief Pour le mode plein écran sur la Raspberry Pi
+ */
+//#define PLEIN_ECRAN_RPI
+
+/**
  * @def TIC_HORLOGE
  * @brief Définit le tic d'horloge à 1s
  */
 #define TIC_HORLOGE 1000
+
+/**
+ * @def TEMPS_TOUR
+ * @brief Le temps pour un tour d'une équipe
+ */
+#define TEMPS_TOUR 15 // en s
 
 namespace Ui
 {
@@ -18,6 +30,18 @@ class Basketgame : public QMainWindow
 {
     Q_OBJECT
 
+    /**
+     * @enum Ecran
+     * @brief Les différentes écran de l'affichage
+     */
+    enum Ecran
+    {
+        Accueil,
+        Partie,
+        Manche,
+        NbEcrans
+    };
+
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
@@ -26,6 +50,10 @@ class Basketgame : public QMainWindow
     void arreterManche();
 
   public slots:
+    void afficherPage(Basketgame::Ecran ecran);
+    void afficherPageAcceuil();
+    void afficherPagePartie();
+    void afficherPageManche();
     void chronometrerPartie();
     void chronometrerManche();
 
@@ -35,13 +63,13 @@ class Basketgame : public QMainWindow
 
   private:
     Ui::basketgame* ui;
-    QTime*          tempsPartie   = new QTime;
-    QTime*          tempsManche   = new QTime;
-    QTimer*         timerPartie   = new QTimer;
-    QTimer*         timerManche   = new QTimer;
-    bool            etatPartie    = true;
-    bool            etatManche    = true;
-    bool            couleurEquipe = true;
+    QTime*          tempsPartie;
+    QTime*          tempsManche;
+    QTimer*         timerPartie;
+    QTimer*         timerManche;
+    bool            etatPartie;
+    bool            etatManche;
+    bool            couleurEquipe;
 
     void initialiserIHM();
     void initialiserEvenements();

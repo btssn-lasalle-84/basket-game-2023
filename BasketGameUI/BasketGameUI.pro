@@ -18,3 +18,5 @@ SOURCES += main.cpp\
 HEADERS  += basketgame.h
 
 FORMS    += basketgame.ui
+
+CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
