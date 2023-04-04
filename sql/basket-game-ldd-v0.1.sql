@@ -1,22 +1,5 @@
-![C++ Badge](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=fff&style=plastic) ![](https://badgen.net/badge/Qt/5.12.8/green) ![Raspberry Pi Badge](https://img.shields.io/badge/Raspberry%20Pi-A22846?logo=raspberrypi&logoColor=fff&style=plastic) ![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white&style=plastic) ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=plastic)
+-- LDD (langage de définition de données)
 
-[![pages-build-deployment](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop)](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment)
-
-# Le projet basket-game-2023
-
----
-
-## Documentation du code
-
-https://btssn-lasalle-84.github.io/basket-game-2023/
-
-## Base de données
-
-Base de données SQLite :
-
-![](sql/basket-game-v0.1.png)
-
-```sql
 -- Supprime les tables
 
 DROP TABLE IF EXISTS Manche;
@@ -36,7 +19,6 @@ CREATE TABLE IF NOT EXISTS Match(idMatch INTEGER PRIMARY KEY AUTOINCREMENT, idJo
 -- Table Manche
 
 CREATE TABLE IF NOT EXISTS Manche(idMatch INTEGER NOT NULL, numeroManche INTEGER NOT NULL, nbTirsReussisEquipeA INTEGER DEFAULT 0, nbTirsReussisEquipeB INTEGER DEFAULT 0, vainqueur INTEGER DEFAULT 0, debut DATETIME NOT NULL, fin DATETIME, CONSTRAINT pk_manche PRIMARY KEY (idMatch,numeroManche), CONSTRAINT fk_idMatch_1 FOREIGN KEY (idMatch) REFERENCES Match(idMatch), CONSTRAINT fk_vainqueur_1 FOREIGN KEY (vainqueur) REFERENCES Joueur(idJoueur));
-```
 
----
-©️ LaSalle Avignon 2023
+-- Voir aussi :
+-- ON DELETE CASCADE
