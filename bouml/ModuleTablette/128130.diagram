@@ -1,0 +1,19 @@
+format 224
+
+classcanvas 128258 class_ref 128258 // Equipe
+  classdiagramsettings member_max_width 0 end
+  xyz 340 103 2000
+end
+classcanvas 128386 class_ref 128386 // Entraineur
+  classdiagramsettings member_max_width 0 end
+  xyz 223 116 2000
+end
+classcanvas 128642 class_ref 128642 // Communication
+  classdiagramsettings member_max_width 0 end
+  xyz 56 114 2005
+end
+classcanvas 128898 class_ref 128898 // BasketGame
+  classdiagramsettings member_max_width 0 end
+  xyz 504 114 2000
+end
+end
