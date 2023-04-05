@@ -1,0 +1,17 @@
+class MainActivity
+!!!143234.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        afficherNouvellePartie();
+!!!143490.java!!!	afficherNouvellePartie() : void
+        Button boutonNouvellePartie = findViewById(R.id.boutonNouvellePartie);
+        boutonNouvellePartie.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(MainActivity.this, ParametresPartieActivity.class);
+                startActivity(intent);
+            }
+        });

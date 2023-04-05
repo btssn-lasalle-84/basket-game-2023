@@ -1,0 +1,12 @@
+class Equipe
+!!!142594.java!!!	Equipe(in equipe1 : String, in equipe2 : String)
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+!!!142722.java!!!	getEquipe1() : String
+        return equipe1;
+!!!142850.java!!!	setEquipe1(in equipe1 : String) : void
+        this.equipe1 = equipe1;
+!!!142978.java!!!	getEquipe2() : String
+        return equipe2;
+!!!143106.java!!!	setEquipe2(in equipe2 : String) : void
+        this.equipe2 = equipe2;
