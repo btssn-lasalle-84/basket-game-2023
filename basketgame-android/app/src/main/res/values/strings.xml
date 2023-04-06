@@ -10,4 +10,27 @@
     <string name="temps_entre_chaque_tir">Temps entre chaque tir :</string>
     <string name="nom_de_l_quipe_2">Nom de l\'équipe 2</string>
     <string name="nom_de_l_quipe_1">Nom de l\'équipe 1</string>
+    <string name="confirmer">Confirmer</string>
+    <string name="_00_00">00:00</string>
+    <string name="_00">00</string>
+    <string-array name="nombreColonnes">
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+    </string-array>
+    <string-array name="nombreManches">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+        <item>10</item>
+    </string-array>
 </resources>

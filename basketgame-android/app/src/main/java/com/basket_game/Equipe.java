@@ -31,4 +31,3 @@ public class Equipe
         this.equipe2 = equipe2;
     }
 }
-

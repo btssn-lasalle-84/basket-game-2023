@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
+    tools:context=".AccueilActivity"
     android:background="#181821" >
 
     <TextView
@@ -25,78 +25,45 @@
         android:id="@+id/equipe1EditText"
         android:layout_width="210dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="120dp"
         android:hint="@string/nom_de_l_quipe_1"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/equipe2EditText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
+        android:inputType="text"
+        android:textColor="#D00000"
+        android:textColorHint="#D00000"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/equipe2EditText"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:inputType="text"
-        android:autofillHints="" />
+        app:layout_constraintVertical_bias="0.299" />
 
     <EditText
         android:id="@+id/equipe2EditText"
         android:layout_width="210dp"
         android:layout_height="48dp"
+        android:layout_marginEnd="120dp"
         android:hint="@string/nom_de_l_quipe_2"
-        android:textColor="#FFFFFF"
-        android:textColorHint="@color/white"
+        android:inputType="text"
+        android:textColor="#FFBE0B"
+        android:textColorHint="#FFBE0B"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.299" />
+
+    <Button
+        android:id="@+id/boutonConfirmerParametres"
+        android:layout_width="152dp"
+        android:layout_height="57dp"
+        android:text="@string/confirmer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.422"
-        android:inputType="text"
-        android:autofillHints="" />
-
-
-    <TextView
-        android:id="@+id/tempsTirTextView"
-        android:layout_width="256dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="548dp"
-        android:gravity="center"
-        android:text="@string/temps_entre_chaque_tir"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/colonnesTextView"
-        android:layout_width="285dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="32dp"
-        android:gravity="center"
-        android:text="@string/nombre_de_colonnes"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.128"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tempsTirTextView" />
-
-    <TextView
-        android:id="@+id/manchesTextView"
-        android:layout_width="296dp"
-        android:layout_height="32dp"
-        android:gravity="center"
-        android:text="@string/nombre_de_manches"
-        android:textColor="#FFFFFF"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.126"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/colonnesTextView"
-        app:layout_constraintVertical_bias="0.099" />
+        app:layout_constraintVertical_bias="0.805" />
 
     <Button
         android:id="@+id/boutonLancerPartie"
@@ -109,5 +76,129 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.891" />
+
+    <LinearLayout
+        android:layout_width="354dp"
+        android:layout_height="204dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.608">
+
+        <TextView
+            android:id="@+id/tempsTirTextView"
+            android:layout_width="331dp"
+            android:layout_height="37dp"
+            android:gravity="center"
+            android:text="@string/temps_entre_chaque_tir"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
+        <TextView
+            android:id="@+id/nombreColonnesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:gravity="center"
+            android:text="@string/nombre_de_colonnes"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="42dp" />
+
+        <TextView
+            android:id="@+id/nombreManchesTextView"
+            android:layout_width="match_parent"
+            android:layout_height="32dp"
+            android:gravity="center"
+            android:text="@string/nombre_de_manches"
+            android:textColor="#FFFFFF"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="353dp"
+        android:layout_height="219dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.985"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.619">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editTextMinutes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:text="00"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:text=":"/>
+
+            <EditText
+                android:id="@+id/editTextSecondes"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_weight="1"
+                android:inputType="number"
+                android:maxLength="2"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:text="@string/_00"/>
+
+        </LinearLayout>
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="17dp" />
+
+        <Spinner
+            android:id="@+id/menuDeroulantColonnes"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:background="#FFFFFF"
+            android:defaultValue="7"
+            android:entries="@array/nombreColonnes"
+            android:textSize="20sp" />
+
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="31dp" />
+
+        <Spinner
+            android:id="@+id/menuDeroulantManches"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:defaultValue="1"
+            android:entries="@array/nombreManches"
+            android:background="#FFFFFF"
+            android:textSize="20sp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
