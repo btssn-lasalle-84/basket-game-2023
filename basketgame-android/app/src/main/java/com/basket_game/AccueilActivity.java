@@ -7,6 +7,15 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+/**
+ * @file AccueilActivity.java
+ * @brief Déclaration de la classe AccueilActivity
+ * @author Guillaumet Florent
+ */
+
+/**
+ * @class AccueilActivity
+ */
 public class AccueilActivity extends AppCompatActivity {
 
     @Override
@@ -17,6 +26,9 @@ public class AccueilActivity extends AppCompatActivity {
         afficherNouvellePartie();
     }
 
+    /**
+     * @brief Méthode appelée pour afficher la nouvelle partie
+     */
     private void afficherNouvellePartie()
     {
         Button boutonNouvellePartie = findViewById(R.id.boutonNouvellePartie);
