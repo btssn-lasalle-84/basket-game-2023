@@ -1,0 +1,7 @@
+class Equipe
+!!!142594.java!!!	Equipe(in nom : String)
+        this.nom = nom;
+!!!135466.java!!!	getNom() : String
+        return nom;
+!!!135594.java!!!	setNom(in nom : String) : void
+        this.nom = nom;

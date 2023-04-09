@@ -1,0 +1,12 @@
+class Partie
+!!!135850.java!!!	Partie(inout equipe1 : Equipe, inout equipe2 : Equipe)
+        this.equipe1 = equipe1;
+        this.equipe2 = equipe2;
+!!!135978.java!!!	getEquipe1() : Equipe
+        return equipe1;
+!!!136106.java!!!	setEquipe1(inout equipe1 : Equipe) : void
+        this.equipe1 = equipe1;
+!!!136234.java!!!	getEquipe2() : Equipe
+        return equipe2;
+!!!136362.java!!!	setEquipe2(inout equipe2 : Equipe) : void
+        this.equipe2 = equipe2;

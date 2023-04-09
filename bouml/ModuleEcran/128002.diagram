@@ -1,0 +1,30 @@
+format 224
+
+classcanvas 128002 class_ref 128002 // Joueurs
+  simpleclassdiagramsettings end
+  xyz 59 46 2000
+end
+classcanvas 128130 class_ref 128130 // Entraineur
+  simpleclassdiagramsettings end
+  xyz 51 176 2000
+end
+usecasecanvas 128258 usecase_ref 128002 // Produire des sons
+  xyzwh 657 56 3005 64 32 label_xy 630 88
+end
+usecasecanvas 128386 usecase_ref 128130 // Dialoguer avec le module de gestion de partie
+  xyzwh 651 215 3005 64 32 label_xy 534 247
+end
+usecasecanvas 128514 usecase_ref 128258 // Visualiser une partie de puissance4
+  xyzwh 356 62 3005 64 32 label_xy 274 39
+end
+line 128642 ----
+  from ref 128002 z 3006 to ref 128514
+line 128770 ----
+  from ref 128130 z 3006 to ref 128514
+simplerelationcanvas 128898 simplerelation_ref 128002
+  from ref 128514 z 3006 stereotype "<<extend>>" xyz 498 73.5 3000 to ref 128258
+end
+simplerelationcanvas 129026 simplerelation_ref 128130
+  from ref 128514 z 3006 stereotype "<<include>>" xyz 539 141.5 3000 to ref 128386
+end
+end

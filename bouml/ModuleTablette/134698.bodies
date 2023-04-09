@@ -1,0 +1,4 @@
+class ParametresPartie
+!!!135722.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.parametres_partie);
