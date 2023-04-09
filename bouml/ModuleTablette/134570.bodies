@@ -1,0 +1,32 @@
+class BasketGame
+!!!134570.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.basketgame);
+        Log.d(TAG, "onCreate()");
+
+        afficherNouvellePartie();
+!!!134698.java!!!	onStart() : void
+        super.onStart();
+        Log.d(TAG, "onStart()");
+!!!134826.java!!!	onResume() : void
+        super.onResume();
+        Log.d(TAG, "onResume()");
+!!!134954.java!!!	onPause() : void
+        super.onPause();
+        Log.d(TAG, "onPause()");
+!!!135082.java!!!	onStop() : void
+        super.onStop();
+        Log.d(TAG, "onStop()");
+!!!135210.java!!!	onDestroy() : void
+        super.onDestroy();
+        Log.d(TAG, "onDestroy()");
+!!!135338.java!!!	afficherNouvellePartie() : void
+        Button boutonNouvellePartie = findViewById(R.id.boutonNouvellePartie);
+        boutonNouvellePartie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(BasketGame.this, ParametresPartie.class);
+                startActivity(intent);
+            }
+        });
