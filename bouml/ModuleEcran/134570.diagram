@@ -1,0 +1,7 @@
+format 224
+
+classcanvas 128042 class_ref 134570 // Basketgame
+  classdiagramsettings member_max_width 0 end
+  xyz 638 161 2000
+end
+end
