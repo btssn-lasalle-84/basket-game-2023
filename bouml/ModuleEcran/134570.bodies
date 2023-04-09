@@ -1,0 +1,151 @@
+class Basketgame
+!!!134570.cpp!!!	Basketgame(inout parent : QWidget = 0)
+    qDebug() << Q_FUNC_INFO;
+    initialiserIHM();
+    initialiserEvenements();
+!!!134698.cpp!!!	~Basketgame()
+    delete ui;
+    qDebug() << Q_FUNC_INFO;
+!!!134826.cpp!!!	arreterPartie() : void
+    /**
+     * @todo Gérer la fin d'une partie
+     */
+    timerManche->stop();
+    arreterManche();
+
+    timerPartie->stop();
+    ui->UiEquipe->setStyleSheet("background-color: white; color: black;");
+    ui->UiEquipe->setText("FIN DE LA PARTIE");
+    ui->boutonDebutPartie->setEnabled(true);
+    ui->editionTempsPartie->setEnabled(true);
+    etatPartie = false;
+!!!134954.cpp!!!	arreterManche() : void
+    /**
+     * @todo Gérer la fin d'une manche
+     */
+    etatManche = false;
+    ui->tempsManche->setText("00:00:00");
+    ui->boutonDebutManche->setEnabled(false);
+    ui->editionTempsManche->setEnabled(false);
+!!!135082.cpp!!!	afficherEcran(in ecran : Basketgame::Ecran) : void
+    ui->ecrans->setCurrentIndex(ecran);
+!!!135210.cpp!!!	afficherEcranAcceuil() : void
+    afficherEcran(Basketgame::Ecran::Accueil);
+!!!135338.cpp!!!	afficherEcranPartie() : void
+    ui->boutonDebutPartie->setEnabled(true);
+    ui->editionTempsPartie->setEnabled(true);
+    ui->boutonDebutManche->setEnabled(false);
+    ui->editionTempsManche->setEnabled(false);
+    afficherEcran(Basketgame::Ecran::Partie);
+!!!135466.cpp!!!	afficherEcranManche() : void
+    afficherEcran(Basketgame::Ecran::Manche);
+!!!135594.cpp!!!	chronometrerPartie() : void
+    // Voir aussi : QElapsedTimer
+    QTime tempsEcoule = tempsPartie->addSecs(-1);
+    tempsPartie->setHMS(tempsEcoule.hour(),
+                        tempsEcoule.minute(),
+                        tempsEcoule.second());
+    qDebug() << Q_FUNC_INFO << "tempsPartie"
+             << tempsPartie->toString("hh:mm:ss");
+    ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
+    if(*tempsPartie == QTime(0, 0))
+    {
+        arreterPartie();
+    }
+!!!135722.cpp!!!	chronometrerManche() : void
+    // Voir aussi : QElapsedTimer
+    QTime tempsEcoule = tempsManche->addSecs(-1);
+    tempsManche->setHMS(tempsEcoule.hour(),
+                        tempsEcoule.minute(),
+                        tempsEcoule.second());
+    qDebug() << Q_FUNC_INFO << "tempsManche"
+             << tempsManche->toString("hh:mm:ss");
+    ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
+    /**
+     * @fixme Vous confondez manche et tour !
+     */
+    if(*tempsManche == QTime(0, 0))
+    {
+        timerManche->stop();
+        *tempsManche = ui->editionTempsManche->time();
+        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
+        timerManche->start(1000);
+
+        if(couleurEquipe == true)
+        {
+            couleurEquipe = false;
+            ui->UiEquipe->setStyleSheet("background-color: red; color: black;");
+            ui->UiEquipe->setText("EQUIPE A");
+        }
+        else
+        {
+            couleurEquipe = true;
+            ui->UiEquipe->setStyleSheet(
+              "background-color: yellow; color: black;");
+            ui->UiEquipe->setText("EQUIPE B");
+        }
+    }
+!!!135850.cpp!!!	demarrerManche() : void
+    if(!etatManche)
+    {
+        *tempsManche = ui->editionTempsManche->time();
+        ui->editionTempsManche->setEnabled(false);
+        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
+        qDebug() << Q_FUNC_INFO << "tempsManche"
+                 << tempsManche->toString("hh:mm:ss");
+        /**
+         * @fixme Si le temps est 00:00:00 ?
+         */
+        timerManche->start(TIC_HORLOGE);
+        etatManche = true;
+        ui->boutonDebutManche->setEnabled(false);
+        ui->editionTempsManche->setEnabled(false);
+    }
+!!!135978.cpp!!!	demarrerPartie() : void
+    if(!etatPartie)
+    {
+        *tempsPartie = ui->editionTempsPartie->time();
+        ui->boutonDebutPartie->setEnabled(false);
+        ui->editionTempsPartie->setEnabled(false);
+        ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
+        qDebug() << Q_FUNC_INFO << "tempsPartie"
+                 << tempsPartie->toString("hh:mm:ss");
+        /**
+         * @fixme Si le temps est 00:00:00 ?
+         */
+        timerPartie->start(TIC_HORLOGE);
+        etatPartie = true;
+        ui->boutonDebutManche->setEnabled(true);
+        ui->editionTempsManche->setEnabled(true);
+    }
+!!!136106.cpp!!!	initialiserIHM() : void
+    ui->setupUi(this);
+    ui->boutonDemarrer->setEnabled(true);
+
+#ifdef PLEIN_ECRAN_RPI
+    showFullScreen();
+#else
+    resize(qApp->desktop()->availableGeometry(this).width(),
+           qApp->desktop()->availableGeometry(this).height());
+    setMinimumSize(qApp->desktop()->availableGeometry(this).width(),
+                   qApp->desktop()->availableGeometry(this).height());
+    // showMaximized();
+#endif
+    afficherEcranAcceuil();
+!!!136234.cpp!!!	initialiserEvenements() : void
+    // les boutons
+    connect(ui->boutonDemarrer,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(afficherEcranPartie()));
+    connect(ui->boutonDebutPartie,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(demarrerPartie()));
+    connect(ui->boutonDebutManche,
+            SIGNAL(clicked(bool)),
+            this,
+            SLOT(demarrerManche()));
+    // les minuteurs
+    connect(timerPartie, SIGNAL(timeout()), this, SLOT(chronometrerPartie()));
+    connect(timerManche, SIGNAL(timeout()), this, SLOT(chronometrerManche()));
