@@ -1,10 +1,24 @@
-![C++ Badge](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=fff&style=plastic) ![](https://badgen.net/badge/Qt/5.12.8/green) ![Raspberry Pi Badge](https://img.shields.io/badge/Raspberry%20Pi-A22846?logo=raspberrypi&logoColor=fff&style=plastic) ![Java Badge](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=java&logoColor=white&style=plastic) ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=plastic)
+![C++ Badge](https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&logoColor=fff&style=plastic) ![Android Badge](https://img.shields.io/badge/Android-3DDC84?logo=android&logoColor=fff&style=plastic)
 
-[![pages-build-deployment](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop)](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment)
+![](https://badgen.net/badge/Qt/5.12.8/green) [![qt-build](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/make-qt.yml/badge.svg)](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/make-qt.yml) [![android-build](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/android-build.yml/badge.svg)](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/android-build.yml) [![pages-build-deployment](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop)](https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment)
 
-# Le projet basket-game-2023
+# Le projet basket-game 2023
+
+- [Le projet basket-game 2023](#le-projet-basket-game-2023)
+  - [Documentation du code](#documentation-du-code)
+  - [Base de données](#base-de-données)
+  - [Versions](#versions)
+    - [0.1](#01)
+  - [Auteurs](#auteurs)
 
 ---
+
+Basket Game est un système numérique dédié à la phase d'entraînement au panier de Basket-ball afin d'ajouter un aspect ludique et esprit de compétition. Il propose de reproduire le jeu Puissance 4 (© Hasbro) en alignant plusieurs paniers de basket, chacun représentant une colonne du jeu. Deux équipes (ou 2 joueurs) lancent le ballon à tour de rôle. Chaque panier correspond à 1 jeton dans le jeu, de la couleur de l’équipe. Les équipes devront donc envoyer le ballon dans le bon panier afin de créer l’alignement de jetons, tout en bloquant l’adversaire. Un écran affichera la partie en cours.
+
+- Module de détection des paniers (EC)
+- Module de signalisation (EC)​
+- Module de gestion de partie (Android - IR)​
+- Module de visualisation de partie (Qt - Raspberry Pi - Écran télévision - IR)​
 
 ## Documentation du code
 
@@ -37,6 +51,27 @@ CREATE TABLE IF NOT EXISTS Match(idMatch INTEGER PRIMARY KEY AUTOINCREMENT, idJo
 
 CREATE TABLE IF NOT EXISTS Manche(idMatch INTEGER NOT NULL, numeroManche INTEGER NOT NULL, nbTirsReussisEquipeA INTEGER DEFAULT 0, nbTirsReussisEquipeB INTEGER DEFAULT 0, vainqueur INTEGER DEFAULT 0, debut DATETIME NOT NULL, fin DATETIME, CONSTRAINT pk_manche PRIMARY KEY (idMatch,numeroManche), CONSTRAINT fk_idMatch_1 FOREIGN KEY (idMatch) REFERENCES Match(idMatch), CONSTRAINT fk_vainqueur_1 FOREIGN KEY (vainqueur) REFERENCES Joueur(idJoueur));
 ```
+
+## Versions
+
+### 0.1
+
+![](images/jira-tickets-v01.png)
+
+- Android :
+
+![](images/screenshot-android-accueil-v0.1.png)
+
+![](images/screenshot-android-parametres-v0.1.png)
+
+- Qt :
+
+![](images/screenshot-qt-basketgame-v0.1.png)
+
+## Auteurs
+
+- Étudiant IR : Nathanael CHANSARD
+- Étudiant IR : Florent GUILLAUMET
 
 ---
 ©️ LaSalle Avignon 2023
