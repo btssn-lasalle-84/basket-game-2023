@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AccueilActivity"
+    tools:context=".BasketGame"
     android:background="#181821" >
 
     <TextView
@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.024" />
 
     <EditText
-        android:id="@+id/equipe1EditText"
+        android:id="@+id/editionEquipe1"
         android:layout_width="210dp"
         android:layout_height="48dp"
         android:layout_marginStart="120dp"
@@ -32,14 +32,14 @@
         android:textColorHint="#D00000"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/equipe2EditText"
+        app:layout_constraintEnd_toStartOf="@+id/editionEquipe2"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.299" />
 
     <EditText
-        android:id="@+id/equipe2EditText"
+        android:id="@+id/editionEquipe2"
         android:layout_width="210dp"
         android:layout_height="48dp"
         android:layout_marginEnd="120dp"
@@ -89,7 +89,7 @@
         app:layout_constraintVertical_bias="0.608">
 
         <TextView
-            android:id="@+id/tempsTirTextView"
+            android:id="@+id/tempsTir"
             android:layout_width="331dp"
             android:layout_height="37dp"
             android:gravity="center"
@@ -102,7 +102,7 @@
             android:layout_height="42dp" />
 
         <TextView
-            android:id="@+id/nombreColonnesTextView"
+            android:id="@+id/nombrePaniers"
             android:layout_width="match_parent"
             android:layout_height="35dp"
             android:gravity="center"
@@ -115,7 +115,7 @@
             android:layout_height="42dp" />
 
         <TextView
-            android:id="@+id/nombreManchesTextView"
+            android:id="@+id/nombreManches"
             android:layout_width="match_parent"
             android:layout_height="32dp"
             android:gravity="center"
@@ -142,7 +142,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editTextMinutes"
+                android:id="@+id/editionMinutesTempsTir"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -160,7 +160,7 @@
                 android:text=":"/>
 
             <EditText
-                android:id="@+id/editTextSecondes"
+                android:id="@+id/editionSecondesTempsTir"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -178,7 +178,7 @@
             android:layout_height="17dp" />
 
         <Spinner
-            android:id="@+id/menuDeroulantColonnes"
+            android:id="@+id/choixNbPaniers"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:background="#FFFFFF"
@@ -191,7 +191,7 @@
             android:layout_height="31dp" />
 
         <Spinner
-            android:id="@+id/menuDeroulantManches"
+            android:id="@+id/choixNbManches"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:defaultValue="1"
