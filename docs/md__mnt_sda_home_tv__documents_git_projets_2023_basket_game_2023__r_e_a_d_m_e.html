@@ -88,11 +88,70 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <div class="title">README </div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><img src="https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&amp;logoColor=fff&amp;style=plastic" alt="C++ Badge" class="inline"/> <img src="https://badgen.net/badge/Qt/5.12.8/green" alt="" class="inline"/> <img src="https://img.shields.io/badge/Raspberry%20Pi-A22846?logo=raspberrypi&amp;logoColor=fff&amp;style=plastic" alt="Raspberry Pi Badge" class="inline"/> <img src="https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&amp;logo=java&amp;logoColor=white&amp;style=plastic" alt="Java Badge" class="inline"/> <img src="https://img.shields.io/badge/Android-3DDC84?logo=android&amp;logoColor=fff&amp;style=plastic" alt="Android Badge" class="inline"/></p>
-<p><a href="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop" alt="pages-build-deployment" style="pointer-events: none;" class="inline"/></a></p>
-<h1>Le projet basket-game-2023</h1>
+<div class="textblock"><p><img src="https://img.shields.io/badge/C%2B%2B-00599C?logo=cplusplus&amp;logoColor=fff&amp;style=plastic" alt="C++ Badge" class="inline"/> <img src="https://img.shields.io/badge/Android-3DDC84?logo=android&amp;logoColor=fff&amp;style=plastic" alt="Android Badge" class="inline"/></p>
+<p><img src="https://badgen.net/badge/Qt/5.12.8/green" alt="" class="inline"/> <a href="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/make-qt.yml"><img src="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/make-qt.yml/badge.svg" alt="qt-build" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/android-build.yml"><img src="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/android-build.yml/badge.svg" alt="android-build" style="pointer-events: none;" class="inline"/></a> <a href="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment"><img src="https://github.com/btssn-lasalle-84/basket-game-2023/actions/workflows/pages/pages-build-deployment/badge.svg?branch=develop" alt="pages-build-deployment" style="pointer-events: none;" class="inline"/></a></p>
+<h1>Le projet basket-game 2023</h1>
+<ul>
+<li><a href="#le-projet-basket-game-2023">Le projet basket-game 2023</a><ul>
+<li><a href="#documentation-du-code">Documentation du code</a></li>
+<li><a href="#base-de-données">Base de données</a></li>
+<li><a href="#versions">Versions</a><ul>
+<li><a href="#01">0.1</a></li>
+</ul>
+</li>
+<li><a href="#auteurs">Auteurs</a></li>
+</ul>
+</li>
+</ul>
 <hr  />
- <h2>Documentation du code : <a href="https://btssn-lasalle-84.github.io/basket-game-2023/">https://btssn-lasalle-84.github.io/basket-game-2023/</a> </h2>
+<p>Basket Game est un système numérique dédié à la phase d'entraînement au panier de Basket-ball afin d'ajouter un aspect ludique et esprit de compétition. Il propose de reproduire le jeu Puissance 4 (© Hasbro) en alignant plusieurs paniers de basket, chacun représentant une colonne du jeu. Deux équipes (ou 2 joueurs) lancent le ballon à tour de rôle. Chaque panier correspond à 1 jeton dans le jeu, de la couleur de l’équipe. Les équipes devront donc envoyer le ballon dans le bon panier afin de créer l’alignement de jetons, tout en bloquant l’adversaire. Un écran affichera la partie en cours.</p>
+<ul>
+<li>Module de détection des paniers (EC)</li>
+<li>Module de signalisation (EC)​</li>
+<li>Module de gestion de partie (Android - IR)​</li>
+<li>Module de visualisation de partie (Qt - Raspberry Pi - Écran télévision - IR)​</li>
+</ul>
+<h2>Documentation du code</h2>
+<p><a href="https://btssn-lasalle-84.github.io/basket-game-2023/">https://btssn-lasalle-84.github.io/basket-game-2023/</a></p>
+<h2>Base de données</h2>
+<p>Base de données SQLite :</p>
+<p><img src="sql/basket-game-v0.1.png" alt="" class="inline"/></p>
+<div class="fragment"><div class="line"><span class="comment">-- Supprime les tables</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> Manche;</div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> <span class="keyword">Match</span>;</div>
+<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> Joueur;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">-- Création des tables</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">-- Table Joueur</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> Joueur(idJoueur <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, nom <span class="keywordtype">VARCHAR</span>, <span class="keyword">UNIQUE</span>(nom));</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">-- Table Match</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="keyword">Match</span>(idMatch <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, idJoueurA <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, idJoueurB <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, nbManchesGagnantes <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">1</span>, tempsMaxTir <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, nbPaniers <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">4</span>, estFinie <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, horodatage DATETIME <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, <span class="keyword">CONSTRAINT</span> fk_idJoueur_A <span class="keyword">FOREIGN</span> KEY (idJoueurA) <span class="keyword">REFERENCES</span> Joueur(idJoueur), <span class="keyword">CONSTRAINT</span> fk_idJoueur_B <span class="keyword">FOREIGN</span> KEY (idJoueurB) <span class="keyword">REFERENCES</span> Joueur(idJoueur));</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">-- Table Manche</span></div>
+<div class="line"> </div>
+<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> Manche(idMatch <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, numeroManche <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, nbTirsReussisEquipeA <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, nbTirsReussisEquipeB <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, vainqueur <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, debut DATETIME <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, fin DATETIME, <span class="keyword">CONSTRAINT</span> pk_manche <span class="keyword">PRIMARY</span> KEY (idMatch,numeroManche), <span class="keyword">CONSTRAINT</span> fk_idMatch_1 <span class="keyword">FOREIGN</span> KEY (idMatch) <span class="keyword">REFERENCES</span> <span class="keyword">Match</span>(idMatch), <span class="keyword">CONSTRAINT</span> fk_vainqueur_1 <span class="keyword">FOREIGN</span> KEY (vainqueur) <span class="keyword">REFERENCES</span> Joueur(idJoueur));</div>
+</div><!-- fragment --><h2>Versions</h2>
+<h3>0.1</h3>
+<p><img src="jira-tickets-v01.png" alt="" class="inline"/></p>
+<ul>
+<li>Android :</li>
+</ul>
+<p><img src="screenshot-android-accueil-v0.1.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-parametres-v0.1.png" alt="" class="inline"/></p>
+<ul>
+<li>Qt :</li>
+</ul>
+<p><img src="screenshot-qt-basketgame-v0.1.png" alt="" class="inline"/></p>
+<h2>Auteurs</h2>
+<ul>
+<li>Étudiant IR : Nathanael CHANSARD</li>
+<li>Étudiant IR : Florent GUILLAUMET</li>
+</ul>
 <hr  />
 <p> ©️ LaSalle Avignon 2023 </p>
 </div></div><!-- contents -->
@@ -102,7 +161,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Vendredi 3 Mars 2023 21:05:08 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 21:49:33 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

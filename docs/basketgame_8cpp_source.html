@@ -1,0 +1,313 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet basket-game:  Fichier source de basketgame.cpp</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet basket-game
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('basketgame_8cpp_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">basketgame.cpp</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="basketgame_8cpp.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="basketgame_8h.html">basketgame.h</a>&quot;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;ui_basketgame.h&quot;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_basketgame.html#a0ad3aebdce098ec27a47ca84194c69e1">   18</a></span>&#160;<a class="code" href="class_basketgame.html#a0ad3aebdce098ec27a47ca84194c69e1">Basketgame::Basketgame</a>(QWidget* parent) :</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_q_main_window.html">QMainWindow</a>(parent), ui(new <a class="code" href="namespace_ui.html">Ui</a>::basketgame), tempsPartie(new QTime),</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    tempsManche(new QTime), timerPartie(new QTimer(this)),</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    timerManche(new QTimer), etatPartie(false), etatManche(false),</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    couleurEquipe(true)</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">initialiserIHM</a>();</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">initialiserEvenements</a>();</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="class_basketgame.html#a08d3bd066cc6a2206a1d7ebdf2f58085">   35</a></span>&#160;<a class="code" href="class_basketgame.html#a08d3bd066cc6a2206a1d7ebdf2f58085">Basketgame::~Basketgame</a>()</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">   45</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">Basketgame::afficherEcran</a>(<a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992b">Basketgame::Ecran</a> ecran)</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;ecrans-&gt;setCurrentIndex(ecran);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">   50</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">Basketgame::afficherEcranAcceuil</a>()</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Accueil);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno"><a class="line" href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">   55</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">Basketgame::afficherEcranPartie</a>()</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Partie);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00064"></a><span class="lineno"><a class="line" href="class_basketgame.html#a5c590c8491e91a60bd576512c95954f1">   64</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#a5c590c8491e91a60bd576512c95954f1">Basketgame::afficherEcranManche</a>()</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Manche);</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">   69</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">Basketgame::demarrerPartie</a>()</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a>)</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        *<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a> = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;time();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsPartie-&gt;setText(<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsPartie&quot;</span></div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                 &lt;&lt; <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">   89</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">Basketgame::demarrerManche</a>()</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a>)</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        *<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a> = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;time();</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsManche&quot;</span></div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                 &lt;&lt; <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160; </div>
+<div class="line"><a name="l00108"></a><span class="lineno"><a class="line" href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">  108</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">Basketgame::arreterPartie</a>()</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;stop();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">arreterManche</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>-&gt;stop();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: white; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setText(<span class="stringliteral">&quot;FIN DE LA PARTIE&quot;</span>);</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00124"></a><span class="lineno"><a class="line" href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">  124</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">Basketgame::arreterManche</a>()</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<span class="stringliteral">&quot;00:00:00&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160; </div>
+<div class="line"><a name="l00135"></a><span class="lineno"><a class="line" href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">  135</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">Basketgame::chronometrerPartie</a>()</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="comment">// Voir aussi : QElapsedTimer</span></div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    QTime tempsEcoule = <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;addSecs(-1);</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;setHMS(tempsEcoule.hour(),</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                        tempsEcoule.minute(),</div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                        tempsEcoule.second());</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsPartie&quot;</span></div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;             &lt;&lt; <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsPartie-&gt;setText(<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">if</span>(*<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a> == QTime(0, 0))</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    {</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">arreterPartie</a>();</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00151"></a><span class="lineno"><a class="line" href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">  151</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">Basketgame::chronometrerManche</a>()</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="comment">// Voir aussi : QElapsedTimer</span></div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    QTime tempsEcoule = <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;addSecs(-1);</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;setHMS(tempsEcoule.hour(),</div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        tempsEcoule.minute(),</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        tempsEcoule.second());</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsManche&quot;</span></div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;             &lt;&lt; <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">if</span>(*<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a> == QTime(0, 0))</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    {</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;stop();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        *<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a> = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;time();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;start(1000);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a> == <span class="keyword">true</span>)</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: red; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setText(<span class="stringliteral">&quot;EQUIPE A&quot;</span>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;              <span class="stringliteral">&quot;background-color: yellow; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setText(<span class="stringliteral">&quot;EQUIPE B&quot;</span>);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        }</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160; </div>
+<div class="line"><a name="l00187"></a><span class="lineno"><a class="line" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">  187</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">Basketgame::initialiserIHM</a>()</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;{</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDemarrer-&gt;setEnabled(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#ifdef PLEIN_ECRAN_RPI</span></div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    showFullScreen();</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    resize(qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).width(),</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;           qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).height());</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    setMinimumSize(qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).width(),</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                   qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).height());</div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="comment">// showMaximized();</span></div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <a class="code" href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">afficherEcranAcceuil</a>();</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160; </div>
+<div class="line"><a name="l00204"></a><span class="lineno"><a class="line" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">  204</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">Basketgame::initialiserEvenements</a>()</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;{</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// les boutons</span></div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    connect(<a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDemarrer,</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            SIGNAL(clicked(<span class="keywordtype">bool</span>)),</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">afficherEcranPartie</a>()));</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    connect(<a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie,</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            SIGNAL(clicked(<span class="keywordtype">bool</span>)),</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">demarrerPartie</a>()));</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    connect(<a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche,</div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            SIGNAL(clicked(<span class="keywordtype">bool</span>)),</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">demarrerManche</a>()));</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="comment">// les minuteurs</span></div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    connect(<a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">chronometrerPartie</a>()));</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    connect(<a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">chronometrerManche</a>()));</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
+<div class="ttc" id="abasketgame_8h_html"><div class="ttname"><a href="basketgame_8h.html">basketgame.h</a></div><div class="ttdoc">Déclaration de la classe Basketgame.</div></div>
+<div class="ttc" id="abasketgame_8h_html_abf764b1c2fbaa637bd0b1b511eedc81e"><div class="ttname"><a href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a></div><div class="ttdeci">#define TIC_HORLOGE</div><div class="ttdoc">Définit le tic d'horloge à 1s.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00024">basketgame.h:24</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a007477859ecae4f81893844529779377"><div class="ttname"><a href="class_basketgame.html#a007477859ecae4f81893844529779377">Basketgame::tempsManche</a></div><div class="ttdeci">QTime * tempsManche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00079">basketgame.h:79</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a08d3bd066cc6a2206a1d7ebdf2f58085"><div class="ttname"><a href="class_basketgame.html#a08d3bd066cc6a2206a1d7ebdf2f58085">Basketgame::~Basketgame</a></div><div class="ttdeci">~Basketgame()</div><div class="ttdoc">Destructeur de la classe Basketgame.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00035">basketgame.cpp:35</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a0ad3aebdce098ec27a47ca84194c69e1"><div class="ttname"><a href="class_basketgame.html#a0ad3aebdce098ec27a47ca84194c69e1">Basketgame::Basketgame</a></div><div class="ttdeci">Basketgame(QWidget *parent=0)</div><div class="ttdoc">Constructeur de la classe Basketgame.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00018">basketgame.cpp:18</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a1262edd607d26d1676d17bf86df17e71"><div class="ttname"><a href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">Basketgame::demarrerPartie</a></div><div class="ttdeci">void demarrerPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00069">basketgame.cpp:69</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a13e139aa59ef9770253fa9e3d5ea3c5d"><div class="ttname"><a href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">Basketgame::afficherEcranPartie</a></div><div class="ttdeci">void afficherEcranPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00055">basketgame.cpp:55</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a3060a17f889349e8938b15c8f4d554ac"><div class="ttname"><a href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">Basketgame::timerManche</a></div><div class="ttdeci">QTimer * timerManche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00081">basketgame.h:81</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a31c237f1b941868110443317cbf62a4c"><div class="ttname"><a href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">Basketgame::etatPartie</a></div><div class="ttdeci">bool etatPartie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00082">basketgame.h:82</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a3e78da62f866f385639abcb1cf692822"><div class="ttname"><a href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">Basketgame::couleurEquipe</a></div><div class="ttdeci">bool couleurEquipe</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00084">basketgame.h:84</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a40a81e680374b26ef1e78502c3db1ac4"><div class="ttname"><a href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">Basketgame::timerPartie</a></div><div class="ttdeci">QTimer * timerPartie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00080">basketgame.h:80</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a4cdd1be3d55451237b8925d983e27a2e"><div class="ttname"><a href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">Basketgame::demarrerManche</a></div><div class="ttdeci">void demarrerManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00089">basketgame.cpp:89</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a53cf93923d37ece1777b3f2060341c83"><div class="ttname"><a href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">Basketgame::ui</a></div><div class="ttdeci">Ui::basketgame * ui</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00077">basketgame.h:77</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a5c590c8491e91a60bd576512c95954f1"><div class="ttname"><a href="class_basketgame.html#a5c590c8491e91a60bd576512c95954f1">Basketgame::afficherEcranManche</a></div><div class="ttdeci">void afficherEcranManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00064">basketgame.cpp:64</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a7b137516b3adf738ac6e0858968b8676"><div class="ttname"><a href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">Basketgame::tempsPartie</a></div><div class="ttdeci">QTime * tempsPartie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00078">basketgame.h:78</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a921c5c575c0bf9a78d0baeb435f8bd53"><div class="ttname"><a href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">Basketgame::chronometrerManche</a></div><div class="ttdeci">void chronometrerManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00151">basketgame.cpp:151</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a9d66093f2587ae86a850c5bc33673362"><div class="ttname"><a href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">Basketgame::arreterManche</a></div><div class="ttdeci">void arreterManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00124">basketgame.cpp:124</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_aa5f62f45e027643d8de2e8b31dc362ad"><div class="ttname"><a href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">Basketgame::afficherEcran</a></div><div class="ttdeci">void afficherEcran(Basketgame::Ecran ecran)</div><div class="ttdoc">Selectionne la fenêtre et l'affiche.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00045">basketgame.cpp:45</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ab2eb5b6fa669ec43062e461867438ed0"><div class="ttname"><a href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">Basketgame::initialiserEvenements</a></div><div class="ttdeci">void initialiserEvenements()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00204">basketgame.cpp:204</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ab533b5e4537490ee1f0f4fd103d26ca4"><div class="ttname"><a href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">Basketgame::afficherEcranAcceuil</a></div><div class="ttdeci">void afficherEcranAcceuil()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00050">basketgame.cpp:50</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_abd7e3454a97fc33e8729bf7173187d82"><div class="ttname"><a href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">Basketgame::etatManche</a></div><div class="ttdeci">bool etatManche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00083">basketgame.h:83</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ac6956c6eb30ad123cd5044cb7ef7e01d"><div class="ttname"><a href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">Basketgame::initialiserIHM</a></div><div class="ttdeci">void initialiserIHM()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00187">basketgame.cpp:187</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ad316d12354c4bf7ef80cde37c4667a4d"><div class="ttname"><a href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">Basketgame::chronometrerPartie</a></div><div class="ttdeci">void chronometrerPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00135">basketgame.cpp:135</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ae3fb850302fe7d2452570a9aa96f8b66"><div class="ttname"><a href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">Basketgame::arreterPartie</a></div><div class="ttdeci">void arreterPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00108">basketgame.cpp:108</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992b"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992b">Basketgame::Ecran</a></div><div class="ttdeci">Ecran</div><div class="ttdoc">Les différents écrans de l'affichage.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00049">basketgame.h:50</a></div></div>
+<div class="ttc" id="aclass_q_main_window_html"><div class="ttname"><a href="class_q_main_window.html">QMainWindow</a></div></div>
+<div class="ttc" id="anamespace_ui_html"><div class="ttname"><a href="namespace_ui.html">Ui</a></div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00032">basketgame.h:33</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f8bde49cdb81e3538c6b119afc4e8f4b.html">BasketGameUI</a></li><li class="navelem"><a class="el" href="basketgame_8cpp.html">basketgame.cpp</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 21:49:33 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
