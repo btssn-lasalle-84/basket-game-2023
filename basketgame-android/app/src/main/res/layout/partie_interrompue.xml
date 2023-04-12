@@ -8,7 +8,7 @@
     android:background="#181821" >
 
     <TextView
-        android:id="@+id/bienvenue"
+        android:id="@+id/partieInterrompue"
         android:layout_width="299dp"
         android:layout_height="204dp"
         android:gravity="center"
