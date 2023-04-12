@@ -1,6 +1,6 @@
 /**
- * @file AccueilActivity.java
- * @brief Déclaration de la classe AccueilActivity
+ * @file BasketGame.java
+ * @brief Déclaration de la classe BasketGame
  * @author Guillaumet Florent
  */
 
@@ -15,7 +15,7 @@ import android.view.View;
 import android.widget.Button;
 
 /**
- * @class AccueilActivity
+ * @class BasketGame
  * @brief L'activité principale
  */
 public class BasketGame extends AppCompatActivity
@@ -109,7 +109,7 @@ public class BasketGame extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(BasketGame.this, ParametresPartie.class);
+                Intent intent = new Intent(BasketGame.this, PartieParametres.class);
                 startActivity(intent);
             }
         });
