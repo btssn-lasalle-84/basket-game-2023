@@ -11,8 +11,8 @@
     <string name="nom_de_l_quipe_2">Nom de l\'équipe 2</string>
     <string name="nom_de_l_quipe_1">Nom de l\'équipe 1</string>
     <string name="confirmer">Confirmer</string>
-    <string name="_00_00">00:00</string>
     <string name="_00">00</string>
+    <string name="arr_ter_partie">Arrêter Partie</string>
     <string-array name="nombreColonnes">
         <item>2</item>
         <item>3</item>
