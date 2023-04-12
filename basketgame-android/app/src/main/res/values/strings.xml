@@ -13,6 +13,8 @@
     <string name="confirmer">Confirmer</string>
     <string name="_00">00</string>
     <string name="arr_ter_partie">Arrêter Partie</string>
+    <string name="menu_principal">Menu Principal</string>
+    <string name="recommencer_une_partie">Recommencer une partie</string>
     <string-array name="nombreColonnes">
         <item>2</item>
         <item>3</item>
