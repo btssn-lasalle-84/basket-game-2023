@@ -29,6 +29,25 @@
  */
 #define TEMPS_TOUR 15 // en s
 
+#define NB_COLONNES 7
+#define NB_LIGNES 6
+
+#define TAILLE_JETON 60
+
+/**
+ * @def DEPLACEMENT_X
+ * @brief Définit la constante de déplacement en x
+ */
+#define DEPLACEMENT_X 42
+
+/**
+ * @def DEPLACEMENT_Y
+ * @brief Définit la constante de déplacement en y
+ */
+#define DEPLACEMENT_Y 321
+
+#define NB_PIONS_ALIGNES 4
+
 namespace Ui
 {
 class basketgame;
@@ -50,41 +69,63 @@ class Basketgame : public QMainWindow
     {
         Accueil,
         Partie,
-        Manche,
-        NbEcrans
     };
 
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
 
-    void arreterPartie();
-    void arreterManche();
 
   public slots:
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
     void afficherEcranPartie();
-    void afficherEcranManche();
-    void chronometrerPartie();
-    void chronometrerManche();
+    void afficherPlateau();
+    void chronometrerTours();
+    void incrementerLcdNumberPointsEquipeRouge();
+    void incrementerLcdNumberPointsEquipeJaune();
+    void simulerPion();
+    void initialiserPlateau();
 
   private slots:
-    void demarrerManche();
-    void demarrerPartie();
-
+    void demarrerSeance();
+    void terminerPartie();
   private:
+    enum CouleurEquipe
+        {
+            Rouge = 0,
+            Jaune,
+            NbEquipes
+        };
+
+    enum CouleurJeton
+       {
+           ROUGE = -1,
+           AUCUN = 0,
+           JAUNE = 1,
+           NbJetons /* = 2 */
+       };
+
     Ui::basketgame* ui;
-    QTime*          tempsPartie;
-    QTime*          tempsManche;
-    QTimer*         timerPartie;
-    QTimer*         timerManche;
+    QVector<QVector<CouleurJeton> > plateau;
+    QTime*          tempsTours;
+    QTimer*         timerTours;
+
+    bool            etatTours;
     bool            etatPartie;
-    bool            etatManche;
+    bool            estVainqueur;
     bool            couleurEquipe;
 
-    void initialiserIHM();
-    void initialiserEvenements();
+    int             ToursJoueurs;
+    int             nbPionsAlignes;
+    int             nombreColonnes;
+    int             scoreEquipeRouge;
+    int             scoreEquipeJaune;
+    int             randInt(int min, int max);
+    void            afficherUnJeton(int ligne, int colonne);
+    void            initialiserIHM();
+    void            initialiserEvenements();
+
 };
 
 #endif // BASKETGAME_H

@@ -8,6 +8,10 @@
 
 #include "basketgame.h"
 #include "ui_basketgame.h"
+#include <QPainter>
+#include <QDebug>
+
+#include <QAction>
 
 /**
  * @brief Constructeur de la classe Basketgame
@@ -16,10 +20,12 @@
  * @param parent nullptr pour définir la fenêtre principale de l'application
  */
 Basketgame::Basketgame(QWidget* parent) :
-    QMainWindow(parent), ui(new Ui::basketgame), tempsPartie(new QTime),
-    tempsManche(new QTime), timerPartie(new QTimer(this)),
-    timerManche(new QTimer), etatPartie(false), etatManche(false),
-    couleurEquipe(true)
+    QMainWindow(parent), ui(new Ui::basketgame),
+    tempsTours(new QTime),timerTours(new QTimer),
+    plateau(NB_COLONNES),etatTours(false),ToursJoueurs(0),
+    nombreColonnes(NB_COLONNES),nbPionsAlignes(NB_PIONS_ALIGNES),
+    couleurEquipe(true), scoreEquipeRouge(0) , scoreEquipeJaune(0),
+    estVainqueur(false)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
@@ -42,148 +48,96 @@ Basketgame::~Basketgame()
  * @fn Basketgame::afficherEcran(Basketgame::Ecran ecran)
  * @brief Selectionne la fenêtre et l'affiche
  */
+
 void Basketgame::afficherEcran(Basketgame::Ecran ecran)
 {
     ui->ecrans->setCurrentIndex(ecran);
 }
-
 void Basketgame::afficherEcranAcceuil()
 {
     afficherEcran(Basketgame::Ecran::Accueil);
 }
-
 void Basketgame::afficherEcranPartie()
 {
-    ui->boutonDebutPartie->setEnabled(true);
-    ui->editionTempsPartie->setEnabled(true);
-    ui->boutonDebutManche->setEnabled(false);
-    ui->editionTempsManche->setEnabled(false);
+    ui->boutonDebutManche->setEnabled(true);
+    ui->editionTempsTours->setEnabled(true);
     afficherEcran(Basketgame::Ecran::Partie);
 }
-
-void Basketgame::afficherEcranManche()
+void Basketgame::demarrerSeance()
 {
-    afficherEcran(Basketgame::Ecran::Manche);
-}
-
-void Basketgame::demarrerPartie()
-{
-    if(!etatPartie)
+    if(!etatTours)
     {
-        *tempsPartie = ui->editionTempsPartie->time();
-        ui->boutonDebutPartie->setEnabled(false);
-        ui->editionTempsPartie->setEnabled(false);
-        ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
-        qDebug() << Q_FUNC_INFO << "tempsPartie"
-                 << tempsPartie->toString("hh:mm:ss");
-        /**
-         * @fixme Si le temps est 00:00:00 ?
-         */
-        timerPartie->start(TIC_HORLOGE);
-        etatPartie = true;
-        ui->boutonDebutManche->setEnabled(true);
-        ui->editionTempsManche->setEnabled(true);
-    }
-}
-
-void Basketgame::demarrerManche()
-{
-    if(!etatManche)
-    {
-        *tempsManche = ui->editionTempsManche->time();
-        ui->editionTempsManche->setEnabled(false);
-        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
+        *tempsTours = ui->editionTempsTours->time();
+        ui->editionTempsTours->setEnabled(false);
+        ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
         qDebug() << Q_FUNC_INFO << "tempsManche"
-                 << tempsManche->toString("hh:mm:ss");
+                 << tempsTours->toString("hh:mm:ss");
         /**
          * @fixme Si le temps est 00:00:00 ?
          */
-        timerManche->start(TIC_HORLOGE);
-        etatManche = true;
+        timerTours->start(TIC_HORLOGE);
+        etatTours = true;
         ui->boutonDebutManche->setEnabled(false);
-        ui->editionTempsManche->setEnabled(false);
+        ui->editionTempsTours->setEnabled(false);
+
     }
 }
-
-void Basketgame::arreterPartie()
+void Basketgame::terminerPartie()
 {
     /**
      * @todo Gérer la fin d'une partie
      */
-    timerManche->stop();
-    arreterManche();
-
-    timerPartie->stop();
-    ui->UiEquipe->setStyleSheet("background-color: white; color: black;");
-    ui->UiEquipe->setText("FIN DE LA PARTIE");
-    ui->boutonDebutPartie->setEnabled(true);
-    ui->editionTempsPartie->setEnabled(true);
-    etatPartie = false;
-}
-
-void Basketgame::arreterManche()
-{
-    /**
-     * @todo Gérer la fin d'une manche
-     */
-    etatManche = false;
-    ui->tempsManche->setText("00:00:00");
+    etatTours = false;
+    ui->tempsTours->setText("00:00:00");
     ui->boutonDebutManche->setEnabled(false);
-    ui->editionTempsManche->setEnabled(false);
-}
+    ui->editionTempsTours->setEnabled(false);
 
-void Basketgame::chronometrerPartie()
+}
+void Basketgame::chronometrerTours()
 {
     // Voir aussi : QElapsedTimer
-    QTime tempsEcoule = tempsPartie->addSecs(-1);
-    tempsPartie->setHMS(tempsEcoule.hour(),
-                        tempsEcoule.minute(),
-                        tempsEcoule.second());
-    qDebug() << Q_FUNC_INFO << "tempsPartie"
-             << tempsPartie->toString("hh:mm:ss");
-    ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
-    if(*tempsPartie == QTime(0, 0))
-    {
-        arreterPartie();
-    }
-}
-
-void Basketgame::chronometrerManche()
-{
-    // Voir aussi : QElapsedTimer
-    QTime tempsEcoule = tempsManche->addSecs(-1);
-    tempsManche->setHMS(tempsEcoule.hour(),
+    QTime tempsEcoule = tempsTours->addSecs(-1);
+    tempsTours->setHMS(tempsEcoule.hour(),
                         tempsEcoule.minute(),
                         tempsEcoule.second());
     qDebug() << Q_FUNC_INFO << "tempsManche"
-             << tempsManche->toString("hh:mm:ss");
-    ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
-    /**
-     * @fixme Vous confondez manche et tour !
-     */
-    if(*tempsManche == QTime(0, 0))
+             << tempsTours->toString("hh:mm:ss");
+    ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
+
+    if(*tempsTours == QTime(0, 0))
     {
-        timerManche->stop();
-        *tempsManche = ui->editionTempsManche->time();
-        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
-        timerManche->start(1000);
+        timerTours->stop();
+        *tempsTours = ui->editionTempsTours->time();
+        ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
+        timerTours->start(1000);
 
         if(couleurEquipe == true)
         {
+            ui->labelVisualisationEquipeRouge->setStyleSheet("background-color: transparent; color: black;");
+            ui->labelVisualisationEquipeJaune->setStyleSheet("background-color: yellow; color: black;");
             couleurEquipe = false;
-            ui->UiEquipe->setStyleSheet("background-color: red; color: black;");
-            ui->UiEquipe->setText("EQUIPE A");
         }
         else
         {
+            ui->labelVisualisationEquipeJaune->setStyleSheet("background-color: transparent; color: black;");
+            ui->labelVisualisationEquipeRouge->setStyleSheet("background-color: red; color: black;");
             couleurEquipe = true;
-            ui->UiEquipe->setStyleSheet(
-              "background-color: yellow; color: black;");
-            ui->UiEquipe->setText("EQUIPE B");
-        }
+        } 
+    }
+    else if (estVainqueur = true)
+    {
+        terminerPartie();
+        timerTours->stop();
     }
 }
-
+void Basketgame::incrementerLcdNumberPointsEquipeRouge() {
+    scoreEquipeRouge++;
+        ui->afficherTotalPanierE1->display(QString::number(scoreEquipeRouge));
+    }
+void Basketgame::incrementerLcdNumberPointsEquipeJaune() {
+    scoreEquipeJaune++;
+        ui->afficherTotalPanierE2->display(QString::number(scoreEquipeJaune));
+    }
 void Basketgame::initialiserIHM()
 {
     ui->setupUi(this);
@@ -200,7 +154,6 @@ void Basketgame::initialiserIHM()
 #endif
     afficherEcranAcceuil();
 }
-
 void Basketgame::initialiserEvenements()
 {
     // les boutons
@@ -208,15 +161,110 @@ void Basketgame::initialiserEvenements()
             SIGNAL(clicked(bool)),
             this,
             SLOT(afficherEcranPartie()));
-    connect(ui->boutonDebutPartie,
-            SIGNAL(clicked(bool)),
-            this,
-            SLOT(demarrerPartie()));
     connect(ui->boutonDebutManche,
             SIGNAL(clicked(bool)),
             this,
-            SLOT(demarrerManche()));
-    // les minuteurs
-    connect(timerPartie, SIGNAL(timeout()), this, SLOT(chronometrerPartie()));
-    connect(timerManche, SIGNAL(timeout()), this, SLOT(chronometrerManche()));
+            SLOT(demarrerSeance()));
+    connect(ui->boutonDemarrer,
+            SIGNAL(clicked()),
+            this,
+            SLOT(initialiserPlateau()));
+
+    // les Minuteurs
+
+    connect(timerTours, SIGNAL(timeout()), this, SLOT(chronometrerTours()));
+
+    // les raccourcis clavier
+
+    QAction* actionPion1 = new QAction(this);
+    actionPion1->setShortcut(QKeySequence(Qt::Key_A));
+    addAction(actionPion1);
+    connect(actionPion1, SIGNAL(triggered()), this, SLOT(simulerPion()));
+
 }
+
+void Basketgame::afficherPlateau()
+{
+    ui->labelVisualisationPlateau->setPixmap(
+    QPixmap(":/ressources/puissance4_7.png"));
+}
+
+void Basketgame::initialiserPlateau()
+{
+    for(int i = 0; i < plateau.size(); ++i)
+    {
+        plateau[i].resize(NB_LIGNES);
+    }
+    qDebug() << Q_FUNC_INFO << plateau.size() << plateau[0].size();
+
+        for(int colonne = 0; colonne < plateau.size(); ++colonne)
+        {
+            for(int ligne = 0; ligne < plateau[colonne].size(); ++ligne)
+            {
+                plateau[colonne][ligne] = CouleurJeton::AUCUN;
+            }
+        }
+        afficherPlateau();
+}
+
+void Basketgame::afficherUnJeton(int ligne, int colonne)
+{
+    if(ligne < 0 || ligne >= NB_LIGNES)
+        return;
+    if(colonne < 0 || colonne >= NB_COLONNES)
+        return;
+
+    qDebug() << Q_FUNC_INFO << ligne << colonne;
+
+    QImage  jetonRouge(":/ressources/jetonRouge.png");
+    QImage  jetonJaune(":/ressources/jetonJaune.png");
+    QPixmap puissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
+    // on récupère l'image précédente
+    QPainter p(&puissance4);
+
+    if (ToursJoueurs % 2 == 0)
+    {
+        p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
+                           DEPLACEMENT_Y - (ligne *   TAILLE_JETON)),
+                           jetonRouge);
+        qDebug() << Q_FUNC_INFO << DEPLACEMENT_X << DEPLACEMENT_Y << TAILLE_JETON;
+    p.end();
+    ui->labelVisualisationPlateau->setPixmap(puissance4);
+    incrementerLcdNumberPointsEquipeRouge();
+    ToursJoueurs++;
+    }
+    else if (ToursJoueurs % 2 == 1)
+    {
+        p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
+                           DEPLACEMENT_Y - (ligne *   TAILLE_JETON)),
+                           jetonJaune);
+        qDebug() << Q_FUNC_INFO << DEPLACEMENT_X << DEPLACEMENT_Y << TAILLE_JETON;
+    p.end();
+    ui->labelVisualisationPlateau->setPixmap(puissance4);
+    incrementerLcdNumberPointsEquipeJaune();
+    ToursJoueurs++;
+    }
+    else
+    {
+        qDebug() << Q_FUNC_INFO << DEPLACEMENT_X << DEPLACEMENT_Y << TAILLE_JETON;
+    }
+}
+
+void Basketgame::simulerPion()
+{
+    qDebug() << Q_FUNC_INFO << plateau.size() << plateau[0].size();
+        int ligne   = randInt(0, NB_LIGNES - 1);
+        int colonne = randInt(0, NB_COLONNES - 1);
+        // case libre ?
+
+        if(plateau[colonne][ligne] == CouleurJeton::AUCUN)
+        {
+            plateau[colonne][ligne] = CouleurJeton::ROUGE;
+            afficherUnJeton(ligne, colonne);
+        }
+
+}
+int Basketgame::randInt(int min, int max)
+        {
+            return qrand() % ((max + 1) - min) + min;
+        }
