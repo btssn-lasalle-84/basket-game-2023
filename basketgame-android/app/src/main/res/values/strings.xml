@@ -16,6 +16,7 @@
     <string name="menu_principal">Menu Principal</string>
     <string name="partie_interrompue">Partie Interrompue</string>
     <string name="recommencer_une_partie">Recommencer une partie</string>
+    <string name="partie_termin_e">Partie Terminée</string>
     <string-array name="nombreColonnes">
         <item>2</item>
         <item>3</item>

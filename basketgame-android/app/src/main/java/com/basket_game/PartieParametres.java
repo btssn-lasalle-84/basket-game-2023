@@ -10,8 +10,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
+import java.io.Serializable;
 
 /**
  * @class PartieParametres
@@ -27,6 +31,7 @@ public class PartieParametres extends AppCompatActivity
     /**
      * Attributs
      */
+    private Intent intentDonneesPartieSuivi;
 
     /**
      * Ressources GUI
@@ -41,7 +46,20 @@ public class PartieParametres extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_parametres);
 
+        intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
+
         afficherSuiviPartie();
+    }
+
+    /**
+     * @brief Méthode appelée pour récupérer le nom de l'équipe 1
+     */
+    private void recupererNomEquipe(int idEquipe, int numeroEquipe)
+    {
+        EditText editionEquipe = findViewById(idEquipe);
+        String nomEquipe = editionEquipe.getText().toString();
+        Equipe equipe = new Equipe(nomEquipe);
+        intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, (Serializable) equipe);
     }
 
     /**
@@ -54,8 +72,10 @@ public class PartieParametres extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(PartieParametres.this, PartieSuivi.class);
-                startActivity(intent);
+                recupererNomEquipe(R.id.editionEquipe1, 1);
+                recupererNomEquipe(R.id.editionEquipe2, 2);
+                Log.d(TAG, "afficherSuiviPartie() " + ((EditText)(findViewById(R.id.editionEquipe1))).getText().toString() + " vs " + ((EditText)(findViewById(R.id.editionEquipe2))).getText().toString() );
+                startActivity(intentDonneesPartieSuivi);
             }
         });
     }

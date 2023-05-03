@@ -12,7 +12,7 @@
         android:layout_width="299dp"
         android:layout_height="204dp"
         android:gravity="center"
-        android:text="Partie Terminée"
+        android:text="@string/partie_termin_e"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
