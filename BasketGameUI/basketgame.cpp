@@ -23,8 +23,8 @@ Basketgame::Basketgame(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::basketgame),
     tempsTours(new QTime),timerTours(new QTimer),
     plateau(NB_COLONNES),etatTours(false),ToursJoueurs(0),
-    nombreColonnes(NB_COLONNES),nbPionsAlignes(NB_PIONS_ALIGNES),
-    couleurEquipe(true), scoreEquipeRouge(0) , scoreEquipeJaune(0),
+    nbPionsAlignes(NB_PIONS_ALIGNES),estEquipeRouge(true),
+    scoreEquipeRouge(0) , scoreEquipeJaune(0),
     estVainqueur(false)
 {
     qDebug() << Q_FUNC_INFO;
@@ -48,21 +48,35 @@ Basketgame::~Basketgame()
  * @fn Basketgame::afficherEcran(Basketgame::Ecran ecran)
  * @brief Selectionne la fenêtre et l'affiche
  */
-
 void Basketgame::afficherEcran(Basketgame::Ecran ecran)
 {
     ui->ecrans->setCurrentIndex(ecran);
 }
+
+/**
+ * @fn Basketgame::afficherEcranAcceuil()
+ * @brief Affiche la fenêtre d'accueil
+ */
 void Basketgame::afficherEcranAcceuil()
 {
     afficherEcran(Basketgame::Ecran::Accueil);
 }
+
+/**
+ * @fn Basketgame::afficherEcranPartie()
+ * @brief Affiche la fenêtre de partie
+ */
 void Basketgame::afficherEcranPartie()
 {
     ui->boutonDebutManche->setEnabled(true);
     ui->editionTempsTours->setEnabled(true);
     afficherEcran(Basketgame::Ecran::Partie);
 }
+
+/**
+ * @fn Basketgame::demarrerSeance()
+ * @brief méthode pour debuter une séance
+ */
 void Basketgame::demarrerSeance()
 {
     if(!etatTours)
@@ -70,29 +84,44 @@ void Basketgame::demarrerSeance()
         *tempsTours = ui->editionTempsTours->time();
         ui->editionTempsTours->setEnabled(false);
         ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
-        qDebug() << Q_FUNC_INFO << "tempsManche"
-                 << tempsTours->toString("hh:mm:ss");
-        /**
-         * @fixme Si le temps est 00:00:00 ?
-         */
+        qDebug() << Q_FUNC_INFO << "Debut Seance";
         timerTours->start(TIC_HORLOGE);
+
         etatTours = true;
         ui->boutonDebutManche->setEnabled(false);
         ui->editionTempsTours->setEnabled(false);
 
     }
 }
-void Basketgame::terminerPartie()
+
+/**
+ * @fn Basketgame::terminerSeance()
+ * @brief méthode pour détermiquer quand la séance est terminer
+ */
+void Basketgame::terminerSeance()
 {
-    /**
-     * @todo Gérer la fin d'une partie
-     */
+    if (estVainqueur == true)
+    {
     etatTours = false;
     ui->tempsTours->setText("00:00:00");
-    ui->boutonDebutManche->setEnabled(false);
-    ui->editionTempsTours->setEnabled(false);
-
+    ui->boutonDebutManche->setEnabled(true);
+    ui->editionTempsTours->setEnabled(true);
+    }
+    else if(ToursJoueurs == 42)
+    {
+        etatTours = false;
+        ui->tempsTours->setText("00:00:00");
+        ui->boutonDebutManche->setEnabled(true);
+        ui->editionTempsTours->setEnabled(true);
+        qDebug() << Q_FUNC_INFO << "Partie Nul";
+        qDebug() << Q_FUNC_INFO << ToursJoueurs;
+    }
 }
+
+/**
+ * @fn Basketgame::chronometrerTours()
+ * @brief méthode pour chronometrer un tour de puissance4
+ */
 void Basketgame::chronometrerTours()
 {
     // Voir aussi : QElapsedTimer
@@ -100,8 +129,7 @@ void Basketgame::chronometrerTours()
     tempsTours->setHMS(tempsEcoule.hour(),
                         tempsEcoule.minute(),
                         tempsEcoule.second());
-    qDebug() << Q_FUNC_INFO << "tempsManche"
-             << tempsTours->toString("hh:mm:ss");
+   // qDebug() << Q_FUNC_INFO << "tempsTours" << tempsTours->toString("hh:mm:ss");
     ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
 
     if(*tempsTours == QTime(0, 0))
@@ -111,33 +139,45 @@ void Basketgame::chronometrerTours()
         ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
         timerTours->start(1000);
 
-        if(couleurEquipe == true)
-        {
+    if( estEquipeRouge == true)
+           {
             ui->labelVisualisationEquipeRouge->setStyleSheet("background-color: transparent; color: black;");
             ui->labelVisualisationEquipeJaune->setStyleSheet("background-color: yellow; color: black;");
-            couleurEquipe = false;
-        }
-        else
-        {
+            qDebug() << Q_FUNC_INFO << estEquipeRouge ;
+            estEquipeRouge = false;
+           }
+     else
+           {
             ui->labelVisualisationEquipeJaune->setStyleSheet("background-color: transparent; color: black;");
             ui->labelVisualisationEquipeRouge->setStyleSheet("background-color: red; color: black;");
-            couleurEquipe = true;
-        } 
-    }
-    else if (estVainqueur = true)
-    {
-        terminerPartie();
-        timerTours->stop();
+            qDebug() << Q_FUNC_INFO << estEquipeRouge ;
+            estEquipeRouge = true;
+           }
     }
 }
-void Basketgame::incrementerLcdNumberPointsEquipeRouge() {
-    scoreEquipeRouge++;
+
+/**
+ * @fn Basketgame::incrementerVisualisationLcdNumber()
+ * @brief méthode pour incrementer l'UI en fonction du nombre de panier
+ */
+void Basketgame::incrementerVisualisationLcdNumber()
+{
+    if(ToursJoueurs % 2 == 0)
+    {
+        scoreEquipeRouge++;
         ui->afficherTotalPanierE1->display(QString::number(scoreEquipeRouge));
     }
-void Basketgame::incrementerLcdNumberPointsEquipeJaune() {
-    scoreEquipeJaune++;
+    else if (ToursJoueurs % 2 == 1)
+    {
+        scoreEquipeJaune++;
         ui->afficherTotalPanierE2->display(QString::number(scoreEquipeJaune));
     }
+}
+
+/**
+ * @fn Basketgame::initialiserIHM()
+ * @brief méthode pour initialiser l'IHM
+ */
 void Basketgame::initialiserIHM()
 {
     ui->setupUi(this);
@@ -154,6 +194,11 @@ void Basketgame::initialiserIHM()
 #endif
     afficherEcranAcceuil();
 }
+
+/**
+ * @fn Basketgame::initialiserEvenements()
+ * @brief méthode pour initialiser les évenements et action du programme
+ */
 void Basketgame::initialiserEvenements()
 {
     // les boutons
@@ -180,15 +225,29 @@ void Basketgame::initialiserEvenements()
     actionPion1->setShortcut(QKeySequence(Qt::Key_A));
     addAction(actionPion1);
     connect(actionPion1, SIGNAL(triggered()), this, SLOT(simulerPion()));
-
+    QAction* quitterProgramme = new QAction(this);
+    quitterProgramme->setShortcut((QKeySequence(Qt::Key_Q)));
+    addAction(quitterProgramme);
+    connect(quitterProgramme,
+            SIGNAL(triggered()),
+            this,
+            SLOT(fermerApplication()));
 }
 
+/**
+ * @fn Basketgame::afficherPlateau()
+ * @brief méthode pour afficher le plateau de puissance4
+ */
 void Basketgame::afficherPlateau()
 {
     ui->labelVisualisationPlateau->setPixmap(
     QPixmap(":/ressources/puissance4_7.png"));
 }
 
+/**
+ * @fn Basketgame::initialiserPlateau()
+ * @brief méthode pour initialiser le plateau de puissance4
+ */
 void Basketgame::initialiserPlateau()
 {
     for(int i = 0; i < plateau.size(); ++i)
@@ -207,6 +266,10 @@ void Basketgame::initialiserPlateau()
         afficherPlateau();
 }
 
+/**
+ * @fn Basketgame::afficherUnJeton(int ligne, int colonne)
+ * @brief méthode pour afficher les jetons dans le plateau de puissance4
+ */
 void Basketgame::afficherUnJeton(int ligne, int colonne)
 {
     if(ligne < 0 || ligne >= NB_LIGNES)
@@ -214,57 +277,109 @@ void Basketgame::afficherUnJeton(int ligne, int colonne)
     if(colonne < 0 || colonne >= NB_COLONNES)
         return;
 
-    qDebug() << Q_FUNC_INFO << ligne << colonne;
-
     QImage  jetonRouge(":/ressources/jetonRouge.png");
     QImage  jetonJaune(":/ressources/jetonJaune.png");
     QPixmap puissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
-    // on récupère l'image précédente
     QPainter p(&puissance4);
 
-    if (ToursJoueurs % 2 == 0)
+    if ( estEquipeRouge == true )
     {
         p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
                            DEPLACEMENT_Y - (ligne *   TAILLE_JETON)),
                            jetonRouge);
-        qDebug() << Q_FUNC_INFO << DEPLACEMENT_X << DEPLACEMENT_Y << TAILLE_JETON;
-    p.end();
-    ui->labelVisualisationPlateau->setPixmap(puissance4);
-    incrementerLcdNumberPointsEquipeRouge();
-    ToursJoueurs++;
+        p.end();
+        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        incrementerVisualisationLcdNumber();
+        ToursJoueurs++;
+        qDebug() << Q_FUNC_INFO << "Pion rouge placer" ;
+        afficherToursEquipe();
     }
-    else if (ToursJoueurs % 2 == 1)
+    else if ( estEquipeRouge == false)
     {
+
         p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
                            DEPLACEMENT_Y - (ligne *   TAILLE_JETON)),
                            jetonJaune);
-        qDebug() << Q_FUNC_INFO << DEPLACEMENT_X << DEPLACEMENT_Y << TAILLE_JETON;
-    p.end();
-    ui->labelVisualisationPlateau->setPixmap(puissance4);
-    incrementerLcdNumberPointsEquipeJaune();
-    ToursJoueurs++;
+        p.end();
+        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        incrementerVisualisationLcdNumber();
+        ToursJoueurs++;
+        qDebug() << Q_FUNC_INFO << "Pion jaune placer";
+        afficherToursEquipe();
     }
     else
     {
-        qDebug() << Q_FUNC_INFO << DEPLACEMENT_X << DEPLACEMENT_Y << TAILLE_JETON;
+        qDebug() << Q_FUNC_INFO << "Erreur placement pion";
+    }
+    terminerSeance();
+}
+
+/**
+ * @fn Basketgame::afficherToursEquipe()
+ * @brief méthode pour afficher qu'elle équipe est train de jouer
+ */
+void Basketgame::afficherToursEquipe()
+{
+    if ( estEquipeRouge == true  )
+    {
+        timerTours->stop();
+        *tempsTours = ui->editionTempsTours->time();
+        ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
+        timerTours->start(1000);
+        ui->labelVisualisationEquipeRouge->setStyleSheet("background-color: transparent; color: black;");
+        ui->labelVisualisationEquipeJaune->setStyleSheet("background-color: yellow; color: black;");
+        qDebug() << Q_FUNC_INFO << estEquipeRouge ;
+        estEquipeRouge = false;
+    }
+    else
+    {
+        timerTours->stop();
+        *tempsTours = ui->editionTempsTours->time();
+        ui->tempsTours->setText(tempsTours->toString("hh:mm:ss"));
+        timerTours->start(1000);
+        ui->labelVisualisationEquipeJaune->setStyleSheet("background-color: transparent; color: black;");
+        ui->labelVisualisationEquipeRouge->setStyleSheet("background-color: red; color: black;");
+        qDebug() << Q_FUNC_INFO << estEquipeRouge ;
+        estEquipeRouge = true;
+
     }
 }
 
+/**
+ * @fn Basketgame::simulerPion()
+ * @brief méthode pour simuler un coup de puissance4
+ */
 void Basketgame::simulerPion()
 {
-    qDebug() << Q_FUNC_INFO << plateau.size() << plateau[0].size();
-        int ligne   = randInt(0, NB_LIGNES - 1);
         int colonne = randInt(0, NB_COLONNES - 1);
-        // case libre ?
+        int ligne = 0 ;
 
-        if(plateau[colonne][ligne] == CouleurJeton::AUCUN)
+        for (ligne = 0; ligne < NB_LIGNES; ++ligne)
         {
-            plateau[colonne][ligne] = CouleurJeton::ROUGE;
-            afficherUnJeton(ligne, colonne);
+            if (colonne >= 0 && colonne < NB_COLONNES && plateau[colonne][ligne] == CouleurJeton::AUCUN)
+            {
+                plateau[colonne][ligne] = CouleurJeton::COULEUR;
+                afficherUnJeton(ligne, colonne);
+                break;
+            }
         }
-
+        qDebug() << Q_FUNC_INFO << "ligne" << ligne + 1 << "colonne" << colonne + 1;
 }
+
+/**
+ * @fn Basketgame::randInt(int min, int max)
+ * @brief méthode pour créer une variable aléatoire
+ */
 int Basketgame::randInt(int min, int max)
         {
             return qrand() % ((max + 1) - min) + min;
         }
+
+/**
+ * @fn Basketgame::fermerApplication()
+ * @brief méthode pour fermer l'application
+ */
+void Basketgame::fermerApplication()
+{
+    this->close();
+}

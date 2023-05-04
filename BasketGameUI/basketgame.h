@@ -8,7 +8,6 @@
  * @author Nathanael CHANSARD
  * @version 0.1
  */
-
 #include <QtWidgets>
 
 /**
@@ -29,9 +28,22 @@
  */
 #define TEMPS_TOUR 15 // en s
 
+/**
+ * @def NB_COLONNES
+ * @brief Définit le nombre de colonne par défaut
+ */
 #define NB_COLONNES 7
+
+/**
+ * @def NB_LIGNES
+ * @brief Définit le nombre de ligne par défaut
+ */
 #define NB_LIGNES 6
 
+/**
+ * @def TAILLE_JETON
+ * @brief Définit la taille de l'affichage du jeton
+ */
 #define TAILLE_JETON 60
 
 /**
@@ -46,6 +58,10 @@
  */
 #define DEPLACEMENT_Y 321
 
+/**
+ * @def DEPLACEMENT_Y
+ * @brief Définit le nombre de pions pour gagner une partie
+ */
 #define NB_PIONS_ALIGNES 4
 
 namespace Ui
@@ -82,28 +98,35 @@ class Basketgame : public QMainWindow
     void afficherEcranPartie();
     void afficherPlateau();
     void chronometrerTours();
-    void incrementerLcdNumberPointsEquipeRouge();
-    void incrementerLcdNumberPointsEquipeJaune();
+    void incrementerVisualisationLcdNumber();
     void simulerPion();
     void initialiserPlateau();
+    void fermerApplication();
 
   private slots:
     void demarrerSeance();
-    void terminerPartie();
+    void terminerSeance();
+
   private:
+
+    /**
+     * @enum CouleurEquipe
+     * @brief Les différentes couleur d'equipe
+     */
     enum CouleurEquipe
         {
             Rouge = 0,
             Jaune,
-            NbEquipes
         };
 
+    /**
+     * @enum CouleurJeton
+     * @brief Les différents couleur de jeton
+     */
     enum CouleurJeton
        {
-           ROUGE = -1,
-           AUCUN = 0,
-           JAUNE = 1,
-           NbJetons /* = 2 */
+           COULEUR = 0,
+           AUCUN,
        };
 
     Ui::basketgame* ui;
@@ -112,17 +135,16 @@ class Basketgame : public QMainWindow
     QTimer*         timerTours;
 
     bool            etatTours;
-    bool            etatPartie;
     bool            estVainqueur;
-    bool            couleurEquipe;
+    bool            estEquipeRouge;
 
     int             ToursJoueurs;
     int             nbPionsAlignes;
-    int             nombreColonnes;
     int             scoreEquipeRouge;
     int             scoreEquipeJaune;
     int             randInt(int min, int max);
     void            afficherUnJeton(int ligne, int colonne);
+    void            afficherToursEquipe();
     void            initialiserIHM();
     void            initialiserEvenements();
 
