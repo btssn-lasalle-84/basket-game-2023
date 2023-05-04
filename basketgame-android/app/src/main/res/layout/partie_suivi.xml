@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PartieSuivi"
-    android:background="#181821" >
+    android:background="#181821"
+    tools:context=".PartieSuivi">
 
     <TextView
         android:id="@+id/partieSuivi"
         android:layout_width="299dp"
         android:layout_height="204dp"
         android:gravity="center"
-        android:text="Basket-Game Suivi Partie"
+        android:text="@string/basket_game_suivi_partie"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,19 +34,38 @@
         app:layout_constraintVertical_bias="0.237"
         app:srcCompat="@drawable/logo_basket_game_sans_fond" />
 
+
     <TextView
         android:id="@+id/affichageNomEquipe1"
         android:layout_width="299dp"
         android:layout_height="204dp"
+        android:layout_marginStart="40dp"
         android:contentDescription="@string/nom_de_l_quipe_1"
         android:gravity="center"
+        android:textColor="#D00000"
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.113"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.448" />
+        app:layout_constraintVertical_bias="0.469" />
+
+    <TextView
+        android:id="@+id/affichageNomEquipe2"
+        android:layout_width="299dp"
+        android:layout_height="204dp"
+        android:layout_marginEnd="40dp"
+        android:contentDescription="@string/nom_d_l_quipe_2"
+        android:gravity="center"
+        android:textColor="#FFBE0B"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.469" />
 
     <Button
         android:id="@+id/boutonArreterPartie"

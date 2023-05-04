@@ -17,7 +17,13 @@ import android.widget.Button;
  * @class PartieInterrompue
  * @brief L'activité qui indique l'interruption de la partie
  */
-public class PartieInterrompue extends AppCompatActivity {
+public class PartieInterrompue extends AppCompatActivity
+{
+    /**
+     * Constantes
+     */
+    private static final String TAG = "_PartieInterrompue"; //!< TAG pour les logs (cf. Logcat)
+
 
     /**
      * @brief Méthode appelée à la création de l'activité

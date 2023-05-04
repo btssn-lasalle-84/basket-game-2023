@@ -56,28 +56,16 @@
         android:importantForAutofill="no" />
 
     <Button
-        android:id="@+id/boutonConfirmerParametres"
-        android:layout_width="152dp"
-        android:layout_height="57dp"
-        android:text="@string/confirmer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805" />
-
-    <Button
         android:id="@+id/boutonLancerPartie"
         android:layout_width="152dp"
         android:layout_height="57dp"
         android:text="@string/lancer_la_partie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.889" />
 
     <LinearLayout
         android:layout_width="354dp"

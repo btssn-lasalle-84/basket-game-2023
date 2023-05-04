@@ -17,6 +17,8 @@
     <string name="partie_interrompue">Partie Interrompue</string>
     <string name="recommencer_une_partie">Recommencer une partie</string>
     <string name="partie_termin_e">Partie Terminée</string>
+    <string name="basket_game_suivi_partie">Basket-Game Suivi Partie</string>
+    <string name="nom_d_l_quipe_2">Nom d l\'équipe 2</string>
     <string-array name="nombreColonnes">
         <item>2</item>
         <item>3</item>

@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 /**
@@ -42,7 +41,8 @@ public class PartieSuivi extends AppCompatActivity
         Equipe equipe2 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe2");
         Log.d(TAG, "onCreate() equipe2 = " + equipe2.getNomEquipe());
 
-        //afficherNomEquipe1();
+        afficherNomEquipe1();
+        afficherNomEquipe2();
         creerBoutonArreterPartie();
     }
 
@@ -52,7 +52,8 @@ public class PartieSuivi extends AppCompatActivity
     private void afficherNomEquipe1()
     {
         Equipe equipe1 = (Equipe) getIntent().getSerializableExtra("equipe1");
-        if(equipe1 != null) {
+        if(equipe1.getNomEquipe() != "")
+        {
             Log.d(TAG, "afficherNomEquipe1() equipe1 = " + equipe1.getNomEquipe());
             String nomEquipe1 = equipe1.getNomEquipe();
             TextView affichageNomEquipe1 = findViewById(R.id.affichageNomEquipe1);
@@ -60,9 +61,32 @@ public class PartieSuivi extends AppCompatActivity
         }
         else
         {
-            /**
-             * @todo Prévoir un nom par défaut pour l'équipe
-             */
+            String nomEquipe1 = "Rouge"; // Ajout de la valeur "Rouge" par défaut
+            TextView affichageNomEquipe1 = findViewById(R.id.affichageNomEquipe1);
+            Log.d(TAG, "afficherNomEquipe1() equipe1 = " + nomEquipe1);
+            affichageNomEquipe1.setText(nomEquipe1);
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher le nom de l'équipe 2
+     */
+    private void afficherNomEquipe2()
+    {
+        Equipe equipe2 = (Equipe) getIntent().getSerializableExtra("equipe2");
+        if(equipe2.getNomEquipe() != "")
+        {
+            Log.d(TAG, "afficherNomEquipe1() equipe2 = " + equipe2.getNomEquipe());
+            String nomEquipe2 = equipe2.getNomEquipe();
+            TextView affichageNomEquipe2 = findViewById(R.id.affichageNomEquipe2);
+            affichageNomEquipe2.setText(nomEquipe2);
+        }
+        else
+        {
+            String nomEquipe2 = "Jaune"; // Ajout de la valeur "Jaune" par défaut
+            TextView affichageNomEquipe2 = findViewById(R.id.affichageNomEquipe2);
+            Log.d(TAG, "afficherNomEquipe2() equipe2 = " + nomEquipe2);
+            affichageNomEquipe2.setText(nomEquipe2);
         }
     }
 
