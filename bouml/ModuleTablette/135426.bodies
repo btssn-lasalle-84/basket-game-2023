@@ -1,7 +1,11 @@
 class Equipe
-!!!142594.java!!!	Equipe(in nom : String)
-        this.nom = nom;
-!!!135466.java!!!	getNom() : String
-        return nom;
-!!!135594.java!!!	setNom(in nom : String) : void
-        this.nom = nom;
+!!!142594.java!!!	Equipe()
+        Log.d(TAG, "Equipe()");
+        this.nomEquipe = "";
+!!!142890.java!!!	Equipe(in nomEquipe : String)
+        Log.d(TAG, "Equipe(" + nomEquipe + ")");
+        this.nomEquipe = nomEquipe;
+!!!143018.java!!!	getNomEquipe() : String
+        return nomEquipe;
+!!!143146.java!!!	setNomEquipe(in nomEquipe : String) : void
+        this.nomEquipe = nomEquipe;

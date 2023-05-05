@@ -109,6 +109,7 @@ public class BasketGame extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                Log.d(TAG, "afficherNouvellePartie()");
                 Intent intent = new Intent(BasketGame.this, PartieParametres.class);
                 startActivity(intent);
             }

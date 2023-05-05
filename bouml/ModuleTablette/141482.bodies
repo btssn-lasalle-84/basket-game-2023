@@ -1,0 +1,29 @@
+class PartieInterrompue
+!!!143274.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.partie_interrompue);
+        Log.d(TAG, "onCreate()");
+
+        creerBoutonRecommencerPartie();
+        creerBoutonAfficherMenuPrincipal();
+!!!143402.java!!!	creerBoutonRecommencerPartie() : void
+        Button boutonRecommencerPartie = findViewById(R.id.boutonRecommencerPartie);
+        boutonRecommencerPartie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d(TAG, "recommencerPartie()");
+                finish();
+            }
+        });
+!!!143530.java!!!	creerBoutonAfficherMenuPrincipal() : void
+        Button boutonMenuPrincipal = findViewById(R.id.boutonMenuPrincipal);
+        boutonMenuPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Log.d(TAG, "afficherMenuPrincipal()");
+                Intent intent = new Intent(PartieInterrompue.this, BasketGame.class);
+                startActivity(intent);
+            }
+        });
