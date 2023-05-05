@@ -6,47 +6,65 @@
 
 package com.basket_game;
 
+import android.util.Log;
+
+import java.io.Serializable;
+
 /**
  * @class Equipe
  * @brief Définit une équipe
  */
-public class Equipe
+public class Equipe implements Serializable
 {
+    /**
+     * Constantes
+     */
+    private static final String TAG = "_Equipe"; //!< TAG pour les logs (cf. Logcat)
+
     /**
      * @brief Attributs
      */
-    private String nom; //!< le nom de l'équipe
+    private String nomEquipe; //!< le nom de l'équipe
 
     /**
      * @brief Constructeur de la classe Equipe
-     * @param nom
      */
-    public Equipe(String nom)
+    public Equipe()
     {
-        this.nom = nom;
+        Log.d(TAG, "Equipe()");
+        this.nomEquipe = "";
+    }
+
+    /**
+     * @brief Constructeur de la classe Equipe
+     */
+    public Equipe(String nomEquipe)
+    {
+        Log.d(TAG, "Equipe(" + nomEquipe + ")");
+        this.nomEquipe = nomEquipe;
     }
 
     /**
      *
-     * @brief Accesseur Equipe1
-     * @fn getNom
+     * @brief Accesseur Equipe
+     * @fn getNomEquipe
      * @details Retourne le nom
      * @return String
      */
-    public String getNom()
+    public String getNomEquipe()
     {
-        return nom;
+        return nomEquipe;
     }
 
     /**
      *
-     * @brief Mutateur Equipe1
-     * @fn setEquipe1
-     * @details Modifie le nom de l'Equipe1
-     * @param equipe1
+     * @brief Mutateur Equipe
+     * @fn setNomEquipe
+     * @details Modifie le nom de l'Equipe
+     * @param nomEquipe
      */
-    public void setNom(String nom)
+    public void setNomEquipe(String nomEquipe)
     {
-        this.nom = nom;
+        this.nomEquipe = nomEquipe;
     }
 }

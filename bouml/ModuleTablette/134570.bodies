@@ -26,7 +26,8 @@ class BasketGame
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(BasketGame.this, ParametresPartie.class);
+                Log.d(TAG, "afficherNouvellePartie()");
+                Intent intent = new Intent(BasketGame.this, PartieParametres.class);
                 startActivity(intent);
             }
         });

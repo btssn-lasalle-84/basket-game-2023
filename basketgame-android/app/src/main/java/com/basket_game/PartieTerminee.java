@@ -17,7 +17,12 @@ import android.widget.Button;
  * @class PartieTerminee
  * @brief L'activité qui indique la fin de la partie
  */
-public class PartieTerminee extends AppCompatActivity {
+public class PartieTerminee extends AppCompatActivity
+{
+    /**
+     * Constantes
+     */
+    private static final String TAG = "_PartieTerminee"; //!< TAG pour les logs (cf. Logcat)
 
     /**
      * @brief Méthode appelée à la création de l'activité
