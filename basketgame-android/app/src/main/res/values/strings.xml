@@ -7,7 +7,7 @@
     <string name="lancer_la_partie">Lancer la partie</string>
     <string name="nombre_de_manches">Nombre de manches :</string>
     <string name="nombre_de_colonnes">Nombre de paniers :</string>
-    <string name="temps_entre_chaque_tir">Temps entre chaque tir :</string>
+    <string name="temps_entre_chaque_tir">Temps entre chaque tir (s) :</string>
     <string name="nom_de_l_quipe_2">Nom de l\'équipe 2</string>
     <string name="nom_de_l_quipe_1">Nom de l\'équipe 1</string>
     <string name="confirmer">Confirmer</string>

@@ -88,7 +88,7 @@ public class PartieSuivi extends AppCompatActivity
         TextView affichageNomEquipe2 = findViewById(R.id.affichageNomEquipe2);
         if(!equipe2.getNomEquipe().isEmpty())
         {
-            Log.d(TAG, "afficherNomEquipe1() equipe2 = " + equipe2.getNomEquipe());
+            Log.d(TAG, "afficherNomEquipe2() equipe2 = " + equipe2.getNomEquipe());
             String nomEquipe2 = equipe2.getNomEquipe();
             affichageNomEquipe2.setText(nomEquipe2);
         }

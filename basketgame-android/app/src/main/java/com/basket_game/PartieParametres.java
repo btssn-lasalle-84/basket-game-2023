@@ -8,8 +8,11 @@ package com.basket_game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -34,10 +37,6 @@ public class PartieParametres extends AppCompatActivity
     private Intent intentDonneesPartieSuivi;
 
     /**
-     * Ressources GUI
-     */
-
-    /**
      * @brief Méthode appelée à la création de l'activité
      */
     @Override
@@ -46,6 +45,8 @@ public class PartieParametres extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_parametres);
         Log.d(TAG, "onCreate()");
+
+        editerTempsTir();
 
         intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
         afficherSuiviPartie();
@@ -81,6 +82,40 @@ public class PartieParametres extends AppCompatActivity
                         " vs " +
                         ((EditText)(findViewById(R.id.editionEquipe2))).getText().toString());
                 startActivity(intentDonneesPartieSuivi);
+            }
+        });
+    }
+
+    /**
+     * @brief Méthode appelée pour éditer le temps entre les tirs
+     */
+    private void editerTempsTir()
+    {
+        EditText editionTempsTir = findViewById(R.id.editionTempsTir);
+        editionTempsTir.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence texteSaisi, int positionPremierCaractere, int nbCaracteres, int nbCaracteresApresChangement) {
+                Log.d(TAG, "beforeTextChanged() texte = " + texteSaisi);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence texteSaisi, int positionPremierCaractere, int nbCaracteresAvantChangement, int nbCaracteres) {
+                Log.d(TAG, "onTextChanged() texte = " + texteSaisi);
+            }
+
+            @Override
+            public void afterTextChanged(Editable texteSaisi)
+            {
+                String valeur = texteSaisi.toString();
+                if (!valeur.isEmpty()) {
+                    int tempsTir = Integer.parseInt(valeur);
+                    Log.d(TAG, "afterTextChanged() temps tir = " + tempsTir);
+                    if (tempsTir > 45)
+                    {
+                        Log.d(TAG, "afterTextChanged() temps tir = " + tempsTir);
+                        editionTempsTir.setText("45");
+                    }
+                }
             }
         });
     }

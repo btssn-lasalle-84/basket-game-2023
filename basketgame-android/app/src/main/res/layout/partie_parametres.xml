@@ -133,7 +133,7 @@
 
 
             <EditText
-                android:id="@+id/editionSecondesTempsTir"
+                android:id="@+id/editionTempsTir"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
