@@ -1,5 +1,7 @@
 class Partie
 !!!135850.java!!!	Partie(inout equipe1 : Equipe, inout equipe2 : Equipe)
+        Log.d(TAG,
+              "Partie(\"" + equipe1.getNomEquipe() + "\", \"" + equipe2.getNomEquipe() + "\")");
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
 !!!135978.java!!!	getEquipe1() : Equipe

@@ -14,9 +14,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @class PartieSuivi
@@ -27,35 +30,109 @@ public class PartieSuivi extends AppCompatActivity
     /**
      * Constantes
      */
-    private static final String TAG = "_PartieSuivi"; //!< TAG pour les logs (cf. Logcat)
+    private static final String TAG      = "_PartieSuivi"; //!< TAG pour les logs (cf. Logcat)
+    private static final String EQUIPE_1 = "Rouge";        //!< le nom par défaut pour l'équipe 1
+    private static final String EQUIPE_2 = "Jaune";        //!< le nom par défaut pour l'équipe 2
 
     /**
      * Attributs
      */
-    private Equipe equipe1;
-    private Equipe equipe2;
-    private Intent intentDonneesPartieSuivi;
+    private Partie partie;                                    //!< la partie entre deux équipes
+    private Intent intentDonneesPartieSuivi;                  //!< les données de la partie
+    private int    tempsRestantTour  = Partie.TEMPS_MAX_TOUR; //!< par défaut
+    private Timer  compteurTempsTour = null;
+    ;
+    private TimerTask tacheCompteurTempsTour = null;
+
+    /**
+     * Ressources GUI
+     */
+    ProgressBar progressBarTempsRestantTour;
 
     /**
      * @brief Méthode appelée à la création de l'activité
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_suivi);
         Log.d(TAG, "onCreate()");
 
         intentDonneesPartieSuivi = getIntent();
-        equipe1 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe1");
+        Equipe equipe1           = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe1");
         if(equipe1 != null)
             Log.d(TAG, "onCreate() equipe1 = " + equipe1.getNomEquipe());
-        equipe2 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe2");
+        Equipe equipe2 = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe2");
         if(equipe2 != null)
             Log.d(TAG, "onCreate() equipe2 = " + equipe2.getNomEquipe());
+
+        /**
+         * @todo Récupérer les paramètres de la partie et les affecter à l'objet partie
+         */
+
+        partie = new Partie(equipe1, equipe2);
 
         afficherNomEquipe1();
         afficherNomEquipe2();
         creerBoutonArreterPartie();
+
+        initialiserCompteurTempsTour();
+    }
+
+    /**
+     * @brief Méthode
+     */
+    private void initialiserCompteurTempsTour()
+    {
+        progressBarTempsRestantTour = (ProgressBar)findViewById(R.id.progressBarTempsRestantTour);
+        compteurTempsTour           = new Timer();
+        /**
+         * @todo Initialiser les valeurs de comptage avec la valeur paramétrée dans l'IHM
+         */
+        /*
+        tempsRestantTour = x;
+        progressBarTempsRestantTour.setMax(x);
+        progressBarTempsRestantTour.setProgress(x);
+        */
+        // démarrer le comptage d'un tour
+        compterTempsRestantTour();
+    }
+
+    /**
+     * @brief Assure la gestion du temps pour un tour
+     */
+    private void compterTempsRestantTour()
+    {
+        tacheCompteurTempsTour = new TimerTask() {
+            public void run()
+            {
+                /**
+                 * @todo Décrémenter d'une seconde le temps restant
+                 */
+                /**
+                 * @todo Tester si le temps restant est arrivé à 0
+                 */
+                runOnUiThread(new Runnable() {
+                    public void run()
+                    {
+                        /**
+                         * @todo Mettre à jour la barre de progression dans l'IHM
+                         */
+                        // progressBarTempsRestantTour.setProgress(x);
+                        /**
+                         * @todo Bonus : changer la couleur lorsque il ne reste plus beaucoup de
+                         * temps
+                         * @see
+                         *   progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.RED));
+                         */
+                    }
+                });
+            }
+        };
+
+        // tâche périodique
+        compteurTempsTour.schedule(tacheCompteurTempsTour, 1000, 1000);
     }
 
     /**
@@ -63,19 +140,19 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void afficherNomEquipe1()
     {
-        Equipe equipe1 = (Equipe) getIntent().getSerializableExtra("equipe1");
         TextView affichageNomEquipe1 = findViewById(R.id.affichageNomEquipe1);
-        if(!equipe1.getNomEquipe().isEmpty())
+        if(!partie.getEquipe1().getNomEquipe().isEmpty())
         {
-            Log.d(TAG, "afficherNomEquipe1() equipe1 = " + equipe1.getNomEquipe());
-            String nomEquipe1 = equipe1.getNomEquipe();
+            Log.d(TAG, "afficherNomEquipe1() equipe1 = " + partie.getEquipe1().getNomEquipe());
+            String nomEquipe1 = partie.getEquipe1().getNomEquipe();
             affichageNomEquipe1.setText(nomEquipe1);
         }
         else
         {
-            String nomEquipe1 = "Rouge"; // Ajout de la valeur "Rouge" par défaut
+            String nomEquipe1 = EQUIPE_1; // Ajout de la valeur "Rouge" par défaut
             Log.d(TAG, "afficherNomEquipe1() equipe1 = " + nomEquipe1);
             affichageNomEquipe1.setText(nomEquipe1);
+            partie.getEquipe1().setNomEquipe(nomEquipe1);
         }
     }
 
@@ -84,19 +161,19 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void afficherNomEquipe2()
     {
-        Equipe equipe2 = (Equipe) getIntent().getSerializableExtra("equipe2");
         TextView affichageNomEquipe2 = findViewById(R.id.affichageNomEquipe2);
-        if(!equipe2.getNomEquipe().isEmpty())
+        if(!partie.getEquipe2().getNomEquipe().isEmpty())
         {
-            Log.d(TAG, "afficherNomEquipe2() equipe2 = " + equipe2.getNomEquipe());
-            String nomEquipe2 = equipe2.getNomEquipe();
+            Log.d(TAG, "afficherNomEquipe1() equipe2 = " + partie.getEquipe2().getNomEquipe());
+            String nomEquipe2 = partie.getEquipe2().getNomEquipe();
             affichageNomEquipe2.setText(nomEquipe2);
         }
         else
         {
-            String nomEquipe2 = "Jaune"; // Ajout de la valeur "Jaune" par défaut
+            String nomEquipe2 = EQUIPE_2; // Ajout de la valeur "Jaune" par défaut
             Log.d(TAG, "afficherNomEquipe2() equipe2 = " + nomEquipe2);
             affichageNomEquipe2.setText(nomEquipe2);
+            partie.getEquipe2().setNomEquipe(nomEquipe2);
         }
     }
 
@@ -118,7 +195,8 @@ public class PartieSuivi extends AppCompatActivity
     /**
      * @brief Méthode appelée pour arrêter la partie
      */
-    private void arreterPartie() {
+    private void arreterPartie()
+    {
         Log.d(TAG, "arreterPartie()");
         Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
         startActivity(intent);

@@ -6,6 +6,8 @@
 
 package com.basket_game;
 
+import android.util.Log;
+
 /**
  * @class Partie
  * @brief Définit une partie entre deux équipes
@@ -13,14 +15,31 @@ package com.basket_game;
 public class Partie
 {
     /**
+     * Constantes
+     */
+    private static final String TAG = "_Partie"; //!< TAG pour les logs (cf. Logcat)
+    // Du système
+    public static final int NB_PANIERS_MIN = 2; //!< le nombre min de paniers gérables
+    public static final int NB_PANIERS_MAX = 7; //!< le nombre max de paniers gérables
+    // Valeurs par défaut pour une Partie
+    public static final int NB_MANCHES_GAGNANTES = 1; //!< le nombre de manches gagnantes par défaut
+    public static final int TEMPS_MAX_TOUR =
+      45; //!< le temps max pour d'un tour pour une équipe en secondes par défaut
+    public static final int NB_PANIERS = 4; //!< le nombre de paniers installés par défaut
+
+    /**
      * @brief Attributs
      */
-    private Equipe  equipe1            = null;  //!< l'équipe n°1
-    private Equipe  equipe2            = null;  //!< l'équipe n°2
-    private int     nbManchesGagnantes = 1;     //!<
-    private int     tempsMaxTir        = 0;     //!<
-    private int     nbPaniers          = 4;     //!<
-    private Boolean estFinie           = false; //!<
+    /**
+     * @see Notion de conteneur !?
+     */
+    private Equipe equipe1            = null;                 //!< l'équipe n°1
+    private Equipe equipe2            = null;                 //!< l'équipe n°2
+    private int    nbManchesGagnantes = NB_MANCHES_GAGNANTES; //!< le nombre de manches gagnantes
+    private int    tempsMaxTour =
+      TEMPS_MAX_TOUR; //!< le temps max pour d'un tour pour une équipe en secondes
+    private int     nbPaniers = NB_PANIERS; //!< le nombre de paniers installés
+    private Boolean estFinie  = false;      //!< l'état de la partie
     // horodatage
 
     /**
@@ -30,6 +49,8 @@ public class Partie
      */
     public Partie(Equipe equipe1, Equipe equipe2)
     {
+        Log.d(TAG,
+              "Partie(\"" + equipe1.getNomEquipe() + "\", \"" + equipe2.getNomEquipe() + "\")");
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
     }
@@ -81,4 +102,8 @@ public class Partie
     {
         this.equipe2 = equipe2;
     }
+
+    /**
+     * @todo Implémenter les accesseurs mutateurs des autres attributs
+     */
 }

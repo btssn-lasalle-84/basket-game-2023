@@ -1,6 +1,6 @@
 format 224
 "ModuleTablette"
-  revision 9
+  revision 11
   modified_by 42 "tv"
   java_root_dir "../../"
 

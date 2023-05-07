@@ -7,75 +7,78 @@
     android:background="#181821"
     tools:context=".PartieSuivi">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="92dp"
+        android:layout_height="115dp"
+        android:contentDescription="@string/logo_basket_game"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo_basket_game_sans_fond_reduit" />
+
     <TextView
         android:id="@+id/partieSuivi"
-        android:layout_width="299dp"
-        android:layout_height="204dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:gravity="center"
         android:text="@string/basket_game_suivi_partie"
         android:textColor="#FFFFFF"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.019" />
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="248dp"
-        android:layout_height="313dp"
-        android:contentDescription="@string/logo_basket_game"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="28sp"
+        android:padding="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.237"
-        app:srcCompat="@drawable/logo_basket_game_sans_fond" />
-
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <TextView
         android:id="@+id/affichageNomEquipe1"
-        android:layout_width="299dp"
-        android:layout_height="204dp"
-        android:layout_marginStart="40dp"
-        android:contentDescription="@string/nom_de_l_quipe_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Équipe 2"
         android:gravity="center"
         android:textColor="#D00000"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintEnd_toStartOf="@+id/affichageNomEquipe2"
+        app:layout_constraintTop_toBottomOf="@+id/partieSuivi" />
 
     <TextView
         android:id="@+id/affichageNomEquipe2"
-        android:layout_width="299dp"
-        android:layout_height="204dp"
-        android:layout_marginEnd="40dp"
-        android:contentDescription="@string/nom_d_l_quipe_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="Équipe 2"
         android:gravity="center"
         android:textColor="#FFBE0B"
         android:textSize="50sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/affichageNomEquipe1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintTop_toBottomOf="@+id/partieSuivi" />
+
+    <ProgressBar
+        android:id="@+id/progressBarTempsRestantTour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="16dp"
+        android:indeterminateTint="#D00000"
+        android:indeterminate="false"
+        style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
+        android:max="30"
+        android:progress="30"
+        android:minHeight="60dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.469" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/affichageNomEquipe2"
+        />
 
     <Button
         android:id="@+id/boutonArreterPartie"
+        android:text="@string/arr_ter_partie"
         android:layout_width="203dp"
         android:layout_height="74dp"
-        android:text="@string/arr_ter_partie"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.867" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

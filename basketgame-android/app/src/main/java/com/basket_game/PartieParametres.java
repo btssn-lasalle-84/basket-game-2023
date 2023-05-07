@@ -8,7 +8,6 @@ package com.basket_game;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -46,14 +45,13 @@ public class PartieParametres extends AppCompatActivity
         setContentView(R.layout.partie_parametres);
         Log.d(TAG, "onCreate()");
 
-        editerTempsTir();
-
         intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
+        editerTempsTour();
         afficherSuiviPartie();
     }
 
     /**
-     * @brief Méthode appelée pour récupérer le nom de l'équipe 1
+     * @brief Méthode appelée pour récupérer le nom d'une équipe
      */
     private void recupererNomEquipe(int idEquipe, int numeroEquipe)
     {
@@ -62,6 +60,36 @@ public class PartieParametres extends AppCompatActivity
         Equipe   equipe        = new Equipe(nomEquipe);
         Log.d(TAG, "recupererNomEquipe() equipe = " + nomEquipe);
         intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, (Serializable)equipe);
+    }
+
+    /**
+     * @brief Méthode appelée pour récupérer le nombre de manches à jouer
+     */
+    private void recupererNbManches()
+    {
+        /**
+         * @todo Implémenter la méthode recupererNbManches()
+         */
+    }
+
+    /**
+     * @brief Méthode appelée pour récupérer le nombre de paniers
+     */
+    private void recupererNbPaniers()
+    {
+        /**
+         * @todo Implémenter la méthode recupererNbPaniers()
+         */
+    }
+
+    /**
+     * @brief Méthode appelée pour récupérer le temps pour un tour d'une équipe
+     */
+    private void recupererTempsMaxTour()
+    {
+        /**
+         * @todo Implémenter la méthode recupererTempsMaxTour()
+         */
     }
 
     /**
@@ -76,6 +104,9 @@ public class PartieParametres extends AppCompatActivity
             {
                 recupererNomEquipe(R.id.editionEquipe1, 1);
                 recupererNomEquipe(R.id.editionEquipe2, 2);
+                recupererTempsMaxTour();
+                recupererNbPaniers();
+                recupererNbManches();
                 Log.d(TAG,
                       "afficherSuiviPartie() " +
                         ((EditText)(findViewById(R.id.editionEquipe1))).getText().toString() +
@@ -87,33 +118,42 @@ public class PartieParametres extends AppCompatActivity
     }
 
     /**
-     * @brief Méthode appelée pour éditer le temps entre les tirs
+     * @brief Méthode appelée pour contrôler le temps entre chaque tour
      */
-    private void editerTempsTir()
+    private void editerTempsTour()
     {
-        EditText editionTempsTir = findViewById(R.id.editionTempsTir);
-        editionTempsTir.addTextChangedListener(new TextWatcher() {
+        EditText editionTempsTour = findViewById(R.id.editionTempsTour);
+        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR)); // par défaut
+        editionTempsTour.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence texteSaisi, int positionPremierCaractere, int nbCaracteres, int nbCaracteresApresChangement) {
-                Log.d(TAG, "beforeTextChanged() texte = " + texteSaisi);
+            public void beforeTextChanged(CharSequence texteSaisi,
+                                          int          positionPremierCaractere,
+                                          int          nbCaracteres,
+                                          int          nbCaracteresApresChangement)
+            {
             }
 
             @Override
-            public void onTextChanged(CharSequence texteSaisi, int positionPremierCaractere, int nbCaracteresAvantChangement, int nbCaracteres) {
-                Log.d(TAG, "onTextChanged() texte = " + texteSaisi);
+            public void onTextChanged(CharSequence texteSaisi,
+                                      int          positionPremierCaractere,
+                                      int          nbCaracteresAvantChangement,
+                                      int          nbCaracteres)
+            {
+                Log.d(TAG, "onTextChanged() tempsTour = " + texteSaisi);
             }
 
             @Override
             public void afterTextChanged(Editable texteSaisi)
             {
                 String valeur = texteSaisi.toString();
-                if (!valeur.isEmpty()) {
-                    int tempsTir = Integer.parseInt(valeur);
-                    Log.d(TAG, "afterTextChanged() temps tir = " + tempsTir);
-                    if (tempsTir > 45)
+                if(!valeur.isEmpty())
+                {
+                    int tempsTour = Integer.parseInt(valeur);
+                    Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
+                    if(tempsTour > Partie.TEMPS_MAX_TOUR)
                     {
-                        Log.d(TAG, "afterTextChanged() temps tir = " + tempsTir);
-                        editionTempsTir.setText("45");
+                        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR));
+                        Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
                     }
                 }
             }
