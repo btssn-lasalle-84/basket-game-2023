@@ -23,8 +23,3 @@ CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
 
 RESOURCES += \
     ressources.qrc
-
-DISTFILES += \
-    ../../../../Downloads/jetonRouge.png \
-    ../../../../Downloads/jetonJaune.png \
-    ../../../../Downloads/puissance4_7.png

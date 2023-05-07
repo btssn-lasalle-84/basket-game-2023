@@ -95,9 +95,9 @@ background-color: transparent;</string>
              </spacer>
             </item>
             <item>
-             <widget class="QPushButton" name="boutonDemarrer">
+             <widget class="QLabel" name="messageAttente">
               <property name="text">
-               <string>Démarrer</string>
+               <string>Attente de connexion ...</string>
               </property>
              </widget>
             </item>
@@ -177,7 +177,7 @@ background-color: transparent;</string>
              </spacer>
             </item>
             <item>
-             <widget class="QLCDNumber" name="afficherTotalPanierE1">
+             <widget class="QLCDNumber" name="affichageTotalPanierE1">
               <property name="enabled">
                <bool>true</bool>
               </property>
@@ -231,12 +231,12 @@ background-color: transparent;</string>
            </layout>
           </item>
           <item>
-           <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0,0,0">
+           <layout class="QVBoxLayout" name="verticalLayout_6" stretch="0,0">
             <property name="sizeConstraint">
              <enum>QLayout::SetFixedSize</enum>
             </property>
             <item>
-             <widget class="QLabel" name="tempsTours">
+             <widget class="QLabel" name="tempsTour">
               <property name="enabled">
                <bool>true</bool>
               </property>
@@ -299,20 +299,6 @@ background-color: transparent;</string>
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QTimeEdit" name="editionTempsTours">
-              <property name="displayFormat">
-               <string>HH:mm:ss</string>
-              </property>
-             </widget>
-            </item>
-            <item>
-             <widget class="QPushButton" name="boutonDebutManche">
-              <property name="text">
-               <string>Démarrer manche</string>
-              </property>
-             </widget>
-            </item>
            </layout>
           </item>
           <item>
@@ -350,7 +336,7 @@ background-color: transparent;</string>
              </spacer>
             </item>
             <item>
-             <widget class="QLCDNumber" name="afficherTotalPanierE2"/>
+             <widget class="QLCDNumber" name="affichageTotalPanierE2"/>
             </item>
            </layout>
           </item>
