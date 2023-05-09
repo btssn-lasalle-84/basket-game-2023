@@ -56,7 +56,6 @@ public class Partie
     }
 
     /**
-     *
      * @brief Accesseur equipe1
      * @fn getEquipe1
      * @details Retourne l'equipe1
@@ -68,7 +67,6 @@ public class Partie
     }
 
     /**
-     *
      * @brief Mutateur equipe1
      * @fn setEquipe1
      * @details Modifie l'equipe1
@@ -80,7 +78,6 @@ public class Partie
     }
 
     /**
-     *
      * @brief Accesseur equipe2
      * @fn getEquipe2
      * @details Retourne l'equipe2
@@ -92,7 +89,6 @@ public class Partie
     }
 
     /**
-     *
      * @brief Mutateur equipe2
      * @fn setEquipe2
      * @details Modifie l'equipe2
@@ -101,6 +97,28 @@ public class Partie
     public void setEquipe2(Equipe equipe2)
     {
         this.equipe2 = equipe2;
+    }
+
+    /**
+     * @brief Accesseur nbManchesGagnantes
+     * @fn getNbManchesGagnantes
+     * @details Retourne le nombre de manches gagnantes
+     * @return nbManchesGagnantes
+     */
+    public int getNbManchesGagnantes()
+    {
+        return nbManchesGagnantes;
+    }
+
+    /**
+     * @brief Mutateur nbManchesGagnantes
+     * @fn setNbManchesGagnantes
+     * @details Modifie le nombre de manches gagnantes
+     * @param nbManchesGagnantes
+     */
+    public void setNbManchesGagnantes(int nbManchesGagnantes)
+    {
+        this.nbManchesGagnantes = nbManchesGagnantes;
     }
 
     /**
