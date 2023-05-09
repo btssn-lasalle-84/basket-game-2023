@@ -1,0 +1,1086 @@
+format 224
+"basket_game" // basket_game
+  revision 3
+  modified_by 42 "tv"
+  // class settings
+  
+  classdiagramsettings member_max_width 0 end
+  
+  classcompositediagramsettings end
+  
+  usecasediagramsettings end
+  
+  sequencediagramsettings end
+  
+  collaborationdiagramsettings end
+  
+  objectdiagramsettings end
+  
+  objectcompositediagramsettings end
+  
+  componentdiagramsettings
+   end
+  
+  deploymentdiagramsettings
+   end
+  
+  statediagramsettings
+   end
+  
+  activitydiagramsettings
+   end
+  
+  java_dir "basketgame-android/app/src/main/java/com/basket_game/"
+  java_package "com.basket_game"
+  classview 134530 "basket_game"
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    sequencediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    
+    activitydiagramsettings
+     end
+    class 135426 "Equipe"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class Equipe
+@brief Définit une équipe
+"
+      classrelation 141482 // <realization>
+	relation 141482 -_-|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141482 // <realization>
+	  b parent class_ref 141354 // Serializable
+      end
+
+      attribute 141866 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_Equipe\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      attribute 141994 "nomEquipe"
+	private explicit_type "String"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "@brief Attributs
+
+!< le nom de l'équipe"
+      end
+
+      operation 142594 "Equipe"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur de la classe Equipe
+"
+      end
+
+      operation 142890 "Equipe"
+	public explicit_return_type ""
+	nparams 1
+	  param in name "nomEquipe" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur de la classe Equipe
+"
+      end
+
+      operation 143018 "getNomEquipe"
+	public explicit_return_type "String"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief Accesseur Equipe
+@fn getNomEquipe
+@details Retourne le nom
+@return String
+"
+      end
+
+      operation 143146 "setNomEquipe"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nomEquipe" explicit_type "String"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief Mutateur Equipe
+@fn setNomEquipe
+@details Modifie le nom de l'Equipe
+@param nomEquipe
+"
+      end
+
+    end
+
+    classdiagram 134658 "diagramme de classes 0.2"
+      classdiagramsettings member_max_width 0 end
+      size A0
+    end
+
+    class 134570 "BasketGame"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class BasketGame
+@brief L'activité principale
+"
+      classrelation 134570 // <generalisation>
+	relation 134570 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 134570 // <generalisation>
+	  b parent class_ref 135682 // AppCompatActivity
+      end
+
+      attribute 134570 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_BasketGame\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      operation 134570 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "Attributs
+
+
+Ressources GUI
+
+
+@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 134698 "onStart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée au démarrage après le onCreate() ou un restart
+après un onStop()
+"
+      end
+
+      operation 134826 "onResume"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée après onStart() ou après onPause()
+"
+      end
+
+      operation 134954 "onPause"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée après qu'une boîte de dialogue s'est affichée (on
+reprend sur un onResume()) ou avant onStop() (activité plus visible)
+"
+      end
+
+      operation 135082 "onStop"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée lorsque l'activité n'est plus visible
+"
+      end
+
+      operation 135210 "onDestroy"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée à la destruction de l'application (après onStop()
+et détruite par le système Android)
+"
+      end
+
+      operation 135338 "afficherNouvellePartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour afficher la nouvelle partie
+"
+      end
+    end
+
+    class 134826 "Partie"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class Partie
+@brief Définit une partie entre deux équipes
+"
+      classrelation 134826 // equipe1 (<unidirectional association>)
+	relation 134826 --->
+	  a role_name "equipe1" init_value " null" private
+	    comment "
+@brief Attributs
+
+!< l'équipe n°1"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134826 // equipe1 (<unidirectional association>)
+	  b parent class_ref 135426 // Equipe
+      end
+
+      classrelation 134954 // equipe2 (<unidirectional association>)
+	relation 134954 --->
+	  a role_name "equipe2" init_value " null" private
+	    comment "!< l'équipe n°2"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 134954 // equipe2 (<unidirectional association>)
+	  b parent class_ref 135426 // Equipe
+      end
+
+      attribute 134954 "nbManchesGagnantes"
+	private explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!<"
+      end
+
+      attribute 135082 "tempsMaxTir"
+	private explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!<"
+      end
+
+      attribute 135210 "nbPaniers"
+	private explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!<"
+      end
+
+      attribute 135338 "estFinie"
+	private explicit_type "Boolean"
+	init_value " false"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!<"
+      end
+
+      operation 135850 "Partie"
+	public explicit_return_type ""
+	nparams 2
+	  param inout name "equipe1" type class_ref 135426 // Equipe
+	  param inout name "equipe2" type class_ref 135426 // Equipe
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment " horodatage
+
+@brief Constructeur de la classe Partie
+@param equipe1
+@param equipe2
+"
+      end
+
+      operation 135978 "getEquipe1"
+	public return_type class_ref 135426 // Equipe
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief Accesseur equipe1
+@fn getEquipe1
+@details Retourne l'equipe1
+@return equipe1
+"
+      end
+
+      operation 136106 "setEquipe1"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "equipe1" type class_ref 135426 // Equipe
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief Mutateur equipe1
+@fn setEquipe1
+@details Modifie l'equipe1
+@param equipe1
+"
+      end
+
+      operation 136234 "getEquipe2"
+	public return_type class_ref 135426 // Equipe
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief Accesseur equipe2
+@fn getEquipe2
+@details Retourne l'equipe2
+@return equipe2
+"
+      end
+
+      operation 136362 "setEquipe2"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "equipe2" type class_ref 135426 // Equipe
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "
+@brief Mutateur equipe2
+@fn setEquipe2
+@details Modifie l'equipe2
+@param equipe2
+"
+      end
+    end
+
+    class 141482 "PartieInterrompue"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class PartieInterrompue
+@brief L'activité qui indique l'interruption de la partie
+"
+      classrelation 141610 // <generalisation>
+	relation 141610 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141610 // <generalisation>
+	  b parent class_ref 135682 // AppCompatActivity
+      end
+
+      attribute 142122 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_PartieInterrompue\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      operation 143274 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "Attributs
+
+
+@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 143402 "creerBoutonRecommencerPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour recommencer une partie avec les mêmes paramètres
+"
+      end
+
+      operation 143530 "creerBoutonAfficherMenuPrincipal"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour retourner au menu principal
+"
+      end
+    end
+
+    class 141610 "PartieParametres"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class PartieParametres
+@brief L'activité qui permet de paramétrer une partie
+"
+      classrelation 141738 // <generalisation>
+	relation 141738 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141738 // <generalisation>
+	  b parent class_ref 135682 // AppCompatActivity
+      end
+
+      attribute 142250 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_ParametresPartie\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      attribute 142378 "intentDonneesPartieSuivi"
+	private explicit_type "Intent"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Attributs
+
+"
+      end
+
+      operation 143658 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "Ressources GUI
+
+
+@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 143786 "recupererNomEquipe"
+	private explicit_return_type "void"
+	nparams 2
+	  param in name "idEquipe" explicit_type "int"
+	  param in name "numeroEquipe" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour récupérer le nom de l'équipe 1
+"
+      end
+
+      operation 143914 "afficherSuiviPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour afficher le suivi de la partie
+"
+      end
+    end
+
+    class 141738 "PartieSuivi"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class PartieSuivi
+@brief L'activité qui permet de suivre la partie
+"
+      classrelation 141866 // <generalisation>
+	relation 141866 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 141866 // <generalisation>
+	  b parent class_ref 135682 // AppCompatActivity
+      end
+
+      attribute 142506 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_PartieSuivi\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      classrelation 141994 // equipe1 (<unidirectional association>)
+	relation 141994 --->
+	  a role_name "equipe1" private
+	    comment "
+Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 141994 // equipe1 (<unidirectional association>)
+	  b parent class_ref 135426 // Equipe
+      end
+
+      classrelation 142122 // equipe2 (<unidirectional association>)
+	relation 142122 --->
+	  a role_name "equipe2" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 142122 // equipe2 (<unidirectional association>)
+	  b parent class_ref 135426 // Equipe
+      end
+
+      attribute 142634 "intentDonneesPartieSuivi"
+	private explicit_type "Intent"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 144042 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 144170 "afficherNomEquipe1"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour afficher le nom de l'équipe 1
+"
+      end
+
+      operation 144298 "afficherNomEquipe2"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour afficher le nom de l'équipe 2
+"
+      end
+
+      operation 144426 "creerBoutonArreterPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour arrêter la partie
+"
+      end
+
+      operation 144554 "arreterPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour arrêter la partie
+"
+      end
+    end
+
+    class 141866 "PartieTerminee"
+      visibility public 
+      cpp_decl ""
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class PartieTerminee
+@brief L'activité qui indique la fin de la partie
+"
+      classrelation 142250 // <generalisation>
+	relation 142250 ---|>
+	  a public
+	    java "${type}"
+	    classrelation_ref 142250 // <generalisation>
+	  b parent class_ref 135682 // AppCompatActivity
+      end
+
+      attribute 142762 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_PartieTerminee\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      operation 144682 "onCreate"
+	protected explicit_return_type "void"
+	nparams 1
+	  param inout name "savedInstanceState" explicit_type "Bundle"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 144810 "recommencerPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour recommencer une partie avec les mêmes paramètres
+"
+      end
+
+      operation 144938 "afficherMenuPrincipal"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour retourner au menu principal
+"
+      end
+    end
+  end
+
+  deploymentview 134530 "basket_game"
+    //deployment diagram settings
+    deploymentdiagramsettings
+     end
+    artifact 134530 "Equipe"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import android.util.Log;
+import java.io.Serializable;
+${definition}"
+      associated_elems
+	class_ref 135426 // Equipe
+      end
+      comment "@file Equipe.java
+@brief Déclaration de la classe Equipe
+@author Guillaumet Florent
+"
+    end
+
+    artifact 134570 "BasketGame"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+${definition}"
+      associated_elems
+	class_ref 134570 // BasketGame
+      end
+      comment "@file BasketGame.java
+@brief Déclaration de la classe BasketGame
+@author Guillaumet Florent
+"
+    end
+
+    artifact 134826 "Partie"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+${definition}"
+      associated_elems
+	class_ref 134826 // Partie
+      end
+      comment "@file Partie.java
+@brief Déclaration de la classe Partie
+@author Guillaumet Florent
+"
+    end
+
+    artifact 141354 "PartieInterrompue"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+${definition}"
+      associated_elems
+	class_ref 141482 // PartieInterrompue
+      end
+    end
+
+    artifact 141482 "PartieParametres"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import java.io.Serializable;
+${definition}"
+      associated_elems
+	class_ref 141610 // PartieParametres
+      end
+    end
+
+    artifact 141610 "PartieSuivi"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+import java.io.Serializable;
+${definition}"
+      associated_elems
+	class_ref 141738 // PartieSuivi
+      end
+    end
+
+    artifact 141738 "PartieTerminee"
+      stereotype "source"
+      java_src "${comment}
+${package}
+${imports}
+import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+${definition}"
+      associated_elems
+	class_ref 141866 // PartieTerminee
+      end
+    end
+  end
+end

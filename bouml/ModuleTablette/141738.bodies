@@ -1,0 +1,60 @@
+class PartieSuivi
+!!!144042.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.partie_suivi);
+        Log.d(TAG, "onCreate()");
+
+        intentDonneesPartieSuivi = getIntent();
+        equipe1 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe1");
+        if(equipe1 != null)
+            Log.d(TAG, "onCreate() equipe1 = " + equipe1.getNomEquipe());
+        equipe2 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe2");
+        if(equipe2 != null)
+            Log.d(TAG, "onCreate() equipe2 = " + equipe2.getNomEquipe());
+
+        afficherNomEquipe1();
+        afficherNomEquipe2();
+        creerBoutonArreterPartie();
+!!!144170.java!!!	afficherNomEquipe1() : void
+        Equipe equipe1 = (Equipe) getIntent().getSerializableExtra("equipe1");
+        TextView affichageNomEquipe1 = findViewById(R.id.affichageNomEquipe1);
+        if(!equipe1.getNomEquipe().isEmpty())
+        {
+            Log.d(TAG, "afficherNomEquipe1() equipe1 = " + equipe1.getNomEquipe());
+            String nomEquipe1 = equipe1.getNomEquipe();
+            affichageNomEquipe1.setText(nomEquipe1);
+        }
+        else
+        {
+            String nomEquipe1 = "Rouge"; // Ajout de la valeur "Rouge" par défaut
+            Log.d(TAG, "afficherNomEquipe1() equipe1 = " + nomEquipe1);
+            affichageNomEquipe1.setText(nomEquipe1);
+        }
+!!!144298.java!!!	afficherNomEquipe2() : void
+        Equipe equipe2 = (Equipe) getIntent().getSerializableExtra("equipe2");
+        TextView affichageNomEquipe2 = findViewById(R.id.affichageNomEquipe2);
+        if(!equipe2.getNomEquipe().isEmpty())
+        {
+            Log.d(TAG, "afficherNomEquipe1() equipe2 = " + equipe2.getNomEquipe());
+            String nomEquipe2 = equipe2.getNomEquipe();
+            affichageNomEquipe2.setText(nomEquipe2);
+        }
+        else
+        {
+            String nomEquipe2 = "Jaune"; // Ajout de la valeur "Jaune" par défaut
+            Log.d(TAG, "afficherNomEquipe2() equipe2 = " + nomEquipe2);
+            affichageNomEquipe2.setText(nomEquipe2);
+        }
+!!!144426.java!!!	creerBoutonArreterPartie() : void
+        Button boutonArreterPartie = findViewById(R.id.boutonArreterPartie);
+        boutonArreterPartie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                arreterPartie();
+            }
+        });
+!!!144554.java!!!	arreterPartie() : void
+        Log.d(TAG, "arreterPartie()");
+        Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
+        startActivity(intent);

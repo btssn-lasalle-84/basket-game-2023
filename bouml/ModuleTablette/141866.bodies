@@ -1,0 +1,27 @@
+class PartieTerminee
+!!!144682.java!!!	onCreate(inout savedInstanceState : Bundle) : void
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.partie_terminee);
+
+        recommencerPartie();
+        afficherMenuPrincipal();
+!!!144810.java!!!	recommencerPartie() : void
+        Button boutonRecommencerPartie = findViewById(R.id.boutonRecommencerPartie);
+        boutonRecommencerPartie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(PartieTerminee.this, PartieSuivi.class);
+                startActivity(intent);
+            }
+        });
+!!!144938.java!!!	afficherMenuPrincipal() : void
+        Button boutonMenuPrincipal = findViewById(R.id.boutonMenuPrincipal);
+        boutonMenuPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(PartieTerminee.this, BasketGame.class);
+                startActivity(intent);
+            }
+        });

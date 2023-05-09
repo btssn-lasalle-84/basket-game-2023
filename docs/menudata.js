@@ -24,4 +24,49 @@
 */
 var menudata={children:[
 {text:"Page principale",url:"index.html"},
-{text:"Pages associées",url:"pages.html"}]}
+{text:"Pages associées",url:"pages.html"},
+{text:"Paquetages",url:"namespaces.html",children:[
+{text:"Paquetages",url:"namespaces.html"}]},
+{text:"Structures de données",url:"annotated.html",children:[
+{text:"Structures de données",url:"annotated.html"},
+{text:"Index des structures de données",url:"classes.html"},
+{text:"Hiérarchie des classes",url:"hierarchy.html"},
+{text:"Champs de donnée",url:"functions.html",children:[
+{text:"Tout",url:"functions.html",children:[
+{text:"a",url:"functions.html#index_a"},
+{text:"b",url:"functions.html#index_b"},
+{text:"c",url:"functions.html#index_c"},
+{text:"d",url:"functions.html#index_d"},
+{text:"e",url:"functions.html#index_e"},
+{text:"g",url:"functions.html#index_g"},
+{text:"i",url:"functions.html#index_i"},
+{text:"m",url:"functions.html#index_m"},
+{text:"n",url:"functions.html#index_n"},
+{text:"o",url:"functions.html#index_o"},
+{text:"p",url:"functions.html#index_p"},
+{text:"s",url:"functions.html#index_s"},
+{text:"t",url:"functions.html#index_t"},
+{text:"u",url:"functions.html#index_u"},
+{text:"~",url:"functions.html#index__7E"}]},
+{text:"Fonctions",url:"functions_func.html",children:[
+{text:"a",url:"functions_func.html#index_a"},
+{text:"b",url:"functions_func.html#index_b"},
+{text:"c",url:"functions_func.html#index_c"},
+{text:"d",url:"functions_func.html#index_d"},
+{text:"e",url:"functions_func.html#index_e"},
+{text:"g",url:"functions_func.html#index_g"},
+{text:"i",url:"functions_func.html#index_i"},
+{text:"o",url:"functions_func.html#index_o"},
+{text:"p",url:"functions_func.html#index_p"},
+{text:"s",url:"functions_func.html#index_s"},
+{text:"u",url:"functions_func.html#index_u"},
+{text:"~",url:"functions_func.html#index__7E"}]},
+{text:"Variables",url:"functions_vars.html"},
+{text:"Énumérations",url:"functions_enum.html"},
+{text:"Valeurs énumérées",url:"functions_eval.html"}]}]},
+{text:"Fichiers",url:"files.html",children:[
+{text:"Liste des fichiers",url:"files.html"},
+{text:"Variables globale",url:"globals.html",children:[
+{text:"Tout",url:"globals.html"},
+{text:"Fonctions",url:"globals_func.html"},
+{text:"Macros",url:"globals_defs.html"}]}]}]}
