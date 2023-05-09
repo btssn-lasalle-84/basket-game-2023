@@ -122,6 +122,46 @@ public class Partie
     }
 
     /**
-     * @todo Implémenter les accesseurs mutateurs des autres attributs
+     * @brief Accesseur tempsMaxTour
+     * @fn getTempsMaxTour
+     * @details Retourne le temps maximum par tour
+     * @return tempsMaxTour
      */
+    public int getTempsMaxTour()
+    {
+        return tempsMaxTour;
+    }
+
+    /**
+     * @brief Mutateur tempsMaxTour
+     * @fn setTempsMaxTour
+     * @details Modifie le temps maximum par tour
+     * @param tempsMaxTour
+     */
+    public void setTempsMaxTour(int tempsMaxTour)
+    {
+        this.tempsMaxTour = tempsMaxTour;
+    }
+
+    /**
+     * @brief Accesseur nbPaniers
+     * @fn getNbPaniers
+     * @details Retourne le nombre de paniers
+     * @return nbPaniers
+     */
+    public int getNbPaniers()
+    {
+        return nbPaniers;
+    }
+
+    /**
+     * @brief Mutateur nbPaniers
+     * @fn setNbPaniers
+     * @details Modifie le nombre de paniers
+     * @param nbPaniers
+     */
+    public void setNbPaniers(int nbPaniers)
+    {
+        this.nbPaniers = nbPaniers;
+    }
 }
