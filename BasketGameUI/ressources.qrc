@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>ressources/jetonJaune.png</file>
+        <file>ressources/jetonRouge.png</file>
+        <file>ressources/puissance4_7.png</file>
+    </qresource>
+</RCC>
