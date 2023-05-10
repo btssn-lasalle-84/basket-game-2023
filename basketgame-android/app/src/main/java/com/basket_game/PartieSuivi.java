@@ -41,7 +41,6 @@ public class PartieSuivi extends AppCompatActivity
     private Intent intentDonneesPartieSuivi;                  //!< les données de la partie
     private int    tempsRestantTour  = Partie.TEMPS_MAX_TOUR; //!< par défaut
     private Timer  compteurTempsTour = null;
-    ;
     private TimerTask tacheCompteurTempsTour = null;
 
     /**

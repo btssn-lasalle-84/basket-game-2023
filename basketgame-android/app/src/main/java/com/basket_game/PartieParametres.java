@@ -75,17 +75,18 @@ public class PartieParametres extends AppCompatActivity
         EditText editionTempsTour = findViewById(R.id.editionTempsTour);
         String tempsMaxTourChoisi = editionTempsTour.getText().toString();
 
-        if (!tempsMaxTourChoisi.isEmpty())
+        int tempsMaxTour;
+        if(!tempsMaxTourChoisi.isEmpty())
         {
-            int tempsMaxTour = Integer.parseInt(tempsMaxTourChoisi);
-            Log.d(TAG, "recupererTempsMaxTour() tempsTour = " + tempsMaxTour);
-            intentDonneesPartieSuivi.putExtra("tempsTour", tempsMaxTour);
+            tempsMaxTour = Integer.parseInt(tempsMaxTourChoisi);
+            Log.d(TAG, "recupererTempsTour() tempsMaxTour = " + tempsMaxTour);
         }
         else
         {
-            int tempsMaxTour = TEMPS_MAX_TOUR;
+            tempsMaxTour = TEMPS_MAX_TOUR;
             Log.d(TAG, "recupererTempsMaxTour() temps tour par défaut = " + tempsMaxTour);
         }
+        intentDonneesPartieSuivi.putExtra("tempsMaxTour", tempsMaxTour);
     }
 
     /**
@@ -97,8 +98,8 @@ public class PartieParametres extends AppCompatActivity
         String nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
 
         int nbPaniers = Integer.parseInt(nbPaniersChoisi);
-        intentDonneesPartieSuivi.putExtra("nbPaniers", nbPaniers);
         Log.d(TAG, "recupererNbPaniers() nombre paniers = " + nbPaniers);
+        intentDonneesPartieSuivi.putExtra("nbPaniers", nbPaniers);
     }
 
     /**
@@ -110,8 +111,8 @@ public class PartieParametres extends AppCompatActivity
         String nbManchesChoisi = choixNbManches.getSelectedItem().toString();
 
         int nbManches = Integer.parseInt(nbManchesChoisi);
-        intentDonneesPartieSuivi.putExtra("nbManches", nbManches);
         Log.d(TAG, "recupererNbPaniers() nombre manches = " + nbManches);
+        intentDonneesPartieSuivi.putExtra("nbManches", nbManches);
     }
 
     /**
