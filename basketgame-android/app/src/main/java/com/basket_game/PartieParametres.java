@@ -6,6 +6,10 @@
 
 package com.basket_game;
 
+import static com.basket_game.Partie.NB_MANCHES_GAGNANTES;
+import static com.basket_game.Partie.NB_PANIERS;
+import static com.basket_game.Partie.TEMPS_MAX_TOUR;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -16,6 +20,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import java.io.Serializable;
 
@@ -63,13 +68,24 @@ public class PartieParametres extends AppCompatActivity
     }
 
     /**
-     * @brief Méthode appelée pour récupérer le nombre de manches à jouer
+     * @brief Méthode appelée pour récupérer le temps pour un tour d'une équipe
      */
-    private void recupererNbManches()
+    private void recupererTempsMaxTour()
     {
-        /**
-         * @todo Implémenter la méthode recupererNbManches()
-         */
+        EditText editionTempsTour = findViewById(R.id.editionTempsTour);
+        String tempsMaxTourChoisi = editionTempsTour.getText().toString();
+
+        if (!tempsMaxTourChoisi.isEmpty())
+        {
+            int tempsMaxTour = Integer.parseInt(tempsMaxTourChoisi);
+            Log.d(TAG, "recupererTempsMaxTour() tempsTour = " + tempsMaxTour);
+            intentDonneesPartieSuivi.putExtra("tempsTour", tempsMaxTour);
+        }
+        else
+        {
+            int tempsMaxTour = TEMPS_MAX_TOUR;
+            Log.d(TAG, "recupererTempsMaxTour() temps tour par défaut = " + tempsMaxTour);
+        }
     }
 
     /**
@@ -77,19 +93,25 @@ public class PartieParametres extends AppCompatActivity
      */
     private void recupererNbPaniers()
     {
-        /**
-         * @todo Implémenter la méthode recupererNbPaniers()
-         */
+        Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
+        String nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
+
+        int nbPaniers = Integer.parseInt(nbPaniersChoisi);
+        intentDonneesPartieSuivi.putExtra("nbPaniers", nbPaniers);
+        Log.d(TAG, "recupererNbPaniers() nombre paniers = " + nbPaniers);
     }
 
     /**
-     * @brief Méthode appelée pour récupérer le temps pour un tour d'une équipe
+     * @brief Méthode appelée pour récupérer le nombre de manches à jouer
      */
-    private void recupererTempsMaxTour()
+    private void recupererNbManches()
     {
-        /**
-         * @todo Implémenter la méthode recupererTempsMaxTour()
-         */
+        Spinner choixNbManches = findViewById(R.id.choixNbManches);
+        String nbManchesChoisi = choixNbManches.getSelectedItem().toString();
+
+        int nbManches = Integer.parseInt(nbManchesChoisi);
+        intentDonneesPartieSuivi.putExtra("nbManches", nbManches);
+        Log.d(TAG, "recupererNbPaniers() nombre manches = " + nbManches);
     }
 
     /**
@@ -123,7 +145,7 @@ public class PartieParametres extends AppCompatActivity
     private void editerTempsTour()
     {
         EditText editionTempsTour = findViewById(R.id.editionTempsTour);
-        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR)); // par défaut
+        editionTempsTour.setText(String.valueOf(TEMPS_MAX_TOUR)); // par défaut
         editionTempsTour.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence texteSaisi,
@@ -150,9 +172,9 @@ public class PartieParametres extends AppCompatActivity
                 {
                     int tempsTour = Integer.parseInt(valeur);
                     Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
-                    if(tempsTour > Partie.TEMPS_MAX_TOUR)
+                    if(tempsTour > TEMPS_MAX_TOUR)
                     {
-                        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR));
+                        editionTempsTour.setText(String.valueOf(TEMPS_MAX_TOUR));
                         Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
                     }
                 }
