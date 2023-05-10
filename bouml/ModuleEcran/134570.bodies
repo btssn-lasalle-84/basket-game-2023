@@ -3,124 +3,117 @@ class Basketgame
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
     initialiserEvenements();
+#ifdef TEST_BASKETGAME
+    attribuerRaccourcisClavier();
+#endif
 !!!134698.cpp!!!	~Basketgame()
     delete ui;
     qDebug() << Q_FUNC_INFO;
-!!!134826.cpp!!!	arreterPartie() : void
-    /**
-     * @todo Gérer la fin d'une partie
-     */
-    timerManche->stop();
-    arreterManche();
-
-    timerPartie->stop();
-    ui->UiEquipe->setStyleSheet("background-color: white; color: black;");
-    ui->UiEquipe->setText("FIN DE LA PARTIE");
-    ui->boutonDebutPartie->setEnabled(true);
-    ui->editionTempsPartie->setEnabled(true);
-    etatPartie = false;
-!!!134954.cpp!!!	arreterManche() : void
-    /**
-     * @todo Gérer la fin d'une manche
-     */
-    etatManche = false;
-    ui->tempsManche->setText("00:00:00");
-    ui->boutonDebutManche->setEnabled(false);
-    ui->editionTempsManche->setEnabled(false);
 !!!135082.cpp!!!	afficherEcran(in ecran : Basketgame::Ecran) : void
     ui->ecrans->setCurrentIndex(ecran);
 !!!135210.cpp!!!	afficherEcranAcceuil() : void
+    qDebug() << Q_FUNC_INFO;
     afficherEcran(Basketgame::Ecran::Accueil);
 !!!135338.cpp!!!	afficherEcranPartie() : void
-    ui->boutonDebutPartie->setEnabled(true);
-    ui->editionTempsPartie->setEnabled(true);
-    ui->boutonDebutManche->setEnabled(false);
-    ui->editionTempsManche->setEnabled(false);
+    qDebug() << Q_FUNC_INFO;
     afficherEcran(Basketgame::Ecran::Partie);
-!!!135466.cpp!!!	afficherEcranManche() : void
-    afficherEcran(Basketgame::Ecran::Manche);
-!!!135594.cpp!!!	chronometrerPartie() : void
+!!!142762.cpp!!!	chronometrerTour() : void
     // Voir aussi : QElapsedTimer
-    QTime tempsEcoule = tempsPartie->addSecs(-1);
-    tempsPartie->setHMS(tempsEcoule.hour(),
-                        tempsEcoule.minute(),
-                        tempsEcoule.second());
-    qDebug() << Q_FUNC_INFO << "tempsPartie"
-             << tempsPartie->toString("hh:mm:ss");
-    ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
-    if(*tempsPartie == QTime(0, 0))
-    {
-        arreterPartie();
-    }
-!!!135722.cpp!!!	chronometrerManche() : void
-    // Voir aussi : QElapsedTimer
-    QTime tempsEcoule = tempsManche->addSecs(-1);
-    tempsManche->setHMS(tempsEcoule.hour(),
-                        tempsEcoule.minute(),
-                        tempsEcoule.second());
-    qDebug() << Q_FUNC_INFO << "tempsManche"
-             << tempsManche->toString("hh:mm:ss");
-    ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
-    /**
-     * @fixme Vous confondez manche et tour !
-     */
-    if(*tempsManche == QTime(0, 0))
-    {
-        timerManche->stop();
-        *tempsManche = ui->editionTempsManche->time();
-        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
-        timerManche->start(1000);
+    QTime tempsEcoule = tempsTour->addSecs(-1);
+    tempsTour->setHMS(tempsEcoule.hour(),
+                      tempsEcoule.minute(),
+                      tempsEcoule.second());
+    // qDebug() << Q_FUNC_INFO << "tempsTours" <<
+    // tempsTours->toString("hh:mm:ss");
+    ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
 
-        if(couleurEquipe == true)
+    if(*tempsTour == QTime(0, 0))
+    {
+        timerTour->stop();
+        initialiserDureeTour();
+        ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
+        timerTour->start(TIC_HORLOGE);
+        qDebug() << Q_FUNC_INFO << "estEquipeRouge" << estEquipeRouge;
+        if(estEquipeRouge)
         {
-            couleurEquipe = false;
-            ui->UiEquipe->setStyleSheet("background-color: red; color: black;");
-            ui->UiEquipe->setText("EQUIPE A");
+            ui->labelVisualisationEquipeRouge->setStyleSheet(
+              "background-color: transparent; color: black;");
+            ui->labelVisualisationEquipeJaune->setStyleSheet(
+              "background-color: yellow; color: black;");
+            estEquipeRouge = false;
         }
         else
         {
-            couleurEquipe = true;
-            ui->UiEquipe->setStyleSheet(
-              "background-color: yellow; color: black;");
-            ui->UiEquipe->setText("EQUIPE B");
+            ui->labelVisualisationEquipeJaune->setStyleSheet(
+              "background-color: transparent; color: black;");
+            ui->labelVisualisationEquipeRouge->setStyleSheet(
+              "background-color: red; color: black;");
+            estEquipeRouge = true;
         }
     }
-!!!135850.cpp!!!	demarrerManche() : void
-    if(!etatManche)
+!!!142890.cpp!!!	simulerPion() : void
+    int colonne = randInt(0, NB_COLONNES - 1);
+    int ligne   = 0;
+
+    for(ligne = 0; ligne < NB_LIGNES; ++ligne)
     {
-        *tempsManche = ui->editionTempsManche->time();
-        ui->editionTempsManche->setEnabled(false);
-        ui->tempsManche->setText(tempsManche->toString("hh:mm:ss"));
-        qDebug() << Q_FUNC_INFO << "tempsManche"
-                 << tempsManche->toString("hh:mm:ss");
-        /**
-         * @fixme Si le temps est 00:00:00 ?
-         */
-        timerManche->start(TIC_HORLOGE);
-        etatManche = true;
-        ui->boutonDebutManche->setEnabled(false);
-        ui->editionTempsManche->setEnabled(false);
+        if(colonne >= 0 && colonne < NB_COLONNES &&
+           plateau[colonne][ligne] == CouleurJeton::AUCUNE)
+        {
+            // CouleurJeton couleurJeton =
+            // (CouleurJeton)randInt(CouleurJeton::ROUGE, CouleurJeton::JAUNE);
+            plateau[colonne][ligne] =
+              (estEquipeRouge ? CouleurJeton::ROUGE : CouleurJeton::JAUNE);
+            qDebug() << Q_FUNC_INFO << "pion"
+                     << (estEquipeRouge ? CouleurJeton::ROUGE
+                                        : CouleurJeton::JAUNE)
+                     << "ligne" << ligne + 1 << "colonne" << colonne + 1;
+            afficherUnJeton(ligne, colonne);
+            break;
+        }
+    }
+!!!143018.cpp!!!	fermerApplication() : void
+    this->close();
+!!!143146.cpp!!!	demarrerSeance() : void
+    if(!etatSeance && ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
+    {
+        etatSeance = true;
+        demarrerPartie();
+        ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
+        qDebug() << Q_FUNC_INFO << "tempsTour"
+                 << tempsTour->toString("hh:mm:ss");
+        timerTour->start(TIC_HORLOGE);
+    }
+!!!143274.cpp!!!	terminerSeance() : void
+    qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues << "estVainqueur"
+             << estVainqueur;
+    if(estVainqueur)
+    {
+        etatSeance = false;
+        initialiserDureeTour();
+        ui->tempsTour->setText("00:00:00");
+    }
+    else if(nbPionsJoues == NB_PIONS)
+    {
+        etatSeance = false;
+        initialiserDureeTour();
+        ui->tempsTour->setText("00:00:00");
     }
 !!!135978.cpp!!!	demarrerPartie() : void
-    if(!etatPartie)
+    if(etatSeance)
     {
-        *tempsPartie = ui->editionTempsPartie->time();
-        ui->boutonDebutPartie->setEnabled(false);
-        ui->editionTempsPartie->setEnabled(false);
-        ui->tempsPartie->setText(tempsPartie->toString("hh:mm:ss"));
-        qDebug() << Q_FUNC_INFO << "tempsPartie"
-                 << tempsPartie->toString("hh:mm:ss");
-        /**
-         * @fixme Si le temps est 00:00:00 ?
-         */
-        timerPartie->start(TIC_HORLOGE);
-        etatPartie = true;
-        ui->boutonDebutManche->setEnabled(true);
-        ui->editionTempsManche->setEnabled(true);
+        qDebug() << Q_FUNC_INFO;
+        estVainqueur     = false;
+        estEquipeRouge   = true;
+        nbPionsJoues     = 0;
+        nbPionsAlignes   = NB_PIONS_ALIGNES;
+        scoreEquipeRouge = 0;
+        scoreEquipeJaune = 0;
+        initialiserDureeTour();
+        initialiserPlateau();
     }
 !!!136106.cpp!!!	initialiserIHM() : void
     ui->setupUi(this);
-    ui->boutonDemarrer->setEnabled(true);
 
 #ifdef PLEIN_ECRAN_RPI
     showFullScreen();
@@ -133,19 +126,126 @@ class Basketgame
 #endif
     afficherEcranAcceuil();
 !!!136234.cpp!!!	initialiserEvenements() : void
-    // les boutons
-    connect(ui->boutonDemarrer,
-            SIGNAL(clicked(bool)),
+    // le minuteur
+    connect(timerTour, SIGNAL(timeout()), this, SLOT(chronometrerTour()));
+!!!143402.cpp!!!	initialiserPlateau() : void
+    for(int i = 0; i < plateau.size(); ++i)
+    {
+        plateau[i].resize(NB_LIGNES);
+    }
+
+    qDebug() << Q_FUNC_INFO << "colonnes" << plateau.size() << "lignes"
+             << plateau[0].size();
+
+    for(int colonne = 0; colonne < plateau.size(); ++colonne)
+    {
+        for(int ligne = 0; ligne < plateau[colonne].size(); ++ligne)
+        {
+            plateau[colonne][ligne] = CouleurJeton::AUCUNE;
+        }
+    }
+    afficherPlateau();
+!!!143530.cpp!!!	initialiserDureeTour() : void
+    if(tempsTour != nullptr)
+    {
+        delete tempsTour;
+        tempsTour = nullptr;
+    }
+    tempsTour = new QTime(0, 0, TEMPS_TOUR);
+!!!143658.cpp!!!	afficherPlateau() : void
+    qDebug() << Q_FUNC_INFO << "\"" << PLATEAU_7 << "\"";
+    ui->labelVisualisationPlateau->setPixmap(QPixmap(PLATEAU_7));
+!!!143786.cpp!!!	afficherUnJeton(in ligne : int, in colonne : int) : void
+    if(ligne < 0 || ligne >= NB_LIGNES)
+        return;
+    if(colonne < 0 || colonne >= NB_COLONNES)
+        return;
+
+    QImage   jetonRouge(JETON_ROUGE);
+    QImage   jetonJaune(JETON_JAUNE);
+    QPixmap  puissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
+    QPainter p(&puissance4);
+
+    qDebug() << Q_FUNC_INFO << "rouge" << estEquipeRouge << "ligne" << ligne
+             << "colonne" << colonne;
+    if(estEquipeRouge)
+    {
+        p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
+                           DEPLACEMENT_Y - (ligne * TAILLE_JETON)),
+                    jetonRouge);
+        p.end();
+        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        afficherScoreEquipe();
+        nbPionsJoues++;
+        afficherTourEquipe();
+    }
+    else
+    {
+        p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
+                           DEPLACEMENT_Y - (ligne * TAILLE_JETON)),
+                    jetonJaune);
+        p.end();
+        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        afficherScoreEquipe();
+        afficherTourEquipe();
+    }
+    terminerSeance();
+!!!143914.cpp!!!	afficherTourEquipe() : void
+    qDebug() << Q_FUNC_INFO << estEquipeRouge;
+
+    timerTour->stop();
+    initialiserDureeTour();
+    ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
+    timerTour->start(TIC_HORLOGE);
+
+    if(estEquipeRouge)
+    {
+        ui->labelVisualisationEquipeRouge->setStyleSheet(
+          "background-color: transparent; color: black;");
+        ui->labelVisualisationEquipeJaune->setStyleSheet(
+          "background-color: yellow; color: black;");
+        estEquipeRouge = false;
+    }
+    else
+    {
+        ui->labelVisualisationEquipeJaune->setStyleSheet(
+          "background-color: transparent; color: black;");
+        ui->labelVisualisationEquipeRouge->setStyleSheet(
+          "background-color: red; color: black;");
+        estEquipeRouge = true;
+    }
+!!!144042.cpp!!!	afficherScoreEquipe() : void
+    if(estEquipeRouge)
+    {
+        scoreEquipeRouge++;
+        ui->affichageTotalPanierE1->display(QString::number(scoreEquipeRouge));
+    }
+    else
+    {
+        scoreEquipeJaune++;
+        ui->affichageTotalPanierE2->display(QString::number(scoreEquipeJaune));
+    }
+    nbPionsJoues++;
+!!!144170.cpp!!!	randInt(in min : int, in max : int) : int
+    return qrand() % ((max + 1) - min) + min;
+!!!144298.cpp!!!	attribuerRaccourcisClavier() : void
+    // les touches pour "jouer" avec le clavier
+    QAction* quitter = new QAction(this);
+    quitter->setShortcut(QKeySequence(QKeySequence(Qt::Key_Q)));
+    addAction(quitter);
+    connect(quitter, SIGNAL(triggered()), this, SLOT(fermerApplication()));
+    QAction* simulationConnexion = new QAction(this);
+    simulationConnexion->setShortcut(QKeySequence(Qt::Key_D));
+    addAction(simulationConnexion);
+    connect(simulationConnexion,
+            SIGNAL(triggered()),
             this,
             SLOT(afficherEcranPartie()));
-    connect(ui->boutonDebutPartie,
-            SIGNAL(clicked(bool)),
-            this,
-            SLOT(demarrerPartie()));
-    connect(ui->boutonDebutManche,
-            SIGNAL(clicked(bool)),
-            this,
-            SLOT(demarrerManche()));
-    // les minuteurs
-    connect(timerPartie, SIGNAL(timeout()), this, SLOT(chronometrerPartie()));
-    connect(timerManche, SIGNAL(timeout()), this, SLOT(chronometrerManche()));
+    QAction* demarrageSeance = new QAction(this);
+    demarrageSeance->setShortcut(QKeySequence(Qt::Key_S));
+    addAction(demarrageSeance);
+    connect(demarrageSeance, SIGNAL(triggered()), this, SLOT(demarrerSeance()));
+    QAction* simulationPion = new QAction(this);
+    simulationPion->setShortcut(QKeySequence(Qt::Key_Space));
+    addAction(simulationPion);
+    connect(simulationPion, SIGNAL(triggered()), this, SLOT(simulerPion()));
