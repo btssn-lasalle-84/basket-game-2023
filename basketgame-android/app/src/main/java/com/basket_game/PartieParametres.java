@@ -34,6 +34,7 @@ public class PartieParametres extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_ParametresPartie"; //!< TAG pour les logs (cf. Logcat)
+    public static final int NUMERO_ID_PANIERS_DEFAUT = 2; //!< le nombre max de paniers gérables
 
     /**
      * Attributs
@@ -49,6 +50,9 @@ public class PartieParametres extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_parametres);
         Log.d(TAG, "onCreate()");
+
+        Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
+        choixNbPaniers.setSelection(NUMERO_ID_PANIERS_DEFAUT); //!< Par défaut 4 paniers
 
         intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
         editerTempsTour();
