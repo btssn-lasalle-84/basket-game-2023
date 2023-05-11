@@ -21,6 +21,7 @@
  * @brief Pour les tests avec le clavier
  */
 #define TEST_BASKETGAME
+#define TEST_ALIGNEMENT
 
 /**
  * @def TIC_HORLOGE
@@ -33,24 +34,6 @@
  * @brief Le temps pour un tour d'une équipe
  */
 #define TEMPS_TOUR 30 // en s
-
-/**
- * @def NB_COLONNES
- * @brief Définit le nombre de colonne par défaut
- */
-#define NB_COLONNES 7
-
-/**
- * @def NB_LIGNES
- * @brief Définit le nombre de ligne par défaut
- */
-#define NB_LIGNES 6
-
-/**
- * @def NB_PIONS
- * @brief Définit le nombre de pions max
- */
-#define NB_PIONS (NB_LIGNES * NB_COLONNES)
 
 /**
  * @def TAILLE_JETON
@@ -71,10 +54,22 @@
 #define DEPLACEMENT_Y 321
 
 /**
- * @def DEPLACEMENT_Y
- * @brief Définit le nombre de pions pour gagner une partie
+ * @def NB_COLONNES
+ * @brief Définit le nombre de colonne par défaut
  */
-#define NB_PIONS_ALIGNES 4
+#define NB_COLONNES 7
+
+/**
+ * @def NB_LIGNES
+ * @brief Définit le nombre de ligne par défaut
+ */
+#define NB_LIGNES 6
+
+/**
+ * @def NB_PIONS
+ * @brief Définit le nombre de pions max
+ */
+#define NB_PIONS (NB_LIGNES * NB_COLONNES)
 
 /**
  * @def JETON_ROUGE
@@ -99,6 +94,7 @@ namespace Ui
 class basketgame;
 }
 
+class Plateau;
 /**
  * @class Basketgame
  * @brief La GUI de l'application Basketgame
@@ -126,13 +122,14 @@ class Basketgame : public QMainWindow
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void chronometrerTour();
-    void simulerPion();
+
+
     void fermerApplication();
 
   private slots:
     void demarrerSeance();
     void terminerSeance();
-    void demarrerPartie();
+    void demarrerPartie(Plateau* plateau);
 
   private:
     /**
@@ -146,39 +143,24 @@ class Basketgame : public QMainWindow
         NbEquipes
     };
 
-    /**
-     * @enum CouleurJeton
-     * @brief Les différents couleur de jeton
-     */
-    enum CouleurJeton
-    {
-        AUCUNE = 0,
-        ROUGE,
-        JAUNE,
-        NB_COULEURS
-    };
-
     Ui::basketgame*                 ui;
-    QVector<QVector<CouleurJeton> > plateau;
     QTime*                          tempsTour;
     QTimer*                         timerTour;
     bool                            etatSeance;
-    bool                            estVainqueur;
     bool                            estEquipeRouge;
+    bool                            estVainqueur;
     int                             nbPionsJoues;
-    int                             nbPionsAlignes;
     int                             scoreEquipeRouge;
     int                             scoreEquipeJaune;
 
     void initialiserIHM();
     void initialiserEvenements();
-    void initialiserPlateau();
     void initialiserDureeTour();
     void afficherPlateau();
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
     void afficherScoreEquipe();
-    int  randInt(int min, int max);
+
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();
 #endif
