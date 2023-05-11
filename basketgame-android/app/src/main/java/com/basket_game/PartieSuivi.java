@@ -37,10 +37,10 @@ public class PartieSuivi extends AppCompatActivity
     /**
      * Attributs
      */
-    private Partie partie;                                    //!< la partie entre deux équipes
-    private Intent intentDonneesPartieSuivi;                  //!< les données de la partie
-    private int    tempsRestantTour  = Partie.TEMPS_MAX_TOUR; //!< par défaut
-    private Timer  compteurTempsTour = null;
+    private Partie    partie;                   //!< la partie entre deux équipes
+    private Intent    intentDonneesPartieSuivi; //!< les données de la partie
+    private int       tempsRestantTour       = Partie.TEMPS_MAX_TOUR; //!< par défaut
+    private Timer     compteurTempsTour      = null;
     private TimerTask tacheCompteurTempsTour = null;
 
     /**
@@ -60,24 +60,24 @@ public class PartieSuivi extends AppCompatActivity
 
         intentDonneesPartieSuivi = getIntent();
         Equipe equipe1           = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe1");
-        if(equipe1 != null) {
+        if(equipe1 != null)
+        {
             Log.d(TAG, "onCreate() equipe1 = " + equipe1.getNomEquipe());
         }
         Equipe equipe2 = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe2");
-        if(equipe2 != null) {
+        if(equipe2 != null)
+        {
             Log.d(TAG, "onCreate() equipe2 = " + equipe2.getNomEquipe());
         }
 
-        int tempsMaxTour = intentDonneesPartieSuivi.getIntExtra("tempsMaxTour", Partie.TEMPS_MAX_TOUR);
+        int tempsMaxTour =
+          intentDonneesPartieSuivi.getIntExtra("tempsMaxTour", Partie.TEMPS_MAX_TOUR);
         Log.d(TAG, "onCreate() tempsMaxTour = " + tempsMaxTour);
         int nbPaniers = intentDonneesPartieSuivi.getIntExtra("nbPaniers", Partie.NB_PANIERS);
         Log.d(TAG, "onCreate() nbPaniers = " + nbPaniers);
-        int nbManches = intentDonneesPartieSuivi.getIntExtra("nbManches", Partie.NB_MANCHES_GAGNANTES);
+        int nbManches =
+          intentDonneesPartieSuivi.getIntExtra("nbManches", Partie.NB_MANCHES_GAGNANTES);
         Log.d(TAG, "onCreate() nbManches = " + nbManches);
-
-        /**
-         * @todo Récupérer les paramètres de la partie et les affecter à l'objet partie
-         */
 
         partie = new Partie(equipe1, equipe2);
         partie.setTempsMaxTour(tempsMaxTour);

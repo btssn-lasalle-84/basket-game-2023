@@ -33,7 +33,7 @@ public class PartieParametres extends AppCompatActivity
      * Constantes
      */
     private static final String TAG = "_ParametresPartie"; //!< TAG pour les logs (cf. Logcat)
-    public static final int NUMERO_ID_PANIERS_DEFAUT = 2; //!< le nombre max de paniers gérables
+    public static final int NUMERO_ID_PANIERS_DEFAUT = 2;  //!< le nombre max de paniers gérables
 
     /**
      * Attributs
@@ -75,8 +75,8 @@ public class PartieParametres extends AppCompatActivity
      */
     private void recupererTempsMaxTour()
     {
-        EditText editionTempsTour = findViewById(R.id.editionTempsTour);
-        String tempsMaxTourChoisi = editionTempsTour.getText().toString();
+        EditText editionTempsTour   = findViewById(R.id.editionTempsTour);
+        String   tempsMaxTourChoisi = editionTempsTour.getText().toString();
 
         int tempsMaxTour;
         if(!tempsMaxTourChoisi.isEmpty())
@@ -97,8 +97,8 @@ public class PartieParametres extends AppCompatActivity
      */
     private void recupererNbPaniers()
     {
-        Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
-        String nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
+        Spinner choixNbPaniers  = findViewById(R.id.choixNbPaniers);
+        String  nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
 
         int nbPaniers = Integer.parseInt(nbPaniersChoisi);
         Log.d(TAG, "recupererNbPaniers() nbPaniers = " + nbPaniers);
@@ -110,8 +110,8 @@ public class PartieParametres extends AppCompatActivity
      */
     private void recupererNbManches()
     {
-        Spinner choixNbManches = findViewById(R.id.choixNbManches);
-        String nbManchesChoisi = choixNbManches.getSelectedItem().toString();
+        Spinner choixNbManches  = findViewById(R.id.choixNbManches);
+        String  nbManchesChoisi = choixNbManches.getSelectedItem().toString();
 
         int nbManches = Integer.parseInt(nbManchesChoisi);
         Log.d(TAG, "recupererNbManches() nbManches = " + nbManches);
@@ -139,14 +139,16 @@ public class PartieParametres extends AppCompatActivity
                         " vs " +
                         ((EditText)(findViewById(R.id.editionEquipe2))).getText().toString());
                 Log.d(TAG,
-                        "afficherSuiviPartie() tempsMaxTour = " +
-                                ((EditText)(findViewById(R.id.editionTempsTour))).getText().toString());
-                Log.d(TAG,
-                        "afficherSuiviPartie() nbPaniers = " +
-                                ((Spinner)(findViewById(R.id.choixNbPaniers))).getSelectedItem().toString());
-                Log.d(TAG,
-                        "afficherSuiviPartie() nbManches = " +
-                                ((Spinner)(findViewById(R.id.choixNbManches))).getSelectedItem().toString());
+                      "afficherSuiviPartie() tempsMaxTour = " +
+                        ((EditText)(findViewById(R.id.editionTempsTour))).getText().toString());
+                Log.d(
+                  TAG,
+                  "afficherSuiviPartie() nbPaniers = " +
+                    ((Spinner)(findViewById(R.id.choixNbPaniers))).getSelectedItem().toString());
+                Log.d(
+                  TAG,
+                  "afficherSuiviPartie() nbManches = " +
+                    ((Spinner)(findViewById(R.id.choixNbManches))).getSelectedItem().toString());
                 startActivity(intentDonneesPartieSuivi);
             }
         });
