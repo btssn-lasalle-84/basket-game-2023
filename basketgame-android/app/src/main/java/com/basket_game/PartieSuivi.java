@@ -75,10 +75,6 @@ public class PartieSuivi extends AppCompatActivity
         int nbManches = intentDonneesPartieSuivi.getIntExtra("nbManches", Partie.NB_MANCHES_GAGNANTES);
         Log.d(TAG, "onCreate() nbManches = " + nbManches);
 
-        /**
-         * @todo Récupérer les paramètres de la partie et les affecter à l'objet partie
-         */
-
         partie = new Partie(equipe1, equipe2);
         partie.setTempsMaxTour(tempsMaxTour);
         partie.setNbPaniers(nbPaniers);
