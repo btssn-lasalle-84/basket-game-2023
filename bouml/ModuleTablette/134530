@@ -1,7 +1,7 @@
 format 224
 "basket_game" // basket_game
-  revision 5
-  modified_by 42 "tv"
+  revision 6
+  modified_by 23 "tvaira"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -429,6 +429,21 @@ ${members}}
 	comment "!< le temps max pour d'un tour pour une équipe en secondes par défaut"
       end
 
+      attribute 128023 "TEMPS_TOUR_PAR_DEFAUT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value "
+            45"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le temps par défaut d'un tour pour une équipe"
+      end
+
       attribute 149930 "NB_PANIERS"
 	class_attribute const_attribute public explicit_type "int"
 	init_value " 4"
@@ -618,6 +633,111 @@ ${members}}
 @param equipe2
 "
       end
+
+      operation 128023 "getTempsMaxTour"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur tempsMaxTour
+@fn getTempsMaxTour
+@details Retourne le temps maximum par tour
+@return tempsMaxTour
+"
+      end
+
+      operation 128151 "setTempsMaxTour"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "tempsMaxTour" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur tempsMaxTour
+@fn setTempsMaxTour
+@details Modifie le temps maximum par tour
+@param tempsMaxTour
+"
+      end
+
+      operation 128279 "getNbPaniers"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur nbPaniers
+@fn getNbPaniers
+@details Retourne le nombre de paniers
+@return nbPaniers
+"
+      end
+
+      operation 128407 "setNbPaniers"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbPaniers" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur nbPaniers
+@fn setNbPaniers
+@details Modifie le nombre de paniers
+@param nbPaniers
+"
+      end
+
+      operation 128535 "getNbManchesGagnantes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur nbManchesGagnantes
+@fn getNbManchesGagnantes
+@details Retourne le nombre de manches gagnantes
+@return nbManchesGagnantes
+"
+      end
+
+      operation 128663 "setNbManchesGagnantes"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbManchesGagnantes" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur nbManchesGagnantes
+@fn setNbManchesGagnantes
+@details Modifie le nombre de manches gagnantes
+@param nbManchesGagnantes
+"
+      end
     end
 
     class 141482 "PartieInterrompue"
@@ -747,6 +867,20 @@ ${members}}
 !< TAG pour les logs (cf. Logcat)"
       end
 
+      attribute 128151 "NUMERO_ID_PANIERS_DEFAUT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nombre max de paniers gérables"
+      end
+
       attribute 142378 "intentDonneesPartieSuivi"
 	private explicit_type "Intent"
 	cpp_decl ""
@@ -795,7 +929,7 @@ ${members}}
 "
       end
 
-      operation 151466 "recupererNbManches"
+      operation 151722 "recupererTempsMaxTour"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -805,7 +939,7 @@ ${members}}
 	
 	
 	
-	comment "@brief Méthode appelée pour récupérer le nombre de manches à jouer
+	comment "@brief Méthode appelée pour récupérer le temps pour un tour d'une équipe
 "
       end
 
@@ -823,7 +957,7 @@ ${members}}
 "
       end
 
-      operation 151722 "recupererTempsMaxTour"
+      operation 151466 "recupererNbManches"
 	private explicit_return_type "void"
 	nparams 0
 	
@@ -833,7 +967,7 @@ ${members}}
 	
 	
 	
-	comment "@brief Méthode appelée pour récupérer le temps pour un tour d'une équipe
+	comment "@brief Méthode appelée pour récupérer le nombre de manches à jouer
 "
       end
 
@@ -1295,7 +1429,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import java.io.Serializable;
+import static com.basket_game.Partie.TEMPS_MAX_TOUR;
+import static com.basket_game.Partie.TEMPS_TOUR_PAR_DEFAUT;
 ${definition}"
       associated_elems
 	class_ref 141610 // PartieParametres
