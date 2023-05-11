@@ -25,6 +25,8 @@ public class Partie
     public static final int NB_MANCHES_GAGNANTES = 1; //!< le nombre de manches gagnantes par défaut
     public static final int TEMPS_MAX_TOUR =
       45; //!< le temps max pour d'un tour pour une équipe en secondes par défaut
+    public static final int TEMPS_TOUR_PAR_DEFAUT =
+            45; //!< le temps par défaut d'un tour pour une équipe
     public static final int NB_PANIERS = 4; //!< le nombre de paniers installés par défaut
 
     /**
@@ -100,28 +102,6 @@ public class Partie
     }
 
     /**
-     * @brief Accesseur nbManchesGagnantes
-     * @fn getNbManchesGagnantes
-     * @details Retourne le nombre de manches gagnantes
-     * @return nbManchesGagnantes
-     */
-    public int getNbManchesGagnantes()
-    {
-        return nbManchesGagnantes;
-    }
-
-    /**
-     * @brief Mutateur nbManchesGagnantes
-     * @fn setNbManchesGagnantes
-     * @details Modifie le nombre de manches gagnantes
-     * @param nbManchesGagnantes
-     */
-    public void setNbManchesGagnantes(int nbManchesGagnantes)
-    {
-        this.nbManchesGagnantes = nbManchesGagnantes;
-    }
-
-    /**
      * @brief Accesseur tempsMaxTour
      * @fn getTempsMaxTour
      * @details Retourne le temps maximum par tour
@@ -163,5 +143,27 @@ public class Partie
     public void setNbPaniers(int nbPaniers)
     {
         this.nbPaniers = nbPaniers;
+    }
+
+    /**
+     * @brief Accesseur nbManchesGagnantes
+     * @fn getNbManchesGagnantes
+     * @details Retourne le nombre de manches gagnantes
+     * @return nbManchesGagnantes
+     */
+    public int getNbManchesGagnantes()
+    {
+        return nbManchesGagnantes;
+    }
+
+    /**
+     * @brief Mutateur nbManchesGagnantes
+     * @fn setNbManchesGagnantes
+     * @details Modifie le nombre de manches gagnantes
+     * @param nbManchesGagnantes
+     */
+    public void setNbManchesGagnantes(int nbManchesGagnantes)
+    {
+        this.nbManchesGagnantes = nbManchesGagnantes;
     }
 }

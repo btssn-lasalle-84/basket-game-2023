@@ -6,9 +6,8 @@
 
 package com.basket_game;
 
-import static com.basket_game.Partie.NB_MANCHES_GAGNANTES;
-import static com.basket_game.Partie.NB_PANIERS;
 import static com.basket_game.Partie.TEMPS_MAX_TOUR;
+import static com.basket_game.Partie.TEMPS_TOUR_PAR_DEFAUT;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -87,8 +86,8 @@ public class PartieParametres extends AppCompatActivity
         }
         else
         {
-            tempsMaxTour = TEMPS_MAX_TOUR;
-            Log.d(TAG, "recupererTempsMaxTour() temps tour par défaut = " + tempsMaxTour);
+            tempsMaxTour = TEMPS_TOUR_PAR_DEFAUT;
+            Log.d(TAG, "recupererTempsMaxTour() tempsMaxTour = " + tempsMaxTour);
         }
         intentDonneesPartieSuivi.putExtra("tempsMaxTour", tempsMaxTour);
     }
@@ -102,7 +101,7 @@ public class PartieParametres extends AppCompatActivity
         String nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
 
         int nbPaniers = Integer.parseInt(nbPaniersChoisi);
-        Log.d(TAG, "recupererNbPaniers() nombre paniers = " + nbPaniers);
+        Log.d(TAG, "recupererNbPaniers() nbPaniers = " + nbPaniers);
         intentDonneesPartieSuivi.putExtra("nbPaniers", nbPaniers);
     }
 
@@ -115,7 +114,7 @@ public class PartieParametres extends AppCompatActivity
         String nbManchesChoisi = choixNbManches.getSelectedItem().toString();
 
         int nbManches = Integer.parseInt(nbManchesChoisi);
-        Log.d(TAG, "recupererNbPaniers() nombre manches = " + nbManches);
+        Log.d(TAG, "recupererNbManches() nbManches = " + nbManches);
         intentDonneesPartieSuivi.putExtra("nbManches", nbManches);
     }
 
@@ -139,6 +138,15 @@ public class PartieParametres extends AppCompatActivity
                         ((EditText)(findViewById(R.id.editionEquipe1))).getText().toString() +
                         " vs " +
                         ((EditText)(findViewById(R.id.editionEquipe2))).getText().toString());
+                Log.d(TAG,
+                        "afficherSuiviPartie() tempsMaxTour = " +
+                                ((EditText)(findViewById(R.id.editionTempsTour))).getText().toString());
+                Log.d(TAG,
+                        "afficherSuiviPartie() nbPaniers = " +
+                                ((Spinner)(findViewById(R.id.choixNbPaniers))).getSelectedItem().toString());
+                Log.d(TAG,
+                        "afficherSuiviPartie() nbManches = " +
+                                ((Spinner)(findViewById(R.id.choixNbManches))).getSelectedItem().toString());
                 startActivity(intentDonneesPartieSuivi);
             }
         });
