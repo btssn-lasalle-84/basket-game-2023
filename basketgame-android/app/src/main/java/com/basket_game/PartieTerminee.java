@@ -28,7 +28,8 @@ public class PartieTerminee extends AppCompatActivity
      * @brief Méthode appelée à la création de l'activité
      */
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_terminee);
 

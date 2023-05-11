@@ -1,5 +1,7 @@
 class Partie
 !!!135850.java!!!	Partie(inout equipe1 : Equipe, inout equipe2 : Equipe)
+        Log.d(TAG,
+              "Partie(\"" + equipe1.getNomEquipe() + "\", \"" + equipe2.getNomEquipe() + "\")");
         this.equipe1 = equipe1;
         this.equipe2 = equipe2;
 !!!135978.java!!!	getEquipe1() : Equipe
@@ -10,3 +12,15 @@ class Partie
         return equipe2;
 !!!136362.java!!!	setEquipe2(inout equipe2 : Equipe) : void
         this.equipe2 = equipe2;
+!!!128023.java!!!	getTempsMaxTour() : int
+        return tempsMaxTour;
+!!!128151.java!!!	setTempsMaxTour(in tempsMaxTour : int) : void
+        this.tempsMaxTour = tempsMaxTour;
+!!!128279.java!!!	getNbPaniers() : int
+        return nbPaniers;
+!!!128407.java!!!	setNbPaniers(in nbPaniers : int) : void
+        this.nbPaniers = nbPaniers;
+!!!128535.java!!!	getNbManchesGagnantes() : int
+        return nbManchesGagnantes;
+!!!128663.java!!!	setNbManchesGagnantes(in nbManchesGagnantes : int) : void
+        this.nbManchesGagnantes = nbManchesGagnantes;
