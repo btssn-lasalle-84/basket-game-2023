@@ -6,10 +6,15 @@
 
 package com.basket_game;
 
+import static com.basket_game.Partie.SEUIL_TEMPS_RESTANT;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -58,6 +63,69 @@ public class PartieSuivi extends AppCompatActivity
         setContentView(R.layout.partie_suivi);
         Log.d(TAG, "onCreate()");
 
+        recupererParametresPartie();
+        afficherNomEquipe1();
+        afficherNomEquipe2();
+        creerBoutonArreterPartie();
+        initialiserCompteurTempsTour();
+    }
+
+    /**
+     * @brief Méthode
+     */
+    private void initialiserCompteurTempsTour()
+    {
+        progressBarTempsRestantTour = (ProgressBar)findViewById(R.id.progressBarTempsRestantTour);
+        compteurTempsTour           = new Timer();
+
+        tempsRestantTour = partie.getTempsMaxTour();
+        Log.d(TAG, "initialiserCompteurTempsTour() tempsRestantTour = " + tempsRestantTour);
+        progressBarTempsRestantTour.setMax(tempsRestantTour);
+        progressBarTempsRestantTour.setProgress(tempsRestantTour);
+        progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+
+        compterTempsRestantTour();
+    }
+
+    /**
+     * @brief Assure la gestion du temps pour un tour
+     */
+    private void compterTempsRestantTour()
+    {
+        tacheCompteurTempsTour = new TimerTask() {
+            public void run()
+            {
+                tempsRestantTour--;
+                if (tempsRestantTour <= 0) {
+                    tempsRestantTour = partie.getTempsMaxTour();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+                        }
+                    });
+                }
+                runOnUiThread(new Runnable() {
+                    public void run()
+                    {
+                        progressBarTempsRestantTour.setProgress(tempsRestantTour);
+
+                        if (tempsRestantTour <= SEUIL_TEMPS_RESTANT) {
+                            progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.RED));
+                        }
+                    }
+                });
+            }
+        };
+
+        // tâche périodique
+        compteurTempsTour.schedule(tacheCompteurTempsTour, 1000, 1000);
+    }
+
+    /**
+     * @brief Méthode appelée pour récupérer les paramètres de la partie
+     */
+    private void recupererParametresPartie()
+    {
         intentDonneesPartieSuivi = getIntent();
         Equipe equipe1           = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe1");
         if(equipe1 != null)
@@ -71,79 +139,18 @@ public class PartieSuivi extends AppCompatActivity
         }
 
         int tempsMaxTour =
-          intentDonneesPartieSuivi.getIntExtra("tempsMaxTour", Partie.TEMPS_MAX_TOUR);
+                intentDonneesPartieSuivi.getIntExtra("tempsMaxTour", Partie.TEMPS_MAX_TOUR);
         Log.d(TAG, "onCreate() tempsMaxTour = " + tempsMaxTour);
         int nbPaniers = intentDonneesPartieSuivi.getIntExtra("nbPaniers", Partie.NB_PANIERS);
         Log.d(TAG, "onCreate() nbPaniers = " + nbPaniers);
         int nbManches =
-          intentDonneesPartieSuivi.getIntExtra("nbManches", Partie.NB_MANCHES_GAGNANTES);
+                intentDonneesPartieSuivi.getIntExtra("nbManches", Partie.NB_MANCHES_GAGNANTES);
         Log.d(TAG, "onCreate() nbManches = " + nbManches);
 
         partie = new Partie(equipe1, equipe2);
         partie.setTempsMaxTour(tempsMaxTour);
         partie.setNbPaniers(nbPaniers);
         partie.setNbManchesGagnantes(nbManches);
-
-        afficherNomEquipe1();
-        afficherNomEquipe2();
-        creerBoutonArreterPartie();
-
-        initialiserCompteurTempsTour();
-    }
-
-    /**
-     * @brief Méthode
-     */
-    private void initialiserCompteurTempsTour()
-    {
-        progressBarTempsRestantTour = (ProgressBar)findViewById(R.id.progressBarTempsRestantTour);
-        compteurTempsTour           = new Timer();
-        /**
-         * @todo Initialiser les valeurs de comptage avec la valeur paramétrée dans l'IHM
-         */
-        /*
-        tempsRestantTour = x;
-        progressBarTempsRestantTour.setMax(x);
-        progressBarTempsRestantTour.setProgress(x);
-        */
-        // démarrer le comptage d'un tour
-        compterTempsRestantTour();
-    }
-
-    /**
-     * @brief Assure la gestion du temps pour un tour
-     */
-    private void compterTempsRestantTour()
-    {
-        tacheCompteurTempsTour = new TimerTask() {
-            public void run()
-            {
-                /**
-                 * @todo Décrémenter d'une seconde le temps restant
-                 */
-                /**
-                 * @todo Tester si le temps restant est arrivé à 0
-                 */
-                runOnUiThread(new Runnable() {
-                    public void run()
-                    {
-                        /**
-                         * @todo Mettre à jour la barre de progression dans l'IHM
-                         */
-                        // progressBarTempsRestantTour.setProgress(x);
-                        /**
-                         * @todo Bonus : changer la couleur lorsque il ne reste plus beaucoup de
-                         * temps
-                         * @see
-                         *   progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.RED));
-                         */
-                    }
-                });
-            }
-        };
-
-        // tâche périodique
-        compteurTempsTour.schedule(tacheCompteurTempsTour, 1000, 1000);
     }
 
     /**
@@ -204,10 +211,35 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
+     * @brief Méthode appelée pour arrêter le compteur
+     */
+    private void arreterCompteur()
+    {
+        if (tacheCompteurTempsTour != null)
+        {
+            tacheCompteurTempsTour.cancel();
+            tacheCompteurTempsTour = null;
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour réinitialiser le compteur
+     */
+    private void reinitialiserCompteur()
+    {
+        tempsRestantTour = partie.getTempsMaxTour();
+        progressBarTempsRestantTour.setProgress(tempsRestantTour);
+        progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+    }
+
+    /**
      * @brief Méthode appelée pour arrêter la partie
      */
     private void arreterPartie()
     {
+        arreterCompteur();
+        reinitialiserCompteur();
+
         Log.d(TAG, "arreterPartie()");
         Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
         startActivity(intent);

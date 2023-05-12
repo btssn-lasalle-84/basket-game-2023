@@ -28,6 +28,7 @@ public class Partie
     public static final int TEMPS_TOUR_PAR_DEFAUT =
             45; //!< le temps par défaut d'un tour pour une équipe
     public static final int NB_PANIERS = 4; //!< le nombre de paniers installés par défaut
+    public static final int SEUIL_TEMPS_RESTANT = 3; //!< le seuil qui permettra le changement de couleur
 
     /**
      * @brief Attributs
