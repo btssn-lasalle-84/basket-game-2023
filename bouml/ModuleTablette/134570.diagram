@@ -1,0 +1,183 @@
+format 224
+
+classinstance 128042 class_ref 128130 // Entraineur
+  name ""   xyz 55 5 2000 life_line_z 2000
+classinstance 128170 class_ref 134570 // BasketGame
+  name ""   xyz 431 4 2000 life_line_z 2000
+note 128938 "clic sur le bouton \"NOUVELLE PARTIE\""
+  xyzwh 164 166 2000 325 91
+classinstance 129194 class_ref 141610 // PartieParametres
+  name ""   xyz 791 4 2000 life_line_z 2000
+note 131370 "L'entraîneur peut éditer les noms des deux équipes, le temps entre chaque tir, le nombre de panier et le nombre de manches.
+
+Puis clic sur le bouton \"LANCER LA PARTIE\""
+  xyzwh 164 379.5 2000 731 193
+classinstance 132906 class_ref 141738 // PartieSuivi
+  name ""   xyz 1204 4 2000 life_line_z 2000
+durationcanvas 128298 classinstance_ref 128170 // :BasketGame
+  xyzwh 520 82 2010 11 122
+  overlappingdurationcanvas 128682
+    xyzwh 526 98 2020 11 100
+    overlappingdurationcanvas 129322
+      xyzwh 532 133 2030 11 60
+    end
+  end
+end
+durationcanvas 128554 classinstance_ref 128042 // :Entraineur
+  xyzwh 123 97 2010 11 40
+end
+durationcanvas 129578 classinstance_ref 129194 // :PartieParametres
+  xyzwh 909 182 2010 11 569
+  overlappingdurationcanvas 129834
+    xyzwh 915 214 2020 11 25
+  end
+  overlappingdurationcanvas 130090
+    xyzwh 915 263 2020 11 482
+    overlappingdurationcanvas 130858
+      xyzwh 921 335 2030 11 404
+      overlappingdurationcanvas 131114
+	xyzwh 927 379 2040 11 25
+      end
+      overlappingdurationcanvas 131626
+	xyzwh 927 429 2040 11 25
+      end
+      overlappingdurationcanvas 131882
+	xyzwh 927 480 2040 11 25
+      end
+      overlappingdurationcanvas 132138
+	xyzwh 927 525 2040 11 25
+      end
+      overlappingdurationcanvas 132394
+	xyzwh 927 582 2040 11 25
+      end
+      overlappingdurationcanvas 132650
+	xyzwh 927 639 2040 11 94
+      end
+    end
+  end
+end
+durationcanvas 130730 classinstance_ref 128042 // :Entraineur
+  xyzwh 123 333 2010 11 40
+end
+durationcanvas 133034 classinstance_ref 132906 // :PartieSuivi
+  xyzwh 1278 683 2010 11 285
+  overlappingdurationcanvas 133290
+    xyzwh 1284 722 2020 11 25
+  end
+  overlappingdurationcanvas 133546
+    xyzwh 1284 783 2020 11 25
+  end
+  overlappingdurationcanvas 133802
+    xyzwh 1284 833 2020 11 25
+  end
+  overlappingdurationcanvas 134058
+    xyzwh 1284 885 2020 11 25
+  end
+  overlappingdurationcanvas 134314
+    xyzwh 1284 937 2020 11 25
+  end
+end
+reflexivemsg 128426 synchronous
+  to durationcanvas_ref 128298
+  yz 82 2015 msg operation_ref 135338 // "afficherNouvellePartie() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 532 53
+msg 128810 asynchronous
+  from durationcanvas_ref 128554
+  to durationcanvas_ref 128682
+  yz 98 2025 explicitmsg "onClick()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 272 68
+reflexivemsg 129450 synchronous
+  to durationcanvas_ref 129322
+  yz 133 2035 explicitmsg "startActivity()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 543 106
+msg 129706 synchronous
+  from durationcanvas_ref 129322
+  to durationcanvas_ref 129578
+  yz 182 2040 msg operation_ref 143658 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 656 152
+reflexivemsg 129962 synchronous
+  to durationcanvas_ref 129834
+  yz 214 2025 msg operation_ref 165546 // "initialiserActivite() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 929 183
+reflexivemsg 130218 synchronous
+  to durationcanvas_ref 130090
+  yz 263 2025 msg operation_ref 143914 // "afficherSuiviPartie() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 929 234
+msg 130986 asynchronous
+  from durationcanvas_ref 130730
+  to durationcanvas_ref 130858
+  yz 335 2035 explicitmsg "onClick()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 469 305
+reflexivemsg 131242 synchronous
+  to durationcanvas_ref 131114
+  yz 379 2045 msg operation_ref 143786 // "recupererNomEquipe(in idEquipe : int, in numeroEquipe : int) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 936 353
+reflexivemsg 131754 synchronous
+  to durationcanvas_ref 131626
+  yz 429 2045 msg operation_ref 143786 // "recupererNomEquipe(in idEquipe : int, in numeroEquipe : int) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 936 405
+reflexivemsg 132010 synchronous
+  to durationcanvas_ref 131882
+  yz 480 2045 msg operation_ref 151722 // "recupererTempsMaxTour() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 939 455
+reflexivemsg 132266 synchronous
+  to durationcanvas_ref 132138
+  yz 525 2045 msg operation_ref 151594 // "recupererNbPaniers() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 937 501
+reflexivemsg 132522 synchronous
+  to durationcanvas_ref 132394
+  yz 582 2045 msg operation_ref 151466 // "recupererNbManches() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 938 558
+reflexivemsg 132778 synchronous
+  to durationcanvas_ref 132650
+  yz 639 2045 explicitmsg "startActivity()"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 937 611
+msg 133162 synchronous
+  from durationcanvas_ref 132650
+  to durationcanvas_ref 133034
+  yz 683 2045 msg operation_ref 144042 // "onCreate(inout savedInstanceState : Bundle) : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1036 655
+reflexivemsg 133418 synchronous
+  to durationcanvas_ref 133290
+  yz 722 2025 msg operation_ref 165034 // "recupererParametresPartie() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1299 691
+reflexivemsg 133674 synchronous
+  to durationcanvas_ref 133546
+  yz 783 2025 msg operation_ref 144170 // "afficherNomEquipe1() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1296 751
+reflexivemsg 133930 synchronous
+  to durationcanvas_ref 133802
+  yz 833 2025 msg operation_ref 144298 // "afficherNomEquipe2() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1298 805
+reflexivemsg 134186 synchronous
+  to durationcanvas_ref 134058
+  yz 885 2025 msg operation_ref 144426 // "creerBoutonArreterPartie() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1296 859
+reflexivemsg 134442 synchronous
+  to durationcanvas_ref 134314
+  yz 937 2025 msg operation_ref 158378 // "initialiserCompteurTempsTour() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 1296 909
+line 129066 -_-_
+  from ref 128938 z 2026 to ref 128810
+line 131498 -_-_
+  from ref 131370 z 2036 to ref 130986
+end

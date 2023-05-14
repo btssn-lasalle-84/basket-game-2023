@@ -1,7 +1,7 @@
 format 224
 "basket_game" // basket_game
-  revision 6
-  modified_by 23 "tvaira"
+  revision 7
+  modified_by 42 "tv"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -456,6 +456,20 @@ ${members}}
 	mysql_decl ""
 	MysqlColumn
 	comment "!< le nombre de paniers installés par défaut"
+      end
+
+      attribute 163754 "SEUIL_TEMPS_RESTANT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le seuil qui permettra le changement de couleur"
       end
 
       classrelation 134826 // equipe1 (<unidirectional association>)
@@ -913,6 +927,20 @@ ${members}}
 "
       end
 
+      operation 165546 "initialiserActivite"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode qui intialise la vue de l'activité
+"
+      end
+
       operation 143786 "recupererNomEquipe"
 	private explicit_return_type "void"
 	nparams 2
@@ -1193,6 +1221,20 @@ Attributs
 "
       end
 
+      operation 165034 "recupererParametresPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour récupérer les paramètres de la partie
+"
+      end
+
       operation 144170 "afficherNomEquipe1"
 	private explicit_return_type "void"
 	nparams 0
@@ -1232,6 +1274,34 @@ Attributs
 	
 	
 	comment "@brief Méthode appelée pour arrêter la partie
+"
+      end
+
+      operation 165162 "arreterCompteur"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour arrêter le compteur
+"
+      end
+
+      operation 165290 "reinitialiserCompteur"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour réinitialiser le compteur
 "
       end
 
@@ -1401,6 +1471,8 @@ ${package}
 ${imports}
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -1450,7 +1522,10 @@ ${package}
 ${imports}
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -1460,6 +1535,7 @@ import android.widget.TextView;
 import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
+import static com.basket_game.Partie.SEUIL_TEMPS_RESTANT;
 ${definition}"
       associated_elems
 	class_ref 141738 // PartieSuivi
