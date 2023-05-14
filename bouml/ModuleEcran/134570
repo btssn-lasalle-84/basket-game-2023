@@ -1,6 +1,6 @@
 format 224
 "BasketGameUI" // BasketGameUI
-  revision 2
+  revision 3
   modified_by 42 "tv"
   // class settings
   
@@ -119,7 +119,6 @@ ${items}};
 	  mysql_decl ""
 	  MysqlColumn
 	end
-
       end
 
       operation 134570 "Basketgame"
@@ -179,6 +178,61 @@ ${body}}
 	mysql ""
       end
 
+      operation 143146 "demarrerSeance"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::demarrerSeance
+//@brief méthode pour debuter une séance
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 143274 "terminerSeance"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::terminerSeance
+//@brief méthode pour détermiquer quand la séance est terminer
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 135978 "demarrerPartie"
+	stereotype "slot"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::demarrerPartie
+//@brief
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 135082 "afficherEcran"
 	stereotype "slot"
 	preserve_cpp_body_indent public explicit_return_type "void"
@@ -186,8 +240,9 @@ ${body}}
 	  param in name "ecran" type class_ref 134826 // Ecran
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherEcran(Basketgame::Ecran ecran)
+	cpp_def "//@fn Basketgame::afficherEcran
 //@brief Selectionne la fenêtre et l'affiche
+//@param ecran
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -205,7 +260,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherEcranAcceuil()
+	cpp_def "//@fn Basketgame::afficherEcranAcceuil
 //@brief Affiche la fenêtre d'accueil
 //
 
@@ -224,7 +279,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherEcranPartie()
+	cpp_def "//@fn Basketgame::afficherEcranPartie
 //@brief Affiche la fenêtre de partie
 //
 
@@ -260,7 +315,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::simulerPion()
+	cpp_def "//@fn Basketgame::simulerPion
 //@brief méthode pour simuler un coup de puissance4
 //
 
@@ -278,73 +333,8 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::fermerApplication()
+	cpp_def "//@fn Basketgame::fermerApplication
 //@brief méthode pour fermer l'application
-//
-
-${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-${body}}
-"
-	
-	
-	
-	
-      end
-
-      extra_member 134826 "slots"
-	
-	cpp "  private slots:" ""
-	java ""
-	php ""
-	python ""
-	idl ""
-	mysql ""
-      end
-
-      operation 143146 "demarrerSeance"
-	preserve_cpp_body_indent private explicit_return_type "void"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "//@fn Basketgame::demarrerSeance()
-//@brief méthode pour debuter une séance
-//
-
-${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 143274 "terminerSeance"
-	preserve_cpp_body_indent private explicit_return_type "void"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "//@fn Basketgame::terminerSeance()
-//@brief méthode pour détermiquer quand la séance est terminer
-//
-
-${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 135978 "demarrerPartie"
-	stereotype "slot"
-	preserve_cpp_body_indent private explicit_return_type "void"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "//@fn Basketgame::demarrerPartie
-//@brief
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -599,7 +589,7 @@ ${items}};
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserIHM()
+	cpp_def "//@fn Basketgame::initialiserIHM
 //@brief méthode pour initialiser l'IHM
 //
 
@@ -617,8 +607,26 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserEvenements()
+	cpp_def "//@fn Basketgame::initialiserEvenements
 //@brief méthode pour initialiser les évenements et action du programme
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151594 "initialiserEtatPartie"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::initialiserEtatPartie
+//@brief méthode pour initialiser les variables d'une partie
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -635,7 +643,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserPlateau()
+	cpp_def "//@fn Basketgame::initialiserPlateau
 //@brief méthode pour initialiser le plateau de puissance4
 //
 
@@ -653,8 +661,26 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserDureeTour()
+	cpp_def "//@fn Basketgame::initialiserDureeTour
 //@brief méthode pour initialiser la durée d'un tour pour une équipe
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151722 "demarrerChronometrageTour"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::demarrerChronometrageTour
+//@brief méthode pour démarrer le chronométrage d'un tour
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -671,12 +697,27 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherPlateau()
+	cpp_def "//@fn Basketgame::afficherPlateau
 //@brief méthode pour afficher le plateau de puissance4
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
 ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 151850 "placerPion"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "colonne" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
 "
 	
 	
@@ -691,8 +732,10 @@ ${body}}
 	  param in name "colonne" explicit_type "int"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherUnJeton(int ligne, int colonne)
+	cpp_def "//@fn Basketgame::afficherUnJeton
 //@brief méthode pour afficher les jetons dans le plateau de puissance4
+//@param ligne
+//@param colonne
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
@@ -709,7 +752,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherTourEquipe()
+	cpp_def "//@fn Basketgame::afficherTourEquipe
 //@brief méthode pour afficher quelle équipe est train de jouer
 //
 
@@ -740,26 +783,6 @@ ${body}}
 	
       end
 
-      operation 144170 "randInt"
-	preserve_cpp_body_indent private explicit_return_type "int"
-	nparams 2
-	  param in name "min" explicit_type "int"
-	  param in name "max" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "//@fn Basketgame::randInt(int min, int max)
-//@brief méthode pour créer une variable aléatoire
-//
-
-${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
-${body}}
-"
-	
-	
-	
-	
-      end
-
       operation 144298 "attribuerRaccourcisClavier"
 	preserve_cpp_body_indent private explicit_return_type "void"
 	nparams 0
@@ -778,6 +801,27 @@ ${body}}
 	
       end
 
+      operation 144170 "randInt"
+	preserve_cpp_body_indent private explicit_return_type "int"
+	nparams 2
+	  param in name "min" explicit_type "int"
+	  param in name "max" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::randInt
+//@brief méthode pour créer une variable aléatoire
+//@param min
+//@param max
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
     end
 
     class 134698 "typedef1"
@@ -1007,7 +1051,7 @@ ${body}}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+${body}}
 "
 	
 	
@@ -1021,7 +1065,7 @@ ${body}}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+${body}}
 "
 	
 	
@@ -1035,7 +1079,7 @@ ${body}}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+${body}}
 "
 	
 	
@@ -1049,7 +1093,7 @@ ${body}}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+${body}}
 "
 	
 	
@@ -1133,7 +1177,6 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_elems
-	class_ref 141738 // typedef2
 	class_ref 141610 // Equipe
       end
     end
