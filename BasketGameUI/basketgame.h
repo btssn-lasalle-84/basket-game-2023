@@ -122,17 +122,17 @@ class Basketgame : public QMainWindow
     ~Basketgame();
 
   public slots:
+    void demarrerSeance();
+    void terminerSeance();
+    void demarrerPartie();
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void chronometrerTour();
+#ifdef TEST_BASKETGAME
     void simulerPion();
+#endif
     void fermerApplication();
-
-  private slots:
-    void demarrerSeance();
-    void terminerSeance();
-    void demarrerPartie();
 
   private:
     /**
@@ -172,15 +172,19 @@ class Basketgame : public QMainWindow
 
     void initialiserIHM();
     void initialiserEvenements();
+    void initialiserEtatPartie();
     void initialiserPlateau();
     void initialiserDureeTour();
+    void demarrerChronometrageTour();
     void afficherPlateau();
+    void placerPion(int colonne);
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
     void afficherScoreEquipe();
-    int  randInt(int min, int max);
+
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();
+    int  randInt(int min, int max);
 #endif
 };
 
