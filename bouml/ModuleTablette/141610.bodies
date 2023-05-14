@@ -4,12 +4,14 @@ class PartieParametres
         setContentView(R.layout.partie_parametres);
         Log.d(TAG, "onCreate()");
 
+        initialiserActivite();
+        editerTempsTour();
+        afficherSuiviPartie();
+!!!165546.java!!!	initialiserActivite() : void
         Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
         choixNbPaniers.setSelection(NUMERO_ID_PANIERS_DEFAUT); //!< Par défaut 4 paniers
 
         intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
-        editerTempsTour();
-        afficherSuiviPartie();
 !!!143786.java!!!	recupererNomEquipe(in idEquipe : int, in numeroEquipe : int) : void
         EditText editionEquipe = findViewById(idEquipe);
         String   nomEquipe     = editionEquipe.getText().toString();
@@ -17,8 +19,8 @@ class PartieParametres
         Log.d(TAG, "recupererNomEquipe() equipe = " + nomEquipe);
         intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, (Serializable)equipe);
 !!!151722.java!!!	recupererTempsMaxTour() : void
-        EditText editionTempsTour = findViewById(R.id.editionTempsTour);
-        String tempsMaxTourChoisi = editionTempsTour.getText().toString();
+        EditText editionTempsTour   = findViewById(R.id.editionTempsTour);
+        String   tempsMaxTourChoisi = editionTempsTour.getText().toString();
 
         int tempsMaxTour;
         if(!tempsMaxTourChoisi.isEmpty())
@@ -33,15 +35,15 @@ class PartieParametres
         }
         intentDonneesPartieSuivi.putExtra("tempsMaxTour", tempsMaxTour);
 !!!151594.java!!!	recupererNbPaniers() : void
-        Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
-        String nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
+        Spinner choixNbPaniers  = findViewById(R.id.choixNbPaniers);
+        String  nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
 
         int nbPaniers = Integer.parseInt(nbPaniersChoisi);
         Log.d(TAG, "recupererNbPaniers() nbPaniers = " + nbPaniers);
         intentDonneesPartieSuivi.putExtra("nbPaniers", nbPaniers);
 !!!151466.java!!!	recupererNbManches() : void
-        Spinner choixNbManches = findViewById(R.id.choixNbManches);
-        String nbManchesChoisi = choixNbManches.getSelectedItem().toString();
+        Spinner choixNbManches  = findViewById(R.id.choixNbManches);
+        String  nbManchesChoisi = choixNbManches.getSelectedItem().toString();
 
         int nbManches = Integer.parseInt(nbManchesChoisi);
         Log.d(TAG, "recupererNbManches() nbManches = " + nbManches);
@@ -63,14 +65,16 @@ class PartieParametres
                         " vs " +
                         ((EditText)(findViewById(R.id.editionEquipe2))).getText().toString());
                 Log.d(TAG,
-                        "afficherSuiviPartie() tempsMaxTour = " +
-                                ((EditText)(findViewById(R.id.editionTempsTour))).getText().toString());
-                Log.d(TAG,
-                        "afficherSuiviPartie() nbPaniers = " +
-                                ((Spinner)(findViewById(R.id.choixNbPaniers))).getSelectedItem().toString());
-                Log.d(TAG,
-                        "afficherSuiviPartie() nbManches = " +
-                                ((Spinner)(findViewById(R.id.choixNbManches))).getSelectedItem().toString());
+                      "afficherSuiviPartie() tempsMaxTour = " +
+                        ((EditText)(findViewById(R.id.editionTempsTour))).getText().toString());
+                Log.d(
+                  TAG,
+                  "afficherSuiviPartie() nbPaniers = " +
+                    ((Spinner)(findViewById(R.id.choixNbPaniers))).getSelectedItem().toString());
+                Log.d(
+                  TAG,
+                  "afficherSuiviPartie() nbManches = " +
+                    ((Spinner)(findViewById(R.id.choixNbManches))).getSelectedItem().toString());
                 startActivity(intentDonneesPartieSuivi);
             }
         });

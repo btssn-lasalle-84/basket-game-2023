@@ -31,12 +31,12 @@ relationcanvas 128170 relation_ref 134570 // <generalisation>
 end
 relationcanvas 128682 relation_ref 134826 // <unidirectional association>
   from ref 128554 z 2007 to ref 128386
-  role_a_pos 1712 1175 3000 no_role_b
+  role_a_pos 1712 1215 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128810 relation_ref 134954 // <unidirectional association>
   from ref 128554 z 2007 to ref 128386
-  role_a_pos 1712 1175 3000 no_role_b
+  role_a_pos 1712 1215 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129066 relation_ref 141738 // <generalisation>
@@ -51,7 +51,7 @@ relationcanvas 129322 relation_ref 141866 // <generalisation>
 end
 relationcanvas 129450 relation_ref 148778 // <unidirectional association>
   from ref 129194 z 2013 to ref 128554
-  role_a_pos 2311 913 3000 no_role_b
+  role_a_pos 2244 921 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end
