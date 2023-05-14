@@ -49,13 +49,19 @@ public class PartieParametres extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_parametres);
         Log.d(TAG, "onCreate()");
+        initialiserActivite();
+        afficherSuiviPartie();
+    }
 
+    /**
+     * @brief Méthode qui intialise la vue de l'activité
+     */
+    private void initialiserActivite()
+    {
         Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
         choixNbPaniers.setSelection(NUMERO_ID_PANIERS_DEFAUT); //!< Par défaut 4 paniers
-
         intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
         editerTempsTour();
-        afficherSuiviPartie();
     }
 
     /**
