@@ -1,6 +1,6 @@
 format 224
 "basket_game" // basket_game
-  revision 3
+  revision 7
   modified_by 42 "tv"
   // class settings
   
@@ -171,7 +171,6 @@ ${members}}
 @param nomEquipe
 "
       end
-
     end
 
     classdiagram 134658 "diagramme de classes 0.2"
@@ -354,11 +353,132 @@ ${members}}
       comment "@class Partie
 @brief Définit une partie entre deux équipes
 "
+      attribute 149290 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_Partie\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      attribute 149418 "NB_PANIERS_MIN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Du système
+!< le nombre min de paniers gérables"
+      end
+
+      attribute 149546 "NB_PANIERS_MAX"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 7"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nombre max de paniers gérables"
+      end
+
+      attribute 149674 "NB_MANCHES_GAGNANTES"
+	class_attribute const_attribute public explicit_type "int"
+	init_value "
+      1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " Valeurs par défaut pour une Partie
+!< le nombre de manches gagnantes par défaut"
+      end
+
+      attribute 149802 "TEMPS_MAX_TOUR"
+	class_attribute const_attribute public explicit_type "int"
+	init_value "
+      45"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le temps max pour d'un tour pour une équipe en secondes par défaut"
+      end
+
+      attribute 128023 "TEMPS_TOUR_PAR_DEFAUT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value "
+            45"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le temps par défaut d'un tour pour une équipe"
+      end
+
+      attribute 149930 "NB_PANIERS"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 4"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nombre de paniers installés par défaut"
+      end
+
+      attribute 163754 "SEUIL_TEMPS_RESTANT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le seuil qui permettra le changement de couleur"
+      end
+
       classrelation 134826 // equipe1 (<unidirectional association>)
 	relation 134826 --->
 	  a role_name "equipe1" init_value " null" private
-	    comment "
-@brief Attributs
+	    comment "@brief Attributs
+
+
+@see Notion de conteneur !?
 
 !< l'équipe n°1"
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
@@ -379,7 +499,7 @@ ${members}}
 
       attribute 134954 "nbManchesGagnantes"
 	private explicit_type "int"
-	init_value " 1"
+	init_value " NB_MANCHES_GAGNANTES"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -388,12 +508,13 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "!<"
+	comment "!< le nombre de manches gagnantes"
       end
 
-      attribute 135082 "tempsMaxTir"
+      attribute 150058 "tempsMaxTour"
 	private explicit_type "int"
-	init_value " 0"
+	init_value "
+      TEMPS_MAX_TOUR"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -402,12 +523,12 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "!<"
+	comment "!< le temps max pour d'un tour pour une équipe en secondes"
       end
 
       attribute 135210 "nbPaniers"
 	private explicit_type "int"
-	init_value " 4"
+	init_value " NB_PANIERS"
 	cpp_decl ""
 	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
@@ -416,7 +537,7 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "!<"
+	comment "!< le nombre de paniers installés"
       end
 
       attribute 135338 "estFinie"
@@ -430,7 +551,7 @@ ${members}}
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
-	comment "!<"
+	comment "!< l'état de la partie"
       end
 
       operation 135850 "Partie"
@@ -524,6 +645,111 @@ ${members}}
 @fn setEquipe2
 @details Modifie l'equipe2
 @param equipe2
+"
+      end
+
+      operation 128023 "getTempsMaxTour"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur tempsMaxTour
+@fn getTempsMaxTour
+@details Retourne le temps maximum par tour
+@return tempsMaxTour
+"
+      end
+
+      operation 128151 "setTempsMaxTour"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "tempsMaxTour" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur tempsMaxTour
+@fn setTempsMaxTour
+@details Modifie le temps maximum par tour
+@param tempsMaxTour
+"
+      end
+
+      operation 128279 "getNbPaniers"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur nbPaniers
+@fn getNbPaniers
+@details Retourne le nombre de paniers
+@return nbPaniers
+"
+      end
+
+      operation 128407 "setNbPaniers"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbPaniers" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur nbPaniers
+@fn setNbPaniers
+@details Modifie le nombre de paniers
+@param nbPaniers
+"
+      end
+
+      operation 128535 "getNbManchesGagnantes"
+	public explicit_return_type "int"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Accesseur nbManchesGagnantes
+@fn getNbManchesGagnantes
+@details Retourne le nombre de manches gagnantes
+@return nbManchesGagnantes
+"
+      end
+
+      operation 128663 "setNbManchesGagnantes"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "nbManchesGagnantes" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Mutateur nbManchesGagnantes
+@fn setNbManchesGagnantes
+@details Modifie le nombre de manches gagnantes
+@param nbManchesGagnantes
 "
       end
     end
@@ -655,6 +881,20 @@ ${members}}
 !< TAG pour les logs (cf. Logcat)"
       end
 
+      attribute 128151 "NUMERO_ID_PANIERS_DEFAUT"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nombre max de paniers gérables"
+      end
+
       attribute 142378 "intentDonneesPartieSuivi"
 	private explicit_type "Intent"
 	cpp_decl ""
@@ -683,10 +923,21 @@ ${members}}
 	
 	
 	
-	comment "Ressources GUI
+	comment "@brief Méthode appelée à la création de l'activité
+"
+      end
 
-
-@brief Méthode appelée à la création de l'activité
+      operation 165546 "initialiserActivite"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode qui intialise la vue de l'activité
 "
       end
 
@@ -702,7 +953,49 @@ ${members}}
 	
 	
 	
-	comment "@brief Méthode appelée pour récupérer le nom de l'équipe 1
+	comment "@brief Méthode appelée pour récupérer le nom d'une équipe
+"
+      end
+
+      operation 151722 "recupererTempsMaxTour"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour récupérer le temps pour un tour d'une équipe
+"
+      end
+
+      operation 151594 "recupererNbPaniers"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour récupérer le nombre de paniers
+"
+      end
+
+      operation 151466 "recupererNbManches"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour récupérer le nombre de manches à jouer
 "
       end
 
@@ -717,6 +1010,20 @@ ${members}}
 	
 	
 	comment "@brief Méthode appelée pour afficher le suivi de la partie
+"
+      end
+
+      operation 151850 "editerTempsTour"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour contrôler le temps entre chaque tour
 "
       end
     end
@@ -760,26 +1067,45 @@ ${members}}
 !< TAG pour les logs (cf. Logcat)"
       end
 
-      classrelation 141994 // equipe1 (<unidirectional association>)
-	relation 141994 --->
-	  a role_name "equipe1" private
+      attribute 150186 "EQUIPE_1"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"Rouge\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nom par défaut pour l'équipe 1"
+      end
+
+      attribute 150314 "EQUIPE_2"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"Jaune\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< le nom par défaut pour l'équipe 2"
+      end
+
+      classrelation 148778 // partie (<unidirectional association>)
+	relation 148778 --->
+	  a role_name "partie" private
 	    comment "
 Attributs
 
-"
+!< la partie entre deux équipes"
 	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
 "
-	    classrelation_ref 141994 // equipe1 (<unidirectional association>)
-	  b parent class_ref 135426 // Equipe
-      end
-
-      classrelation 142122 // equipe2 (<unidirectional association>)
-	relation 142122 --->
-	  a role_name "equipe2" private
-	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
-"
-	    classrelation_ref 142122 // equipe2 (<unidirectional association>)
-	  b parent class_ref 135426 // Equipe
+	    classrelation_ref 148778 // partie (<unidirectional association>)
+	  b parent class_ref 134826 // Partie
       end
 
       attribute 142634 "intentDonneesPartieSuivi"
@@ -792,6 +1118,62 @@ Attributs
 	idl_decl ""
 	mysql_decl ""
 	MysqlColumn
+	comment "!< les données de la partie"
+      end
+
+      attribute 156842 "tempsRestantTour"
+	private explicit_type "int"
+	init_value " Partie.TEMPS_MAX_TOUR"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< par défaut"
+      end
+
+      attribute 156970 "compteurTempsTour"
+	private explicit_type "Timer"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 157098 "tacheCompteurTempsTour"
+	private explicit_type "TimerTask"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 157226 "progressBarTempsRestantTour"
+	package explicit_type "ProgressBar"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Ressources GUI
+
+"
       end
 
       operation 144042 "onCreate"
@@ -808,6 +1190,48 @@ Attributs
 	
 	
 	comment "@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 158378 "initialiserCompteurTempsTour"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode
+"
+      end
+
+      operation 158506 "compterTempsRestantTour"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Assure la gestion du temps pour un tour
+"
+      end
+
+      operation 165034 "recupererParametresPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour récupérer les paramètres de la partie
 "
       end
 
@@ -850,6 +1274,34 @@ Attributs
 	
 	
 	comment "@brief Méthode appelée pour arrêter la partie
+"
+      end
+
+      operation 165162 "arreterCompteur"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour arrêter le compteur
+"
+      end
+
+      operation 165290 "reinitialiserCompteur"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour réinitialiser le compteur
 "
       end
 
@@ -1001,6 +1453,7 @@ ${definition}"
       java_src "${comment}
 ${package}
 ${imports}
+import android.util.Log;
 ${definition}"
       associated_elems
 	class_ref 134826 // Partie
@@ -1018,6 +1471,8 @@ ${package}
 ${imports}
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -1026,6 +1481,10 @@ ${definition}"
       associated_elems
 	class_ref 141482 // PartieInterrompue
       end
+      comment "@file PartieInterrompue.java
+@brief Déclaration de la classe PartieInterrompue
+@author Guillaumet Florent
+"
     end
 
     artifact 141482 "PartieParametres"
@@ -1036,15 +1495,24 @@ ${imports}
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import java.io.Serializable;
+import static com.basket_game.Partie.TEMPS_MAX_TOUR;
+import static com.basket_game.Partie.TEMPS_TOUR_PAR_DEFAUT;
 ${definition}"
       associated_elems
 	class_ref 141610 // PartieParametres
       end
+      comment "@file PartieParametres.java
+@brief Déclaration de la classe PartieParametres
+@author Guillaumet Florent
+"
     end
 
     artifact 141610 "PartieSuivi"
@@ -1054,17 +1522,28 @@ ${package}
 ${imports}
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import java.io.Serializable;
+import java.util.Timer;
+import java.util.TimerTask;
+import static com.basket_game.Partie.SEUIL_TEMPS_RESTANT;
 ${definition}"
       associated_elems
 	class_ref 141738 // PartieSuivi
       end
+      comment "@file PartieSuivi.java
+@brief Déclaration de la classe PartieSuivi
+@author Guillaumet Florent
+"
     end
 
     artifact 141738 "PartieTerminee"
@@ -1081,6 +1560,10 @@ ${definition}"
       associated_elems
 	class_ref 141866 // PartieTerminee
       end
+      comment "@file PartieTerminee.java
+@brief Déclaration de la classe PartieTerminee
+@author Guillaumet Florent
+"
     end
   end
 end

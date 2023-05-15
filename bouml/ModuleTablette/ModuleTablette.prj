@@ -1,6 +1,6 @@
 format 224
 "ModuleTablette"
-  revision 9
+  revision 13
   modified_by 42 "tv"
   java_root_dir "../../"
 
@@ -467,4 +467,31 @@ format 224
   package_ref 134530 // basket_game
 
   package_ref 134658 // unknown
+
+  usecaseview 134570 "ds"
+    
+    usecasediagramsettings end
+    
+    sequencediagramsettings end
+    
+    collaborationdiagramsettings end
+    
+    classdiagramsettings member_max_width 0 end
+    
+    classcompositediagramsettings end
+    
+    objectdiagramsettings end
+    
+    objectcompositediagramsettings end
+    
+    statediagramsettings
+     end
+    
+    activitydiagramsettings
+     end
+    sequencediagram 134570 "créer une partie"
+      sequencediagramsettings end
+      overlapping_bars size A0
+    end
+  end
 end

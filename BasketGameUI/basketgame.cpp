@@ -357,4 +357,3 @@ void Basketgame::attribuerRaccourcisClavier()
     connect(demarrageSeance, SIGNAL(triggered()), this, SLOT(demarrerSeance()));
 }
 #endif
-

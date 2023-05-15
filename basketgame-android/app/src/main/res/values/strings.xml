@@ -1,13 +1,13 @@
 <resources>
     <string name="app_name">basket-game</string>
     <string name="bienvenue_basket_game">Bienvenue Basket-Game</string>
-    <string name="nouvelle_partie">Nouvelle Partie</string>
     <string name="logo_basket_game">Logo Basket Game</string>
+    <string name="nouvelle_partie">Nouvelle Partie</string>
     <string name="param_tres">Paramètres</string>
     <string name="lancer_la_partie">Lancer la partie</string>
     <string name="nombre_de_manches">Nombre de manches :</string>
     <string name="nombre_de_colonnes">Nombre de paniers :</string>
-    <string name="temps_entre_chaque_tir">Temps entre chaque tir :</string>
+    <string name="temps_entre_chaque_tir">Temps entre chaque tour (en s) :</string>
     <string name="nom_de_l_quipe_2">Nom de l\'équipe 2</string>
     <string name="nom_de_l_quipe_1">Nom de l\'équipe 1</string>
     <string name="confirmer">Confirmer</string>
@@ -17,8 +17,7 @@
     <string name="partie_interrompue">Partie Interrompue</string>
     <string name="recommencer_une_partie">Recommencer une partie</string>
     <string name="partie_termin_e">Partie Terminée</string>
-    <string name="basket_game_suivi_partie">Basket-Game Suivi Partie</string>
-    <string name="nom_d_l_quipe_2">Nom d l\'équipe 2</string>
+    <string name="basket_game_suivi_partie">Partie</string>
     <string-array name="nombreColonnes">
         <item>2</item>
         <item>3</item>
