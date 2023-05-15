@@ -11,17 +11,16 @@
 #include <QtWidgets>
 
 /**
- * @def PLEIN_ECRAN_RPI
- * @brief Pour le mode plein écran sur la Raspberry Pi
- */
-//#define PLEIN_ECRAN_RPI
-
-/**
  * @def TEST_BASKETGAME
  * @brief Pour les tests avec le clavier
  */
 #define TEST_BASKETGAME
-#define TEST_ALIGNEMENT
+
+/**
+ * @def PLEIN_ECRAN_RPI
+ * @brief Pour le mode plein écran sur la Raspberry Pi
+ */
+//#define PLEIN_ECRAN_RPI
 
 /**
  * @def TIC_HORLOGE
@@ -54,24 +53,6 @@
 #define DEPLACEMENT_Y 321
 
 /**
- * @def NB_COLONNES
- * @brief Définit le nombre de colonne par défaut
- */
-#define NB_COLONNES 7
-
-/**
- * @def NB_LIGNES
- * @brief Définit le nombre de ligne par défaut
- */
-#define NB_LIGNES 6
-
-/**
- * @def NB_PIONS
- * @brief Définit le nombre de pions max
- */
-#define NB_PIONS (NB_LIGNES * NB_COLONNES)
-
-/**
  * @def JETON_ROUGE
  * @brief Définit l'image d'un jeton rouge
  */
@@ -95,6 +76,7 @@ class basketgame;
 }
 
 class Plateau;
+
 /**
  * @class Basketgame
  * @brief La GUI de l'application Basketgame
@@ -118,18 +100,18 @@ class Basketgame : public QMainWindow
     ~Basketgame();
 
   public slots:
+    void demarrerSeance();
+    void terminerSeance();
+    void demarrerPartie();
+    void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void chronometrerTour();
-
-
     void fermerApplication();
-
-  private slots:
-    void demarrerSeance();
-    void terminerSeance();
-    void demarrerPartie(Plateau* plateau);
+#ifdef TEST_BASKETGAME
+    void simulerPion();
+#endif
 
   private:
     /**
@@ -143,19 +125,20 @@ class Basketgame : public QMainWindow
         NbEquipes
     };
 
-    Ui::basketgame*                 ui;
-    QTime*                          tempsTour;
-    QTimer*                         timerTour;
-    bool                            etatSeance;
-    bool                            estEquipeRouge;
-    bool                            estVainqueur;
-    int                             nbPionsJoues;
-    int                             scoreEquipeRouge;
-    int                             scoreEquipeJaune;
+    Ui::basketgame* ui;
+    Plateau*        plateau;
+    QTime*          tempsTour;
+    QTimer*         minuteurTour;
+    bool            etatSeance;
+    int             nbPionsJoues;
+    int             scoreEquipeRouge;
+    int             scoreEquipeJaune;
 
     void initialiserIHM();
     void initialiserEvenements();
+    void initialiserPartie();
     void initialiserDureeTour();
+    void demarrerChronometrageTour();
     void afficherPlateau();
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
@@ -163,6 +146,7 @@ class Basketgame : public QMainWindow
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();
+    int  randInt(int min, int max);
 #endif
 };
 

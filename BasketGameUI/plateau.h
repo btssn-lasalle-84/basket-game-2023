@@ -1,18 +1,21 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
-#include <vector>
-#include <QWidget>
-#include <QtWidgets>
-#include <QTimer>
-
-#define TEST_BASKETGAME
+#include <QObject>
+#include <QVector>
 
 /**
- * @def DEPLACEMENT_Y
+ * @def TEST_ALIGNEMENT
+ * @brief Pour tester les vérifications de combinaison
+ */
+#define TEST_ALIGNEMENT
+
+/**
+ * @def NB_PIONS_ALIGNES
  * @brief Définit le nombre de pions pour gagner une partie
  */
 #define NB_PIONS_ALIGNES 4
+
 /**
  * @def NB_COLONNES
  * @brief Définit le nombre de colonne par défaut
@@ -25,26 +28,30 @@
  */
 #define NB_LIGNES 6
 
-class Plateau : public QWidget
+/**
+ * @def NB_PIONS
+ * @brief Définit le nombre de pions max
+ */
+#define NB_PIONS (NB_LIGNES * NB_COLONNES)
+
+class Plateau : public QObject
 {
     Q_OBJECT
-public:
-    explicit Plateau(QWidget *parent = 0);
+  public:
+    explicit Plateau(QObject* parent = 0);
     void initialiserPlateau();
+    int  placerPion(int colonne);
     void verifierPlateau();
-    void verifierLigne();
-    void verifierColonne();
-    void verifierDiagonaleMontante();
-    void verifierDiagonaleDescendante();
-    int  randInt(int min, int max);
-#ifdef TEST_BASKETGAME
-    void testUnitaire();
+    bool estVainqueur() const;
+    bool estEquipeRouge() const;
+    void setTourEquipe(bool estEquipeRouge);
+
+  public slots:
+#ifdef TEST_ALIGNEMENT
+    void testUnitaireVerifierPlateau();
 #endif
-public slots:
-    void simulerPion();
 
-private:
-
+  private:
     /**
      * @enum CouleurJeton
      * @brief Les différents couleur de jeton
@@ -58,8 +65,13 @@ private:
     };
 
     QVector<QVector<CouleurJeton> > plateau;
-    bool                            estVainqueur;
-    bool                            estEquipeRouge;
+    bool                            vainqueur;
+    bool                            equipeRouge;
+
+    bool verifierLigne();
+    bool verifierColonne();
+    bool verifierDiagonaleMontante();
+    bool verifierDiagonaleDescendante();
 };
 
 #endif // PLATEAU_H
