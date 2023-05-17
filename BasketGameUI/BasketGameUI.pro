@@ -13,11 +13,15 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        basketgame.cpp
+        basketgame.cpp \
+        plateau.cpp
 
-HEADERS  += basketgame.h
+HEADERS  += \
+    basketgame.h \
+    plateau.h
 
-FORMS    += basketgame.ui
+FORMS    += \
+    basketgame.ui
 
 CONFIG(release, debug|release):DEFINES+=QT_NO_DEBUG_OUTPUT
 
