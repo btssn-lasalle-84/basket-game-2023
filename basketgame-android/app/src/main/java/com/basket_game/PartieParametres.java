@@ -11,6 +11,8 @@ import static com.basket_game.Partie.TEMPS_TOUR_PAR_DEFAUT;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -21,7 +23,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.io.Serializable;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
 
 /**
  * @class PartieParametres
@@ -39,6 +46,11 @@ public class PartieParametres extends AppCompatActivity
      * Attributs
      */
     private Intent intentDonneesPartieSuivi;
+    private String nomEquipe1;
+    private String nomEquipe2;
+    private int tempsMaxTour;
+    private int nbPaniers;
+    private int nbManches;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -72,6 +84,16 @@ public class PartieParametres extends AppCompatActivity
         EditText editionEquipe = findViewById(idEquipe);
         String   nomEquipe     = editionEquipe.getText().toString();
         Equipe   equipe        = new Equipe(nomEquipe);
+
+        if(numeroEquipe == 1)
+        {
+            nomEquipe1 = nomEquipe;
+        }
+        else if (numeroEquipe == 2)
+        {
+            nomEquipe2 = nomEquipe;
+        }
+
         Log.d(TAG, "recupererNomEquipe() equipe = " + nomEquipe);
         intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, (Serializable)equipe);
     }
@@ -84,7 +106,6 @@ public class PartieParametres extends AppCompatActivity
         EditText editionTempsTour   = findViewById(R.id.editionTempsTour);
         String   tempsMaxTourChoisi = editionTempsTour.getText().toString();
 
-        int tempsMaxTour;
         if(!tempsMaxTourChoisi.isEmpty())
         {
             tempsMaxTour = Integer.parseInt(tempsMaxTourChoisi);
@@ -106,7 +127,7 @@ public class PartieParametres extends AppCompatActivity
         Spinner choixNbPaniers  = findViewById(R.id.choixNbPaniers);
         String  nbPaniersChoisi = choixNbPaniers.getSelectedItem().toString();
 
-        int nbPaniers = Integer.parseInt(nbPaniersChoisi);
+        nbPaniers = Integer.parseInt(nbPaniersChoisi);
         Log.d(TAG, "recupererNbPaniers() nbPaniers = " + nbPaniers);
         intentDonneesPartieSuivi.putExtra("nbPaniers", nbPaniers);
     }
@@ -119,7 +140,7 @@ public class PartieParametres extends AppCompatActivity
         Spinner choixNbManches  = findViewById(R.id.choixNbManches);
         String  nbManchesChoisi = choixNbManches.getSelectedItem().toString();
 
-        int nbManches = Integer.parseInt(nbManchesChoisi);
+        nbManches = Integer.parseInt(nbManchesChoisi);
         Log.d(TAG, "recupererNbManches() nbManches = " + nbManches);
         intentDonneesPartieSuivi.putExtra("nbManches", nbManches);
     }
@@ -139,6 +160,7 @@ public class PartieParametres extends AppCompatActivity
                 recupererTempsMaxTour();
                 recupererNbPaniers();
                 recupererNbManches();
+                envoyerTrame();
                 Log.d(TAG,
                       "afficherSuiviPartie() " +
                         ((EditText)(findViewById(R.id.editionEquipe1))).getText().toString() +
@@ -201,5 +223,31 @@ public class PartieParametres extends AppCompatActivity
                 }
             }
         });
+    }
+
+    /**
+     * @brief Méthode appelée pour envoyer la trame avec les informations de la partie
+     */
+    private void envoyerTrame()
+    {
+        BluetoothSocket socket = null;
+        /**
+         * @todo Obtenir BluetoothSocket
+         */
+
+        String trame = "$BASKET;DONNEES;" + nomEquipe1 + ";" + nomEquipe2 + ";" + tempsMaxTour + ";" + nbPaniers + ";" + nbManches + ";\r\n";
+
+        try {
+            OutputStream outputStream = socket.getOutputStream();
+            Writer writer = new OutputStreamWriter(outputStream, StandardCharsets.UTF_8);
+
+            writer.write(trame);
+            writer.flush();
+
+            Log.d(TAG, "envoyerTrame() Trame = " + trame);
+        } catch (IOException erreur) {
+            Log.e(TAG, "envoyerTrame() Erreur = " + erreur.getMessage());
+        }
+
     }
 }
