@@ -7,7 +7,7 @@
  */
 
 #include "basketgame.h"
-#include "plateau.h"
+#include "puissance4.h"
 #include "ui_basketgame.h"
 #include <QPainter>
 #include <QAction>
@@ -21,7 +21,7 @@ using namespace std;
  * @param parent nullptr pour définir la fenêtre principale de l'application
  */
 Basketgame::Basketgame(QWidget* parent) :
-    QMainWindow(parent), ui(new Ui::basketgame), plateau(new Plateau(this)),
+    QMainWindow(parent), ui(new Ui::basketgame), puissance4(new Puissance4(this)),
     tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
     nbPionsJoues(0), scoreEquipeRouge(0), scoreEquipeJaune(0)
 {
@@ -65,14 +65,14 @@ void Basketgame::demarrerSeance()
  */
 void Basketgame::terminerSeance()
 {
-    if(plateau->estVainqueur())
+    if(puissance4->estVainqueur())
     {
         etatSeance = false;
         initialiserDureeTour();
         ui->tempsTour->setText("00:00:00");
         minuteurTour->stop();
         qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues
-                 << "estVainqueur" << plateau->estVainqueur();
+                 << "estVainqueur" << puissance4->estVainqueur();
     }
     else if(nbPionsJoues == NB_PIONS)
     {
@@ -95,7 +95,7 @@ void Basketgame::demarrerPartie()
         initialiserPartie();
         initialiserDureeTour();
         demarrerChronometrageTour();
-        afficherPlateau();
+        afficherPuissance4();
     }
 }
 
@@ -106,12 +106,12 @@ void Basketgame::demarrerPartie()
  */
 void Basketgame::jouerPion(int colonne)
 {
-    int ligne = plateau->placerPion(colonne);
+    int ligne = puissance4->placerPion(colonne);
     if(ligne != -1)
     {
         afficherUnJeton(ligne, colonne);
         afficherScoreEquipe();
-        plateau->verifierPlateau();
+        puissance4->verifierPuissance4();
         terminerSeance();
         afficherTourEquipe();
     }
@@ -168,14 +168,14 @@ void Basketgame::chronometrerTour()
         ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
         minuteurTour->start(TIC_HORLOGE);
         qDebug() << Q_FUNC_INFO << "estEquipeRouge"
-                 << plateau->estEquipeRouge();
-        if(plateau->estEquipeRouge())
+                 << puissance4->estEquipeRouge();
+        if(puissance4->estEquipeRouge())
         {
             ui->labelVisualisationEquipeRouge->setStyleSheet(
               "background-color: transparent; color: black;");
             ui->labelVisualisationEquipeJaune->setStyleSheet(
               "background-color: yellow; color: black;");
-            plateau->setTourEquipe(false);
+            puissance4->setTourEquipe(false);
         }
         else
         {
@@ -183,7 +183,7 @@ void Basketgame::chronometrerTour()
               "background-color: transparent; color: black;");
             ui->labelVisualisationEquipeRouge->setStyleSheet(
               "background-color: red; color: black;");
-            plateau->setTourEquipe(true);
+            puissance4->setTourEquipe(true);
         }
     }
 }
@@ -236,7 +236,7 @@ void Basketgame::initialiserPartie()
     nbPionsJoues     = 0;
     scoreEquipeRouge = 0;
     scoreEquipeJaune = 0;
-    plateau->initialiserPlateau();
+    puissance4->initialiserPuissance4();
 }
 
 /**
@@ -265,10 +265,10 @@ void Basketgame::demarrerChronometrageTour()
 }
 
 /**
- * @fn Basketgame::afficherPlateau()
- * @brief méthode pour afficher le plateau de puissance4
+ * @fn Basketgame::afficherPuissance4()
+ * @brief méthode pour afficher le puissance4 de puissance4
  */
-void Basketgame::afficherPlateau()
+void Basketgame::afficherPuissance4()
 {
     qDebug() << Q_FUNC_INFO << "\"" << PLATEAU_7 << "\"";
     ui->labelVisualisationPlateau->setPixmap(QPixmap(PLATEAU_7));
@@ -276,7 +276,7 @@ void Basketgame::afficherPlateau()
 
 /**
  * @fn Basketgame::afficherUnJeton(int ligne, int colonne)
- * @brief méthode pour afficher les jetons dans le plateau de puissance4
+ * @brief méthode pour afficher les jetons dans le puissance4 de puissance4
  */
 void Basketgame::afficherUnJeton(int ligne, int colonne)
 {
@@ -287,18 +287,18 @@ void Basketgame::afficherUnJeton(int ligne, int colonne)
 
     QImage   jetonRouge(JETON_ROUGE);
     QImage   jetonJaune(JETON_JAUNE);
-    QPixmap  puissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
-    QPainter p(&puissance4);
+    QPixmap  plateauPuissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
+    QPainter p(&plateauPuissance4);
 
-    qDebug() << Q_FUNC_INFO << "rouge" << plateau->estEquipeRouge() << "ligne"
+    qDebug() << Q_FUNC_INFO << "rouge" << puissance4->estEquipeRouge() << "ligne"
              << ligne << "colonne" << colonne;
-    if(plateau->estEquipeRouge())
+    if(puissance4->estEquipeRouge())
     {
         p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
                            DEPLACEMENT_Y - (ligne * TAILLE_JETON)),
                     jetonRouge);
         p.end();
-        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        ui->labelVisualisationPlateau->setPixmap(plateauPuissance4);
     }
     else
     {
@@ -306,7 +306,7 @@ void Basketgame::afficherUnJeton(int ligne, int colonne)
                            DEPLACEMENT_Y - (ligne * TAILLE_JETON)),
                     jetonJaune);
         p.end();
-        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        ui->labelVisualisationPlateau->setPixmap(plateauPuissance4);
     }
 }
 
@@ -325,13 +325,13 @@ void Basketgame::afficherTourEquipe()
 
     minuteurTour->start(TIC_HORLOGE);
 
-    if(plateau->estEquipeRouge())
+    if(puissance4->estEquipeRouge())
     {
         ui->labelVisualisationEquipeRouge->setStyleSheet(
           "background-color: transparent; color: black;");
         ui->labelVisualisationEquipeJaune->setStyleSheet(
           "background-color: yellow; color: black;");
-        plateau->setTourEquipe(false);
+        puissance4->setTourEquipe(false);
     }
     else
     {
@@ -339,7 +339,7 @@ void Basketgame::afficherTourEquipe()
           "background-color: transparent; color: black;");
         ui->labelVisualisationEquipeRouge->setStyleSheet(
           "background-color: red; color: black;");
-        plateau->setTourEquipe(true);
+        puissance4->setTourEquipe(true);
     }
 }
 
@@ -349,7 +349,7 @@ void Basketgame::afficherTourEquipe()
  */
 void Basketgame::afficherScoreEquipe()
 {
-    if(plateau->estEquipeRouge())
+    if(puissance4->estEquipeRouge())
     {
         scoreEquipeRouge++;
         ui->affichageTotalPanierE1->display(QString::number(scoreEquipeRouge));
@@ -364,7 +364,7 @@ void Basketgame::afficherScoreEquipe()
 
 #ifdef TEST_BASKETGAME
 /**
- * @fn Plateau::simulerPion()
+ * @fn Basketgame::simulerPion()
  * @brief méthode pour simuler un coup de puissance4
  */
 void Basketgame::simulerPion()
@@ -404,13 +404,13 @@ void Basketgame::attribuerRaccourcisClavier()
     addAction(simulationPion);
     connect(simulationPion, SIGNAL(triggered()), this, SLOT(simulerPion()));
 #ifdef TEST_ALIGNEMENT
-    QAction* verificationPlateau = new QAction(this);
-    verificationPlateau->setShortcut(QKeySequence(Qt::Key_V));
-    addAction(verificationPlateau);
-    connect(verificationPlateau,
+    QAction* verificationPuissance4 = new QAction(this);
+    verificationPuissance4->setShortcut(QKeySequence(Qt::Key_V));
+    addAction(verificationPuissance4);
+    connect(verificationPuissance4,
             SIGNAL(triggered()),
-            plateau,
-            SLOT(testUnitaireVerifierPlateau()));
+            puissance4,
+            SLOT(testUnitaireVerifierPuissance4()));
 #endif
 }
 

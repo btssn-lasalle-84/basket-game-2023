@@ -1,5 +1,5 @@
-#ifndef PLATEAU_H
-#define PLATEAU_H
+#ifndef PUISSANCE4_H
+#define PUISSANCE4_H
 
 #include <QObject>
 #include <QVector>
@@ -34,21 +34,21 @@
  */
 #define NB_PIONS (NB_LIGNES * NB_COLONNES)
 
-class Plateau : public QObject
+class Puissance4 : public QObject
 {
     Q_OBJECT
   public:
-    explicit Plateau(QObject* parent = 0);
-    void initialiserPlateau();
+    explicit Puissance4(QObject* parent = 0);
+    void initialiserPuissance4();
     int  placerPion(int colonne);
-    void verifierPlateau();
+    void verifierPuissance4();
     bool estVainqueur() const;
     bool estEquipeRouge() const;
     void setTourEquipe(bool estEquipeRouge);
 
   public slots:
 #ifdef TEST_ALIGNEMENT
-    void testUnitaireVerifierPlateau();
+    void testUnitaireVerifierPuissance4();
 #endif
 
   private:
@@ -64,7 +64,7 @@ class Plateau : public QObject
         NB_COULEURS
     };
 
-    QVector<QVector<CouleurJeton> > plateau;
+    QVector<QVector<CouleurJeton> > puissance4;
     bool                            vainqueur;
     bool                            equipeRouge;
 

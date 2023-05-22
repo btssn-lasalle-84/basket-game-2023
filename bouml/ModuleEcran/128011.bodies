@@ -1,0 +1,5 @@
+class Communication
+!!!128011.cpp!!!	Communication(inout parent : QWidget = 0)
+
+!!!128139.cpp!!!	~Communication()
+    qDebug() << Q_FUNC_INFO;

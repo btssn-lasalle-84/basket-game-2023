@@ -75,7 +75,7 @@ namespace Ui
 class basketgame;
 }
 
-class Plateau;
+class Puissance4;
 
 /**
  * @class Basketgame
@@ -126,7 +126,7 @@ class Basketgame : public QMainWindow
     };
 
     Ui::basketgame* ui;
-    Plateau*        plateau;
+    Puissance4*     puissance4;
     QTime*          tempsTour;
     QTimer*         minuteurTour;
     bool            etatSeance;
@@ -139,7 +139,7 @@ class Basketgame : public QMainWindow
     void initialiserPartie();
     void initialiserDureeTour();
     void demarrerChronometrageTour();
-    void afficherPlateau();
+    void afficherPuissance4();
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
     void afficherScoreEquipe();

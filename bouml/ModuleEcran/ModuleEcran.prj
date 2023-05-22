@@ -1,7 +1,7 @@
 format 224
 "ModuleEcran"
-  revision 4
-  modified_by 42 "tv"
+  revision 5
+  modified_by 11 "nath"
   cpp_root_dir "../../"
 
 
@@ -208,6 +208,5 @@ format 224
       sequencediagramsettings end
       overlapping_bars size A0
     end
-
   end
 end
