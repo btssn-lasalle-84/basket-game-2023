@@ -9,6 +9,7 @@
   - [Versions](#versions)
     - [0.1](#01)
     - [0.2](#02)
+  - [Affichage](#affichage)
   - [Auteurs](#auteurs)
 
 ---
@@ -31,19 +32,13 @@ https://btssn-lasalle-84.github.io/basket-game-2023/
 
 ![](images/jira-tickets-v0.1.png)
 
-- Android :
-
-![](images/screenshot-android-accueil-v0.1.png)
-
-![](images/screenshot-android-parametres-v0.1.png)
-
-- Qt :
-
-![](images/screenshot-qt-basketgame-v0.1.png)
 
 ### 0.2
 
 ![](images/jira-tickets-v0.2.png)
+
+
+## Affichage 
 
 - Android :
 
