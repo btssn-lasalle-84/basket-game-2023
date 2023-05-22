@@ -42,6 +42,8 @@ https://btssn-lasalle-84.github.io/basket-game-2023/
 
 - Android :
 
+![](images/screenshot-android-accueil-v0.2.png)
+
 ![](images/screenshot-android-parametres-v0.2.png)
 
 ![](images/screenshot-android-partie-suivi-v0.2.png)
