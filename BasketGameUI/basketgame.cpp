@@ -9,6 +9,7 @@
 #include "basketgame.h"
 #include "puissance4.h"
 #include "communication.h"
+#include "equipe.h"
 #include "ui_basketgame.h"
 #include <QPainter>
 #include <QAction>
@@ -24,8 +25,8 @@ using namespace std;
 Basketgame::Basketgame(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::basketgame),
     puissance4(new Puissance4(this)), communication(new Communication(this)),
-    tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
-    nbPionsJoues(0), scoreEquipeRouge(0), scoreEquipeJaune(0)
+    equipe(new Equipe(this)), tempsTour(nullptr), minuteurTour(new QTimer),
+    etatSeance(false), nbPionsJoues(0),scoreEquipeRouge(0),scoreEquipeJaune(0)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
@@ -96,6 +97,7 @@ void Basketgame::demarrerPartie()
         qDebug() << Q_FUNC_INFO;
         initialiserPartie();
         initialiserDureeTour();
+        initialiserParametreEquipe();
         demarrerChronometrageTour();
         afficherPuissance4();
     }
@@ -219,6 +221,21 @@ void Basketgame::initialiserIHM()
     afficherEcranAcceuil();
 }
 
+/**
+ * @fn Basketgame::initialiserParametreEquipe()
+ * @brief méthode pour initialiser les paramètres des équipes
+ */
+void Basketgame::initialiserParametreEquipe()
+{
+    ui->labelVisualisationEquipeRouge->setText(equipe->getNomEquipeRouge());
+    ui->labelVisualisationEquipeJaune->setText(equipe->getNomEquipeJaune());
+    ui->affichageTotalPanierE1->display(QString::number(0));
+    ui->affichageTotalPanierE2->display(QString::number(0));
+    ui->labelVisualisationEquipeJaune->setStyleSheet(
+      "background-color: transparent; color: black;");
+    ui->labelVisualisationEquipeRouge->setStyleSheet(
+      "background-color: red; color: black;");
+}
 /**
  * @fn Basketgame::initialiserEvenements()
  * @brief méthode pour initialiser les évenements et action du programme
@@ -378,7 +395,6 @@ void Basketgame::simulerPion()
     // et le joue
     jouerPion(colonne);
 }
-
 /**
  * @fn Basketgame::attribuerRaccourcisClavier
  * @brief méthode pour créer les raccourcis clavier (pour les tests seulement)

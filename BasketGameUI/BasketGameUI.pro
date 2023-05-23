@@ -15,12 +15,14 @@ TEMPLATE = app
 SOURCES += main.cpp\
         basketgame.cpp \
         communication.cpp \
-    puissance4.cpp
+    puissance4.cpp \
+    equipe.cpp
 
 HEADERS  += \
     basketgame.h \
     communication.h \
-    puissance4.h
+    puissance4.h \
+    equipe.h
 
 FORMS    += \
     basketgame.ui

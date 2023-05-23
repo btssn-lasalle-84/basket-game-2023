@@ -77,6 +77,7 @@ class basketgame;
 
 class Puissance4;
 class Communication;
+class Equipe;
 
 /**
  * @class Basketgame
@@ -110,6 +111,7 @@ class Basketgame : public QMainWindow
     void afficherEcranPartie();
     void chronometrerTour();
     void fermerApplication();
+
 #ifdef TEST_BASKETGAME
     void simulerPion();
 #endif
@@ -129,6 +131,7 @@ class Basketgame : public QMainWindow
     Ui::basketgame* ui;
     Puissance4*     puissance4;
     Communication*  communication;
+    Equipe*         equipe;
     QTime*          tempsTour;
     QTimer*         minuteurTour;
     bool            etatSeance;
@@ -140,11 +143,14 @@ class Basketgame : public QMainWindow
     void initialiserEvenements();
     void initialiserPartie();
     void initialiserDureeTour();
+    void initialiserParametreEquipe();
+
     void demarrerChronometrageTour();
     void afficherPuissance4();
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
     void afficherScoreEquipe();
+
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();
