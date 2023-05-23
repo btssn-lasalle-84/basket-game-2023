@@ -27,7 +27,6 @@ var NAVTREE =
   [ "Projet basket-game", "index.html", [
     [ "A propos", "index.html", null ],
     [ "README", "md__mnt_sda_home_tv__documents_git_projets_2023_basket_game_2023__r_e_a_d_m_e.html", null ],
-    [ "Liste des choses à faire", "todo.html", null ],
     [ "Paquetages", "namespaces.html", [
       [ "Paquetages", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -56,7 +55,8 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-""
+"_android_manifest_8xml.html",
+"values_2themes_8xml_source.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

@@ -8,7 +8,7 @@
     android:background="#181821" >
 
     <TextView
-        android:id="@+id/bienvenue"
+        android:id="@+id/parametres"
         android:layout_width="299dp"
         android:layout_height="204dp"
         android:gravity="center"
@@ -36,7 +36,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.299" />
+        app:layout_constraintVertical_bias="0.299"
+        android:importantForAutofill="no" />
 
     <EditText
         android:id="@+id/editionEquipe2"
@@ -51,19 +52,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.299" />
-
-    <Button
-        android:id="@+id/boutonConfirmerParametres"
-        android:layout_width="152dp"
-        android:layout_height="57dp"
-        android:text="@string/confirmer"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.805" />
+        app:layout_constraintVertical_bias="0.299"
+        android:importantForAutofill="no" />
 
     <Button
         android:id="@+id/boutonLancerPartie"
@@ -72,10 +62,10 @@
         android:text="@string/lancer_la_partie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.891" />
+        app:layout_constraintVertical_bias="0.889" />
 
     <LinearLayout
         android:layout_width="354dp"
@@ -142,7 +132,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/editionMinutesTempsTir"
+                android:id="@+id/editionTempsTour"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -151,25 +141,8 @@
                 android:maxLength="2"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
-                android:text="00"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
-                android:text=":"/>
-
-            <EditText
-                android:id="@+id/editionSecondesTempsTir"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_weight="1"
-                android:inputType="number"
-                android:maxLength="2"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                android:text="@string/_00"/>
+                android:text="@string/_00"
+                android:importantForAutofill="no" />
 
         </LinearLayout>
 

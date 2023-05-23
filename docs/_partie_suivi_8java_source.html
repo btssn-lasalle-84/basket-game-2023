@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet basket-game:  Fichier source de PartieSuivi.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet basket-game
+   &#160;<span id="projectnumber">0.1</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_partie_suivi_8java_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">PartieSuivi.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_partie_suivi_8java.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">package </span>com.basket_game;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keyword">import</span> <span class="keyword">static</span> com.basket_game.Partie.SEUIL_TEMPS_RESTANT;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">import</span> android.content.Intent;</div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">import</span> android.content.res.ColorStateList;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">import</span> android.graphics.Color;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">import</span> android.os.Bundle;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">import</span> android.os.Handler;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">import</span> android.util.Log;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keyword">import</span> android.view.View;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keyword">import</span> android.widget.Button;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keyword">import</span> android.widget.EditText;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">import</span> android.widget.ProgressBar;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keyword">import</span> android.widget.TextView;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keyword">import</span> java.io.Serializable;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keyword">import</span> java.util.Timer;</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keyword">import</span> java.util.TimerTask;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html">   33</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html">PartieSuivi</a> <span class="keyword">extends</span> AppCompatActivity</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;{</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">   38</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>      = <span class="stringliteral">&quot;_PartieSuivi&quot;</span>; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a07cbc9e82d678b1fc4ed14b085060334">   39</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a07cbc9e82d678b1fc4ed14b085060334">EQUIPE_1</a> = <span class="stringliteral">&quot;Rouge&quot;</span>;        </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#ade53ae50506a3716af11abad7691c2e7">   40</a></span>&#160;    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ade53ae50506a3716af11abad7691c2e7">EQUIPE_2</a> = <span class="stringliteral">&quot;Jaune&quot;</span>;        </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">   45</a></span>&#160;    <span class="keyword">private</span> <a class="code" href="classcom_1_1basket__game_1_1_partie.html">Partie</a>    <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>;                   </div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">   46</a></span>&#160;    <span class="keyword">private</span> Intent    <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a>; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">   47</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">int</span>       <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a>       = <a class="code" href="classcom_1_1basket__game_1_1_partie.html">Partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a6c86c7bd82a98c58c0aff8fd6fdf789c">TEMPS_MAX_TOUR</a>; </div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f">   48</a></span>&#160;    <span class="keyword">private</span> Timer     <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f">compteurTempsTour</a>      = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a953909b6441a31f7ad3cf2d96260dd7d">   49</a></span>&#160;    <span class="keyword">private</span> TimerTask <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a953909b6441a31f7ad3cf2d96260dd7d">tacheCompteurTempsTour</a> = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">   54</a></span>&#160;    ProgressBar <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    @Override</div>
+<div class="line"><a name="l00060"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a5410bee96526713809127676060b9d79">   60</a></span>&#160;    <span class="keyword">protected</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a5410bee96526713809127676060b9d79">onCreate</a>(Bundle savedInstanceState)</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    {</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        super.onCreate(savedInstanceState);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        setContentView(R.layout.partie_suivi);</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;        Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;onCreate()&quot;</span>);</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aea059d82e6c3d66ad01cbbc3b649f925">recupererParametresPartie</a>();</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#afe2d8feb1684f99524942af14e00c7ca">afficherNomEquipe1</a>();</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a2f46dbdeeb50121570831bf6bbcf7ac9">afficherNomEquipe2</a>();</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a68c9d671ca8f90b3464787a82ad28c7c">creerBoutonArreterPartie</a>();</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a09014b8b26263d4041487c9066f60777">initialiserCompteurTempsTour</a>();</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    }</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00076"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a09014b8b26263d4041487c9066f60777">   76</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a09014b8b26263d4041487c9066f60777">initialiserCompteurTempsTour</a>()</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    {</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a> = (ProgressBar)findViewById(R.id.progressBarTempsRestantTour);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f">compteurTempsTour</a>           = <span class="keyword">new</span> Timer();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a> = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a36a4bc98491a1bc559123e9943c3cbc1">getTempsMaxTour</a>();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;initialiserCompteurTempsTour() tempsRestantTour = &quot;</span> + <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a>);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>.setMax(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a>);</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>.setProgress(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a>);</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>.setProgressTintList(ColorStateList.valueOf(Color.GREEN));</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ae1661dafc2ad24e255645b5682962d85">compterTempsRestantTour</a>();</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    }</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#ae1661dafc2ad24e255645b5682962d85">   93</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ae1661dafc2ad24e255645b5682962d85">compterTempsRestantTour</a>()</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;    {</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a953909b6441a31f7ad3cf2d96260dd7d">tacheCompteurTempsTour</a> = <span class="keyword">new</span> TimerTask() {</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;            <span class="keyword">public</span> <span class="keywordtype">void</span> run()</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;            {</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a>--;</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                <span class="keywordflow">if</span> (<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a> &lt;= 0) {</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                    <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a> = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a36a4bc98491a1bc559123e9943c3cbc1">getTempsMaxTour</a>();</div>
+<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;                    runOnUiThread(<span class="keyword">new</span> Runnable() {</div>
+<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;                        <span class="keyword">public</span> <span class="keywordtype">void</span> run() {</div>
+<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;                            <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>.setProgressTintList(ColorStateList.valueOf(Color.GREEN));</div>
+<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;                        }</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;                    });</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;                }</div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;                runOnUiThread(<span class="keyword">new</span> Runnable() {</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;                    <span class="keyword">public</span> <span class="keywordtype">void</span> run()</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;                    {</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;                        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>.setProgress(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a>);</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160; </div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                        <span class="keywordflow">if</span> (<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">tempsRestantTour</a> &lt;= SEUIL_TEMPS_RESTANT) {</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                            <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">progressBarTempsRestantTour</a>.setProgressTintList(ColorStateList.valueOf(Color.RED));</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                        }</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;                    }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;                });</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;            }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;        };</div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160; </div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;        <span class="comment">// tâche périodique</span></div>
+<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f">compteurTempsTour</a>.schedule(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a953909b6441a31f7ad3cf2d96260dd7d">tacheCompteurTempsTour</a>, 1000, 1000);</div>
+<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    }</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160; </div>
+<div class="line"><a name="l00127"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#aea059d82e6c3d66ad01cbbc3b649f925">  127</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aea059d82e6c3d66ad01cbbc3b649f925">recupererParametresPartie</a>()</div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;    {</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a> = getIntent();</div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_equipe.html">Equipe</a> equipe1           = (<a class="code" href="classcom_1_1basket__game_1_1_equipe.html">Equipe</a>)<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a>.getSerializableExtra(<span class="stringliteral">&quot;equipe1&quot;</span>);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;        <span class="keywordflow">if</span>(equipe1 != <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;        {</div>
+<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;            Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;onCreate() equipe1 = &quot;</span> + equipe1.<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>());</div>
+<div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;        }</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_equipe.html">Equipe</a> equipe2 = (<a class="code" href="classcom_1_1basket__game_1_1_equipe.html">Equipe</a>)<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a>.getSerializableExtra(<span class="stringliteral">&quot;equipe2&quot;</span>);</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;        <span class="keywordflow">if</span>(equipe2 != <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;        {</div>
+<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;            Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;onCreate() equipe2 = &quot;</span> + equipe2.<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>());</div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;        }</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;        <span class="keywordtype">int</span> tempsMaxTour =</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;                <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a>.getIntExtra(<span class="stringliteral">&quot;tempsMaxTour&quot;</span>, <a class="code" href="classcom_1_1basket__game_1_1_partie.html">Partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a6c86c7bd82a98c58c0aff8fd6fdf789c">TEMPS_MAX_TOUR</a>);</div>
+<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;        Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;onCreate() tempsMaxTour = &quot;</span> + tempsMaxTour);</div>
+<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;        <span class="keywordtype">int</span> nbPaniers = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a>.getIntExtra(<span class="stringliteral">&quot;nbPaniers&quot;</span>, <a class="code" href="classcom_1_1basket__game_1_1_partie.html">Partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#ad7911ac0f23d708725cff59d4f78b8f2">NB_PANIERS</a>);</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;        Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;onCreate() nbPaniers = &quot;</span> + nbPaniers);</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;        <span class="keywordtype">int</span> nbManches =</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;                <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">intentDonneesPartieSuivi</a>.getIntExtra(<span class="stringliteral">&quot;nbManches&quot;</span>, <a class="code" href="classcom_1_1basket__game_1_1_partie.html">Partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a6dd0d6454cb5b31eee1a85a8bb66314d">NB_MANCHES_GAGNANTES</a>);</div>
+<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;        Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;onCreate() nbManches = &quot;</span> + nbManches);</div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160; </div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a> = <span class="keyword">new</span> <a class="code" href="classcom_1_1basket__game_1_1_partie.html">Partie</a>(equipe1, equipe2);</div>
+<div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a5c7ad89428e1e97e9b70ffacca15d0c8">setTempsMaxTour</a>(tempsMaxTour);</div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a6383decb1b16a121bf342928d149b86c">setNbPaniers</a>(nbPaniers);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;        <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a115509c832b9fdf908a762c1157215c5">setNbManchesGagnantes</a>(nbManches);</div>
+<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    }</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160; </div>
+<div class="line"><a name="l00159"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#afe2d8feb1684f99524942af14e00c7ca">  159</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#afe2d8feb1684f99524942af14e00c7ca">afficherNomEquipe1</a>()</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    {</div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;        TextView affichageNomEquipe1 = findViewById(R.id.affichageNomEquipe1);</div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2">getEquipe1</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>().isEmpty())</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160;        {</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;            Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;afficherNomEquipe1() equipe1 = &quot;</span> + <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2">getEquipe1</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>());</div>
+<div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;            String nomEquipe1 = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2">getEquipe1</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>();</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;            affichageNomEquipe1.setText(nomEquipe1);</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        }</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        {</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;            String nomEquipe1 = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a07cbc9e82d678b1fc4ed14b085060334">EQUIPE_1</a>; <span class="comment">// Ajout de la valeur &quot;Rouge&quot; par défaut</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;            Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;afficherNomEquipe1() equipe1 = &quot;</span> + nomEquipe1);</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;            affichageNomEquipe1.setText(nomEquipe1);</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2">getEquipe1</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a55a3ec8376b2a40ab7d9aa9047ce28e4">setNomEquipe</a>(nomEquipe1);</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;        }</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;    }</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160; </div>
+<div class="line"><a name="l00180"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a2f46dbdeeb50121570831bf6bbcf7ac9">  180</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a2f46dbdeeb50121570831bf6bbcf7ac9">afficherNomEquipe2</a>()</div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;    {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;        TextView affichageNomEquipe2 = findViewById(R.id.affichageNomEquipe2);</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        <span class="keywordflow">if</span>(!<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734">getEquipe2</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>().isEmpty())</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;        {</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;            Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;afficherNomEquipe1() equipe2 = &quot;</span> + <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734">getEquipe2</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>());</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            String nomEquipe2 = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734">getEquipe2</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">getNomEquipe</a>();</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;            affichageNomEquipe2.setText(nomEquipe2);</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;        }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;        {</div>
+<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160;            String nomEquipe2 = <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ade53ae50506a3716af11abad7691c2e7">EQUIPE_2</a>; <span class="comment">// Ajout de la valeur &quot;Jaune&quot; par défaut</span></div>
+<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;            Log.d(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">TAG</a>, <span class="stringliteral">&quot;afficherNomEquipe2() equipe2 = &quot;</span> + nomEquipe2);</div>
+<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;            affichageNomEquipe2.setText(nomEquipe2);</div>
+<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;            <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">partie</a>.<a class="code" href="classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734">getEquipe2</a>().<a class="code" href="classcom_1_1basket__game_1_1_equipe.html#a55a3ec8376b2a40ab7d9aa9047ce28e4">setNomEquipe</a>(nomEquipe2);</div>
+<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;        }</div>
+<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;    }</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160; </div>
+<div class="line"><a name="l00201"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a68c9d671ca8f90b3464787a82ad28c7c">  201</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a68c9d671ca8f90b3464787a82ad28c7c">creerBoutonArreterPartie</a>()</div>
+<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;    {</div>
+<div class="line"><a name="l00203"></a><span class="lineno">  203</span>&#160;        Button boutonArreterPartie = findViewById(R.id.boutonArreterPartie);</div>
+<div class="line"><a name="l00204"></a><span class="lineno">  204</span>&#160;        boutonArreterPartie.setOnClickListener(<span class="keyword">new</span> View.OnClickListener() {</div>
+<div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;            @Override</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;            public void onClick(View v)</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;            {</div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;                arreterPartie();</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            }</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;        });</div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    }</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160; </div>
+<div class="line"><a name="l00216"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#add0d7f7342d0b2a0ab7d59ecc17e982d">  216</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#add0d7f7342d0b2a0ab7d59ecc17e982d">arreterCompteur</a>()</div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    {</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;        <span class="keywordflow">if</span> (tacheCompteurTempsTour != <span class="keyword">null</span>)</div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;        {</div>
+<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;            tacheCompteurTempsTour.cancel();</div>
+<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;            tacheCompteurTempsTour = <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;        }</div>
+<div class="line"><a name="l00223"></a><span class="lineno">  223</span>&#160;    }</div>
+<div class="line"><a name="l00224"></a><span class="lineno">  224</span>&#160; </div>
+<div class="line"><a name="l00228"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#ab2d9325b040d95bffa8767dc542b10a9">  228</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#ab2d9325b040d95bffa8767dc542b10a9">reinitialiserCompteur</a>()</div>
+<div class="line"><a name="l00229"></a><span class="lineno">  229</span>&#160;    {</div>
+<div class="line"><a name="l00230"></a><span class="lineno">  230</span>&#160;        tempsRestantTour = partie.getTempsMaxTour();</div>
+<div class="line"><a name="l00231"></a><span class="lineno">  231</span>&#160;        progressBarTempsRestantTour.setProgress(tempsRestantTour);</div>
+<div class="line"><a name="l00232"></a><span class="lineno">  232</span>&#160;        progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.GREEN));</div>
+<div class="line"><a name="l00233"></a><span class="lineno">  233</span>&#160;    }</div>
+<div class="line"><a name="l00234"></a><span class="lineno">  234</span>&#160; </div>
+<div class="line"><a name="l00238"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_partie_suivi.html#a0373c15813ecf25f80c2d4d925d43a84">  238</a></span>&#160;    <span class="keyword">private</span> <span class="keywordtype">void</span> <a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html#a0373c15813ecf25f80c2d4d925d43a84">arreterPartie</a>()</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    {</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;        arreterCompteur();</div>
+<div class="line"><a name="l00241"></a><span class="lineno">  241</span>&#160;        reinitialiserCompteur();</div>
+<div class="line"><a name="l00242"></a><span class="lineno">  242</span>&#160; </div>
+<div class="line"><a name="l00243"></a><span class="lineno">  243</span>&#160;        Log.d(TAG, <span class="stringliteral">&quot;arreterPartie()&quot;</span>);</div>
+<div class="line"><a name="l00244"></a><span class="lineno">  244</span>&#160;        Intent intent = <span class="keyword">new</span> Intent(<a class="code" href="classcom_1_1basket__game_1_1_partie_suivi.html">PartieSuivi</a>.this, <a class="code" href="classcom_1_1basket__game_1_1_partie_interrompue.html">PartieInterrompue</a>.class);</div>
+<div class="line"><a name="l00245"></a><span class="lineno">  245</span>&#160;        startActivity(intent);</div>
+<div class="line"><a name="l00246"></a><span class="lineno">  246</span>&#160;    }</div>
+<div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_equipe_html"><div class="ttname"><a href="classcom_1_1basket__game_1_1_equipe.html">com.basket_game.Equipe</a></div><div class="ttdoc">Définit une équipe.</div><div class="ttdef"><b>Definition:</b> <a href="_equipe_8java_source.html#l00017">Equipe.java:18</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_equipe_html_a55a3ec8376b2a40ab7d9aa9047ce28e4"><div class="ttname"><a href="classcom_1_1basket__game_1_1_equipe.html#a55a3ec8376b2a40ab7d9aa9047ce28e4">com.basket_game.Equipe.setNomEquipe</a></div><div class="ttdeci">void setNomEquipe(String nomEquipe)</div><div class="ttdoc">Mutateur Equipe.</div><div class="ttdef"><b>Definition:</b> <a href="_equipe_8java_source.html#l00066">Equipe.java:66</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_equipe_html_a9758da3ad97be1f686ee0712f3a1d8f6"><div class="ttname"><a href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">com.basket_game.Equipe.getNomEquipe</a></div><div class="ttdeci">String getNomEquipe()</div><div class="ttdoc">Accesseur Equipe.</div><div class="ttdef"><b>Definition:</b> <a href="_equipe_8java_source.html#l00054">Equipe.java:54</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html">com.basket_game.Partie</a></div><div class="ttdoc">Définit une partie entre deux équipes.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00015">Partie.java:16</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a115509c832b9fdf908a762c1157215c5"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a115509c832b9fdf908a762c1157215c5">com.basket_game.Partie.setNbManchesGagnantes</a></div><div class="ttdeci">void setNbManchesGagnantes(int nbManchesGagnantes)</div><div class="ttdoc">Mutateur nbManchesGagnantes.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00166">Partie.java:166</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a36a4bc98491a1bc559123e9943c3cbc1"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a36a4bc98491a1bc559123e9943c3cbc1">com.basket_game.Partie.getTempsMaxTour</a></div><div class="ttdeci">int getTempsMaxTour()</div><div class="ttdoc">Accesseur tempsMaxTour.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00111">Partie.java:111</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a5c7ad89428e1e97e9b70ffacca15d0c8"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a5c7ad89428e1e97e9b70ffacca15d0c8">com.basket_game.Partie.setTempsMaxTour</a></div><div class="ttdeci">void setTempsMaxTour(int tempsMaxTour)</div><div class="ttdoc">Mutateur tempsMaxTour.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00122">Partie.java:122</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a6383decb1b16a121bf342928d149b86c"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a6383decb1b16a121bf342928d149b86c">com.basket_game.Partie.setNbPaniers</a></div><div class="ttdeci">void setNbPaniers(int nbPaniers)</div><div class="ttdoc">Mutateur nbPaniers.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00144">Partie.java:144</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a6c86c7bd82a98c58c0aff8fd6fdf789c"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a6c86c7bd82a98c58c0aff8fd6fdf789c">com.basket_game.Partie.TEMPS_MAX_TOUR</a></div><div class="ttdeci">static final int TEMPS_MAX_TOUR</div><div class="ttdoc">le temps max pour d'un tour pour une équipe en secondes par défaut</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00026">Partie.java:26</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a6dd0d6454cb5b31eee1a85a8bb66314d"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a6dd0d6454cb5b31eee1a85a8bb66314d">com.basket_game.Partie.NB_MANCHES_GAGNANTES</a></div><div class="ttdeci">static final int NB_MANCHES_GAGNANTES</div><div class="ttdoc">le nombre de manches gagnantes par défaut</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00025">Partie.java:25</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_a8126539b5fece95f87296e5029e5b6b2"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2">com.basket_game.Partie.getEquipe1</a></div><div class="ttdeci">Equipe getEquipe1()</div><div class="ttdoc">Accesseur equipe1.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00067">Partie.java:67</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_ad7911ac0f23d708725cff59d4f78b8f2"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#ad7911ac0f23d708725cff59d4f78b8f2">com.basket_game.Partie.NB_PANIERS</a></div><div class="ttdeci">static final int NB_PANIERS</div><div class="ttdoc">le nombre de paniers installés par défaut</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00030">Partie.java:30</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_html_afb756711e7411357b3664683be114734"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734">com.basket_game.Partie.getEquipe2</a></div><div class="ttdeci">Equipe getEquipe2()</div><div class="ttdoc">Accesseur equipe2.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_8java_source.html#l00089">Partie.java:89</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_interrompue_html"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_interrompue.html">com.basket_game.PartieInterrompue</a></div><div class="ttdoc">L'activité qui indique l'interruption de la partie.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_interrompue_8java_source.html#l00023">PartieInterrompue.java:24</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html">com.basket_game.PartieSuivi</a></div><div class="ttdoc">L'activité qui permet de suivre la partie.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00033">PartieSuivi.java:34</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a0373c15813ecf25f80c2d4d925d43a84"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a0373c15813ecf25f80c2d4d925d43a84">com.basket_game.PartieSuivi.arreterPartie</a></div><div class="ttdeci">void arreterPartie()</div><div class="ttdoc">Méthode appelée pour arrêter la partie.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00238">PartieSuivi.java:238</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a07cbc9e82d678b1fc4ed14b085060334"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a07cbc9e82d678b1fc4ed14b085060334">com.basket_game.PartieSuivi.EQUIPE_1</a></div><div class="ttdeci">static final String EQUIPE_1</div><div class="ttdoc">le nom par défaut pour l'équipe 1</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00039">PartieSuivi.java:39</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a09014b8b26263d4041487c9066f60777"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a09014b8b26263d4041487c9066f60777">com.basket_game.PartieSuivi.initialiserCompteurTempsTour</a></div><div class="ttdeci">void initialiserCompteurTempsTour()</div><div class="ttdoc">Méthode.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00076">PartieSuivi.java:76</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a2f46dbdeeb50121570831bf6bbcf7ac9"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a2f46dbdeeb50121570831bf6bbcf7ac9">com.basket_game.PartieSuivi.afficherNomEquipe2</a></div><div class="ttdeci">void afficherNomEquipe2()</div><div class="ttdoc">Méthode appelée pour afficher le nom de l'équipe 2.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00180">PartieSuivi.java:180</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a5410bee96526713809127676060b9d79"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a5410bee96526713809127676060b9d79">com.basket_game.PartieSuivi.onCreate</a></div><div class="ttdeci">void onCreate(Bundle savedInstanceState)</div><div class="ttdoc">Méthode appelée à la création de l'activité</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00060">PartieSuivi.java:60</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a590b1f76c73672054ebf407bc21aaaa3"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3">com.basket_game.PartieSuivi.tempsRestantTour</a></div><div class="ttdeci">int tempsRestantTour</div><div class="ttdoc">par défaut</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00047">PartieSuivi.java:47</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a68c9d671ca8f90b3464787a82ad28c7c"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a68c9d671ca8f90b3464787a82ad28c7c">com.basket_game.PartieSuivi.creerBoutonArreterPartie</a></div><div class="ttdeci">void creerBoutonArreterPartie()</div><div class="ttdoc">Méthode appelée pour arrêter la partie.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00201">PartieSuivi.java:201</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a89a5b5493f8cd7909e9eff52e5e5b78d"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d">com.basket_game.PartieSuivi.progressBarTempsRestantTour</a></div><div class="ttdeci">ProgressBar progressBarTempsRestantTour</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00054">PartieSuivi.java:54</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_a953909b6441a31f7ad3cf2d96260dd7d"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#a953909b6441a31f7ad3cf2d96260dd7d">com.basket_game.PartieSuivi.tacheCompteurTempsTour</a></div><div class="ttdeci">TimerTask tacheCompteurTempsTour</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00049">PartieSuivi.java:49</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_aa385d23e7bbe72c48f4e88e5c3cf7cc8"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8">com.basket_game.PartieSuivi.partie</a></div><div class="ttdeci">Partie partie</div><div class="ttdoc">la partie entre deux équipes</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00045">PartieSuivi.java:45</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_aa9d15278c64cc890ea927cfb70530d0f"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f">com.basket_game.PartieSuivi.compteurTempsTour</a></div><div class="ttdeci">Timer compteurTempsTour</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00048">PartieSuivi.java:48</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_ab2d9325b040d95bffa8767dc542b10a9"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#ab2d9325b040d95bffa8767dc542b10a9">com.basket_game.PartieSuivi.reinitialiserCompteur</a></div><div class="ttdeci">void reinitialiserCompteur()</div><div class="ttdoc">Méthode appelée pour réinitialiser le compteur.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00228">PartieSuivi.java:228</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_acc055862eef7f5ec12d222eef090efcf"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#acc055862eef7f5ec12d222eef090efcf">com.basket_game.PartieSuivi.intentDonneesPartieSuivi</a></div><div class="ttdeci">Intent intentDonneesPartieSuivi</div><div class="ttdoc">les données de la partie</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00046">PartieSuivi.java:46</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_ad2ad276d74a4c6c767a4be93b77c0761"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761">com.basket_game.PartieSuivi.TAG</a></div><div class="ttdeci">static final String TAG</div><div class="ttdoc">TAG pour les logs (cf. Logcat)</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00038">PartieSuivi.java:38</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_add0d7f7342d0b2a0ab7d59ecc17e982d"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#add0d7f7342d0b2a0ab7d59ecc17e982d">com.basket_game.PartieSuivi.arreterCompteur</a></div><div class="ttdeci">void arreterCompteur()</div><div class="ttdoc">Méthode appelée pour arrêter le compteur.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00216">PartieSuivi.java:216</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_ade53ae50506a3716af11abad7691c2e7"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#ade53ae50506a3716af11abad7691c2e7">com.basket_game.PartieSuivi.EQUIPE_2</a></div><div class="ttdeci">static final String EQUIPE_2</div><div class="ttdoc">le nom par défaut pour l'équipe 2</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00040">PartieSuivi.java:40</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_ae1661dafc2ad24e255645b5682962d85"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#ae1661dafc2ad24e255645b5682962d85">com.basket_game.PartieSuivi.compterTempsRestantTour</a></div><div class="ttdeci">void compterTempsRestantTour()</div><div class="ttdoc">Assure la gestion du temps pour un tour.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00093">PartieSuivi.java:93</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_aea059d82e6c3d66ad01cbbc3b649f925"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#aea059d82e6c3d66ad01cbbc3b649f925">com.basket_game.PartieSuivi.recupererParametresPartie</a></div><div class="ttdeci">void recupererParametresPartie()</div><div class="ttdoc">Méthode appelée pour récupérer les paramètres de la partie.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00127">PartieSuivi.java:127</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_partie_suivi_html_afe2d8feb1684f99524942af14e00c7ca"><div class="ttname"><a href="classcom_1_1basket__game_1_1_partie_suivi.html#afe2d8feb1684f99524942af14e00c7ca">com.basket_game.PartieSuivi.afficherNomEquipe1</a></div><div class="ttdeci">void afficherNomEquipe1()</div><div class="ttdoc">Méthode appelée pour afficher le nom de l'équipe 1.</div><div class="ttdef"><b>Definition:</b> <a href="_partie_suivi_8java_source.html#l00159">PartieSuivi.java:159</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a6656f64a87b7702517f02e761703739.html">basketgame-android</a></li><li class="navelem"><a class="el" href="dir_a14f1a2f72fc71322e0ea85298eb19a0.html">app</a></li><li class="navelem"><a class="el" href="dir_9e699aaf409e398082f99676dc01c30b.html">src</a></li><li class="navelem"><a class="el" href="dir_52acbc58928ca4d6996f4a4140e480ab.html">main</a></li><li class="navelem"><a class="el" href="dir_fcf243bdb7d3f1e4dbb7721b47967179.html">java</a></li><li class="navelem"><a class="el" href="dir_4c27a4cf9b4cddd1e0374d71053be13c.html">com</a></li><li class="navelem"><a class="el" href="dir_66ee561880210460d1054157dcbc6408.html">basket_game</a></li><li class="navelem"><a class="el" href="_partie_suivi_8java.html">PartieSuivi.java</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mardi 23 Mai 2023 06:27:22 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

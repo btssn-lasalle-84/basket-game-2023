@@ -6,10 +6,15 @@
  *
  * @brief Déclaration de la classe Basketgame
  * @author Nathanael CHANSARD
- * @version 0.1
+ * @version 0.2
  */
-
 #include <QtWidgets>
+
+/**
+ * @def TEST_BASKETGAME
+ * @brief Pour les tests avec le clavier
+ */
+#define TEST_BASKETGAME
 
 /**
  * @def PLEIN_ECRAN_RPI
@@ -27,12 +32,50 @@
  * @def TEMPS_TOUR
  * @brief Le temps pour un tour d'une équipe
  */
-#define TEMPS_TOUR 15 // en s
+#define TEMPS_TOUR 30 // en s
+
+/**
+ * @def TAILLE_JETON
+ * @brief Définit la taille de l'affichage du jeton
+ */
+#define TAILLE_JETON 60
+
+/**
+ * @def DEPLACEMENT_X
+ * @brief Définit la constante de déplacement en x
+ */
+#define DEPLACEMENT_X 42
+
+/**
+ * @def DEPLACEMENT_Y
+ * @brief Définit la constante de déplacement en y
+ */
+#define DEPLACEMENT_Y 321
+
+/**
+ * @def JETON_ROUGE
+ * @brief Définit l'image d'un jeton rouge
+ */
+#define JETON_ROUGE ":/ressources/jetonRouge.png"
+
+/**
+ * @def JETON_JAUNE
+ * @brief Définit l'image d'un jeton jaune
+ */
+#define JETON_JAUNE ":/ressources/jetonJaune.png"
+
+/**
+ * @def PLATEAU_7
+ * @brief Définit l'image d'un plateau à 7 colonnes
+ */
+#define PLATEAU_7 ":/ressources/puissance4_7.png"
 
 namespace Ui
 {
 class basketgame;
 }
+
+class Plateau;
 
 /**
  * @class Basketgame
@@ -50,41 +93,61 @@ class Basketgame : public QMainWindow
     {
         Accueil,
         Partie,
-        Manche,
-        NbEcrans
     };
 
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
 
-    void arreterPartie();
-    void arreterManche();
-
   public slots:
+    void demarrerSeance();
+    void terminerSeance();
+    void demarrerPartie();
+    void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
     void afficherEcranPartie();
-    void afficherEcranManche();
-    void chronometrerPartie();
-    void chronometrerManche();
-
-  private slots:
-    void demarrerManche();
-    void demarrerPartie();
+    void chronometrerTour();
+    void fermerApplication();
+#ifdef TEST_BASKETGAME
+    void simulerPion();
+#endif
 
   private:
+    /**
+     * @enum CouleurEquipe
+     * @brief Les différentes couleur d'equipe
+     */
+    enum CouleurEquipe
+    {
+        Rouge = 0,
+        Jaune,
+        NbEquipes
+    };
+
     Ui::basketgame* ui;
-    QTime*          tempsPartie;
-    QTime*          tempsManche;
-    QTimer*         timerPartie;
-    QTimer*         timerManche;
-    bool            etatPartie;
-    bool            etatManche;
-    bool            couleurEquipe;
+    Plateau*        plateau;
+    QTime*          tempsTour;
+    QTimer*         minuteurTour;
+    bool            etatSeance;
+    int             nbPionsJoues;
+    int             scoreEquipeRouge;
+    int             scoreEquipeJaune;
 
     void initialiserIHM();
     void initialiserEvenements();
+    void initialiserPartie();
+    void initialiserDureeTour();
+    void demarrerChronometrageTour();
+    void afficherPlateau();
+    void afficherUnJeton(int ligne, int colonne);
+    void afficherTourEquipe();
+    void afficherScoreEquipe();
+
+#ifdef TEST_BASKETGAME
+    void attribuerRaccourcisClavier();
+    int  randInt(int min, int max);
+#endif
 };
 
 #endif // BASKETGAME_H

@@ -25,15 +25,15 @@ end
 line 130434 ----
   from ref 128130 z 3006 to ref 130306
 simplerelationcanvas 130562 simplerelation_ref 135042
-  from ref 128514 z 3006 stereotype "<<extend>>" xyz 339.5 49 3000 to ref 130306
+  from ref 128514 z 3006 stereotype "<<extend>>" xyz 339 49 3000 to ref 130306
 end
 simplerelationcanvas 130690 simplerelation_ref 135170
-  from ref 129922 z 3006 stereotype "<<extend>>" xyz 339.5 99.5 3000 to ref 130306
+  from ref 129922 z 3006 stereotype "<<extend>>" xyz 339 99 3000 to ref 130306
 end
 line 130946 ----
   from ref 128130 z 3006 to ref 130818
 simplerelationcanvas 131074 simplerelation_ref 135298
-  from ref 130818 z 3006 stereotype "<<include>>" xyz 400.5 266 3000 to ref 128770
+  from ref 130818 z 3006 stereotype "<<include>>" xyz 400 266 3000 to ref 128770
 end
 simplerelationcanvas 131202 simplerelation_ref 135426
   from ref 129922 z 3006 stereotype "<<include>>" xyz 514 184 3000 to ref 128770
@@ -41,6 +41,6 @@ end
 line 131586 ----
   from ref 128130 z 3006 to ref 131458
 simplerelationcanvas 131714 simplerelation_ref 135554
-  from ref 131458 z 3006 stereotype "<<include>>" xyz 400.5 211 3000 to ref 128770
+  from ref 131458 z 3006 stereotype "<<include>>" xyz 400 211 3000 to ref 128770
 end
 end

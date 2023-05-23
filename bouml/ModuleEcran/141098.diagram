@@ -1,0 +1,29 @@
+format 224
+
+classinstance 128042 class_ref 134570 // Basketgame
+  name ""   xyz 362 4 2000 life_line_z 2000
+durationcanvas 128170 classinstance_ref 128042 // :Basketgame
+  xyzwh 447 98 2010 11 139
+  overlappingdurationcanvas 128426
+    xyzwh 453 137 2020 11 25
+  end
+  overlappingdurationcanvas 128682
+    xyzwh 453 197 2020 11 25
+  end
+end
+reflexivemsg 128298 synchronous
+  to durationcanvas_ref 128170
+  yz 98 2015 msg operation_ref 136106 // "initialiserIHM() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 458 68
+reflexivemsg 128554 synchronous
+  to durationcanvas_ref 128426
+  yz 137 2025 msg operation_ref 135210 // "afficherEcranAcceuil() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 464 110
+reflexivemsg 128810 synchronous
+  to durationcanvas_ref 128682
+  yz 197 2025 msg operation_ref 136234 // "initialiserEvenements() : void"
+  show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
+  label_xy 465 171
+end

@@ -13,7 +13,28 @@
         android:theme="@style/Theme.Basketgame"
         tools:targetApi="31">
         <activity
-            android:name=".ParametresPartie"
+            android:name=".PartieTerminee"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PartieInterrompue"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PartieSuivi"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".PartieParametres"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
