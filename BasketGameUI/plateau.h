@@ -1,6 +1,13 @@
 #ifndef PLATEAU_H
 #define PLATEAU_H
 
+/**
+ * @file plateau.h
+ *
+ * @brief Déclaration de la classe Plateau
+ * @author Nathanael CHANSARD
+ * @version 0.2
+ */
 #include <QObject>
 #include <QVector>
 

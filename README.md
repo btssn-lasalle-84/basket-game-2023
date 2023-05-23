@@ -7,9 +7,9 @@
 - [Le projet basket-game 2023](#le-projet-basket-game-2023)
   - [Documentation du code](#documentation-du-code)
   - [Versions](#versions)
-    - [0.1](#01)
     - [0.2](#02)
-  - [Affichage](#affichage)
+    - [0.1](#01)
+  - [Captures d'écran](#captures-d%C3%A9cran)
   - [Auteurs](#auteurs)
 
 ---
@@ -28,17 +28,17 @@ https://btssn-lasalle-84.github.io/basket-game-2023/
 
 ## Versions
 
-### 0.1
-
-![](images/jira-tickets-v0.1.png)
-
+![](images/livraisons.png)
 
 ### 0.2
 
 ![](images/jira-tickets-v0.2.png)
 
+### 0.1
 
-## Affichage 
+![](images/jira-tickets-v0.1.png)
+
+## Captures d'écran
 
 - Android :
 

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['couleurequipe_158',['couleurEquipe',['../class_basketgame.html#a3e78da62f866f385639abcb1cf692822',1,'Basketgame']]]
+  ['compteurtempstour_316',['compteurTempsTour',['../classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f',1,'com::basket_game::PartieSuivi']]]
 ];
