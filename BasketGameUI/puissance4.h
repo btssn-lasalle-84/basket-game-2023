@@ -1,6 +1,13 @@
 #ifndef PUISSANCE4_H
 #define PUISSANCE4_H
 
+/**
+ * @file puissance4.h
+ *
+ * @brief Déclaration de la classe Puissance4
+ * @author Nathanael CHANSARD
+ * @version 0.2
+ */
 #include <QObject>
 #include <QVector>
 
@@ -39,16 +46,16 @@ class Puissance4 : public QObject
     Q_OBJECT
   public:
     explicit Puissance4(QObject* parent = 0);
-    void initialiserPuissance4();
+    void initialiserPlateau();
     int  placerPion(int colonne);
-    void verifierPuissance4();
+    void verifierPlateau();
     bool estVainqueur() const;
     bool estEquipeRouge() const;
     void setTourEquipe(bool estEquipeRouge);
 
   public slots:
 #ifdef TEST_ALIGNEMENT
-    void testUnitaireVerifierPuissance4();
+    void testUnitaireVerifierPlateau();
 #endif
 
   private:
@@ -64,7 +71,7 @@ class Puissance4 : public QObject
         NB_COULEURS
     };
 
-    QVector<QVector<CouleurJeton> > puissance4;
+    QVector<QVector<CouleurJeton> > plateau;
     bool                            vainqueur;
     bool                            equipeRouge;
 

@@ -8,6 +8,7 @@
 
 #include "basketgame.h"
 #include "puissance4.h"
+#include "communication.h"
 #include "ui_basketgame.h"
 #include <QPainter>
 #include <QAction>
@@ -21,7 +22,8 @@ using namespace std;
  * @param parent nullptr pour définir la fenêtre principale de l'application
  */
 Basketgame::Basketgame(QWidget* parent) :
-    QMainWindow(parent), ui(new Ui::basketgame), puissance4(new Puissance4(this)),
+    QMainWindow(parent), ui(new Ui::basketgame),
+    puissance4(new Puissance4(this)), communication(new Communication(this)),
     tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
     nbPionsJoues(0), scoreEquipeRouge(0), scoreEquipeJaune(0)
 {
@@ -111,7 +113,7 @@ void Basketgame::jouerPion(int colonne)
     {
         afficherUnJeton(ligne, colonne);
         afficherScoreEquipe();
-        puissance4->verifierPuissance4();
+        puissance4->verifierPlateau();
         terminerSeance();
         afficherTourEquipe();
     }
@@ -236,7 +238,7 @@ void Basketgame::initialiserPartie()
     nbPionsJoues     = 0;
     scoreEquipeRouge = 0;
     scoreEquipeJaune = 0;
-    puissance4->initialiserPuissance4();
+    puissance4->initialiserPlateau();
 }
 
 /**
@@ -285,13 +287,13 @@ void Basketgame::afficherUnJeton(int ligne, int colonne)
     if(colonne < 0 || colonne >= NB_COLONNES)
         return;
 
-    QImage   jetonRouge(JETON_ROUGE);
-    QImage   jetonJaune(JETON_JAUNE);
-    QPixmap  plateauPuissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
+    QImage  jetonRouge(JETON_ROUGE);
+    QImage  jetonJaune(JETON_JAUNE);
+    QPixmap plateauPuissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
     QPainter p(&plateauPuissance4);
 
-    qDebug() << Q_FUNC_INFO << "rouge" << puissance4->estEquipeRouge() << "ligne"
-             << ligne << "colonne" << colonne;
+    qDebug() << Q_FUNC_INFO << "rouge" << puissance4->estEquipeRouge()
+             << "ligne" << ligne << "colonne" << colonne;
     if(puissance4->estEquipeRouge())
     {
         p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
@@ -410,7 +412,7 @@ void Basketgame::attribuerRaccourcisClavier()
     connect(verificationPuissance4,
             SIGNAL(triggered()),
             puissance4,
-            SLOT(testUnitaireVerifierPuissance4()));
+            SLOT(testUnitaireVerifierPlateau()));
 #endif
 }
 

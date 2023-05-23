@@ -76,6 +76,7 @@ class basketgame;
 }
 
 class Puissance4;
+class Communication;
 
 /**
  * @class Basketgame
@@ -127,6 +128,7 @@ class Basketgame : public QMainWindow
 
     Ui::basketgame* ui;
     Puissance4*     puissance4;
+    Communication*  communication;
     QTime*          tempsTour;
     QTimer*         minuteurTour;
     bool            etatSeance;

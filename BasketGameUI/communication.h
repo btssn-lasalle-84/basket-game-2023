@@ -1,6 +1,13 @@
 #ifndef COMMUNICATION_H
 #define COMMUNICATION_H
 
+/**
+ * @file communication.h
+ *
+ * @brief Déclaration de la classe Communication
+ * @author Nathanael CHANSARD
+ * @version 0.2
+ */
 #include <QWidget>
 #include <QString>
 #include <QtBluetooth>
@@ -9,7 +16,7 @@
  * @def TYPE_TRAME
  * @brief Définition de l'entête de trame
  */
-#define ENTETE_TRAME "$basket"
+#define ENTETE_TRAME "$BASKET"
 
 /**
  * @def DELIMITEUR_FIN
@@ -23,38 +30,31 @@
  */
 #define DELIMITEUR_CHAMP ";"
 
-
-static const QString serviceUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
+static const QString serviceUuid(
+  QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
 static const QString serviceNom(QStringLiteral("ModuleEcran"));
 
+/**
+ * @class Communication
+ * @brief La classe de Communication Bluetooth
+ */
 class Communication : public QWidget
 {
     Q_OBJECT
-public:
-    explicit Communication(QWidget *parent = 0);
+  public:
+    explicit Communication(QWidget* parent = 0);
     ~Communication();
 
+  public slots:
 
-    void deconnecter();
-    void connecter(const QBluetoothDeviceInfo device);
-    void rechercher();
-    bool estConnecter();
+  private:
+    QBluetoothSocket*     socket;  //!< La socket de communication Bluetooth
+    QBluetoothServer*     serveur; //!< Le serveur Bluetooth
+    QBluetoothLocalDevice peripheriqueLocal; //!< L'interface Bluetooth
+    QBluetoothServiceInfo
+      serviceBluetooth; //!< Informations sur le service bluetooth
 
-public slots:
-    void rechercherPeripherique(const QBluetoothDeviceInfo &device);
-
-private :
-
-QBluetoothSocket                *socket;
-QBluetoothDeviceDiscoveryAgent  *discoveryAgent;
-QBluetoothLocalDevice           peripheriqueLocal;
-bool                            estPeripheriqueTrouver;
-
-signals:
-
-void peripheriqueConnecter();
-void peripheriqueDeconnecter();
-void arreterRecherche();
+  signals:
 };
 
 #endif // COMMUNICATION_H
