@@ -1,26 +1,33 @@
 #ifndef EQUIPE_H
 #define EQUIPE_H
 
-#include <QWidget>
+/**
+ * @file equipe.h
+ *
+ * @brief Déclaration de la classe Equipe
+ * @author Nathanael CHANSARD
+ * @version 1.0
+ */
+#include <QObject>
 #include <QString>
 
-class Equipe : public QWidget
+class Equipe : public QObject
 {
     Q_OBJECT
 
-private :
+  private:
+    QString nom;
+    int     score;
 
-public:
-    explicit Equipe(QWidget *parent = 0);
+  public:
+    Equipe(const QString& nom, QObject* parent = 0);
     ~Equipe();
 
-    QString getNomEquipeJaune() const;
-    QString getNomEquipeRouge() const;
-    QString         nomEquipeJaune;
-    QString         nomEquipeRouge;
-
-    void    setNomEquipeJaune(QString nomEquipeJaune);
-    void    setNomEquipeRouge(QString nomEquipeRouge);
+    QString getNom() const;
+    void    setNom(const QString& nom);
+    int     getScore() const;
+    void    setScore(int score);
+    void    incrementerScore();
 };
 
 #endif // EQUIPE_H

@@ -45,7 +45,7 @@ class Puissance4 : public QObject
 {
     Q_OBJECT
   public:
-    explicit Puissance4(QObject* parent = 0);
+    Puissance4(QObject* parent = 0);
     void initialiserPlateau();
     int  placerPion(int colonne);
     void verifierPlateau();

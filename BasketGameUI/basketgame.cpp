@@ -25,10 +25,12 @@ using namespace std;
 Basketgame::Basketgame(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::basketgame),
     puissance4(new Puissance4(this)), communication(new Communication(this)),
-    equipe(new Equipe(this)), tempsTour(nullptr), minuteurTour(new QTimer),
-    etatSeance(false), nbPionsJoues(0),scoreEquipeRouge(0),scoreEquipeJaune(0)
+    tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
+    nbPionsJoues(0)
 {
     qDebug() << Q_FUNC_INFO;
+    equipes.push_back(new Equipe("Rouge", this));
+    equipes.push_back(new Equipe("Jaune", this));
     initialiserIHM();
     initialiserEvenements();
 
@@ -227,8 +229,8 @@ void Basketgame::initialiserIHM()
  */
 void Basketgame::initialiserParametreEquipe()
 {
-    ui->labelVisualisationEquipeRouge->setText(equipe->getNomEquipeRouge());
-    ui->labelVisualisationEquipeJaune->setText(equipe->getNomEquipeJaune());
+    ui->labelVisualisationEquipeRouge->setText(equipes[Rouge]->getNom());
+    ui->labelVisualisationEquipeJaune->setText(equipes[Jaune]->getNom());
     ui->affichageTotalPanierE1->display(QString::number(0));
     ui->affichageTotalPanierE2->display(QString::number(0));
     ui->labelVisualisationEquipeJaune->setStyleSheet(
@@ -252,9 +254,9 @@ void Basketgame::initialiserEvenements()
  */
 void Basketgame::initialiserPartie()
 {
-    nbPionsJoues     = 0;
-    scoreEquipeRouge = 0;
-    scoreEquipeJaune = 0;
+    nbPionsJoues = 0;
+    equipes[Rouge]->setScore(0);
+    equipes[Jaune]->setScore(0);
     puissance4->initialiserPlateau();
 }
 
@@ -370,13 +372,15 @@ void Basketgame::afficherScoreEquipe()
 {
     if(puissance4->estEquipeRouge())
     {
-        scoreEquipeRouge++;
-        ui->affichageTotalPanierE1->display(QString::number(scoreEquipeRouge));
+        equipes[Rouge]->incrementerScore();
+        ui->affichageTotalPanierE1->display(
+          QString::number(equipes[Rouge]->getScore()));
     }
     else
     {
-        scoreEquipeJaune++;
-        ui->affichageTotalPanierE2->display(QString::number(scoreEquipeJaune));
+        equipes[Jaune]->incrementerScore();
+        ui->affichageTotalPanierE2->display(
+          QString::number(equipes[Jaune]->getScore()));
     }
     nbPionsJoues++;
 }

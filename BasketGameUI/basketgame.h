@@ -9,6 +9,7 @@
  * @version 0.2
  */
 #include <QtWidgets>
+#include <QVector>
 
 /**
  * @def TEST_BASKETGAME
@@ -128,16 +129,14 @@ class Basketgame : public QMainWindow
         NbEquipes
     };
 
-    Ui::basketgame* ui;
-    Puissance4*     puissance4;
-    Communication*  communication;
-    Equipe*         equipe;
-    QTime*          tempsTour;
-    QTimer*         minuteurTour;
-    bool            etatSeance;
-    int             nbPionsJoues;
-    int             scoreEquipeRouge;
-    int             scoreEquipeJaune;
+    Ui::basketgame*  ui;
+    Puissance4*      puissance4;
+    Communication*   communication;
+    QVector<Equipe*> equipes;
+    QTime*           tempsTour;
+    QTimer*          minuteurTour;
+    bool             etatSeance;
+    int              nbPionsJoues;
 
     void initialiserIHM();
     void initialiserEvenements();
@@ -150,7 +149,6 @@ class Basketgame : public QMainWindow
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
     void afficherScoreEquipe();
-
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();

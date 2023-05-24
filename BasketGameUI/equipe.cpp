@@ -3,19 +3,23 @@
  *
  * @brief Définition de la classe Equipe
  * @author Nathanael CHANSARD
- * @version 0.2
+ * @version 1.0
  */
-
 
 #include "equipe.h"
 #include <QDebug>
 
-Equipe::Equipe(QWidget *parent) : QWidget(parent) ,
-nomEquipeRouge("Bob"),nomEquipeJaune("Alice")
+/**
+ * @brief Constructeur de la classe Equipe
+ *
+ * @fn Equipe::Equipe
+ *
+ */
+Equipe::Equipe(const QString& nom, QObject* parent) :
+    QObject(parent), nom(nom), score(0)
 {
-
+    qDebug() << Q_FUNC_INFO << "nom" << nom;
 }
-
 
 /**
  * @brief Destructeur de la classe Equipe
@@ -28,26 +32,32 @@ Equipe::~Equipe()
     qDebug() << Q_FUNC_INFO;
 }
 
-
-QString Equipe::getNomEquipeJaune() const
+QString Equipe::getNom() const
 {
-    return nomEquipeJaune;
+    return nom;
 }
 
-QString Equipe::getNomEquipeRouge() const
+void Equipe::setNom(const QString& nom)
 {
-    return nomEquipeRouge;
+    this->nom = nom;
+    qDebug() << Q_FUNC_INFO << "nom" << nom;
 }
 
-void Equipe::setNomEquipeJaune(const QString nomEquipeJaune)
+int Equipe::getScore() const
 {
-    this->nomEquipeJaune = nomEquipeJaune;
-    qDebug() << Q_FUNC_INFO << nomEquipeJaune;
+    return score;
 }
 
-void Equipe::setNomEquipeRouge(const QString nomEquipeRouge)
+void Equipe::setScore(int score)
 {
-    this->nomEquipeRouge = nomEquipeRouge;
-    qDebug() << Q_FUNC_INFO << nomEquipeRouge;
+    this->score = score;
+    qDebug() << Q_FUNC_INFO << "score" << score;
 }
 
+void Equipe::incrementerScore()
+{
+    /**
+     * @todo Incrémenter le score de l'équipe
+     */
+    qDebug() << Q_FUNC_INFO << "score" << score;
+}

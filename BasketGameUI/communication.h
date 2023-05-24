@@ -1,17 +1,28 @@
 #ifndef _COMMUNICATION_H
 #define _COMMUNICATION_H
 
+/**
+ * @file communication.h
+ *
+ * @brief Déclaration de la classe Communication
+ * @author Nathanael CHANSARD
+ * @version 1.0
+ */
+#include <QObject>
+#include <QtBluetooth>
 
-class Communication : public typedef2 {
-  Q_OBJECT
+class Communication : public QObject
+{
+    Q_OBJECT
   public:
-    explicit Communication(QWidget * parent = 0);
-
+    Communication(QObject* parent = 0);
     ~Communication();
 
-  public slots:
   private:
-    QBluetoothSocket * socket;
+    QBluetoothServer* serveur; //!< Le serveur Bluetooth
+    QBluetoothSocket* socket;  //!< La socket de communication Bluetooth
 
+  public slots:
 };
+
 #endif
