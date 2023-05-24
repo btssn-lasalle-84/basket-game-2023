@@ -33,6 +33,7 @@ Basketgame::Basketgame(QWidget* parent) :
     equipes.push_back(new Equipe("Jaune", this));
     initialiserIHM();
     initialiserEvenements();
+    communication->initialiser();
 
 #ifdef TEST_BASKETGAME
     attribuerRaccourcisClavier();
@@ -200,6 +201,7 @@ void Basketgame::chronometrerTour()
  */
 void Basketgame::fermerApplication()
 {
+    communication->arreter();
     this->close();
 }
 

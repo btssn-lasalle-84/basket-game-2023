@@ -11,12 +11,15 @@
 #include <QObject>
 #include <QString>
 
+class Puissance4;
+
 class Equipe : public QObject
 {
     Q_OBJECT
 
   private:
     QString nom;
+    Puissance4* puissance4;
     int     score;
 
   public:
