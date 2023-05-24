@@ -92,12 +92,15 @@ $(document).ready(function(){initNavTree('classcom_1_1basket__game_1_1_basket_ga
 <div class="title">Référence de la classe com.basket_game.BasketGame</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>L'activité principale.  
+ <a href="classcom_1_1basket__game_1_1_basket_game.html#details">Plus de détails...</a></p>
 <div class="dynheader">
 Graphe de collaboration de com.basket_game.BasketGame:</div>
 <div class="dyncontent">
 <div class="center"><img src="classcom_1_1basket__game_1_1_basket_game__coll__graph.png" border="0" usemap="#acom_8basket__game_8_basket_game_coll__map" alt="Collaboration graph"/></div>
 <map name="acom_8basket__game_8_basket_game_coll__map" id="acom_8basket__game_8_basket_game_coll__map">
-<area shape="rect" title=" " alt="" coords="5,5,233,171"/>
+<area shape="rect" title="L&#39;activité principale." alt="" coords="5,5,233,171"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -135,7 +138,8 @@ Attributs privés statiques</h2></td></tr>
 <tr class="separator:a721d50ea7dd719f73750e65c62b7e54c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
-<div class="textblock">
+<div class="textblock"><p>L'activité principale. </p>
+
 <p class="definition">Définition à la ligne <a class="el" href="_basket_game_8java_source.html#l00021">21</a> du fichier <a class="el" href="_basket_game_8java_source.html">BasketGame.java</a>.</p>
 </div><h2 class="groupheader">Documentation des fonctions membres</h2>
 <a id="a6a0e3733e59baf11fd829fa457a46f55"></a>
@@ -170,11 +174,12 @@ Attributs privés statiques</h2></td></tr>
 <div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;            @Override</div>
 <div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;            public void onClick(View v)</div>
 <div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;            {</div>
-<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                Intent intent = new Intent(BasketGame.this, ParametresPartie.class);</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                startActivity(intent);</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;            }</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        });</div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    }</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;                Log.d(TAG, <span class="stringliteral">&quot;afficherNouvellePartie()&quot;</span>);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;                Intent intent = new Intent(BasketGame.this, PartieParametres.class);</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;                startActivity(intent);</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;            }</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        });</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
 </div><!-- fragment -->
 <p class="reference">Référencé par <a class="el" href="_basket_game_8java_source.html#l00040">com.basket_game.BasketGame.onCreate()</a>.</p>
 
@@ -437,7 +442,7 @@ Attributs privés statiques</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><b>com</b></li><li class="navelem"><a class="el" href="namespacecom_1_1basket__game.html">basket_game</a></li><li class="navelem"><a class="el" href="classcom_1_1basket__game_1_1_basket_game.html">BasketGame</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 21:49:33 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mardi 23 Mai 2023 06:27:22 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

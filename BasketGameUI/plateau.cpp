@@ -1,3 +1,11 @@
+/**
+ * @file plateau.cpp
+ *
+ * @brief Définition de la classe Plateau
+ * @author Nathanael CHANSARD
+ * @version 0.2
+ */
+
 #include "plateau.h"
 #include "basketgame.h"
 

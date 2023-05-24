@@ -6,9 +6,10 @@
 
 - [Le projet basket-game 2023](#le-projet-basket-game-2023)
   - [Documentation du code](#documentation-du-code)
-  - [Base de données](#base-de-données)
   - [Versions](#versions)
+    - [0.2](#02)
     - [0.1](#01)
+  - [Captures d'écran](#captures-d%C3%A9cran)
   - [Auteurs](#auteurs)
 
 ---
@@ -24,54 +25,42 @@ Basket Game est un système numérique dédié à la phase d'entraînement au pa
 
 https://btssn-lasalle-84.github.io/basket-game-2023/
 
-## Base de données
-
-Base de données SQLite :
-
-![](sql/basket-game-v0.1.png)
-
-```sql
--- Supprime les tables
-
-DROP TABLE IF EXISTS Manche;
-DROP TABLE IF EXISTS Match;
-DROP TABLE IF EXISTS Joueur;
-
--- Création des tables
-
--- Table Joueur
-
-CREATE TABLE IF NOT EXISTS Joueur(idJoueur INTEGER PRIMARY KEY AUTOINCREMENT, nom VARCHAR, UNIQUE(nom));
-
--- Table Match
-
-CREATE TABLE IF NOT EXISTS Match(idMatch INTEGER PRIMARY KEY AUTOINCREMENT, idJoueurA INTEGER NOT NULL, idJoueurB INTEGER NOT NULL, nbManchesGagnantes INTEGER DEFAULT 1, tempsMaxTir INTEGER DEFAULT 0, nbPaniers INTEGER DEFAULT 4, estFinie INTEGER DEFAULT 0, horodatage DATETIME NOT NULL, CONSTRAINT fk_idJoueur_A FOREIGN KEY (idJoueurA) REFERENCES Joueur(idJoueur), CONSTRAINT fk_idJoueur_B FOREIGN KEY (idJoueurB) REFERENCES Joueur(idJoueur));
-
--- Table Manche
-
-CREATE TABLE IF NOT EXISTS Manche(idMatch INTEGER NOT NULL, numeroManche INTEGER NOT NULL, nbTirsReussisEquipeA INTEGER DEFAULT 0, nbTirsReussisEquipeB INTEGER DEFAULT 0, vainqueur INTEGER DEFAULT 0, debut DATETIME NOT NULL, fin DATETIME, CONSTRAINT pk_manche PRIMARY KEY (idMatch,numeroManche), CONSTRAINT fk_idMatch_1 FOREIGN KEY (idMatch) REFERENCES Match(idMatch), CONSTRAINT fk_vainqueur_1 FOREIGN KEY (vainqueur) REFERENCES Joueur(idJoueur));
-```
 
 ## Versions
 
+![](images/livraisons.png)
+
+### 0.2
+
+![](images/jira-tickets-v0.2.png)
+
 ### 0.1
 
-![](images/jira-tickets-v01.png)
+![](images/jira-tickets-v0.1.png)
+
+## Captures d'écran
 
 - Android :
 
-![](images/screenshot-android-accueil-v0.1.png)
+![](images/screenshot-android-accueil-v0.2.png)
 
-![](images/screenshot-android-parametres-v0.1.png)
+![](images/screenshot-android-parametres-v0.2.png)
+
+![](images/screenshot-android-partie-suivi-v0.2.png)
+
+![](images/screenshot-android-partie-interrompue-v0.2.png)
 
 - Qt :
 
-![](images/screenshot-qt-basketgame-v0.1.png)
+![](images/screenshot-qt-accueil-basketgame-v0.2.png)
+
+![](images/screenshot-qt-puissance4-basketgame-v0.2.png)
+
 
 ## Auteurs
 
-- Étudiant IR : Nathanael CHANSARD
-- Étudiant IR : Florent GUILLAUMET
+- Étudiant IR : Nathanael CHANSARD <chansardnathanael@gmail.com>
+- Étudiant IR : Florent GUILLAUMET <florent.guillaumet.pro@gmail.com>
 
 ---
 ©️ LaSalle Avignon 2023
