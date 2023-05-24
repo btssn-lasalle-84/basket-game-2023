@@ -19,10 +19,11 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Set;
 import java.util.UUID;
+import java.util.Vector;
 
 /**
  * @class Communication
- * @brief Définit la méthode de communication bluetooth
+ * @brief Définit la classe de communication bluetooth
  */
 public class CommunicationBluetooth
 {
@@ -30,24 +31,26 @@ public class CommunicationBluetooth
      * Constantes
      */
     private static final String TAG = "_CommunicationBluetooth"; //!< TAG pour les logs (cf. Logcat)
-    private static final UUID identifiantUUID =
-            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
-    public final static int CONNEXION_BLUETOOTH   = 0;
-    public final static int RECEPTION_BLUETOOTH   = 1;
-    public final static int DECONNEXION_BLUETOOTH = 2;
+    private static final UUID   identifiantUUID =
+      UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+    public final static int CONNEXION_BLUETOOTH     = 0;
+    public final static int RECEPTION_BLUETOOTH     = 1;
+    public final static int DECONNEXION_BLUETOOTH   = 2;
+    public final static int ID_MODULE_DETECTION     = 0; // émission/réception
+    public final static int ID_MODULE_SIGNALISATION = 1; // émission
+    public final static int ID_MODULE_ECRAN         = 2; // émission
+    public final static int NB_MODULES              = 3;
 
     /**
      * Attributs
      */
-    private static CommunicationBluetooth communication = null;
-    private BluetoothAdapter adaptateurBluetooth = null;
-    private BluetoothDevice peripherique        = null;
-    private BluetoothSocket canalBluetooth      = null;
-    private InputStream inputStream         = null;
-    private OutputStream outputStream        = null;
-    private boolean          connecte            = false;
-    private Thread           filExecutionReception;
-    private Handler handler = null;
+    private static CommunicationBluetooth communication       = null;
+    private BluetoothAdapter              adaptateurBluetooth = null;
+    private Vector<BluetoothDevice>       peripheriques;
+    private Vector<BluetoothSocket>       socketsBluetooth;
+    private InputStream                   inputStream         = null; // pour le module de détection
+    private Thread                        filExecutionReception;
+    private Handler                       handler = null;
 
     /**
      * @fn getInstance
@@ -55,10 +58,12 @@ public class CommunicationBluetooth
      */
     public synchronized static CommunicationBluetooth getInstance(Handler handler)
     {
-        if(communication == null) {
+        if(communication == null)
+        {
             communication = new CommunicationBluetooth(handler);
         }
-        else {
+        else
+        {
             communication.setHandler(handler);
         }
         return communication;
@@ -69,6 +74,13 @@ public class CommunicationBluetooth
      */
     private CommunicationBluetooth()
     {
+        this.peripheriques = new Vector<BluetoothDevice>();
+        this.socketsBluetooth = new Vector<BluetoothSocket>();
+        for(int i = 0; i < NB_MODULES; i++)
+        {
+            this.peripheriques.set(i, null);
+            this.socketsBluetooth.set(i, null);
+        }
         activer();
     }
 
@@ -77,9 +89,17 @@ public class CommunicationBluetooth
      */
     private CommunicationBluetooth(Handler handler)
     {
+        this.peripheriques = new Vector<BluetoothDevice>();
+        this.socketsBluetooth = new Vector<BluetoothSocket>();
+        for(int i = 0; i < NB_MODULES; i++)
+        {
+            this.peripheriques.set(i, null);
+            this.socketsBluetooth.set(i, null);
+        }
         this.handler = handler;
         activer();
     }
+
     /**
      * @fn setHandler
      * @brief Fixe le gestionnaire de messages du thread UI
@@ -93,7 +113,7 @@ public class CommunicationBluetooth
     /**
      * @brief Pour activer le bluetooth
      */
-    @SuppressLint({"MissingPermission"})
+    @SuppressLint({ "MissingPermission" })
     public void activer()
     {
         this.adaptateurBluetooth = BluetoothAdapter.getDefaultAdapter();
@@ -103,7 +123,7 @@ public class CommunicationBluetooth
         }
         else if(!adaptateurBluetooth.isEnabled())
         {
-            Log.d(TAG, "Bluetooth désactivé, activation");
+            Log.d(TAG, "Bluetooth désactivé -> activation");
             adaptateurBluetooth.enable();
         }
         else
@@ -113,15 +133,16 @@ public class CommunicationBluetooth
     }
 
     /**
-     * @brief Pour se connecter 
+     * @brief Pour se connecter
      */
     @SuppressLint("MissingPermission")
-    public boolean seConnecter(String nomPeripherique)
+    public boolean seConnecter(String nomPeripherique, int idModule)
     {
+        Log.d(TAG, "seConnecter(" + nomPeripherique + ", " + idModule + ")");
         // Activer le Bluetooth
         activer();
 
-        // Rechercher les appareils déjà appairés
+        // Rechercher nomPeripherique dans les appareils déjà appairés
         Set<BluetoothDevice> peripheriquesAppaires = adaptateurBluetooth.getBondedDevices();
         if(peripheriquesAppaires.size() > 0)
         {
@@ -130,22 +151,23 @@ public class CommunicationBluetooth
             {
                 if(appareil.getName().contains(nomPeripherique))
                 {
-                    this.peripherique = appareil;
+                    if(peripheriques.get(idModule) == null)
+                        this.peripheriques.set(idModule, appareil);
                     break;
                 }
             }
         }
-        if(peripherique == null)
+        if(peripheriques.get(idModule) == null)
         {
-            Log.e(TAG, "Appareil Bluetooth non trouve");
+            Log.e(TAG, "Appareil Bluetooth " + nomPeripherique + " non trouvé !");
             return false;
         }
         else
         {
             Log.d(TAG,
-                    "Appareil Bluetooth sélectionné : " + peripherique.getName() + " " +
-                            peripherique.getAddress());
-            return creerSocket();
+                  "Appareil Bluetooth " + peripheriques.get(idModule).getName() +
+                    " trouvé : " + peripheriques.get(idModule).getAddress());
+            return creerSocket(idModule);
         }
     }
 
@@ -153,12 +175,15 @@ public class CommunicationBluetooth
      * @brief Pour créer un socket Bluetooth
      */
     @SuppressLint("MissingPermission")
-    public boolean creerSocket()
+    public boolean creerSocket(int idModule)
     {
+        Log.d(TAG, "creerSocket(" + idModule + ")");
         // Créer le canal Bluetooth
         try
         {
-            canalBluetooth = peripherique.createRfcommSocketToServiceRecord(identifiantUUID);
+            this.socketsBluetooth.set(
+              idModule,
+              peripheriques.get(idModule).createRfcommSocketToServiceRecord(identifiantUUID));
         }
         catch(IOException e)
         {
@@ -168,20 +193,24 @@ public class CommunicationBluetooth
         // Connecter le canal
         try
         {
-            canalBluetooth.connect();
-            inputStream  = canalBluetooth.getInputStream();
-            outputStream = canalBluetooth.getOutputStream();
-            connecte     = true;
+            this.socketsBluetooth.get(idModule).connect();
+            if(idModule == ID_MODULE_DETECTION)
+            {
+                inputStream = this.socketsBluetooth.get(idModule).getInputStream();
+            }
             if(handler != null)
             {
                 Log.d(TAG, "Message handler");
                 Message messageHandler = new Message();
                 messageHandler.what    = CONNEXION_BLUETOOTH;
-                messageHandler.obj     = peripherique.getName();
+                messageHandler.obj     = peripheriques.get(idModule).getName();
                 handler.sendMessage(messageHandler);
             }
-            // Démarrer la reception
-            recevoir();
+            if(idModule == ID_MODULE_DETECTION)
+            {
+                // Démarrer la reception
+                recevoir();
+            }
             Log.d(TAG, "Canal Bluetooth connecté");
             return true;
         }
@@ -190,13 +219,12 @@ public class CommunicationBluetooth
             Log.e(TAG, "Erreur lors de la connexion du canal");
             try
             {
-                canalBluetooth.close();
+                this.socketsBluetooth.get(idModule).close();
             }
             catch(IOException closeException)
             {
                 Log.e(TAG, "Erreur lors de la fermeture du socket");
             }
-            connecte = false;
             return false;
         }
     }
@@ -205,29 +233,29 @@ public class CommunicationBluetooth
      * @brief Pour se déconnecter
      */
     @SuppressLint("MissingPermission")
-    public void deconnecter()
+    public void deconnecter(int idModule)
     {
+        Log.d(TAG, "deconnecter(" + idModule + ")");
         // Fermer les connexions et le socket
         try
         {
-            if(inputStream != null)
+            if(idModule == ID_MODULE_DETECTION)
             {
-                inputStream.close();
+                if(inputStream != null)
+                {
+                    inputStream.close();
+                }
             }
-            if(outputStream != null)
+            if(this.socketsBluetooth.get(idModule) != null)
             {
-                outputStream.close();
+                this.socketsBluetooth.get(idModule).getOutputStream().close();
+                this.socketsBluetooth.get(idModule).close();
             }
-            if(canalBluetooth != null)
-            {
-                canalBluetooth.close();
-            }
-            connecte = false;
             if(handler != null)
             {
                 Message messageHandler = new Message();
                 messageHandler.what    = DECONNEXION_BLUETOOTH;
-                messageHandler.obj     = peripherique.getName();
+                messageHandler.obj     = peripheriques.get(idModule).getName();
                 handler.sendMessage(messageHandler);
             }
         }
@@ -240,37 +268,28 @@ public class CommunicationBluetooth
     /**
      * @brief Pour envoyer un message via le Bluetooth
      */
-    public void envoyer(String message)
+    public void envoyer(String message, int idModule)
     {
-        if(!connecte) {
-            return;
-        }
-        if(canalBluetooth == null) {
-            return;
-        }
-        new Thread() {
-            @Override
-            public void run()
-            {
-                try
+        if(this.socketsBluetooth.get(idModule) != null &&
+           this.socketsBluetooth.get(idModule).isConnected())
+        {
+            new Thread() {
+                @Override
+                public void run()
                 {
-                    if(!canalBluetooth.isConnected())
+                    try
                     {
-                        Log.d(TAG, "envoyer() socket non connecté !");
+                        Log.d(TAG, "envoyer() " + message);
+                        socketsBluetooth.get(idModule).getOutputStream().write(message.getBytes());
+                        socketsBluetooth.get(idModule).getOutputStream().flush();
                     }
-                    else
+                    catch(IOException e)
                     {
-                        Log.d(TAG, "envoyer() " + (Integer.parseInt(message)));
-                        outputStream.write(Integer.parseInt(message));
-                        outputStream.flush();
+                        Log.e(TAG, "Erreur lors de l'envoi de données");
                     }
                 }
-                catch(IOException e)
-                {
-                    Log.e(TAG, "Erreur lors de l'envoi de données");
-                }
-            }
-        }.start();
+            }.start();
+        }
     }
 
     /**
@@ -284,7 +303,7 @@ public class CommunicationBluetooth
             public void run()
             {
                 Log.d(TAG, "recevoir() thread démarré");
-                while(connecte)
+                while(socketsBluetooth.get(ID_MODULE_DETECTION).isConnected())
                 {
                     try
                     {
@@ -303,7 +322,7 @@ public class CommunicationBluetooth
                     catch(IOException e)
                     {
                         Log.e(TAG, "Erreur lors de la réception de données");
-                        deconnecter();
+                        deconnecter(ID_MODULE_DETECTION);
                     }
                 }
                 Log.d(TAG, "recevoir() thread arrêté");
@@ -312,4 +331,3 @@ public class CommunicationBluetooth
         filExecutionReception.start();
     }
 }
-
