@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['temps_5ftour_179',['TEMPS_TOUR',['../basketgame_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d',1,'basketgame.h']]],
-  ['tic_5fhorloge_180',['TIC_HORLOGE',['../basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e',1,'basketgame.h']]]
+  ['deplacement_5fx_362',['DEPLACEMENT_X',['../basketgame_8h.html#aa8fa59a015c6f27eb6981f1edc321c02',1,'basketgame.h']]],
+  ['deplacement_5fy_363',['DEPLACEMENT_Y',['../basketgame_8h.html#a10ef75aae56acfeb31de4613036199c9',1,'basketgame.h']]]
 ];

@@ -88,7 +88,6 @@ $(document).ready(function(){initNavTree('class_basketgame.html',''); initResiza
 <a href="#pub-slots">Connecteurs publics</a> &#124;
 <a href="#pub-methods">Fonctions membres publiques</a> &#124;
 <a href="#pri-types">Types privés</a> &#124;
-<a href="#pri-slots">Connecteurs privés</a> &#124;
 <a href="#pri-methods">Fonctions membres privées</a> &#124;
 <a href="#pri-attribs">Attributs privés</a>  </div>
   <div class="headertitle">
@@ -105,8 +104,10 @@ Graphe de collaboration de Basketgame:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_basketgame__coll__graph.png" border="0" usemap="#a_basketgame_coll__map" alt="Collaboration graph"/></div>
 <map name="a_basketgame_coll__map" id="a_basketgame_coll__map">
-<area shape="rect" title="La GUI de l&#39;application Basketgame." alt="" coords="5,131,192,501"/>
-<area shape="rect" href="class_q_main_window.html" title=" " alt="" coords="41,5,157,83"/>
+<area shape="rect" title="La GUI de l&#39;application Basketgame." alt="" coords="10,463,239,951"/>
+<area shape="rect" href="class_q_main_window.html" title=" " alt="" coords="5,227,121,305"/>
+<area shape="rect" href="class_plateau.html" title=" " alt="" coords="145,132,384,400"/>
+<area shape="rect" href="class_q_object.html" title=" " alt="" coords="227,5,302,83"/>
 </map>
 </div>
 <table class="memberdecls">
@@ -116,22 +117,33 @@ Connecteurs publics</h2></td></tr>
 <tr class="memdesc:aa5f62f45e027643d8de2e8b31dc362ad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Selectionne la fenêtre et l'affiche.  <a href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">Plus de détails...</a><br /></td></tr>
 <tr class="separator:aa5f62f45e027643d8de2e8b31dc362ad"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab533b5e4537490ee1f0f4fd103d26ca4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">afficherEcranAcceuil</a> ()</td></tr>
+<tr class="memdesc:ab533b5e4537490ee1f0f4fd103d26ca4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la fenêtre d'accueil.  <a href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ab533b5e4537490ee1f0f4fd103d26ca4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c590c8491e91a60bd576512c95954f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a5c590c8491e91a60bd576512c95954f1">afficherEcranManche</a> ()</td></tr>
-<tr class="separator:a5c590c8491e91a60bd576512c95954f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a13e139aa59ef9770253fa9e3d5ea3c5d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">afficherEcranPartie</a> ()</td></tr>
+<tr class="memdesc:a13e139aa59ef9770253fa9e3d5ea3c5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Affiche la fenêtre de partie.  <a href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a13e139aa59ef9770253fa9e3d5ea3c5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a921c5c575c0bf9a78d0baeb435f8bd53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">chronometrerManche</a> ()</td></tr>
-<tr class="separator:a921c5c575c0bf9a78d0baeb435f8bd53"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad316d12354c4bf7ef80cde37c4667a4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">chronometrerPartie</a> ()</td></tr>
-<tr class="separator:ad316d12354c4bf7ef80cde37c4667a4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4f7523300692fbc62ddd2ba3afea470"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ae4f7523300692fbc62ddd2ba3afea470">chronometrerTour</a> ()</td></tr>
+<tr class="memdesc:ae4f7523300692fbc62ddd2ba3afea470"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour chronometrer un tour de puissance4  <a href="class_basketgame.html#ae4f7523300692fbc62ddd2ba3afea470">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ae4f7523300692fbc62ddd2ba3afea470"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1262edd607d26d1676d17bf86df17e71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">demarrerPartie</a> ()</td></tr>
+<tr class="separator:a1262edd607d26d1676d17bf86df17e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c7d9ad8e7b08dbdd5b3d60676349bca"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a7c7d9ad8e7b08dbdd5b3d60676349bca">demarrerSeance</a> ()</td></tr>
+<tr class="memdesc:a7c7d9ad8e7b08dbdd5b3d60676349bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour debuter une séance  <a href="class_basketgame.html#a7c7d9ad8e7b08dbdd5b3d60676349bca">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a7c7d9ad8e7b08dbdd5b3d60676349bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad7d5a00947c0a4c083d9740c275191bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ad7d5a00947c0a4c083d9740c275191bd">fermerApplication</a> ()</td></tr>
+<tr class="memdesc:ad7d5a00947c0a4c083d9740c275191bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour fermer l'application  <a href="class_basketgame.html#ad7d5a00947c0a4c083d9740c275191bd">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad7d5a00947c0a4c083d9740c275191bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70e3e71e304b2340d31ca111e22cc119"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a70e3e71e304b2340d31ca111e22cc119">jouerPion</a> (int colonne)</td></tr>
+<tr class="memdesc:a70e3e71e304b2340d31ca111e22cc119"><td class="mdescLeft">&#160;</td><td class="mdescRight">Joue un pion.  <a href="class_basketgame.html#a70e3e71e304b2340d31ca111e22cc119">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a70e3e71e304b2340d31ca111e22cc119"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a317fb5eaabf5974860cb00050407b070"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a317fb5eaabf5974860cb00050407b070">simulerPion</a> ()</td></tr>
+<tr class="separator:a317fb5eaabf5974860cb00050407b070"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12655bb7125a1f6240e882e7ff7f4a44"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a12655bb7125a1f6240e882e7ff7f4a44">terminerSeance</a> ()</td></tr>
+<tr class="memdesc:a12655bb7125a1f6240e882e7ff7f4a44"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour détermiquer quand la séance est terminer  <a href="class_basketgame.html#a12655bb7125a1f6240e882e7ff7f4a44">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a12655bb7125a1f6240e882e7ff7f4a44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Fonctions membres publiques</h2></td></tr>
-<tr class="memitem:a9d66093f2587ae86a850c5bc33673362"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">arreterManche</a> ()</td></tr>
-<tr class="separator:a9d66093f2587ae86a850c5bc33673362"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae3fb850302fe7d2452570a9aa96f8b66"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">arreterPartie</a> ()</td></tr>
-<tr class="separator:ae3fb850302fe7d2452570a9aa96f8b66"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ad3aebdce098ec27a47ca84194c69e1"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a0ad3aebdce098ec27a47ca84194c69e1">Basketgame</a> (QWidget *parent=0)</td></tr>
 <tr class="memdesc:a0ad3aebdce098ec27a47ca84194c69e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructeur de la classe <a class="el" href="class_basketgame.html" title="La GUI de l&#39;application Basketgame.">Basketgame</a>.  <a href="class_basketgame.html#a0ad3aebdce098ec27a47ca84194c69e1">Plus de détails...</a><br /></td></tr>
 <tr class="separator:a0ad3aebdce098ec27a47ca84194c69e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -141,52 +153,116 @@ Fonctions membres publiques</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
 Types privés</h2></td></tr>
+<tr class="memitem:a6d6d6d04653472972957a6eb87f73519"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519">CouleurEquipe</a> { <a class="el" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a74dfe6aea2751152f6aba2cd3df6e93b">Rouge</a> = 0
+, <a class="el" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c">Jaune</a>
+, <a class="el" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a5e7d6254e1a6a1f4c5d004313df0f83e">NbEquipes</a>
+ }</td></tr>
+<tr class="memdesc:a6d6d6d04653472972957a6eb87f73519"><td class="mdescLeft">&#160;</td><td class="mdescRight">Les différentes couleur d'equipe.  <a href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6d6d6d04653472972957a6eb87f73519"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af3cc2e5ebbda2ca1e030862760a2992b"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992b">Ecran</a> { <a class="el" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372">Accueil</a>
 , <a class="el" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b">Partie</a>
-, <a class="el" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba869f730674e4afb6dca5b64629052318">Manche</a>
-, <a class="el" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992babe1f48f065b3ab8e3ea995228642fbfa">NbEcrans</a>
  }</td></tr>
 <tr class="memdesc:af3cc2e5ebbda2ca1e030862760a2992b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Les différents écrans de l'affichage.  <a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992b">Plus de détails...</a><br /></td></tr>
 <tr class="separator:af3cc2e5ebbda2ca1e030862760a2992b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-slots"></a>
-Connecteurs privés</h2></td></tr>
-<tr class="memitem:a4cdd1be3d55451237b8925d983e27a2e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">demarrerManche</a> ()</td></tr>
-<tr class="separator:a4cdd1be3d55451237b8925d983e27a2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1262edd607d26d1676d17bf86df17e71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">demarrerPartie</a> ()</td></tr>
-<tr class="separator:a1262edd607d26d1676d17bf86df17e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Fonctions membres privées</h2></td></tr>
+<tr class="memitem:ad8a772072cb69114275d464d668bb95d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ad8a772072cb69114275d464d668bb95d">afficherPlateau</a> ()</td></tr>
+<tr class="memdesc:ad8a772072cb69114275d464d668bb95d"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour afficher le plateau de puissance4  <a href="class_basketgame.html#ad8a772072cb69114275d464d668bb95d">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ad8a772072cb69114275d464d668bb95d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dbae5082d36a03eac6d1264c7b43c98"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a6dbae5082d36a03eac6d1264c7b43c98">afficherScoreEquipe</a> ()</td></tr>
+<tr class="memdesc:a6dbae5082d36a03eac6d1264c7b43c98"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour afficher le nombre de paniers pour chaque équipe  <a href="class_basketgame.html#a6dbae5082d36a03eac6d1264c7b43c98">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a6dbae5082d36a03eac6d1264c7b43c98"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf63be6bc46030ee0862c36105ae7144"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#aaf63be6bc46030ee0862c36105ae7144">afficherTourEquipe</a> ()</td></tr>
+<tr class="memdesc:aaf63be6bc46030ee0862c36105ae7144"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour afficher quelle équipe est train de jouer  <a href="class_basketgame.html#aaf63be6bc46030ee0862c36105ae7144">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aaf63be6bc46030ee0862c36105ae7144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a080826a6ecab39c5f0195be2d9226820"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a080826a6ecab39c5f0195be2d9226820">afficherUnJeton</a> (int ligne, int colonne)</td></tr>
+<tr class="memdesc:a080826a6ecab39c5f0195be2d9226820"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour afficher les jetons dans le plateau de puissance4  <a href="class_basketgame.html#a080826a6ecab39c5f0195be2d9226820">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a080826a6ecab39c5f0195be2d9226820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeaaed3c71b363b79315a89903223ed0c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#aeaaed3c71b363b79315a89903223ed0c">attribuerRaccourcisClavier</a> ()</td></tr>
+<tr class="memdesc:aeaaed3c71b363b79315a89903223ed0c"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour créer les raccourcis clavier (pour les tests seulement)  <a href="class_basketgame.html#aeaaed3c71b363b79315a89903223ed0c">Plus de détails...</a><br /></td></tr>
+<tr class="separator:aeaaed3c71b363b79315a89903223ed0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4a3b678de222e623c4d8ca97133fc10"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ac4a3b678de222e623c4d8ca97133fc10">demarrerChronometrageTour</a> ()</td></tr>
+<tr class="memdesc:ac4a3b678de222e623c4d8ca97133fc10"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour démarrer le chronométrage d'un tour  <a href="class_basketgame.html#ac4a3b678de222e623c4d8ca97133fc10">Plus de détails...</a><br /></td></tr>
+<tr class="separator:ac4a3b678de222e623c4d8ca97133fc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61bdc0568a6ba55f7d1085f46a7a0ce6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">initialiserDureeTour</a> ()</td></tr>
+<tr class="memdesc:a61bdc0568a6ba55f7d1085f46a7a0ce6"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour initialiser la durée d'un tour pour une équipe  <a href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a61bdc0568a6ba55f7d1085f46a7a0ce6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab2eb5b6fa669ec43062e461867438ed0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">initialiserEvenements</a> ()</td></tr>
+<tr class="memdesc:ab2eb5b6fa669ec43062e461867438ed0"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour initialiser les évenements et action du programme  <a href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ab2eb5b6fa669ec43062e461867438ed0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6956c6eb30ad123cd5044cb7ef7e01d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">initialiserIHM</a> ()</td></tr>
+<tr class="memdesc:ac6956c6eb30ad123cd5044cb7ef7e01d"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour initialiser l'IHM  <a href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">Plus de détails...</a><br /></td></tr>
 <tr class="separator:ac6956c6eb30ad123cd5044cb7ef7e01d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a195dee07c3590ffbf71cf721a1e5726f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a195dee07c3590ffbf71cf721a1e5726f">initialiserPartie</a> ()</td></tr>
+<tr class="memdesc:a195dee07c3590ffbf71cf721a1e5726f"><td class="mdescLeft">&#160;</td><td class="mdescRight">méthode pour initialiser les variables d'une partie  <a href="class_basketgame.html#a195dee07c3590ffbf71cf721a1e5726f">Plus de détails...</a><br /></td></tr>
+<tr class="separator:a195dee07c3590ffbf71cf721a1e5726f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5faf430789aab2ed69686f7d5baba78d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a5faf430789aab2ed69686f7d5baba78d">randInt</a> (int min, int max)</td></tr>
+<tr class="separator:a5faf430789aab2ed69686f7d5baba78d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Attributs privés</h2></td></tr>
-<tr class="memitem:a3e78da62f866f385639abcb1cf692822"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a></td></tr>
-<tr class="separator:a3e78da62f866f385639abcb1cf692822"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abd7e3454a97fc33e8729bf7173187d82"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a></td></tr>
-<tr class="separator:abd7e3454a97fc33e8729bf7173187d82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31c237f1b941868110443317cbf62a4c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a></td></tr>
-<tr class="separator:a31c237f1b941868110443317cbf62a4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a007477859ecae4f81893844529779377"><td class="memItemLeft" align="right" valign="top">QTime *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a></td></tr>
-<tr class="separator:a007477859ecae4f81893844529779377"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7b137516b3adf738ac6e0858968b8676"><td class="memItemLeft" align="right" valign="top">QTime *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a></td></tr>
-<tr class="separator:a7b137516b3adf738ac6e0858968b8676"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3060a17f889349e8938b15c8f4d554ac"><td class="memItemLeft" align="right" valign="top">QTimer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a></td></tr>
-<tr class="separator:a3060a17f889349e8938b15c8f4d554ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a40a81e680374b26ef1e78502c3db1ac4"><td class="memItemLeft" align="right" valign="top">QTimer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a></td></tr>
-<tr class="separator:a40a81e680374b26ef1e78502c3db1ac4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab60c97fd56a74ca1590427cf8ca22ab0"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a></td></tr>
+<tr class="separator:ab60c97fd56a74ca1590427cf8ca22ab0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a47886f01dc59ecd0d2cbced3cdd88694"><td class="memItemLeft" align="right" valign="top">QTimer *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a></td></tr>
+<tr class="separator:a47886f01dc59ecd0d2cbced3cdd88694"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a84996ba0f38512044c0d221b1a6c0e83"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">nbPionsJoues</a></td></tr>
+<tr class="separator:a84996ba0f38512044c0d221b1a6c0e83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a50690bd0f330558a9a6e7222d4f501f0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_plateau.html">Plateau</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a></td></tr>
+<tr class="separator:a50690bd0f330558a9a6e7222d4f501f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:affdd072af603492f65f42b26a58dcf44"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#affdd072af603492f65f42b26a58dcf44">scoreEquipeJaune</a></td></tr>
+<tr class="separator:affdd072af603492f65f42b26a58dcf44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6bd501da8b8a3352cbd635070811b8d9"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a6bd501da8b8a3352cbd635070811b8d9">scoreEquipeRouge</a></td></tr>
+<tr class="separator:a6bd501da8b8a3352cbd635070811b8d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15e23eff1679f3e938027ad8e0a25331"><td class="memItemLeft" align="right" valign="top">QTime *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a></td></tr>
+<tr class="separator:a15e23eff1679f3e938027ad8e0a25331"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53cf93923d37ece1777b3f2060341c83"><td class="memItemLeft" align="right" valign="top">Ui::basketgame *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a></td></tr>
 <tr class="separator:a53cf93923d37ece1777b3f2060341c83"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Description détaillée</h2>
 <div class="textblock"><p>La GUI de l'application <a class="el" href="class_basketgame.html" title="La GUI de l&#39;application Basketgame.">Basketgame</a>. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00041">41</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00084">84</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 </div><h2 class="groupheader">Documentation des énumérations membres</h2>
+<a id="a6d6d6d04653472972957a6eb87f73519"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d6d6d04653472972957a6eb87f73519">&#9670;&nbsp;</a></span>CouleurEquipe</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519">Basketgame::CouleurEquipe</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Les différentes couleur d'equipe. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="a6d6d6d04653472972957a6eb87f73519a74dfe6aea2751152f6aba2cd3df6e93b"></a>Rouge&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c"></a>Jaune&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="a6d6d6d04653472972957a6eb87f73519a5e7d6254e1a6a1f4c5d004313df0f83e"></a>NbEquipes&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00121">121</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;    {</div>
+<div class="line"><a name="l00123"></a><span class="lineno">  123</span>&#160;        <a class="code" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a74dfe6aea2751152f6aba2cd3df6e93b">Rouge</a> = 0,</div>
+<div class="line"><a name="l00124"></a><span class="lineno">  124</span>&#160;        <a class="code" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c">Jaune</a>,</div>
+<div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;        <a class="code" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a5e7d6254e1a6a1f4c5d004313df0f83e">NbEquipes</a></div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    };</div>
+<div class="ttc" id="aclass_basketgame_html_a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c"><div class="ttname"><a href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c">Basketgame::Jaune</a></div><div class="ttdeci">@ Jaune</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00124">basketgame.h:124</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a6d6d6d04653472972957a6eb87f73519a5e7d6254e1a6a1f4c5d004313df0f83e"><div class="ttname"><a href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a5e7d6254e1a6a1f4c5d004313df0f83e">Basketgame::NbEquipes</a></div><div class="ttdeci">@ NbEquipes</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00126">basketgame.h:125</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a6d6d6d04653472972957a6eb87f73519a74dfe6aea2751152f6aba2cd3df6e93b"><div class="ttname"><a href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a74dfe6aea2751152f6aba2cd3df6e93b">Basketgame::Rouge</a></div><div class="ttdeci">@ Rouge</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00123">basketgame.h:123</a></div></div>
+</div><!-- fragment -->
+</div>
+</div>
 <a id="af3cc2e5ebbda2ca1e030862760a2992b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af3cc2e5ebbda2ca1e030862760a2992b">&#9670;&nbsp;</a></span>Ecran</h2>
 
@@ -211,21 +287,15 @@ Attributs privés</h2></td></tr>
 <table class="fieldtable">
 <tr><th colspan="2">Valeurs énumérées</th></tr><tr><td class="fieldname"><a id="af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372"></a>Accueil&#160;</td><td class="fielddoc"></td></tr>
 <tr><td class="fieldname"><a id="af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b"></a>Partie&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="af3cc2e5ebbda2ca1e030862760a2992ba869f730674e4afb6dca5b64629052318"></a>Manche&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="af3cc2e5ebbda2ca1e030862760a2992babe1f48f065b3ab8e3ea995228642fbfa"></a>NbEcrans&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00049">49</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
-<div class="fragment"><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    {</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;        <a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372">Accueil</a>,</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;        <a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b">Partie</a>,</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        <a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba869f730674e4afb6dca5b64629052318">Manche</a>,</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;        <a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992babe1f48f065b3ab8e3ea995228642fbfa">NbEcrans</a></div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    };</div>
-<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b">Basketgame::Partie</a></div><div class="ttdeci">@ Partie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00052">basketgame.h:52</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372">Basketgame::Accueil</a></div><div class="ttdeci">@ Accueil</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00051">basketgame.h:51</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992ba869f730674e4afb6dca5b64629052318"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba869f730674e4afb6dca5b64629052318">Basketgame::Manche</a></div><div class="ttdeci">@ Manche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00053">basketgame.h:53</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992babe1f48f065b3ab8e3ea995228642fbfa"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992babe1f48f065b3ab8e3ea995228642fbfa">Basketgame::NbEcrans</a></div><div class="ttdeci">@ NbEcrans</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00055">basketgame.h:54</a></div></div>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00092">92</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<div class="fragment"><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372">Accueil</a>,</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b">Partie</a>,</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;    };</div>
+<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b">Basketgame::Partie</a></div><div class="ttdeci">@ Partie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00095">basketgame.h:95</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372"><div class="ttname"><a href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba82414ef3bc8e3db924a60a0f1c8fb372">Basketgame::Accueil</a></div><div class="ttdeci">@ Accueil</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00094">basketgame.h:94</a></div></div>
 </div><!-- fragment -->
 </div>
 </div>
@@ -262,30 +332,35 @@ Attributs privés</h2></td></tr>
   </dd>
 </dl>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00018">18</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;                                      :</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="class_q_main_window.html">QMainWindow</a>(parent), <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>(<span class="keyword">new</span> Ui::basketgame), <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>(<span class="keyword">new</span> QTime),</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>(<span class="keyword">new</span> QTime), <a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>(<span class="keyword">new</span> QTimer(<span class="keyword">this</span>)),</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>(<span class="keyword">new</span> QTimer), <a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a>(<span class="keyword">false</span>), <a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a>(<span class="keyword">false</span>),</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a>(<span class="keyword">true</span>)</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">initialiserIHM</a>();</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">initialiserEvenements</a>();</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;}</div>
-<div class="ttc" id="aclass_basketgame_html_a007477859ecae4f81893844529779377"><div class="ttname"><a href="class_basketgame.html#a007477859ecae4f81893844529779377">Basketgame::tempsManche</a></div><div class="ttdeci">QTime * tempsManche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00079">basketgame.h:79</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a3060a17f889349e8938b15c8f4d554ac"><div class="ttname"><a href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">Basketgame::timerManche</a></div><div class="ttdeci">QTimer * timerManche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00081">basketgame.h:81</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a31c237f1b941868110443317cbf62a4c"><div class="ttname"><a href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">Basketgame::etatPartie</a></div><div class="ttdeci">bool etatPartie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00082">basketgame.h:82</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a3e78da62f866f385639abcb1cf692822"><div class="ttname"><a href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">Basketgame::couleurEquipe</a></div><div class="ttdeci">bool couleurEquipe</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00084">basketgame.h:84</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a40a81e680374b26ef1e78502c3db1ac4"><div class="ttname"><a href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">Basketgame::timerPartie</a></div><div class="ttdeci">QTimer * timerPartie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00080">basketgame.h:80</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a53cf93923d37ece1777b3f2060341c83"><div class="ttname"><a href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">Basketgame::ui</a></div><div class="ttdeci">Ui::basketgame * ui</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00077">basketgame.h:77</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a7b137516b3adf738ac6e0858968b8676"><div class="ttname"><a href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">Basketgame::tempsPartie</a></div><div class="ttdeci">QTime * tempsPartie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00078">basketgame.h:78</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_ab2eb5b6fa669ec43062e461867438ed0"><div class="ttname"><a href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">Basketgame::initialiserEvenements</a></div><div class="ttdeci">void initialiserEvenements()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00204">basketgame.cpp:204</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_abd7e3454a97fc33e8729bf7173187d82"><div class="ttname"><a href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">Basketgame::etatManche</a></div><div class="ttdeci">bool etatManche</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00083">basketgame.h:83</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_ac6956c6eb30ad123cd5044cb7ef7e01d"><div class="ttname"><a href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">Basketgame::initialiserIHM</a></div><div class="ttdeci">void initialiserIHM()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00187">basketgame.cpp:187</a></div></div>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00023">23</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                                      :</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <a class="code" href="class_q_main_window.html">QMainWindow</a>(parent), <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>(<span class="keyword">new</span> Ui::basketgame), <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>(<span class="keyword">new</span> <a class="code" href="class_plateau.html">Plateau</a>(<span class="keyword">this</span>)),</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>(<span class="keyword">nullptr</span>), <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>(<span class="keyword">new</span> QTimer), <a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a>(<span class="keyword">false</span>),</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">nbPionsJoues</a>(0), <a class="code" href="class_basketgame.html#a6bd501da8b8a3352cbd635070811b8d9">scoreEquipeRouge</a>(0), <a class="code" href="class_basketgame.html#affdd072af603492f65f42b26a58dcf44">scoreEquipeJaune</a>(0)</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;{</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">initialiserIHM</a>();</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">initialiserEvenements</a>();</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="preprocessor">#ifdef TEST_BASKETGAME</span></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    <a class="code" href="class_basketgame.html#aeaaed3c71b363b79315a89903223ed0c">attribuerRaccourcisClavier</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_a15e23eff1679f3e938027ad8e0a25331"><div class="ttname"><a href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">Basketgame::tempsTour</a></div><div class="ttdeci">QTime * tempsTour</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00130">basketgame.h:130</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a47886f01dc59ecd0d2cbced3cdd88694"><div class="ttname"><a href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">Basketgame::minuteurTour</a></div><div class="ttdeci">QTimer * minuteurTour</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00131">basketgame.h:131</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a50690bd0f330558a9a6e7222d4f501f0"><div class="ttname"><a href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">Basketgame::plateau</a></div><div class="ttdeci">Plateau * plateau</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00129">basketgame.h:129</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a53cf93923d37ece1777b3f2060341c83"><div class="ttname"><a href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">Basketgame::ui</a></div><div class="ttdeci">Ui::basketgame * ui</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00128">basketgame.h:128</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a6bd501da8b8a3352cbd635070811b8d9"><div class="ttname"><a href="class_basketgame.html#a6bd501da8b8a3352cbd635070811b8d9">Basketgame::scoreEquipeRouge</a></div><div class="ttdeci">int scoreEquipeRouge</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00134">basketgame.h:134</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a84996ba0f38512044c0d221b1a6c0e83"><div class="ttname"><a href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">Basketgame::nbPionsJoues</a></div><div class="ttdeci">int nbPionsJoues</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00133">basketgame.h:133</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ab2eb5b6fa669ec43062e461867438ed0"><div class="ttname"><a href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">Basketgame::initialiserEvenements</a></div><div class="ttdeci">void initialiserEvenements()</div><div class="ttdoc">méthode pour initialiser les évenements et action du programme</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00224">basketgame.cpp:224</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ab60c97fd56a74ca1590427cf8ca22ab0"><div class="ttname"><a href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">Basketgame::etatSeance</a></div><div class="ttdeci">bool etatSeance</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00132">basketgame.h:132</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ac6956c6eb30ad123cd5044cb7ef7e01d"><div class="ttname"><a href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">Basketgame::initialiserIHM</a></div><div class="ttdeci">void initialiserIHM()</div><div class="ttdoc">méthode pour initialiser l'IHM</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00204">basketgame.cpp:204</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_aeaaed3c71b363b79315a89903223ed0c"><div class="ttname"><a href="class_basketgame.html#aeaaed3c71b363b79315a89903223ed0c">Basketgame::attribuerRaccourcisClavier</a></div><div class="ttdeci">void attribuerRaccourcisClavier()</div><div class="ttdoc">méthode pour créer les raccourcis clavier (pour les tests seulement)</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00384">basketgame.cpp:384</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_affdd072af603492f65f42b26a58dcf44"><div class="ttname"><a href="class_basketgame.html#affdd072af603492f65f42b26a58dcf44">Basketgame::scoreEquipeJaune</a></div><div class="ttdeci">int scoreEquipeJaune</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00135">basketgame.h:135</a></div></div>
+<div class="ttc" id="aclass_plateau_html"><div class="ttname"><a href="class_plateau.html">Plateau</a></div><div class="ttdef"><b>Definition:</b> <a href="plateau_8h_source.html#l00044">plateau.h:45</a></div></div>
 <div class="ttc" id="aclass_q_main_window_html"><div class="ttname"><a href="class_q_main_window.html">QMainWindow</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00187">initialiserIHM()</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00384">attribuerRaccourcisClavier()</a>, <a class="el" href="basketgame_8cpp_source.html#l00224">initialiserEvenements()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserIHM()</a>.</p>
 
 </div>
 </div>
@@ -307,13 +382,13 @@ Attributs privés</h2></td></tr>
 <p>Destructeur de la classe <a class="el" href="class_basketgame.html" title="La GUI de l&#39;application Basketgame.">Basketgame</a>. </p>
 <p>Libère les ressources de l'application </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00035">35</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00043">43</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    <span class="keyword">delete</span> <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>;</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
 
 </div>
 </div>
@@ -344,14 +419,14 @@ Attributs privés</h2></td></tr>
 
 <p>Selectionne la fenêtre et l'affiche. </p>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00045">45</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;{</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;ecrans-&gt;setCurrentIndex(ecran);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00124">124</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div>
+<div class="line"><a name="l00126"></a><span class="lineno">  126</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;ecrans-&gt;setCurrentIndex(ecran);</div>
+<div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00050">afficherEcranAcceuil()</a>, <a class="el" href="basketgame_8cpp_source.html#l00064">afficherEcranManche()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00055">afficherEcranPartie()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00133">afficherEcranAcceuil()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00143">afficherEcranPartie()</a>.</p>
 
 </div>
 </div>
@@ -378,47 +453,18 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00050">50</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;{</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Accueil);</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;}</div>
-<div class="ttc" id="aclass_basketgame_html_aa5f62f45e027643d8de2e8b31dc362ad"><div class="ttname"><a href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">Basketgame::afficherEcran</a></div><div class="ttdeci">void afficherEcran(Basketgame::Ecran ecran)</div><div class="ttdoc">Selectionne la fenêtre et l'affiche.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00045">basketgame.cpp:45</a></div></div>
+<p>Affiche la fenêtre d'accueil. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00133">133</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00134"></a><span class="lineno">  134</span>&#160;{</div>
+<div class="line"><a name="l00135"></a><span class="lineno">  135</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Accueil);</div>
+<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_aa5f62f45e027643d8de2e8b31dc362ad"><div class="ttname"><a href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">Basketgame::afficherEcran</a></div><div class="ttdeci">void afficherEcran(Basketgame::Ecran ecran)</div><div class="ttdoc">Selectionne la fenêtre et l'affiche.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00124">basketgame.cpp:124</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00045">afficherEcran()</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00124">afficherEcran()</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00187">initialiserIHM()</a>.</p>
-
-</div>
-</div>
-<a id="a5c590c8491e91a60bd576512c95954f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a5c590c8491e91a60bd576512c95954f1">&#9670;&nbsp;</a></span>afficherEcranManche</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Basketgame::afficherEcranManche </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00064">64</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;{</div>
-<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Manche);</div>
-<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;}</div>
-</div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00045">afficherEcran()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserIHM()</a>.</p>
 
 </div>
 </div>
@@ -445,89 +491,22 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00055">55</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;{</div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Partie);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;}</div>
+<p>Affiche la fenêtre de partie. </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00143">143</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;{</div>
+<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    <a class="code" href="class_basketgame.html#aa5f62f45e027643d8de2e8b31dc362ad">afficherEcran</a>(Basketgame::Ecran::Partie);</div>
+<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00045">afficherEcran()</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00124">afficherEcran()</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
-
-</div>
-</div>
-<a id="a9d66093f2587ae86a850c5bc33673362"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9d66093f2587ae86a850c5bc33673362">&#9670;&nbsp;</a></span>arreterManche()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Basketgame::arreterManche </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000002">A faire:</a></b></dt><dd>Gérer la fin d'une manche </dd></dl>
-
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00124">124</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00125"></a><span class="lineno">  125</span>&#160;{</div>
-<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160;    <a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<span class="stringliteral">&quot;00:00:00&quot;</span>);</div>
-<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00132"></a><span class="lineno">  132</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00133"></a><span class="lineno">  133</span>&#160;}</div>
-</div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00083">etatManche</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
-
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00108">arreterPartie()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00384">attribuerRaccourcisClavier()</a>.</p>
 
 </div>
 </div>
-<a id="ae3fb850302fe7d2452570a9aa96f8b66"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ae3fb850302fe7d2452570a9aa96f8b66">&#9670;&nbsp;</a></span>arreterPartie()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Basketgame::arreterPartie </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<dl class="todo"><dt><b><a class="el" href="todo.html#_todo000001">A faire:</a></b></dt><dd>Gérer la fin d'une partie </dd></dl>
-
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00108">108</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;{</div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;    <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;stop();</div>
-<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;    <a class="code" href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">arreterManche</a>();</div>
-<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160; </div>
-<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;    <a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>-&gt;stop();</div>
-<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: white; color: black;&quot;</span>);</div>
-<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setText(<span class="stringliteral">&quot;FIN DE LA PARTIE&quot;</span>);</div>
-<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00121"></a><span class="lineno">  121</span>&#160;    <a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00122"></a><span class="lineno">  122</span>&#160;}</div>
-<div class="ttc" id="aclass_basketgame_html_a9d66093f2587ae86a850c5bc33673362"><div class="ttname"><a href="class_basketgame.html#a9d66093f2587ae86a850c5bc33673362">Basketgame::arreterManche</a></div><div class="ttdeci">void arreterManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00124">basketgame.cpp:124</a></div></div>
-</div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00124">arreterManche()</a>, <a class="el" href="basketgame_8h_source.html#l00082">etatPartie</a>, <a class="el" href="basketgame_8h_source.html#l00081">timerManche</a>, <a class="el" href="basketgame_8h_source.html#l00080">timerPartie</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
-
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00135">chronometrerPartie()</a>.</p>
-
-</div>
-</div>
-<a id="a921c5c575c0bf9a78d0baeb435f8bd53"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a921c5c575c0bf9a78d0baeb435f8bd53">&#9670;&nbsp;</a></span>chronometrerManche</h2>
+<a id="ad8a772072cb69114275d464d668bb95d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad8a772072cb69114275d464d668bb95d">&#9670;&nbsp;</a></span>afficherPlateau()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -536,7 +515,304 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Basketgame::chronometrerManche </td>
+          <td class="memname">void Basketgame::afficherPlateau </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour afficher le plateau de puissance4 </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00271">271</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00272"></a><span class="lineno">  272</span>&#160;{</div>
+<div class="line"><a name="l00273"></a><span class="lineno">  273</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span> &lt;&lt; <a class="code" href="basketgame_8h.html#a32c741ca954b6e9b14bc102fd9f3e415">PLATEAU_7</a> &lt;&lt; <span class="stringliteral">&quot;\&quot;&quot;</span>;</div>
+<div class="line"><a name="l00274"></a><span class="lineno">  274</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationPlateau-&gt;setPixmap(QPixmap(<a class="code" href="basketgame_8h.html#a32c741ca954b6e9b14bc102fd9f3e415">PLATEAU_7</a>));</div>
+<div class="line"><a name="l00275"></a><span class="lineno">  275</span>&#160;}</div>
+<div class="ttc" id="abasketgame_8h_html_a32c741ca954b6e9b14bc102fd9f3e415"><div class="ttname"><a href="basketgame_8h.html#a32c741ca954b6e9b14bc102fd9f3e415">PLATEAU_7</a></div><div class="ttdeci">#define PLATEAU_7</div><div class="ttdoc">Définit l'image d'un plateau à 7 colonnes.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00071">basketgame.h:71</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00071">PLATEAU_7</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00090">demarrerPartie()</a>.</p>
+
+</div>
+</div>
+<a id="a6dbae5082d36a03eac6d1264c7b43c98"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6dbae5082d36a03eac6d1264c7b43c98">&#9670;&nbsp;</a></span>afficherScoreEquipe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::afficherScoreEquipe </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour afficher le nombre de paniers pour chaque équipe </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00350">350</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00351"></a><span class="lineno">  351</span>&#160;{</div>
+<div class="line"><a name="l00352"></a><span class="lineno">  352</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">estEquipeRouge</a>())</div>
+<div class="line"><a name="l00353"></a><span class="lineno">  353</span>&#160;    {</div>
+<div class="line"><a name="l00354"></a><span class="lineno">  354</span>&#160;        <a class="code" href="class_basketgame.html#a6bd501da8b8a3352cbd635070811b8d9">scoreEquipeRouge</a>++;</div>
+<div class="line"><a name="l00355"></a><span class="lineno">  355</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;affichageTotalPanierE1-&gt;display(QString::number(<a class="code" href="class_basketgame.html#a6bd501da8b8a3352cbd635070811b8d9">scoreEquipeRouge</a>));</div>
+<div class="line"><a name="l00356"></a><span class="lineno">  356</span>&#160;    }</div>
+<div class="line"><a name="l00357"></a><span class="lineno">  357</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00358"></a><span class="lineno">  358</span>&#160;    {</div>
+<div class="line"><a name="l00359"></a><span class="lineno">  359</span>&#160;        <a class="code" href="class_basketgame.html#affdd072af603492f65f42b26a58dcf44">scoreEquipeJaune</a>++;</div>
+<div class="line"><a name="l00360"></a><span class="lineno">  360</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;affichageTotalPanierE2-&gt;display(QString::number(<a class="code" href="class_basketgame.html#affdd072af603492f65f42b26a58dcf44">scoreEquipeJaune</a>));</div>
+<div class="line"><a name="l00361"></a><span class="lineno">  361</span>&#160;    }</div>
+<div class="line"><a name="l00362"></a><span class="lineno">  362</span>&#160;    <a class="code" href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">nbPionsJoues</a>++;</div>
+<div class="line"><a name="l00363"></a><span class="lineno">  363</span>&#160;}</div>
+<div class="ttc" id="aclass_plateau_html_ab2bb1b5ce203908966bb1ae52a26108e"><div class="ttname"><a href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">Plateau::estEquipeRouge</a></div><div class="ttdeci">bool estEquipeRouge() const</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8cpp_source.html#l00095">plateau.cpp:95</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="plateau_8cpp_source.html#l00095">Plateau::estEquipeRouge()</a>, <a class="el" href="basketgame_8h_source.html#l00133">nbPionsJoues</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, <a class="el" href="basketgame_8h_source.html#l00135">scoreEquipeJaune</a>, <a class="el" href="basketgame_8h_source.html#l00134">scoreEquipeRouge</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00107">jouerPion()</a>.</p>
+
+</div>
+</div>
+<a id="aaf63be6bc46030ee0862c36105ae7144"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf63be6bc46030ee0862c36105ae7144">&#9670;&nbsp;</a></span>afficherTourEquipe()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::afficherTourEquipe </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour afficher quelle équipe est train de jouer </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00317">317</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00318"></a><span class="lineno">  318</span>&#160;{</div>
+<div class="line"><a name="l00319"></a><span class="lineno">  319</span>&#160;    <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;stop();</div>
+<div class="line"><a name="l00320"></a><span class="lineno">  320</span>&#160;    <a class="code" href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">initialiserDureeTour</a>();</div>
+<div class="line"><a name="l00321"></a><span class="lineno">  321</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsTour-&gt;setText(<a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00322"></a><span class="lineno">  322</span>&#160; </div>
+<div class="line"><a name="l00323"></a><span class="lineno">  323</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a>)</div>
+<div class="line"><a name="l00324"></a><span class="lineno">  324</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00325"></a><span class="lineno">  325</span>&#160; </div>
+<div class="line"><a name="l00326"></a><span class="lineno">  326</span>&#160;    <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
+<div class="line"><a name="l00327"></a><span class="lineno">  327</span>&#160; </div>
+<div class="line"><a name="l00328"></a><span class="lineno">  328</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">estEquipeRouge</a>())</div>
+<div class="line"><a name="l00329"></a><span class="lineno">  329</span>&#160;    {</div>
+<div class="line"><a name="l00330"></a><span class="lineno">  330</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeRouge-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00331"></a><span class="lineno">  331</span>&#160;          <span class="stringliteral">&quot;background-color: transparent; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00332"></a><span class="lineno">  332</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeJaune-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00333"></a><span class="lineno">  333</span>&#160;          <span class="stringliteral">&quot;background-color: yellow; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00334"></a><span class="lineno">  334</span>&#160;        <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#a7232ee9eae432dd40aa8e84bd8de9a73">setTourEquipe</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00335"></a><span class="lineno">  335</span>&#160;    }</div>
+<div class="line"><a name="l00336"></a><span class="lineno">  336</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00337"></a><span class="lineno">  337</span>&#160;    {</div>
+<div class="line"><a name="l00338"></a><span class="lineno">  338</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeJaune-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00339"></a><span class="lineno">  339</span>&#160;          <span class="stringliteral">&quot;background-color: transparent; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00340"></a><span class="lineno">  340</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeRouge-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00341"></a><span class="lineno">  341</span>&#160;          <span class="stringliteral">&quot;background-color: red; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00342"></a><span class="lineno">  342</span>&#160;        <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#a7232ee9eae432dd40aa8e84bd8de9a73">setTourEquipe</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00343"></a><span class="lineno">  343</span>&#160;    }</div>
+<div class="line"><a name="l00344"></a><span class="lineno">  344</span>&#160;}</div>
+<div class="ttc" id="abasketgame_8h_html_abf764b1c2fbaa637bd0b1b511eedc81e"><div class="ttname"><a href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a></div><div class="ttdeci">#define TIC_HORLOGE</div><div class="ttdoc">Définit le tic d'horloge à 1s.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00029">basketgame.h:29</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a61bdc0568a6ba55f7d1085f46a7a0ce6"><div class="ttname"><a href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">Basketgame::initialiserDureeTour</a></div><div class="ttdeci">void initialiserDureeTour()</div><div class="ttdoc">méthode pour initialiser la durée d'un tour pour une équipe</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00246">basketgame.cpp:246</a></div></div>
+<div class="ttc" id="aclass_plateau_html_a7232ee9eae432dd40aa8e84bd8de9a73"><div class="ttname"><a href="class_plateau.html#a7232ee9eae432dd40aa8e84bd8de9a73">Plateau::setTourEquipe</a></div><div class="ttdeci">void setTourEquipe(bool estEquipeRouge)</div><div class="ttdoc">fixe l'équipe qui doit jouer</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8cpp_source.html#l00104">plateau.cpp:104</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="plateau_8cpp_source.html#l00095">Plateau::estEquipeRouge()</a>, <a class="el" href="basketgame_8h_source.html#l00132">etatSeance</a>, <a class="el" href="basketgame_8cpp_source.html#l00246">initialiserDureeTour()</a>, <a class="el" href="basketgame_8h_source.html#l00131">minuteurTour</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, <a class="el" href="plateau_8cpp_source.html#l00104">Plateau::setTourEquipe()</a>, <a class="el" href="basketgame_8h_source.html#l00130">tempsTour</a>, <a class="el" href="basketgame_8h_source.html#l00029">TIC_HORLOGE</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00107">jouerPion()</a>.</p>
+
+</div>
+</div>
+<a id="a080826a6ecab39c5f0195be2d9226820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a080826a6ecab39c5f0195be2d9226820">&#9670;&nbsp;</a></span>afficherUnJeton()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::afficherUnJeton </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>ligne</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>colonne</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour afficher les jetons dans le plateau de puissance4 </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00281">281</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00282"></a><span class="lineno">  282</span>&#160;{</div>
+<div class="line"><a name="l00283"></a><span class="lineno">  283</span>&#160;    <span class="keywordflow">if</span>(ligne &lt; 0 || ligne &gt;= <a class="code" href="plateau_8h.html#ad8edf09d2d914fdd5eae545ee2bd6ce9">NB_LIGNES</a>)</div>
+<div class="line"><a name="l00284"></a><span class="lineno">  284</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00285"></a><span class="lineno">  285</span>&#160;    <span class="keywordflow">if</span>(colonne &lt; 0 || colonne &gt;= <a class="code" href="plateau_8h.html#abfa179ca04bf5c427a56beb8b26c0272">NB_COLONNES</a>)</div>
+<div class="line"><a name="l00286"></a><span class="lineno">  286</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00287"></a><span class="lineno">  287</span>&#160; </div>
+<div class="line"><a name="l00288"></a><span class="lineno">  288</span>&#160;    QImage   jetonRouge(<a class="code" href="basketgame_8h.html#a4e07d0ad6c437ce7220b66b4807a01b9">JETON_ROUGE</a>);</div>
+<div class="line"><a name="l00289"></a><span class="lineno">  289</span>&#160;    QImage   jetonJaune(<a class="code" href="basketgame_8h.html#a431d5a1bef64ec8bcdf7d87d5a3b6858">JETON_JAUNE</a>);</div>
+<div class="line"><a name="l00290"></a><span class="lineno">  290</span>&#160;    QPixmap  puissance4 = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationPlateau-&gt;pixmap()-&gt;copy();</div>
+<div class="line"><a name="l00291"></a><span class="lineno">  291</span>&#160;    QPainter p(&amp;puissance4);</div>
+<div class="line"><a name="l00292"></a><span class="lineno">  292</span>&#160; </div>
+<div class="line"><a name="l00293"></a><span class="lineno">  293</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;rouge&quot;</span> &lt;&lt; <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">estEquipeRouge</a>() &lt;&lt; <span class="stringliteral">&quot;ligne&quot;</span></div>
+<div class="line"><a name="l00294"></a><span class="lineno">  294</span>&#160;             &lt;&lt; ligne &lt;&lt; <span class="stringliteral">&quot;colonne&quot;</span> &lt;&lt; colonne;</div>
+<div class="line"><a name="l00295"></a><span class="lineno">  295</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">estEquipeRouge</a>())</div>
+<div class="line"><a name="l00296"></a><span class="lineno">  296</span>&#160;    {</div>
+<div class="line"><a name="l00297"></a><span class="lineno">  297</span>&#160;        p.drawImage(QPoint(<a class="code" href="basketgame_8h.html#aa8fa59a015c6f27eb6981f1edc321c02">DEPLACEMENT_X</a> + (colonne * <a class="code" href="basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5">TAILLE_JETON</a>),</div>
+<div class="line"><a name="l00298"></a><span class="lineno">  298</span>&#160;                           <a class="code" href="basketgame_8h.html#a10ef75aae56acfeb31de4613036199c9">DEPLACEMENT_Y</a> - (ligne * <a class="code" href="basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5">TAILLE_JETON</a>)),</div>
+<div class="line"><a name="l00299"></a><span class="lineno">  299</span>&#160;                    jetonRouge);</div>
+<div class="line"><a name="l00300"></a><span class="lineno">  300</span>&#160;        p.end();</div>
+<div class="line"><a name="l00301"></a><span class="lineno">  301</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationPlateau-&gt;setPixmap(puissance4);</div>
+<div class="line"><a name="l00302"></a><span class="lineno">  302</span>&#160;    }</div>
+<div class="line"><a name="l00303"></a><span class="lineno">  303</span>&#160;    <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00304"></a><span class="lineno">  304</span>&#160;    {</div>
+<div class="line"><a name="l00305"></a><span class="lineno">  305</span>&#160;        p.drawImage(QPoint(<a class="code" href="basketgame_8h.html#aa8fa59a015c6f27eb6981f1edc321c02">DEPLACEMENT_X</a> + (colonne * <a class="code" href="basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5">TAILLE_JETON</a>),</div>
+<div class="line"><a name="l00306"></a><span class="lineno">  306</span>&#160;                           <a class="code" href="basketgame_8h.html#a10ef75aae56acfeb31de4613036199c9">DEPLACEMENT_Y</a> - (ligne * <a class="code" href="basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5">TAILLE_JETON</a>)),</div>
+<div class="line"><a name="l00307"></a><span class="lineno">  307</span>&#160;                    jetonJaune);</div>
+<div class="line"><a name="l00308"></a><span class="lineno">  308</span>&#160;        p.end();</div>
+<div class="line"><a name="l00309"></a><span class="lineno">  309</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationPlateau-&gt;setPixmap(puissance4);</div>
+<div class="line"><a name="l00310"></a><span class="lineno">  310</span>&#160;    }</div>
+<div class="line"><a name="l00311"></a><span class="lineno">  311</span>&#160;}</div>
+<div class="ttc" id="abasketgame_8h_html_a10ef75aae56acfeb31de4613036199c9"><div class="ttname"><a href="basketgame_8h.html#a10ef75aae56acfeb31de4613036199c9">DEPLACEMENT_Y</a></div><div class="ttdeci">#define DEPLACEMENT_Y</div><div class="ttdoc">Définit la constante de déplacement en y.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00053">basketgame.h:53</a></div></div>
+<div class="ttc" id="abasketgame_8h_html_a431d5a1bef64ec8bcdf7d87d5a3b6858"><div class="ttname"><a href="basketgame_8h.html#a431d5a1bef64ec8bcdf7d87d5a3b6858">JETON_JAUNE</a></div><div class="ttdeci">#define JETON_JAUNE</div><div class="ttdoc">Définit l'image d'un jeton jaune.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00065">basketgame.h:65</a></div></div>
+<div class="ttc" id="abasketgame_8h_html_a4e07d0ad6c437ce7220b66b4807a01b9"><div class="ttname"><a href="basketgame_8h.html#a4e07d0ad6c437ce7220b66b4807a01b9">JETON_ROUGE</a></div><div class="ttdeci">#define JETON_ROUGE</div><div class="ttdoc">Définit l'image d'un jeton rouge.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00059">basketgame.h:59</a></div></div>
+<div class="ttc" id="abasketgame_8h_html_aa8fa59a015c6f27eb6981f1edc321c02"><div class="ttname"><a href="basketgame_8h.html#aa8fa59a015c6f27eb6981f1edc321c02">DEPLACEMENT_X</a></div><div class="ttdeci">#define DEPLACEMENT_X</div><div class="ttdoc">Définit la constante de déplacement en x.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00047">basketgame.h:47</a></div></div>
+<div class="ttc" id="abasketgame_8h_html_aff8fb0024e243d1a70033fc6455bc4b5"><div class="ttname"><a href="basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5">TAILLE_JETON</a></div><div class="ttdeci">#define TAILLE_JETON</div><div class="ttdoc">Définit la taille de l'affichage du jeton.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00041">basketgame.h:41</a></div></div>
+<div class="ttc" id="aplateau_8h_html_abfa179ca04bf5c427a56beb8b26c0272"><div class="ttname"><a href="plateau_8h.html#abfa179ca04bf5c427a56beb8b26c0272">NB_COLONNES</a></div><div class="ttdeci">#define NB_COLONNES</div><div class="ttdoc">Définit le nombre de colonne par défaut.</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8h_source.html#l00030">plateau.h:30</a></div></div>
+<div class="ttc" id="aplateau_8h_html_ad8edf09d2d914fdd5eae545ee2bd6ce9"><div class="ttname"><a href="plateau_8h.html#ad8edf09d2d914fdd5eae545ee2bd6ce9">NB_LIGNES</a></div><div class="ttdeci">#define NB_LIGNES</div><div class="ttdoc">Définit le nombre de ligne par défaut.</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8h_source.html#l00036">plateau.h:36</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00047">DEPLACEMENT_X</a>, <a class="el" href="basketgame_8h_source.html#l00053">DEPLACEMENT_Y</a>, <a class="el" href="plateau_8cpp_source.html#l00095">Plateau::estEquipeRouge()</a>, <a class="el" href="basketgame_8h_source.html#l00065">JETON_JAUNE</a>, <a class="el" href="basketgame_8h_source.html#l00059">JETON_ROUGE</a>, <a class="el" href="plateau_8h_source.html#l00030">NB_COLONNES</a>, <a class="el" href="plateau_8h_source.html#l00036">NB_LIGNES</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, <a class="el" href="basketgame_8h_source.html#l00041">TAILLE_JETON</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00107">jouerPion()</a>.</p>
+
+</div>
+</div>
+<a id="aeaaed3c71b363b79315a89903223ed0c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeaaed3c71b363b79315a89903223ed0c">&#9670;&nbsp;</a></span>attribuerRaccourcisClavier()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::attribuerRaccourcisClavier </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour créer les raccourcis clavier (pour les tests seulement) </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00384">384</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00385"></a><span class="lineno">  385</span>&#160;{</div>
+<div class="line"><a name="l00386"></a><span class="lineno">  386</span>&#160;    <span class="comment">// les touches pour &quot;jouer&quot; avec le clavier</span></div>
+<div class="line"><a name="l00387"></a><span class="lineno">  387</span>&#160;    QAction* quitter = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00388"></a><span class="lineno">  388</span>&#160;    quitter-&gt;setShortcut(QKeySequence(QKeySequence(Qt::Key_Q)));</div>
+<div class="line"><a name="l00389"></a><span class="lineno">  389</span>&#160;    addAction(quitter);</div>
+<div class="line"><a name="l00390"></a><span class="lineno">  390</span>&#160;    connect(quitter, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#ad7d5a00947c0a4c083d9740c275191bd">fermerApplication</a>()));</div>
+<div class="line"><a name="l00391"></a><span class="lineno">  391</span>&#160;    QAction* simulationConnexion = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00392"></a><span class="lineno">  392</span>&#160;    simulationConnexion-&gt;setShortcut(QKeySequence(Qt::Key_C));</div>
+<div class="line"><a name="l00393"></a><span class="lineno">  393</span>&#160;    addAction(simulationConnexion);</div>
+<div class="line"><a name="l00394"></a><span class="lineno">  394</span>&#160;    connect(simulationConnexion,</div>
+<div class="line"><a name="l00395"></a><span class="lineno">  395</span>&#160;            SIGNAL(triggered()),</div>
+<div class="line"><a name="l00396"></a><span class="lineno">  396</span>&#160;            <span class="keyword">this</span>,</div>
+<div class="line"><a name="l00397"></a><span class="lineno">  397</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">afficherEcranPartie</a>()));</div>
+<div class="line"><a name="l00398"></a><span class="lineno">  398</span>&#160;    QAction* demarrageSeance = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00399"></a><span class="lineno">  399</span>&#160;    demarrageSeance-&gt;setShortcut(QKeySequence(Qt::Key_S));</div>
+<div class="line"><a name="l00400"></a><span class="lineno">  400</span>&#160;    addAction(demarrageSeance);</div>
+<div class="line"><a name="l00401"></a><span class="lineno">  401</span>&#160;    connect(demarrageSeance, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#a7c7d9ad8e7b08dbdd5b3d60676349bca">demarrerSeance</a>()));</div>
+<div class="line"><a name="l00402"></a><span class="lineno">  402</span>&#160;    QAction* simulationPion = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00403"></a><span class="lineno">  403</span>&#160;    simulationPion-&gt;setShortcut(QKeySequence(Qt::Key_Space));</div>
+<div class="line"><a name="l00404"></a><span class="lineno">  404</span>&#160;    addAction(simulationPion);</div>
+<div class="line"><a name="l00405"></a><span class="lineno">  405</span>&#160;    connect(simulationPion, SIGNAL(triggered()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#a317fb5eaabf5974860cb00050407b070">simulerPion</a>()));</div>
+<div class="line"><a name="l00406"></a><span class="lineno">  406</span>&#160;<span class="preprocessor">#ifdef TEST_ALIGNEMENT</span></div>
+<div class="line"><a name="l00407"></a><span class="lineno">  407</span>&#160;    QAction* verificationPlateau = <span class="keyword">new</span> QAction(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00408"></a><span class="lineno">  408</span>&#160;    verificationPlateau-&gt;setShortcut(QKeySequence(Qt::Key_V));</div>
+<div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160;    addAction(verificationPlateau);</div>
+<div class="line"><a name="l00410"></a><span class="lineno">  410</span>&#160;    connect(verificationPlateau,</div>
+<div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;            SIGNAL(triggered()),</div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;            <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>,</div>
+<div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;            SLOT(testUnitaireVerifierPlateau()));</div>
+<div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_a13e139aa59ef9770253fa9e3d5ea3c5d"><div class="ttname"><a href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">Basketgame::afficherEcranPartie</a></div><div class="ttdeci">void afficherEcranPartie()</div><div class="ttdoc">Affiche la fenêtre de partie.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00143">basketgame.cpp:143</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a317fb5eaabf5974860cb00050407b070"><div class="ttname"><a href="class_basketgame.html#a317fb5eaabf5974860cb00050407b070">Basketgame::simulerPion</a></div><div class="ttdeci">void simulerPion()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00370">basketgame.cpp:370</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a7c7d9ad8e7b08dbdd5b3d60676349bca"><div class="ttname"><a href="class_basketgame.html#a7c7d9ad8e7b08dbdd5b3d60676349bca">Basketgame::demarrerSeance</a></div><div class="ttdeci">void demarrerSeance()</div><div class="ttdoc">méthode pour debuter une séance</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00053">basketgame.cpp:53</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ad7d5a00947c0a4c083d9740c275191bd"><div class="ttname"><a href="class_basketgame.html#ad7d5a00947c0a4c083d9740c275191bd">Basketgame::fermerApplication</a></div><div class="ttdeci">void fermerApplication()</div><div class="ttdoc">méthode pour fermer l'application</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00195">basketgame.cpp:195</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00143">afficherEcranPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00053">demarrerSeance()</a>, <a class="el" href="basketgame_8cpp_source.html#l00195">fermerApplication()</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, et <a class="el" href="basketgame_8cpp_source.html#l00370">simulerPion()</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00023">Basketgame()</a>.</p>
+
+</div>
+</div>
+<a id="ae4f7523300692fbc62ddd2ba3afea470"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae4f7523300692fbc62ddd2ba3afea470">&#9670;&nbsp;</a></span>chronometrerTour</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::chronometrerTour </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -548,49 +824,55 @@ Attributs privés</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>@fixme Vous confondez manche et tour !</p>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00151">151</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;{</div>
-<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160;    <span class="comment">// Voir aussi : QElapsedTimer</span></div>
-<div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;    QTime tempsEcoule = <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;addSecs(-1);</div>
-<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;setHMS(tempsEcoule.hour(),</div>
-<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;                        tempsEcoule.minute(),</div>
-<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;                        tempsEcoule.second());</div>
-<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsManche&quot;</span></div>
-<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;             &lt;&lt; <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
-<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">if</span>(*<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a> == QTime(0, 0))</div>
+<p>méthode pour chronometrer un tour de puissance4 </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00153">153</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00154"></a><span class="lineno">  154</span>&#160;{</div>
+<div class="line"><a name="l00155"></a><span class="lineno">  155</span>&#160;    <span class="comment">// Voir aussi : QElapsedTimer</span></div>
+<div class="line"><a name="l00156"></a><span class="lineno">  156</span>&#160;    QTime tempsEcoule = <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;addSecs(-1);</div>
+<div class="line"><a name="l00157"></a><span class="lineno">  157</span>&#160;    <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;setHMS(tempsEcoule.hour(),</div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;                      tempsEcoule.minute(),</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160;                      tempsEcoule.second());</div>
+<div class="line"><a name="l00160"></a><span class="lineno">  160</span>&#160;    <span class="comment">// qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; &quot;tempsTours&quot; &lt;&lt;</span></div>
+<div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;    <span class="comment">// tempsTours-&gt;toString(&quot;hh:mm:ss&quot;);</span></div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsTour-&gt;setText(<a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;    <span class="keywordflow">if</span>(*<a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a> == QTime(0, 0))</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160;    {</div>
-<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;stop();</div>
-<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        *<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a> = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;time();</div>
-<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
-<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;start(1000);</div>
-<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
-<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a> == <span class="keyword">true</span>)</div>
-<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        {</div>
-<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;            <a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a> = <span class="keyword">false</span>;</div>
-<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setStyleSheet(<span class="stringliteral">&quot;background-color: red; color: black;&quot;</span>);</div>
-<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setText(<span class="stringliteral">&quot;EQUIPE A&quot;</span>);</div>
-<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;        }</div>
-<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;        <span class="keywordflow">else</span></div>
-<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;        {</div>
-<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;            <a class="code" href="class_basketgame.html#a3e78da62f866f385639abcb1cf692822">couleurEquipe</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setStyleSheet(</div>
-<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;              <span class="stringliteral">&quot;background-color: yellow; color: black;&quot;</span>);</div>
-<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;UiEquipe-&gt;setText(<span class="stringliteral">&quot;EQUIPE B&quot;</span>);</div>
-<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;        }</div>
-<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;    }</div>
-<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;}</div>
+<div class="line"><a name="l00166"></a><span class="lineno">  166</span>&#160;        <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;stop();</div>
+<div class="line"><a name="l00167"></a><span class="lineno">  167</span>&#160;        <a class="code" href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">initialiserDureeTour</a>();</div>
+<div class="line"><a name="l00168"></a><span class="lineno">  168</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsTour-&gt;setText(<a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;        <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;estEquipeRouge&quot;</span></div>
+<div class="line"><a name="l00171"></a><span class="lineno">  171</span>&#160;                 &lt;&lt; <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">estEquipeRouge</a>();</div>
+<div class="line"><a name="l00172"></a><span class="lineno">  172</span>&#160;        <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">estEquipeRouge</a>())</div>
+<div class="line"><a name="l00173"></a><span class="lineno">  173</span>&#160;        {</div>
+<div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeRouge-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160;              <span class="stringliteral">&quot;background-color: transparent; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00176"></a><span class="lineno">  176</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeJaune-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00177"></a><span class="lineno">  177</span>&#160;              <span class="stringliteral">&quot;background-color: yellow; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00178"></a><span class="lineno">  178</span>&#160;            <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#a7232ee9eae432dd40aa8e84bd8de9a73">setTourEquipe</a>(<span class="keyword">false</span>);</div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;        }</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160;        <span class="keywordflow">else</span></div>
+<div class="line"><a name="l00181"></a><span class="lineno">  181</span>&#160;        {</div>
+<div class="line"><a name="l00182"></a><span class="lineno">  182</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeJaune-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00183"></a><span class="lineno">  183</span>&#160;              <span class="stringliteral">&quot;background-color: transparent; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00184"></a><span class="lineno">  184</span>&#160;            <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;labelVisualisationEquipeRouge-&gt;setStyleSheet(</div>
+<div class="line"><a name="l00185"></a><span class="lineno">  185</span>&#160;              <span class="stringliteral">&quot;background-color: red; color: black;&quot;</span>);</div>
+<div class="line"><a name="l00186"></a><span class="lineno">  186</span>&#160;            <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#a7232ee9eae432dd40aa8e84bd8de9a73">setTourEquipe</a>(<span class="keyword">true</span>);</div>
+<div class="line"><a name="l00187"></a><span class="lineno">  187</span>&#160;        }</div>
+<div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;    }</div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00084">couleurEquipe</a>, <a class="el" href="basketgame_8h_source.html#l00079">tempsManche</a>, <a class="el" href="basketgame_8h_source.html#l00081">timerManche</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p class="reference">Références <a class="el" href="plateau_8cpp_source.html#l00095">Plateau::estEquipeRouge()</a>, <a class="el" href="basketgame_8cpp_source.html#l00246">initialiserDureeTour()</a>, <a class="el" href="basketgame_8h_source.html#l00131">minuteurTour</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, <a class="el" href="plateau_8cpp_source.html#l00104">Plateau::setTourEquipe()</a>, <a class="el" href="basketgame_8h_source.html#l00130">tempsTour</a>, <a class="el" href="basketgame_8h_source.html#l00029">TIC_HORLOGE</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00224">initialiserEvenements()</a>.</p>
 
 </div>
 </div>
-<a id="ad316d12354c4bf7ef80cde37c4667a4d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ad316d12354c4bf7ef80cde37c4667a4d">&#9670;&nbsp;</a></span>chronometrerPartie</h2>
+<a id="ac4a3b678de222e623c4d8ca97133fc10"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4a3b678de222e623c4d8ca97133fc10">&#9670;&nbsp;</a></span>demarrerChronometrageTour()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -599,7 +881,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">void Basketgame::chronometrerPartie </td>
+          <td class="memname">void Basketgame::demarrerChronometrageTour </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -607,78 +889,23 @@ Attributs privés</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00135">135</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00136"></a><span class="lineno">  136</span>&#160;{</div>
-<div class="line"><a name="l00137"></a><span class="lineno">  137</span>&#160;    <span class="comment">// Voir aussi : QElapsedTimer</span></div>
-<div class="line"><a name="l00138"></a><span class="lineno">  138</span>&#160;    QTime tempsEcoule = <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;addSecs(-1);</div>
-<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;    <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;setHMS(tempsEcoule.hour(),</div>
-<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160;                        tempsEcoule.minute(),</div>
-<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;                        tempsEcoule.second());</div>
-<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsPartie&quot;</span></div>
-<div class="line"><a name="l00143"></a><span class="lineno">  143</span>&#160;             &lt;&lt; <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
-<div class="line"><a name="l00144"></a><span class="lineno">  144</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsPartie-&gt;setText(<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
-<div class="line"><a name="l00145"></a><span class="lineno">  145</span>&#160;    <span class="keywordflow">if</span>(*<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a> == QTime(0, 0))</div>
-<div class="line"><a name="l00146"></a><span class="lineno">  146</span>&#160;    {</div>
-<div class="line"><a name="l00147"></a><span class="lineno">  147</span>&#160;        <a class="code" href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">arreterPartie</a>();</div>
-<div class="line"><a name="l00148"></a><span class="lineno">  148</span>&#160;    }</div>
-<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;}</div>
-<div class="ttc" id="aclass_basketgame_html_ae3fb850302fe7d2452570a9aa96f8b66"><div class="ttname"><a href="class_basketgame.html#ae3fb850302fe7d2452570a9aa96f8b66">Basketgame::arreterPartie</a></div><div class="ttdeci">void arreterPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00108">basketgame.cpp:108</a></div></div>
+<p>méthode pour démarrer le chronométrage d'un tour </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00260">260</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00261"></a><span class="lineno">  261</span>&#160;{</div>
+<div class="line"><a name="l00262"></a><span class="lineno">  262</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsTour-&gt;setText(<a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
+<div class="line"><a name="l00263"></a><span class="lineno">  263</span>&#160;    qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsTour&quot;</span> &lt;&lt; <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
+<div class="line"><a name="l00264"></a><span class="lineno">  264</span>&#160;    <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
+<div class="line"><a name="l00265"></a><span class="lineno">  265</span>&#160;}</div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00108">arreterPartie()</a>, <a class="el" href="basketgame_8h_source.html#l00078">tempsPartie</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00131">minuteurTour</a>, <a class="el" href="basketgame_8h_source.html#l00130">tempsTour</a>, <a class="el" href="basketgame_8h_source.html#l00029">TIC_HORLOGE</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
-
-</div>
-</div>
-<a id="a4cdd1be3d55451237b8925d983e27a2e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4cdd1be3d55451237b8925d983e27a2e">&#9670;&nbsp;</a></span>demarrerManche</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Basketgame::demarrerManche </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>@fixme Si le temps est 00:00:00 ?</p>
-
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00089">89</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;{</div>
-<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a>)</div>
-<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    {</div>
-<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;        *<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a> = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;time();</div>
-<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsManche-&gt;setText(<a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
-<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsManche&quot;</span></div>
-<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                 &lt;&lt; <a class="code" href="class_basketgame.html#a007477859ecae4f81893844529779377">tempsManche</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
-<div class="line"><a name="l00101"></a><span class="lineno">  101</span>&#160;        <a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
-<div class="line"><a name="l00102"></a><span class="lineno">  102</span>&#160;        <a class="code" href="class_basketgame.html#abd7e3454a97fc33e8729bf7173187d82">etatManche</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;    }</div>
-<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160;}</div>
-<div class="ttc" id="abasketgame_8h_html_abf764b1c2fbaa637bd0b1b511eedc81e"><div class="ttname"><a href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a></div><div class="ttdeci">#define TIC_HORLOGE</div><div class="ttdoc">Définit le tic d'horloge à 1s.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00024">basketgame.h:24</a></div></div>
-</div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00083">etatManche</a>, <a class="el" href="basketgame_8h_source.html#l00079">tempsManche</a>, <a class="el" href="basketgame_8h_source.html#l00024">TIC_HORLOGE</a>, <a class="el" href="basketgame_8h_source.html#l00081">timerManche</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
-
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00090">demarrerPartie()</a>.</p>
 
 </div>
 </div>
@@ -700,32 +927,146 @@ Attributs privés</h2></td></tr>
       </table>
   </td>
   <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span><span class="mlabel">slot</span></span>  </td>
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
-<p>@fixme Si le temps est 00:00:00 ?</p>
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00069">69</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;{</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a>)</div>
-<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;    {</div>
-<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        *<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a> = <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;time();</div>
-<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsPartie-&gt;setEnabled(<span class="keyword">false</span>);</div>
-<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsPartie-&gt;setText(<a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>));</div>
-<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;tempsPartie&quot;</span></div>
-<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;                 &lt;&lt; <a class="code" href="class_basketgame.html#a7b137516b3adf738ac6e0858968b8676">tempsPartie</a>-&gt;toString(<span class="stringliteral">&quot;hh:mm:ss&quot;</span>);</div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>-&gt;start(<a class="code" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">TIC_HORLOGE</a>);</div>
-<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;        <a class="code" href="class_basketgame.html#a31c237f1b941868110443317cbf62a4c">etatPartie</a> = <span class="keyword">true</span>;</div>
-<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;editionTempsManche-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    }</div>
-<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;}</div>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00090">90</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;{</div>
+<div class="line"><a name="l00092"></a><span class="lineno">   92</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a>)</div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;    {</div>
+<div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO;</div>
+<div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;        <a class="code" href="class_basketgame.html#a195dee07c3590ffbf71cf721a1e5726f">initialiserPartie</a>();</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;        <a class="code" href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">initialiserDureeTour</a>();</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;        <a class="code" href="class_basketgame.html#ac4a3b678de222e623c4d8ca97133fc10">demarrerChronometrageTour</a>();</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;        <a class="code" href="class_basketgame.html#ad8a772072cb69114275d464d668bb95d">afficherPlateau</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;    }</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_a195dee07c3590ffbf71cf721a1e5726f"><div class="ttname"><a href="class_basketgame.html#a195dee07c3590ffbf71cf721a1e5726f">Basketgame::initialiserPartie</a></div><div class="ttdeci">void initialiserPartie()</div><div class="ttdoc">méthode pour initialiser les variables d'une partie</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00234">basketgame.cpp:234</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ac4a3b678de222e623c4d8ca97133fc10"><div class="ttname"><a href="class_basketgame.html#ac4a3b678de222e623c4d8ca97133fc10">Basketgame::demarrerChronometrageTour</a></div><div class="ttdeci">void demarrerChronometrageTour()</div><div class="ttdoc">méthode pour démarrer le chronométrage d'un tour</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00260">basketgame.cpp:260</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_ad8a772072cb69114275d464d668bb95d"><div class="ttname"><a href="class_basketgame.html#ad8a772072cb69114275d464d668bb95d">Basketgame::afficherPlateau</a></div><div class="ttdeci">void afficherPlateau()</div><div class="ttdoc">méthode pour afficher le plateau de puissance4</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00271">basketgame.cpp:271</a></div></div>
 </div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00082">etatPartie</a>, <a class="el" href="basketgame_8h_source.html#l00078">tempsPartie</a>, <a class="el" href="basketgame_8h_source.html#l00024">TIC_HORLOGE</a>, <a class="el" href="basketgame_8h_source.html#l00080">timerPartie</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00271">afficherPlateau()</a>, <a class="el" href="basketgame_8cpp_source.html#l00260">demarrerChronometrageTour()</a>, <a class="el" href="basketgame_8h_source.html#l00132">etatSeance</a>, <a class="el" href="basketgame_8cpp_source.html#l00246">initialiserDureeTour()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00234">initialiserPartie()</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00053">demarrerSeance()</a>.</p>
+
+</div>
+</div>
+<a id="a7c7d9ad8e7b08dbdd5b3d60676349bca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c7d9ad8e7b08dbdd5b3d60676349bca">&#9670;&nbsp;</a></span>demarrerSeance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::demarrerSeance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour debuter une séance </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00053">53</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;{</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a> &amp;&amp; <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;ecrans-&gt;currentIndex() == Basketgame::Ecran::Partie)</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    {</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;        <a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a> = <span class="keyword">true</span>;</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;        <a class="code" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">demarrerPartie</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    }</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_a1262edd607d26d1676d17bf86df17e71"><div class="ttname"><a href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">Basketgame::demarrerPartie</a></div><div class="ttdeci">void demarrerPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00090">basketgame.cpp:90</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00090">demarrerPartie()</a>, <a class="el" href="basketgame_8h_source.html#l00132">etatSeance</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00384">attribuerRaccourcisClavier()</a>.</p>
+
+</div>
+</div>
+<a id="ad7d5a00947c0a4c083d9740c275191bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad7d5a00947c0a4c083d9740c275191bd">&#9670;&nbsp;</a></span>fermerApplication</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::fermerApplication </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour fermer l'application </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00195">195</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;{</div>
+<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    this-&gt;close();</div>
+<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00384">attribuerRaccourcisClavier()</a>.</p>
+
+</div>
+</div>
+<a id="a61bdc0568a6ba55f7d1085f46a7a0ce6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61bdc0568a6ba55f7d1085f46a7a0ce6">&#9670;&nbsp;</a></span>initialiserDureeTour()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::initialiserDureeTour </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour initialiser la durée d'un tour pour une équipe </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00246">246</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00247"></a><span class="lineno">  247</span>&#160;{</div>
+<div class="line"><a name="l00248"></a><span class="lineno">  248</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a> != <span class="keyword">nullptr</span>)</div>
+<div class="line"><a name="l00249"></a><span class="lineno">  249</span>&#160;    {</div>
+<div class="line"><a name="l00250"></a><span class="lineno">  250</span>&#160;        <span class="keyword">delete</span> <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a>;</div>
+<div class="line"><a name="l00251"></a><span class="lineno">  251</span>&#160;        <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a> = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a name="l00252"></a><span class="lineno">  252</span>&#160;    }</div>
+<div class="line"><a name="l00253"></a><span class="lineno">  253</span>&#160;    <a class="code" href="class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331">tempsTour</a> = <span class="keyword">new</span> QTime(0, 0, <a class="code" href="basketgame_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d">TEMPS_TOUR</a>);</div>
+<div class="line"><a name="l00254"></a><span class="lineno">  254</span>&#160;}</div>
+<div class="ttc" id="abasketgame_8h_html_a51050f9df4b81a9e1bb5cb69a35a153d"><div class="ttname"><a href="basketgame_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d">TEMPS_TOUR</a></div><div class="ttdeci">#define TEMPS_TOUR</div><div class="ttdoc">Le temps pour un tour d'une équipe.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00035">basketgame.h:35</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00035">TEMPS_TOUR</a>, et <a class="el" href="basketgame_8h_source.html#l00130">tempsTour</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00153">chronometrerTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00090">demarrerPartie()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>.</p>
 
 </div>
 </div>
@@ -752,34 +1093,18 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00204">204</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;{</div>
-<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <span class="comment">// les boutons</span></div>
-<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160;    connect(<a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDemarrer,</div>
-<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;            SIGNAL(clicked(<span class="keywordtype">bool</span>)),</div>
-<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;            <span class="keyword">this</span>,</div>
-<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">afficherEcranPartie</a>()));</div>
-<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    connect(<a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutPartie,</div>
-<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;            SIGNAL(clicked(<span class="keywordtype">bool</span>)),</div>
-<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;            <span class="keyword">this</span>,</div>
-<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">demarrerPartie</a>()));</div>
-<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    connect(<a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDebutManche,</div>
-<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;            SIGNAL(clicked(<span class="keywordtype">bool</span>)),</div>
-<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;            <span class="keyword">this</span>,</div>
-<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;            SLOT(<a class="code" href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">demarrerManche</a>()));</div>
-<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;    <span class="comment">// les minuteurs</span></div>
-<div class="line"><a name="l00220"></a><span class="lineno">  220</span>&#160;    connect(<a class="code" href="class_basketgame.html#a40a81e680374b26ef1e78502c3db1ac4">timerPartie</a>, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">chronometrerPartie</a>()));</div>
-<div class="line"><a name="l00221"></a><span class="lineno">  221</span>&#160;    connect(<a class="code" href="class_basketgame.html#a3060a17f889349e8938b15c8f4d554ac">timerManche</a>, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">chronometrerManche</a>()));</div>
-<div class="line"><a name="l00222"></a><span class="lineno">  222</span>&#160;}</div>
-<div class="ttc" id="aclass_basketgame_html_a1262edd607d26d1676d17bf86df17e71"><div class="ttname"><a href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">Basketgame::demarrerPartie</a></div><div class="ttdeci">void demarrerPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00069">basketgame.cpp:69</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a13e139aa59ef9770253fa9e3d5ea3c5d"><div class="ttname"><a href="class_basketgame.html#a13e139aa59ef9770253fa9e3d5ea3c5d">Basketgame::afficherEcranPartie</a></div><div class="ttdeci">void afficherEcranPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00055">basketgame.cpp:55</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a4cdd1be3d55451237b8925d983e27a2e"><div class="ttname"><a href="class_basketgame.html#a4cdd1be3d55451237b8925d983e27a2e">Basketgame::demarrerManche</a></div><div class="ttdeci">void demarrerManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00089">basketgame.cpp:89</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_a921c5c575c0bf9a78d0baeb435f8bd53"><div class="ttname"><a href="class_basketgame.html#a921c5c575c0bf9a78d0baeb435f8bd53">Basketgame::chronometrerManche</a></div><div class="ttdeci">void chronometrerManche()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00151">basketgame.cpp:151</a></div></div>
-<div class="ttc" id="aclass_basketgame_html_ad316d12354c4bf7ef80cde37c4667a4d"><div class="ttname"><a href="class_basketgame.html#ad316d12354c4bf7ef80cde37c4667a4d">Basketgame::chronometrerPartie</a></div><div class="ttdeci">void chronometrerPartie()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00135">basketgame.cpp:135</a></div></div>
-</div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00055">afficherEcranPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00151">chronometrerManche()</a>, <a class="el" href="basketgame_8cpp_source.html#l00135">chronometrerPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00089">demarrerManche()</a>, <a class="el" href="basketgame_8cpp_source.html#l00069">demarrerPartie()</a>, <a class="el" href="basketgame_8h_source.html#l00081">timerManche</a>, <a class="el" href="basketgame_8h_source.html#l00080">timerPartie</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p>méthode pour initialiser les évenements et action du programme </p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00018">Basketgame()</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00224">224</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00225"></a><span class="lineno">  225</span>&#160;{</div>
+<div class="line"><a name="l00226"></a><span class="lineno">  226</span>&#160;    <span class="comment">// le minuteur</span></div>
+<div class="line"><a name="l00227"></a><span class="lineno">  227</span>&#160;    connect(<a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>, SIGNAL(timeout()), <span class="keyword">this</span>, SLOT(<a class="code" href="class_basketgame.html#ae4f7523300692fbc62ddd2ba3afea470">chronometrerTour</a>()));</div>
+<div class="line"><a name="l00228"></a><span class="lineno">  228</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_ae4f7523300692fbc62ddd2ba3afea470"><div class="ttname"><a href="class_basketgame.html#ae4f7523300692fbc62ddd2ba3afea470">Basketgame::chronometrerTour</a></div><div class="ttdeci">void chronometrerTour()</div><div class="ttdoc">méthode pour chronometrer un tour de puissance4</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00153">basketgame.cpp:153</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00153">chronometrerTour()</a>, et <a class="el" href="basketgame_8h_source.html#l00131">minuteurTour</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00023">Basketgame()</a>.</p>
 
 </div>
 </div>
@@ -806,33 +1131,268 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00187">187</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
-<div class="fragment"><div class="line"><a name="l00188"></a><span class="lineno">  188</span>&#160;{</div>
-<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
-<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;boutonDemarrer-&gt;setEnabled(<span class="keyword">true</span>);</div>
-<div class="line"><a name="l00191"></a><span class="lineno">  191</span>&#160; </div>
-<div class="line"><a name="l00192"></a><span class="lineno">  192</span>&#160;<span class="preprocessor">#ifdef PLEIN_ECRAN_RPI</span></div>
-<div class="line"><a name="l00193"></a><span class="lineno">  193</span>&#160;    showFullScreen();</div>
-<div class="line"><a name="l00194"></a><span class="lineno">  194</span>&#160;<span class="preprocessor">#else</span></div>
-<div class="line"><a name="l00195"></a><span class="lineno">  195</span>&#160;    resize(qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).width(),</div>
-<div class="line"><a name="l00196"></a><span class="lineno">  196</span>&#160;           qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).height());</div>
-<div class="line"><a name="l00197"></a><span class="lineno">  197</span>&#160;    setMinimumSize(qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).width(),</div>
-<div class="line"><a name="l00198"></a><span class="lineno">  198</span>&#160;                   qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).height());</div>
-<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;    <span class="comment">// showMaximized();</span></div>
-<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160;<span class="preprocessor">#endif</span></div>
-<div class="line"><a name="l00201"></a><span class="lineno">  201</span>&#160;    <a class="code" href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">afficherEcranAcceuil</a>();</div>
-<div class="line"><a name="l00202"></a><span class="lineno">  202</span>&#160;}</div>
-<div class="ttc" id="aclass_basketgame_html_ab533b5e4537490ee1f0f4fd103d26ca4"><div class="ttname"><a href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">Basketgame::afficherEcranAcceuil</a></div><div class="ttdeci">void afficherEcranAcceuil()</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00050">basketgame.cpp:50</a></div></div>
-</div><!-- fragment -->
-<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00050">afficherEcranAcceuil()</a>, et <a class="el" href="basketgame_8h_source.html#l00077">ui</a>.</p>
+<p>méthode pour initialiser l'IHM </p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00018">Basketgame()</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00204">204</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00205"></a><span class="lineno">  205</span>&#160;{</div>
+<div class="line"><a name="l00206"></a><span class="lineno">  206</span>&#160;    <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;setupUi(<span class="keyword">this</span>);</div>
+<div class="line"><a name="l00207"></a><span class="lineno">  207</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="preprocessor">#ifdef PLEIN_ECRAN_RPI</span></div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160;    showFullScreen();</div>
+<div class="line"><a name="l00210"></a><span class="lineno">  210</span>&#160;<span class="preprocessor">#else</span></div>
+<div class="line"><a name="l00211"></a><span class="lineno">  211</span>&#160;    resize(qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).width(),</div>
+<div class="line"><a name="l00212"></a><span class="lineno">  212</span>&#160;           qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).height());</div>
+<div class="line"><a name="l00213"></a><span class="lineno">  213</span>&#160;    setMinimumSize(qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).width(),</div>
+<div class="line"><a name="l00214"></a><span class="lineno">  214</span>&#160;                   qApp-&gt;desktop()-&gt;availableGeometry(<span class="keyword">this</span>).height());</div>
+<div class="line"><a name="l00215"></a><span class="lineno">  215</span>&#160;    <span class="comment">// showMaximized();</span></div>
+<div class="line"><a name="l00216"></a><span class="lineno">  216</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;    <a class="code" href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">afficherEcranAcceuil</a>();</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_ab533b5e4537490ee1f0f4fd103d26ca4"><div class="ttname"><a href="class_basketgame.html#ab533b5e4537490ee1f0f4fd103d26ca4">Basketgame::afficherEcranAcceuil</a></div><div class="ttdeci">void afficherEcranAcceuil()</div><div class="ttdoc">Affiche la fenêtre d'accueil.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00133">basketgame.cpp:133</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00133">afficherEcranAcceuil()</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00023">Basketgame()</a>.</p>
+
+</div>
+</div>
+<a id="a195dee07c3590ffbf71cf721a1e5726f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a195dee07c3590ffbf71cf721a1e5726f">&#9670;&nbsp;</a></span>initialiserPartie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::initialiserPartie </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour initialiser les variables d'une partie </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00234">234</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00235"></a><span class="lineno">  235</span>&#160;{</div>
+<div class="line"><a name="l00236"></a><span class="lineno">  236</span>&#160;    <a class="code" href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">nbPionsJoues</a>     = 0;</div>
+<div class="line"><a name="l00237"></a><span class="lineno">  237</span>&#160;    <a class="code" href="class_basketgame.html#a6bd501da8b8a3352cbd635070811b8d9">scoreEquipeRouge</a> = 0;</div>
+<div class="line"><a name="l00238"></a><span class="lineno">  238</span>&#160;    <a class="code" href="class_basketgame.html#affdd072af603492f65f42b26a58dcf44">scoreEquipeJaune</a> = 0;</div>
+<div class="line"><a name="l00239"></a><span class="lineno">  239</span>&#160;    <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#a377ef0741a48130bbd39ba4d57ddb539">initialiserPlateau</a>();</div>
+<div class="line"><a name="l00240"></a><span class="lineno">  240</span>&#160;}</div>
+<div class="ttc" id="aclass_plateau_html_a377ef0741a48130bbd39ba4d57ddb539"><div class="ttname"><a href="class_plateau.html#a377ef0741a48130bbd39ba4d57ddb539">Plateau::initialiserPlateau</a></div><div class="ttdeci">void initialiserPlateau()</div><div class="ttdoc">méthode pour initialiser le plateau de puissance4</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8cpp_source.html#l00025">plateau.cpp:25</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="plateau_8cpp_source.html#l00025">Plateau::initialiserPlateau()</a>, <a class="el" href="basketgame_8h_source.html#l00133">nbPionsJoues</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, <a class="el" href="basketgame_8h_source.html#l00135">scoreEquipeJaune</a>, et <a class="el" href="basketgame_8h_source.html#l00134">scoreEquipeRouge</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00090">demarrerPartie()</a>.</p>
+
+</div>
+</div>
+<a id="a70e3e71e304b2340d31ca111e22cc119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a70e3e71e304b2340d31ca111e22cc119">&#9670;&nbsp;</a></span>jouerPion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::jouerPion </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>colonne</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Joue un pion. </p>
+<dl class="params"><dt>Paramètres</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">colonne</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00107">107</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160;{</div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;    <span class="keywordtype">int</span> ligne = <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#aa5f3ed5ce76c8b1ea209d8cdba99c069">placerPion</a>(colonne);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160;    <span class="keywordflow">if</span>(ligne != -1)</div>
+<div class="line"><a name="l00111"></a><span class="lineno">  111</span>&#160;    {</div>
+<div class="line"><a name="l00112"></a><span class="lineno">  112</span>&#160;        <a class="code" href="class_basketgame.html#a080826a6ecab39c5f0195be2d9226820">afficherUnJeton</a>(ligne, colonne);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;        <a class="code" href="class_basketgame.html#a6dbae5082d36a03eac6d1264c7b43c98">afficherScoreEquipe</a>();</div>
+<div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160;        <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#a88d104aae4ef62529ca8797f71b63026">verifierPlateau</a>();</div>
+<div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;        <a class="code" href="class_basketgame.html#a12655bb7125a1f6240e882e7ff7f4a44">terminerSeance</a>();</div>
+<div class="line"><a name="l00116"></a><span class="lineno">  116</span>&#160;        <a class="code" href="class_basketgame.html#aaf63be6bc46030ee0862c36105ae7144">afficherTourEquipe</a>();</div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;    }</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_a080826a6ecab39c5f0195be2d9226820"><div class="ttname"><a href="class_basketgame.html#a080826a6ecab39c5f0195be2d9226820">Basketgame::afficherUnJeton</a></div><div class="ttdeci">void afficherUnJeton(int ligne, int colonne)</div><div class="ttdoc">méthode pour afficher les jetons dans le plateau de puissance4</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00281">basketgame.cpp:281</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a12655bb7125a1f6240e882e7ff7f4a44"><div class="ttname"><a href="class_basketgame.html#a12655bb7125a1f6240e882e7ff7f4a44">Basketgame::terminerSeance</a></div><div class="ttdeci">void terminerSeance()</div><div class="ttdoc">méthode pour détermiquer quand la séance est terminer</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00066">basketgame.cpp:66</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a6dbae5082d36a03eac6d1264c7b43c98"><div class="ttname"><a href="class_basketgame.html#a6dbae5082d36a03eac6d1264c7b43c98">Basketgame::afficherScoreEquipe</a></div><div class="ttdeci">void afficherScoreEquipe()</div><div class="ttdoc">méthode pour afficher le nombre de paniers pour chaque équipe</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00350">basketgame.cpp:350</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_aaf63be6bc46030ee0862c36105ae7144"><div class="ttname"><a href="class_basketgame.html#aaf63be6bc46030ee0862c36105ae7144">Basketgame::afficherTourEquipe</a></div><div class="ttdeci">void afficherTourEquipe()</div><div class="ttdoc">méthode pour afficher quelle équipe est train de jouer</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00317">basketgame.cpp:317</a></div></div>
+<div class="ttc" id="aclass_plateau_html_a88d104aae4ef62529ca8797f71b63026"><div class="ttname"><a href="class_plateau.html#a88d104aae4ef62529ca8797f71b63026">Plateau::verifierPlateau</a></div><div class="ttdeci">void verifierPlateau()</div><div class="ttdoc">méthode pour vérifier si il y a 4 pions alignés de la même couleur sur le plateau</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8cpp_source.html#l00076">plateau.cpp:76</a></div></div>
+<div class="ttc" id="aclass_plateau_html_aa5f3ed5ce76c8b1ea209d8cdba99c069"><div class="ttname"><a href="class_plateau.html#aa5f3ed5ce76c8b1ea209d8cdba99c069">Plateau::placerPion</a></div><div class="ttdeci">int placerPion(int colonne)</div><div class="ttdoc">méthode qui lace un pion dans une des clonnes du puissance4</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8cpp_source.html#l00051">plateau.cpp:51</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8cpp_source.html#l00350">afficherScoreEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00281">afficherUnJeton()</a>, <a class="el" href="plateau_8cpp_source.html#l00051">Plateau::placerPion()</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>, et <a class="el" href="plateau_8cpp_source.html#l00076">Plateau::verifierPlateau()</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00370">simulerPion()</a>.</p>
+
+</div>
+</div>
+<a id="a5faf430789aab2ed69686f7d5baba78d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5faf430789aab2ed69686f7d5baba78d">&#9670;&nbsp;</a></span>randInt()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Basketgame::randInt </td>
+          <td>(</td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>min</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>max</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00422">422</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;{</div>
+<div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160;    <span class="keywordflow">return</span> qrand() % ((max + 1) - min) + min;</div>
+<div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;}</div>
+</div><!-- fragment -->
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00370">simulerPion()</a>.</p>
+
+</div>
+</div>
+<a id="a317fb5eaabf5974860cb00050407b070"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a317fb5eaabf5974860cb00050407b070">&#9670;&nbsp;</a></span>simulerPion</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::simulerPion </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00370">370</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00371"></a><span class="lineno">  371</span>&#160;{</div>
+<div class="line"><a name="l00372"></a><span class="lineno">  372</span>&#160;    <span class="keywordflow">if</span>(!<a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a>)</div>
+<div class="line"><a name="l00373"></a><span class="lineno">  373</span>&#160;        <span class="keywordflow">return</span>;</div>
+<div class="line"><a name="l00374"></a><span class="lineno">  374</span>&#160;    <span class="comment">// simule un pion dans une colonne</span></div>
+<div class="line"><a name="l00375"></a><span class="lineno">  375</span>&#160;    <span class="keywordtype">int</span> colonne = <a class="code" href="class_basketgame.html#a5faf430789aab2ed69686f7d5baba78d">randInt</a>(0, <a class="code" href="plateau_8h.html#abfa179ca04bf5c427a56beb8b26c0272">NB_COLONNES</a> - 1);</div>
+<div class="line"><a name="l00376"></a><span class="lineno">  376</span>&#160;    <span class="comment">// et le joue</span></div>
+<div class="line"><a name="l00377"></a><span class="lineno">  377</span>&#160;    <a class="code" href="class_basketgame.html#a70e3e71e304b2340d31ca111e22cc119">jouerPion</a>(colonne);</div>
+<div class="line"><a name="l00378"></a><span class="lineno">  378</span>&#160;}</div>
+<div class="ttc" id="aclass_basketgame_html_a5faf430789aab2ed69686f7d5baba78d"><div class="ttname"><a href="class_basketgame.html#a5faf430789aab2ed69686f7d5baba78d">Basketgame::randInt</a></div><div class="ttdeci">int randInt(int min, int max)</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00422">basketgame.cpp:422</a></div></div>
+<div class="ttc" id="aclass_basketgame_html_a70e3e71e304b2340d31ca111e22cc119"><div class="ttname"><a href="class_basketgame.html#a70e3e71e304b2340d31ca111e22cc119">Basketgame::jouerPion</a></div><div class="ttdeci">void jouerPion(int colonne)</div><div class="ttdoc">Joue un pion.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8cpp_source.html#l00107">basketgame.cpp:107</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="basketgame_8h_source.html#l00132">etatSeance</a>, <a class="el" href="basketgame_8cpp_source.html#l00107">jouerPion()</a>, <a class="el" href="plateau_8h_source.html#l00030">NB_COLONNES</a>, et <a class="el" href="basketgame_8cpp_source.html#l00422">randInt()</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00384">attribuerRaccourcisClavier()</a>.</p>
+
+</div>
+</div>
+<a id="a12655bb7125a1f6240e882e7ff7f4a44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a12655bb7125a1f6240e882e7ff7f4a44">&#9670;&nbsp;</a></span>terminerSeance</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Basketgame::terminerSeance </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">slot</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>méthode pour détermiquer quand la séance est terminer </p>
+
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8cpp_source.html#l00066">66</a> du fichier <a class="el" href="basketgame_8cpp_source.html">basketgame.cpp</a>.</p>
+<div class="fragment"><div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;{</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#abd8812d28e086974da656a4af23240c7">estVainqueur</a>())</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    {</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;        <a class="code" href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">initialiserDureeTour</a>();</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsTour-&gt;setText(<span class="stringliteral">&quot;00:00:00&quot;</span>);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;        <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;stop();</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        qDebug() &lt;&lt; Q_FUNC_INFO &lt;&lt; <span class="stringliteral">&quot;nbPionsJoues&quot;</span> &lt;&lt; <a class="code" href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">nbPionsJoues</a></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;                 &lt;&lt; <span class="stringliteral">&quot;estVainqueur&quot;</span> &lt;&lt; <a class="code" href="class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0">plateau</a>-&gt;<a class="code" href="class_plateau.html#abd8812d28e086974da656a4af23240c7">estVainqueur</a>();</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordflow">else</span> <span class="keywordflow">if</span>(<a class="code" href="class_basketgame.html#a84996ba0f38512044c0d221b1a6c0e83">nbPionsJoues</a> == <a class="code" href="plateau_8h.html#a6d6f9c3f8c3c6261cad308dccc0380c9">NB_PIONS</a>)</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    {</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;        <a class="code" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">etatSeance</a> = <span class="keyword">false</span>;</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <a class="code" href="class_basketgame.html#a61bdc0568a6ba55f7d1085f46a7a0ce6">initialiserDureeTour</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        <a class="code" href="class_basketgame.html#a53cf93923d37ece1777b3f2060341c83">ui</a>-&gt;tempsTour-&gt;setText(<span class="stringliteral">&quot;00:00:00&quot;</span>);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;        <a class="code" href="class_basketgame.html#a47886f01dc59ecd0d2cbced3cdd88694">minuteurTour</a>-&gt;stop();</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    }</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;}</div>
+<div class="ttc" id="aclass_plateau_html_abd8812d28e086974da656a4af23240c7"><div class="ttname"><a href="class_plateau.html#abd8812d28e086974da656a4af23240c7">Plateau::estVainqueur</a></div><div class="ttdeci">bool estVainqueur() const</div><div class="ttdoc">méthode qui retourne true si il y a 4 pions alignés de la même couleur sur le plateau</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8cpp_source.html#l00090">plateau.cpp:90</a></div></div>
+<div class="ttc" id="aplateau_8h_html_a6d6f9c3f8c3c6261cad308dccc0380c9"><div class="ttname"><a href="plateau_8h.html#a6d6f9c3f8c3c6261cad308dccc0380c9">NB_PIONS</a></div><div class="ttdeci">#define NB_PIONS</div><div class="ttdoc">Définit le nombre de pions max.</div><div class="ttdef"><b>Definition:</b> <a href="plateau_8h_source.html#l00042">plateau.h:42</a></div></div>
+</div><!-- fragment -->
+<p class="reference">Références <a class="el" href="plateau_8cpp_source.html#l00090">Plateau::estVainqueur()</a>, <a class="el" href="basketgame_8h_source.html#l00132">etatSeance</a>, <a class="el" href="basketgame_8cpp_source.html#l00246">initialiserDureeTour()</a>, <a class="el" href="basketgame_8h_source.html#l00131">minuteurTour</a>, <a class="el" href="plateau_8h_source.html#l00042">NB_PIONS</a>, <a class="el" href="basketgame_8h_source.html#l00133">nbPionsJoues</a>, <a class="el" href="basketgame_8h_source.html#l00129">plateau</a>, et <a class="el" href="basketgame_8h_source.html#l00128">ui</a>.</p>
+
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00107">jouerPion()</a>.</p>
 
 </div>
 </div>
 <h2 class="groupheader">Documentation des champs</h2>
-<a id="a3e78da62f866f385639abcb1cf692822"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e78da62f866f385639abcb1cf692822">&#9670;&nbsp;</a></span>couleurEquipe</h2>
+<a id="ab60c97fd56a74ca1590427cf8ca22ab0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab60c97fd56a74ca1590427cf8ca22ab0">&#9670;&nbsp;</a></span>etatSeance</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -841,7 +1401,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Basketgame::couleurEquipe</td>
+          <td class="memname">bool Basketgame::etatSeance</td>
         </tr>
       </table>
   </td>
@@ -851,14 +1411,14 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00084">84</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00132">132</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00151">chronometrerManche()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00090">demarrerPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00053">demarrerSeance()</a>, <a class="el" href="basketgame_8cpp_source.html#l00370">simulerPion()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>.</p>
 
 </div>
 </div>
-<a id="abd7e3454a97fc33e8729bf7173187d82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abd7e3454a97fc33e8729bf7173187d82">&#9670;&nbsp;</a></span>etatManche</h2>
+<a id="a47886f01dc59ecd0d2cbced3cdd88694"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a47886f01dc59ecd0d2cbced3cdd88694">&#9670;&nbsp;</a></span>minuteurTour</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -867,7 +1427,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Basketgame::etatManche</td>
+          <td class="memname">QTimer* Basketgame::minuteurTour</td>
         </tr>
       </table>
   </td>
@@ -877,14 +1437,14 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00083">83</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00131">131</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00124">arreterManche()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00089">demarrerManche()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00153">chronometrerTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00260">demarrerChronometrageTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00224">initialiserEvenements()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>.</p>
 
 </div>
 </div>
-<a id="a31c237f1b941868110443317cbf62a4c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31c237f1b941868110443317cbf62a4c">&#9670;&nbsp;</a></span>etatPartie</h2>
+<a id="a84996ba0f38512044c0d221b1a6c0e83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a84996ba0f38512044c0d221b1a6c0e83">&#9670;&nbsp;</a></span>nbPionsJoues</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -893,7 +1453,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">bool Basketgame::etatPartie</td>
+          <td class="memname">int Basketgame::nbPionsJoues</td>
         </tr>
       </table>
   </td>
@@ -903,14 +1463,14 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00082">82</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00133">133</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00108">arreterPartie()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00069">demarrerPartie()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00350">afficherScoreEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00234">initialiserPartie()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>.</p>
 
 </div>
 </div>
-<a id="a007477859ecae4f81893844529779377"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a007477859ecae4f81893844529779377">&#9670;&nbsp;</a></span>tempsManche</h2>
+<a id="a50690bd0f330558a9a6e7222d4f501f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a50690bd0f330558a9a6e7222d4f501f0">&#9670;&nbsp;</a></span>plateau</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -919,7 +1479,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QTime* Basketgame::tempsManche</td>
+          <td class="memname"><a class="el" href="class_plateau.html">Plateau</a>* Basketgame::plateau</td>
         </tr>
       </table>
   </td>
@@ -929,14 +1489,14 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00079">79</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00129">129</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00151">chronometrerManche()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00089">demarrerManche()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00350">afficherScoreEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00281">afficherUnJeton()</a>, <a class="el" href="basketgame_8cpp_source.html#l00384">attribuerRaccourcisClavier()</a>, <a class="el" href="basketgame_8cpp_source.html#l00153">chronometrerTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00234">initialiserPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00107">jouerPion()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>.</p>
 
 </div>
 </div>
-<a id="a7b137516b3adf738ac6e0858968b8676"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7b137516b3adf738ac6e0858968b8676">&#9670;&nbsp;</a></span>tempsPartie</h2>
+<a id="affdd072af603492f65f42b26a58dcf44"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#affdd072af603492f65f42b26a58dcf44">&#9670;&nbsp;</a></span>scoreEquipeJaune</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -945,7 +1505,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QTime* Basketgame::tempsPartie</td>
+          <td class="memname">int Basketgame::scoreEquipeJaune</td>
         </tr>
       </table>
   </td>
@@ -955,14 +1515,14 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00078">78</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00135">135</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00135">chronometrerPartie()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00069">demarrerPartie()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00350">afficherScoreEquipe()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00234">initialiserPartie()</a>.</p>
 
 </div>
 </div>
-<a id="a3060a17f889349e8938b15c8f4d554ac"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3060a17f889349e8938b15c8f4d554ac">&#9670;&nbsp;</a></span>timerManche</h2>
+<a id="a6bd501da8b8a3352cbd635070811b8d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6bd501da8b8a3352cbd635070811b8d9">&#9670;&nbsp;</a></span>scoreEquipeRouge</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -971,7 +1531,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QTimer* Basketgame::timerManche</td>
+          <td class="memname">int Basketgame::scoreEquipeRouge</td>
         </tr>
       </table>
   </td>
@@ -981,14 +1541,14 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00081">81</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00134">134</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00108">arreterPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00151">chronometrerManche()</a>, <a class="el" href="basketgame_8cpp_source.html#l00089">demarrerManche()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00350">afficherScoreEquipe()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00234">initialiserPartie()</a>.</p>
 
 </div>
 </div>
-<a id="a40a81e680374b26ef1e78502c3db1ac4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a40a81e680374b26ef1e78502c3db1ac4">&#9670;&nbsp;</a></span>timerPartie</h2>
+<a id="a15e23eff1679f3e938027ad8e0a25331"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15e23eff1679f3e938027ad8e0a25331">&#9670;&nbsp;</a></span>tempsTour</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -997,7 +1557,7 @@ Attributs privés</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">QTimer* Basketgame::timerPartie</td>
+          <td class="memname">QTime* Basketgame::tempsTour</td>
         </tr>
       </table>
   </td>
@@ -1007,9 +1567,9 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00080">80</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00130">130</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00108">arreterPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00069">demarrerPartie()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00153">chronometrerTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00260">demarrerChronometrageTour()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00246">initialiserDureeTour()</a>.</p>
 
 </div>
 </div>
@@ -1033,9 +1593,9 @@ Attributs privés</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00077">77</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
+<p class="definition">Définition à la ligne <a class="el" href="basketgame_8h_source.html#l00128">128</a> du fichier <a class="el" href="basketgame_8h_source.html">basketgame.h</a>.</p>
 
-<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00045">afficherEcran()</a>, <a class="el" href="basketgame_8cpp_source.html#l00055">afficherEcranPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00124">arreterManche()</a>, <a class="el" href="basketgame_8cpp_source.html#l00108">arreterPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00151">chronometrerManche()</a>, <a class="el" href="basketgame_8cpp_source.html#l00135">chronometrerPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00089">demarrerManche()</a>, <a class="el" href="basketgame_8cpp_source.html#l00069">demarrerPartie()</a>, <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserEvenements()</a>, <a class="el" href="basketgame_8cpp_source.html#l00187">initialiserIHM()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00035">~Basketgame()</a>.</p>
+<p class="reference">Référencé par <a class="el" href="basketgame_8cpp_source.html#l00124">afficherEcran()</a>, <a class="el" href="basketgame_8cpp_source.html#l00271">afficherPlateau()</a>, <a class="el" href="basketgame_8cpp_source.html#l00350">afficherScoreEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00317">afficherTourEquipe()</a>, <a class="el" href="basketgame_8cpp_source.html#l00281">afficherUnJeton()</a>, <a class="el" href="basketgame_8cpp_source.html#l00153">chronometrerTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00260">demarrerChronometrageTour()</a>, <a class="el" href="basketgame_8cpp_source.html#l00053">demarrerSeance()</a>, <a class="el" href="basketgame_8cpp_source.html#l00204">initialiserIHM()</a>, <a class="el" href="basketgame_8cpp_source.html#l00066">terminerSeance()</a>, et <a class="el" href="basketgame_8cpp_source.html#l00043">~Basketgame()</a>.</p>
 
 </div>
 </div>
@@ -1050,7 +1610,7 @@ Attributs privés</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_basketgame.html">Basketgame</a></li>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 21:49:33 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mardi 23 Mai 2023 06:27:22 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

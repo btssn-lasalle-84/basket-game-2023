@@ -1,6 +1,5 @@
 /**
  * @file puissance4.cpp
- *
  * @brief Définition de la classe Puissance4
  * @author Nathanael CHANSARD
  * @version 0.2

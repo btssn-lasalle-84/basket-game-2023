@@ -1,0 +1,5 @@
+<map id="com.basket_game.PartieSuivi" name="com.basket_game.PartieSuivi">
+<area shape="rect" id="node1" title="L&#39;activité qui permet de suivre la partie." alt="" coords="5,667,240,993"/>
+<area shape="rect" id="node2" href="$classcom_1_1basket__game_1_1_partie.html" title="Définit une partie entre deux équipes." alt="" coords="13,219,232,604"/>
+<area shape="rect" id="node3" href="$classcom_1_1basket__game_1_1_equipe.html" title="Définit une équipe." alt="" coords="28,5,217,141"/>
+</map>

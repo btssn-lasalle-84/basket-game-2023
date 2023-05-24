@@ -94,11 +94,12 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <ul>
 <li><a href="#le-projet-basket-game-2023">Le projet basket-game 2023</a><ul>
 <li><a href="#documentation-du-code">Documentation du code</a></li>
-<li><a href="#base-de-données">Base de données</a></li>
 <li><a href="#versions">Versions</a><ul>
+<li><a href="#02">0.2</a></li>
 <li><a href="#01">0.1</a></li>
 </ul>
 </li>
+<li><a href="#captures-d%C3%A9cran">Captures d'écran</a></li>
 <li><a href="#auteurs">Auteurs</a></li>
 </ul>
 </li>
@@ -113,44 +114,29 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 </ul>
 <h2>Documentation du code</h2>
 <p><a href="https://btssn-lasalle-84.github.io/basket-game-2023/">https://btssn-lasalle-84.github.io/basket-game-2023/</a></p>
-<h2>Base de données</h2>
-<p>Base de données SQLite :</p>
-<p><img src="sql/basket-game-v0.1.png" alt="" class="inline"/></p>
-<div class="fragment"><div class="line"><span class="comment">-- Supprime les tables</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> Manche;</div>
-<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> <span class="keyword">Match</span>;</div>
-<div class="line"><span class="keyword">DROP</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">EXISTS</span> Joueur;</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">-- Création des tables</span></div>
-<div class="line"> </div>
-<div class="line"><span class="comment">-- Table Joueur</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> Joueur(idJoueur <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, nom <span class="keywordtype">VARCHAR</span>, <span class="keyword">UNIQUE</span>(nom));</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">-- Table Match</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> <span class="keyword">Match</span>(idMatch <span class="keywordtype">INTEGER</span> <span class="keyword">PRIMARY</span> KEY AUTOINCREMENT, idJoueurA <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, idJoueurB <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, nbManchesGagnantes <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">1</span>, tempsMaxTir <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, nbPaniers <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">4</span>, estFinie <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, horodatage DATETIME <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, <span class="keyword">CONSTRAINT</span> fk_idJoueur_A <span class="keyword">FOREIGN</span> KEY (idJoueurA) <span class="keyword">REFERENCES</span> Joueur(idJoueur), <span class="keyword">CONSTRAINT</span> fk_idJoueur_B <span class="keyword">FOREIGN</span> KEY (idJoueurB) <span class="keyword">REFERENCES</span> Joueur(idJoueur));</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">-- Table Manche</span></div>
-<div class="line"> </div>
-<div class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> <span class="keywordflow">IF</span> <span class="keyword">NOT</span> <span class="keyword">EXISTS</span> Manche(idMatch <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, numeroManche <span class="keywordtype">INTEGER</span> <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, nbTirsReussisEquipeA <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, nbTirsReussisEquipeB <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, vainqueur <span class="keywordtype">INTEGER</span> <span class="keyword">DEFAULT</span> <span class="stringliteral">0</span>, debut DATETIME <span class="keyword">NOT</span> <span class="stringliteral">NULL</span>, fin DATETIME, <span class="keyword">CONSTRAINT</span> pk_manche <span class="keyword">PRIMARY</span> KEY (idMatch,numeroManche), <span class="keyword">CONSTRAINT</span> fk_idMatch_1 <span class="keyword">FOREIGN</span> KEY (idMatch) <span class="keyword">REFERENCES</span> <span class="keyword">Match</span>(idMatch), <span class="keyword">CONSTRAINT</span> fk_vainqueur_1 <span class="keyword">FOREIGN</span> KEY (vainqueur) <span class="keyword">REFERENCES</span> Joueur(idJoueur));</div>
-</div><!-- fragment --><h2>Versions</h2>
+<h2>Versions</h2>
+<p><img src="livraisons.png" alt="" class="inline"/></p>
+<h3>0.2</h3>
+<p><img src="jira-tickets-v0.2.png" alt="" class="inline"/></p>
 <h3>0.1</h3>
-<p><img src="jira-tickets-v01.png" alt="" class="inline"/></p>
+<p><img src="jira-tickets-v0.1.png" alt="" class="inline"/></p>
+<h2>Captures d'écran</h2>
 <ul>
 <li>Android :</li>
 </ul>
-<p><img src="screenshot-android-accueil-v0.1.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-parametres-v0.1.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-accueil-v0.2.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-parametres-v0.2.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-partie-suivi-v0.2.png" alt="" class="inline"/></p>
+<p><img src="screenshot-android-partie-interrompue-v0.2.png" alt="" class="inline"/></p>
 <ul>
 <li>Qt :</li>
 </ul>
-<p><img src="screenshot-qt-basketgame-v0.1.png" alt="" class="inline"/></p>
+<p><img src="screenshot-qt-accueil-basketgame-v0.2.png" alt="" class="inline"/></p>
+<p><img src="screenshot-qt-puissance4-basketgame-v0.2.png" alt="" class="inline"/></p>
 <h2>Auteurs</h2>
 <ul>
-<li>Étudiant IR : Nathanael CHANSARD</li>
-<li>Étudiant IR : Florent GUILLAUMET</li>
+<li>Étudiant IR : Nathanael CHANSARD <a href="#" onclick="location.href='mai'+'lto:'+'cha'+'ns'+'ard'+'na'+'tha'+'na'+'el@'+'gm'+'ail'+'.c'+'om'; return false;">chans<span style="display: none;">.nosp@m.</span>ardn<span style="display: none;">.nosp@m.</span>athan<span style="display: none;">.nosp@m.</span>ael@<span style="display: none;">.nosp@m.</span>gmail<span style="display: none;">.nosp@m.</span>.com</a></li>
+<li>Étudiant IR : Florent GUILLAUMET <a href="#" onclick="location.href='mai'+'lto:'+'flo'+'re'+'nt.'+'gu'+'ill'+'au'+'met'+'.p'+'ro@'+'gm'+'ail'+'.c'+'om'; return false;">flore<span style="display: none;">.nosp@m.</span>nt.g<span style="display: none;">.nosp@m.</span>uilla<span style="display: none;">.nosp@m.</span>umet<span style="display: none;">.nosp@m.</span>.pro@<span style="display: none;">.nosp@m.</span>gmai<span style="display: none;">.nosp@m.</span>l.com</a></li>
 </ul>
 <hr  />
 <p> ©️ LaSalle Avignon 2023 </p>
@@ -161,7 +147,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Dimanche 9 Avril 2023 21:49:33 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mardi 23 Mai 2023 06:27:22 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

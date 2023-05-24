@@ -3,7 +3,6 @@
 
 /**
  * @file puissance4.h
- *
  * @brief Déclaration de la classe Puissance4
  * @author Nathanael CHANSARD
  * @version 0.2

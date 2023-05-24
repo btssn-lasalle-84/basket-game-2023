@@ -249,7 +249,7 @@ void Basketgame::initialiserEvenements()
 }
 
 /**
- * @fn Basketgame::initialiserEtatPartie
+ * @fn Basketgame::initialiserPartie
  * @brief méthode pour initialiser les variables d'une partie
  */
 void Basketgame::initialiserPartie()
