@@ -11,9 +11,10 @@
 #include <QObject>
 #include <QtBluetooth>
 
-
-static const QString serviceUuid(QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
+static const QString serviceUuid(
+  QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
 static const QString serviceNom(QStringLiteral("BasketGame"));
+
 class Communication : public QObject
 {
     Q_OBJECT
@@ -21,12 +22,12 @@ class Communication : public QObject
     Communication(QObject* parent = 0);
     ~Communication();
 
-
     void initialiser();
     void demarrer();
     void arreter();
     void deconnecter();
     bool estValide();
+    bool estConnecte();
 
     QString getNomPeripheriqueLocal();
     QString getAdressePeripheriqueLocal();
@@ -35,31 +36,31 @@ class Communication : public QObject
 
   private:
     QBluetoothLocalDevice peripheriqueLocal;
-    QBluetoothServer* serveur; //!< Le serveur Bluetooth
-    QBluetoothSocket* socket;  //!< La socket de communication Bluetooth
+    QBluetoothServer*     serveur;     //!< Le serveur Bluetooth
+    QBluetoothSocket*     socket;      //!< La socket de communication Bluetooth
     QBluetoothServiceInfo serviceInfo; //!< Information sur le service Bluetooth
-    bool estConnecter;
-
-    QString nomPeripheriqueLocal;
-    QString adressePeripheriqueLocal;
+    bool                  connecte; //!< Etat de connexion de la socket client
+    QString               nomPeripheriqueLocal;
+    QString               adressePeripheriqueLocal;
+    QString trame; //!< Le contenu des données reçues sur la socket
 
   private slots:
-    void connecterTablette(const QBluetoothAddress &adresse);
-    void deconnecterTablette(const QBluetoothAddress &adresse);
+    void connecterTablette(const QBluetoothAddress& adresse);
+    void deconnecterTablette(const QBluetoothAddress& adresse);
     void connecterSocket();
     void deconnecterSocket();
-    void recupererDonneesSocket();
+    void recevoirDonnees();
 
     void recupererErreurSocket(QBluetoothSocket::SocketError erreurBluetooth);
     void recupererErreurBluetooth(QBluetoothLocalDevice::Error erreurBluetooth);
     void recupererEtatSocket(QBluetoothSocket::SocketState etatBluetooth);
 
-
   signals:
-    void clientConnecter();
-    void clientDeconnecter();
-    void afficherMessage(QString message);
+    void clientConnecte();
+    void clientDeconnecte();
+    void tabletteConnectee();
+    void tabletteDeconnectee();
+    void trameRecue(QString message);
 };
 
 #endif
-

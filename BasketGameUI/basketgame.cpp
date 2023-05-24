@@ -15,7 +15,6 @@
 #include <QAction>
 #include <QDebug>
 
-using namespace std;
 /**
  * @brief Constructeur de la classe Basketgame
  *
@@ -33,8 +32,7 @@ Basketgame::Basketgame(QWidget* parent) :
     equipes.push_back(new Equipe("Jaune", this));
     initialiserIHM();
     initialiserEvenements();
-    communication->initialiser();
-
+    initialiserCommunication();
 #ifdef TEST_BASKETGAME
     attribuerRaccourcisClavier();
 #endif
@@ -201,7 +199,6 @@ void Basketgame::chronometrerTour()
  */
 void Basketgame::fermerApplication()
 {
-    communication->arreter();
     this->close();
 }
 
@@ -274,6 +271,18 @@ void Basketgame::initialiserDureeTour()
         tempsTour = nullptr;
     }
     tempsTour = new QTime(0, 0, TEMPS_TOUR);
+}
+
+/**
+ * @fn Basketgame::initialiserCommunication
+ * @brief méthode pour initialiser la communication en mode serveur
+ */
+void Basketgame::initialiserCommunication()
+{
+    /**
+     * @todo Connecter les signaux/slots entre Communication et Basketgame puis
+     * demarrer la communication
+     */
 }
 
 /**

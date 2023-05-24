@@ -7,13 +7,12 @@
  */
 
 #include "communication.h"
-#include <unistd.h>"
 
 Communication::Communication(QObject* parent) :
-    QObject(parent), serveur(nullptr), socket(nullptr),
-    estConnecter(false)
+    QObject(parent), serveur(nullptr), socket(nullptr), connecte(false)
 {
     qDebug() << Q_FUNC_INFO;
+    initialiser();
 }
 
 /**
@@ -36,15 +35,16 @@ Communication::~Communication()
  */
 void Communication::demarrer()
 {
-    if (serveur == NULL)
+    if(serveur == nullptr)
     {
         qDebug() << Q_FUNC_INFO;
-        serveur = new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
+        serveur =
+          new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
         connect(serveur, SIGNAL(newConnection()), this, SLOT(nouveauClient()));
 
         QBluetoothUuid uuid(QBluetoothUuid::Rfcomm);
         serviceInfo = serveur->listen(uuid, serviceNom);
-        //qDebug() << serviceInfo;
+        // qDebug() << "serviceInfo" << serviceInfo;
     }
 }
 
@@ -57,21 +57,21 @@ void Communication::arreter()
 {
     qDebug() << Q_FUNC_INFO;
 
-    if (!serveur)
+    if(serveur == nullptr)
         return;
 
     serviceInfo.unregisterService();
 
-    if (socket)
+    if(socket != nullptr)
     {
-        if (socket->isOpen())
-           socket->close();
+        if(socket->isOpen())
+            socket->close();
         delete socket;
-        socket = NULL;
+        socket = nullptr;
     }
 
     delete serveur;
-    serveur = NULL;
+    serveur = nullptr;
 }
 
 /**
@@ -81,100 +81,170 @@ void Communication::arreter()
  */
 void Communication::initialiser()
 {
-    qDebug() << Q_FUNC_INFO;
-    if (!peripheriqueLocal.isValid())
+    if(!peripheriqueLocal.isValid())
     {
-        qDebug() << Q_FUNC_INFO << peripheriqueLocal.isValid();
+        qDebug() << Q_FUNC_INFO << "isValid" << peripheriqueLocal.isValid();
         return;
     }
 
-    qDebug() << peripheriqueLocal.hostMode();
+    qDebug() << Q_FUNC_INFO << "hostMode" << peripheriqueLocal.hostMode();
 
     peripheriqueLocal.powerOn();
-
-    qDebug() << peripheriqueLocal.hostMode();
-
-    nomPeripheriqueLocal = peripheriqueLocal.name();
+    nomPeripheriqueLocal     = peripheriqueLocal.name();
     adressePeripheriqueLocal = peripheriqueLocal.address().toString();
-
     peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostConnectable);
-    connect(&peripheriqueLocal, SIGNAL(deviceConnected(QBluetoothAddress)), this, SLOT(connecterTablette(QBluetoothAddress)));
-    connect(&peripheriqueLocal, SIGNAL(deviceDisconnected(QBluetoothAddress)), this, SLOT(deconnecterTablette(QBluetoothAddress)));
-    connect(&peripheriqueLocal, SIGNAL(error(QBluetoothLocalDevice::Error)), this, SLOT(recupererErreurBluetooth(QBluetoothLocalDevice::Error)));
+    /**
+     * @see les appareil qui ne sont pas appairés peuvent decouvrir la Raspberry
+     * Pi
+     */
+    // peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
+    qDebug() << Q_FUNC_INFO << "nomPeripheriqueLocal" << nomPeripheriqueLocal
+             << "adressePeripheriqueLocal" << adressePeripheriqueLocal
+             << "hostMode" << peripheriqueLocal.hostMode();
+
+    connect(&peripheriqueLocal,
+            SIGNAL(deviceConnected(QBluetoothAddress)),
+            this,
+            SLOT(connecterTablette(QBluetoothAddress)));
+    connect(&peripheriqueLocal,
+            SIGNAL(deviceDisconnected(QBluetoothAddress)),
+            this,
+            SLOT(deconnecterTablette(QBluetoothAddress)));
+    connect(&peripheriqueLocal,
+            SIGNAL(error(QBluetoothLocalDevice::Error)),
+            this,
+            SLOT(recupererErreurBluetooth(QBluetoothLocalDevice::Error)));
 }
 
-void Communication::recupererErreurSocket(QBluetoothSocket::SocketError erreurSocket)
+/**
+ * @brief Récupère et affiche l'erreur socket dans la console de débuguage
+ *
+ * @fn Communication::recupererErreurSocket
+ */
+void Communication::recupererErreurSocket(
+  QBluetoothSocket::SocketError erreurSocket)
 {
     qDebug() << Q_FUNC_INFO << erreurSocket;
 }
 
-void Communication::recupererEtatSocket(QBluetoothSocket::SocketState etatSocket)
+/**
+ * @brief Récupère et affiche l'etat de la socket dans la console de débuguage
+ *
+ * @fn Communication::recupererEtatSocket
+ */
+void Communication::recupererEtatSocket(
+  QBluetoothSocket::SocketState etatSocket)
 {
     qDebug() << Q_FUNC_INFO << etatSocket;
 }
 
-void Communication::recupererErreurBluetooth(QBluetoothLocalDevice::Error erreurBluetooth)
+/**
+ * @brief Récupère et affiche l'erreur Bluetooth dans la console de débuguage
+ *
+ * @fn Communication::recupererErreurBluetooth
+ */
+void Communication::recupererErreurBluetooth(
+  QBluetoothLocalDevice::Error erreurBluetooth)
 {
     qDebug() << Q_FUNC_INFO << erreurBluetooth;
 }
 
-void Communication::connecterTablette(const QBluetoothAddress &adresse)
+/**
+ * @brief Connecte la tablette
+ *
+ * @fn Communication::connecterTablette
+ * @param adresse adresse MAC Bluetooth de la tablette
+ */
+void Communication::connecterTablette(const QBluetoothAddress& adresse)
 {
-    qDebug() << Q_FUNC_INFO << adresse << peripheriqueLocal.pairingStatus(adresse);
-    QString message = QString::fromUtf8("Demande connexion du client ") + adresse.toString();
-    if (peripheriqueLocal.pairingStatus(adresse) == QBluetoothLocalDevice::Paired || peripheriqueLocal.pairingStatus(adresse) == QBluetoothLocalDevice::AuthorizedPaired)
-        message += " [" + QString::fromUtf8("appairé") + "]";
+    QString etatAppairage;
+    if(peripheriqueLocal.pairingStatus(adresse) ==
+         QBluetoothLocalDevice::Paired ||
+       peripheriqueLocal.pairingStatus(adresse) ==
+         QBluetoothLocalDevice::AuthorizedPaired)
+        etatAppairage = "appairé";
     else
-        message += " [" + QString::fromUtf8("non appairé") + "]" ;
-    emit afficherMessage(message);
+        etatAppairage = "non appairé";
+    qDebug() << Q_FUNC_INFO << "adresse" << adresse << "pairingStatus"
+             << peripheriqueLocal.pairingStatus(adresse) << etatAppairage;
+    emit tabletteConnectee();
+    /**
+     * @todo Si on a le temps, on devrait pouvoir gérer les
+     * connexions/déconnexions pendant une partie
+     */
 }
 
-void Communication::deconnecterTablette(const QBluetoothAddress &adresse)
+/**
+ * @brief Déconnecte la tablette
+ *
+ * @fn Communication::deconnecterTablette
+ * @param adresse adresse MAC Bluetooth de la tablette
+ */
+void Communication::deconnecterTablette(const QBluetoothAddress& adresse)
 {
-    qDebug() << Q_FUNC_INFO << adresse;
-    QString message = QString::fromUtf8("Déconnexion du client ") + adresse.toString();
-    emit afficherMessage(message);
+    qDebug() << Q_FUNC_INFO << "adresse" << adresse;
+    emit tabletteDeconnectee();
+    /**
+     * @todo Si on a le temps on devrait pouvoir gérer les
+     * connexions/déconnexions pendant une partie
+     */
 }
-
-
 
 void Communication::connecterSocket()
 {
-    qDebug() << Q_FUNC_INFO;
     socket = serveur->nextPendingConnection();
-    if (!socket)
+    if(socket == nullptr)
         return;
 
     connect(socket, SIGNAL(disconnected()), this, SLOT(deconnecterSocket()));
-    connect(socket, SIGNAL(readyRead()), this, SLOT(recupererDonneesSocket()));
-    connect(socket, SIGNAL(error(QBluetoothSocket::SocketError)), this, SLOT(recupererErreurSocket(QBluetoothSocket::SocketError)));
-    connect(socket, SIGNAL(stateChanged(QBluetoothSocket::SocketState)), this, SLOT(recupererEtatSocket(QBluetoothSocket::SocketState)));
+    connect(socket, SIGNAL(readyRead()), this, SLOT(recevoirDonnees()));
+    connect(socket,
+            SIGNAL(error(QBluetoothSocket::SocketError)),
+            this,
+            SLOT(recupererErreurSocket(QBluetoothSocket::SocketError)));
+    connect(socket,
+            SIGNAL(stateChanged(QBluetoothSocket::SocketState)),
+            this,
+            SLOT(recupererEtatSocket(QBluetoothSocket::SocketState)));
 
-    estConnecter = true;
-    emit clientConnecter();
-    QString message = QString::fromUtf8("Périphérique ") + socket->peerName() + " [" + socket->peerAddress().toString() + "] " + QString::fromUtf8("connecté ");
-    emit afficherMessage(message);
-    //envoyer("OK");
+    connecte = true;
+    qDebug() << Q_FUNC_INFO << "client" << socket->peerName()
+             << socket->peerAddress().toString();
+    emit clientConnecte();
 }
 
 void Communication::deconnecterSocket()
 {
     qDebug() << Q_FUNC_INFO;
-    estConnecter = false;
-    emit clientDeconnecter();
+    connecte = false;
+    emit clientDeconnecte();
 }
 
-void Communication::recupererDonneesSocket()
+void Communication::recevoirDonnees()
 {
     qDebug() << Q_FUNC_INFO;
     QByteArray donnees;
 
-    while (socket->bytesAvailable())
-    {
-        donnees += socket->readAll();
-        usleep(150000); // cf. timeout
-    }
-    emit afficherMessage(QString::fromUtf8("Données reçues : ") + QString(donnees));
+    donnees = socket->readAll();
+    // qDebug() << Q_FUNC_INFO << "donnees" << donnees;
+
+    trame += QString(donnees.data());
+    qDebug() << Q_FUNC_INFO << "trame" << trame;
+
+    /**
+     * @todo Vérifier au moins que la trame est valide ? elle doit commencer par
+     * le délimiteur de début et se terminer par le délimiteur de fin comme
+     * défini dans le protocole. Remarque : on peut supprimer supprimer ces
+     * délimiteurs une fois vérifiés.
+     */
+    /**
+     * @todo Si la trame est valide alors : (pour commencer, on supposera que
+     * l'on a reçu qu'une trame complète) extraire le type de trame et, en
+     * fonction du type de trame, émettre un signal avec les données de la
+     * trame. Les signaux devront être connectés à des slots de la classe
+     * Basketgame. On n'oublie pas alors d'effacer le contenu de la trame pour
+     * la prochaine réception.
+     */
 }
 
 QString Communication::getNomPeripheriqueLocal()
@@ -187,3 +257,12 @@ QString Communication::getAdressePeripheriqueLocal()
     return adressePeripheriqueLocal;
 }
 
+bool Communication::estValide()
+{
+    return peripheriqueLocal.isValid();
+}
+
+bool Communication::estConnecte()
+{
+    return connecte;
+}

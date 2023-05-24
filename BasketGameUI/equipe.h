@@ -19,7 +19,6 @@ class Equipe : public QObject
 
   private:
     QString nom;
-    Puissance4* puissance4;
     int     score;
 
   public:

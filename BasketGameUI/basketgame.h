@@ -143,7 +143,7 @@ class Basketgame : public QMainWindow
     void initialiserPartie();
     void initialiserDureeTour();
     void initialiserParametreEquipe();
-
+    void initialiserCommunication();
     void demarrerChronometrageTour();
     void afficherPuissance4();
     void afficherUnJeton(int ligne, int colonne);

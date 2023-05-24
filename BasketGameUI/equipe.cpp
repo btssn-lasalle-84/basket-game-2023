@@ -17,8 +17,7 @@
  *
  */
 Equipe::Equipe(const QString& nom, QObject* parent) :
-    QObject(parent), nom(nom), score(0) ,
-    puissance4(new Puissance4(this))
+    QObject(parent), nom(nom), score(0)
 {
     qDebug() << Q_FUNC_INFO << "nom" << nom;
 }
@@ -58,14 +57,6 @@ void Equipe::setScore(int score)
 
 void Equipe::incrementerScore()
 {
-   if(puissance4->estEquipeRouge())
-   {
-       score++;
-   }
-   else
-   {
-       score++;
-   }
-   qDebug() << Q_FUNC_INFO << "score" << score;
-
+    score++;
+    qDebug() << Q_FUNC_INFO << "score" << score;
 }
