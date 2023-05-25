@@ -1,0 +1,173 @@
+class Puissance4
+!!!132226.cpp!!!	initialiserPlateau() : void
+    vainqueur = false;
+    for(int i = 0; i < plateau.size(); ++i)
+    {
+        plateau[i].resize(NB_LIGNES);
+    }
+
+    qDebug() << Q_FUNC_INFO << "colonnes" << plateau.size() << "lignes"
+             << plateau[0].size();
+
+    for(int colonne = 0; colonne < plateau.size(); ++colonne)
+    {
+        for(int ligne = 0; ligne < plateau[colonne].size(); ++ligne)
+        {
+            plateau[colonne][ligne] = CouleurJeton::AUCUNE;
+        }
+    }
+!!!132354.cpp!!!	placerPion(in colonne : int) : int
+    int ligne = 0;
+    for(ligne = 0; ligne < NB_LIGNES; ++ligne)
+    {
+        if(colonne >= 0 && colonne < NB_COLONNES &&
+           plateau[colonne][ligne] == CouleurJeton::AUCUNE)
+        {
+            plateau[colonne][ligne] =
+              (equipeRouge ? CouleurJeton::ROUGE : CouleurJeton::JAUNE);
+            qDebug() << Q_FUNC_INFO << "pion"
+                     << (equipeRouge ? CouleurJeton::ROUGE
+                                     : CouleurJeton::JAUNE)
+                     << "ligne" << ligne << "colonne" << colonne;
+            return ligne;
+        }
+    }
+    return -1;
+!!!132482.cpp!!!	verifierPlateau() : void
+    vainqueur = false;
+    if(!verifierLigne())
+        if(!verifierColonne())
+            if(!verifierDiagonaleMontante())
+                verifierDiagonaleDescendante();
+!!!132610.cpp!!!	estVainqueur() : bool
+    return vainqueur;
+!!!132738.cpp!!!	estEquipeRouge() : bool
+    return equipeRouge;
+!!!132866.cpp!!!	setTourEquipe(in estEquipeRouge : bool) : void
+    this->equipeRouge = estEquipeRouge;
+!!!132994.cpp!!!	testUnitaireVerifierPlateau() : void
+    initialiserPlateau();
+    int ligne                       = 0;
+    int colonne                     = 0;
+    plateau[ligne + 5][colonne + 2] = CouleurJeton::ROUGE;
+    plateau[ligne + 4][colonne + 3] = CouleurJeton::ROUGE;
+    plateau[ligne + 3][colonne + 1] = CouleurJeton::ROUGE;
+    plateau[ligne + 2][colonne + 5] = CouleurJeton::ROUGE;
+    verifierPlateau();
+    qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur;
+!!!133122.cpp!!!	verifierLigne() : bool
+    for(int ligne = 0; ligne < NB_LIGNES; ligne++)
+    {
+        for(int colonne = 0; colonne < NB_COLONNES - NB_PIONS_ALIGNES;
+            colonne++)
+        {
+            if(plateau[colonne][ligne] == CouleurJeton::JAUNE &&
+               plateau[colonne + 1][ligne] == CouleurJeton::JAUNE &&
+               plateau[colonne + 2][ligne] == CouleurJeton::JAUNE &&
+               plateau[colonne + 3][ligne] == CouleurJeton::JAUNE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "JAUNE";
+                return true;
+            }
+            else if(plateau[colonne][ligne] == CouleurJeton::ROUGE &&
+                    plateau[colonne + 1][ligne] == CouleurJeton::ROUGE &&
+                    plateau[colonne + 2][ligne] == CouleurJeton::ROUGE &&
+                    plateau[colonne + 3][ligne] == CouleurJeton::ROUGE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "ROUGE";
+                return true;
+            }
+        }
+    }
+    return false;
+!!!133250.cpp!!!	verifierColonne() : bool
+    for(int colonne = 0; colonne < NB_COLONNES; ++colonne)
+    {
+        for(int ligne = 0; ligne < NB_LIGNES - 3; ++ligne)
+        {
+            if(plateau[colonne][ligne] == CouleurJeton::JAUNE &&
+               plateau[colonne][ligne + 1] == CouleurJeton::JAUNE &&
+               plateau[colonne][ligne + 2] == CouleurJeton::JAUNE &&
+               plateau[colonne][ligne + 3] == CouleurJeton::JAUNE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "JAUNE";
+                return true;
+            }
+            else if(plateau[colonne][ligne] == CouleurJeton::ROUGE &&
+                    plateau[colonne][ligne + 1] == CouleurJeton::ROUGE &&
+                    plateau[colonne][ligne + 2] == CouleurJeton::ROUGE &&
+                    plateau[colonne][ligne + 3] == CouleurJeton::ROUGE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "ROUGE";
+                return true;
+            }
+        }
+    }
+    return false;
+!!!133378.cpp!!!	verifierDiagonaleMontante() : bool
+    for(int ligne = 0; ligne <= NB_LIGNES - NB_PIONS_ALIGNES; ++ligne)
+    {
+        for(int colonne = 0; colonne < NB_COLONNES - NB_PIONS_ALIGNES;
+            ++colonne)
+        {
+            if(plateau[ligne][colonne] == CouleurJeton::JAUNE &&
+               plateau[ligne + 1][colonne + 1] == CouleurJeton::JAUNE &&
+               plateau[ligne + 2][colonne + 2] == CouleurJeton::JAUNE &&
+               plateau[ligne + 3][colonne + 3] == CouleurJeton::JAUNE)
+
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "JAUNE";
+                return true;
+            }
+            else if(plateau[ligne][colonne] == CouleurJeton::ROUGE &&
+                    plateau[ligne + 1][colonne + 1] == CouleurJeton::ROUGE &&
+                    plateau[ligne + 2][colonne + 2] == CouleurJeton::ROUGE &&
+                    plateau[ligne + 3][colonne + 3] == CouleurJeton::ROUGE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "ROUGE";
+                return true;
+            }
+        }
+    }
+    return false;
+!!!133506.cpp!!!	verifierDiagonaleDescendante() : bool
+    for(int ligne = 3; ligne < NB_LIGNES; ligne++)
+    {
+        for(int colonne = 0; colonne < NB_COLONNES - NB_PIONS_ALIGNES;
+            colonne++)
+        {
+            if(plateau[ligne][colonne] == CouleurJeton::JAUNE &&
+               plateau[ligne - 1][colonne + 1] == CouleurJeton::JAUNE &&
+               plateau[ligne - 2][colonne + 2] == CouleurJeton::JAUNE &&
+               plateau[ligne - 3][colonne + 3] == CouleurJeton::JAUNE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "JAUNE";
+                return true;
+            }
+            else if(plateau[ligne][colonne] == CouleurJeton::ROUGE &&
+                    plateau[ligne - 1][colonne + 1] == CouleurJeton::ROUGE &&
+                    plateau[ligne - 2][colonne + 2] == CouleurJeton::ROUGE &&
+                    plateau[ligne - 3][colonne + 3] == CouleurJeton::ROUGE)
+            {
+                vainqueur = true;
+                qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur
+                         << "ROUGE";
+                return true;
+            }
+        }
+    }
+    return false;

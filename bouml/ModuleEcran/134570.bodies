@@ -1,9 +1,11 @@
 class Basketgame
 !!!134570.cpp!!!	Basketgame(inout parent : QWidget = 0)
     qDebug() << Q_FUNC_INFO;
+    equipes.push_back(new Equipe("Rouge", this));
+    equipes.push_back(new Equipe("Jaune", this));
     initialiserIHM();
     initialiserEvenements();
-
+    initialiserCommunication();
 #ifdef TEST_BASKETGAME
     attribuerRaccourcisClavier();
 #endif
@@ -17,14 +19,14 @@ class Basketgame
         demarrerPartie();
     }
 !!!143274.cpp!!!	terminerSeance() : void
-    if(plateau->estVainqueur())
+    if(puissance4->estVainqueur())
     {
         etatSeance = false;
         initialiserDureeTour();
         ui->tempsTour->setText("00:00:00");
         minuteurTour->stop();
         qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues
-                 << "estVainqueur" << plateau->estVainqueur();
+                 << "estVainqueur" << puissance4->estVainqueur();
     }
     else if(nbPionsJoues == NB_PIONS)
     {
@@ -39,8 +41,19 @@ class Basketgame
         qDebug() << Q_FUNC_INFO;
         initialiserPartie();
         initialiserDureeTour();
+        initialiserParametreEquipe();
         demarrerChronometrageTour();
-        afficherPlateau();
+        afficherPuissance4();
+    }
+!!!131458.cpp!!!	jouerPion(in colonne : int) : void
+    int ligne = puissance4->placerPion(colonne);
+    if(ligne != -1)
+    {
+        afficherUnJeton(ligne, colonne);
+        afficherScoreEquipe();
+        puissance4->verifierPlateau();
+        terminerSeance();
+        afficherTourEquipe();
     }
 !!!135082.cpp!!!	afficherEcran(in ecran : Basketgame::Ecran) : void
     ui->ecrans->setCurrentIndex(ecran);
@@ -67,14 +80,14 @@ class Basketgame
         ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
         minuteurTour->start(TIC_HORLOGE);
         qDebug() << Q_FUNC_INFO << "estEquipeRouge"
-                 << plateau->estEquipeRouge();
-        if(plateau->estEquipeRouge())
+                 << puissance4->estEquipeRouge();
+        if(puissance4->estEquipeRouge())
         {
             ui->labelVisualisationEquipeRouge->setStyleSheet(
               "background-color: transparent; color: black;");
             ui->labelVisualisationEquipeJaune->setStyleSheet(
               "background-color: yellow; color: black;");
-            plateau->setTourEquipe(false);
+            puissance4->setTourEquipe(false);
         }
         else
         {
@@ -82,9 +95,11 @@ class Basketgame
               "background-color: transparent; color: black;");
             ui->labelVisualisationEquipeRouge->setStyleSheet(
               "background-color: red; color: black;");
-            plateau->setTourEquipe(true);
+            puissance4->setTourEquipe(true);
         }
     }
+!!!143018.cpp!!!	fermerApplication() : void
+    this->close();
 !!!142890.cpp!!!	simulerPion() : void
     if(!etatSeance)
         return;
@@ -92,8 +107,6 @@ class Basketgame
     int colonne = randInt(0, NB_COLONNES - 1);
     // et le joue
     jouerPion(colonne);
-!!!143018.cpp!!!	fermerApplication() : void
-    this->close();
 !!!136106.cpp!!!	initialiserIHM() : void
     ui->setupUi(this);
 
@@ -110,30 +123,11 @@ class Basketgame
 !!!136234.cpp!!!	initialiserEvenements() : void
     // le minuteur
     connect(minuteurTour, SIGNAL(timeout()), this, SLOT(chronometrerTour()));
-!!!151594.cpp!!!	initialiserEtatPartie() : void
-    estVainqueur     = false;
-    estEquipeRouge   = true;
-    nbPionsJoues     = 0;
-    nbPionsAlignes   = NB_PIONS_ALIGNES;
-    scoreEquipeRouge = 0;
-    scoreEquipeJaune = 0;
-!!!143402.cpp!!!	initialiserPlateau() : void
-    for(int i = 0; i < plateau.size(); ++i)
-    {
-        plateau[i].resize(NB_LIGNES);
-    }
-
-    qDebug() << Q_FUNC_INFO << "colonnes" << plateau.size() << "lignes"
-             << plateau[0].size();
-
-    for(int colonne = 0; colonne < plateau.size(); ++colonne)
-    {
-        for(int ligne = 0; ligne < plateau[colonne].size(); ++ligne)
-        {
-            plateau[colonne][ligne] = CouleurJeton::AUCUNE;
-        }
-    }
-    afficherPlateau();
+!!!131586.cpp!!!	initialiserPartie() : void
+    nbPionsJoues = 0;
+    equipes[Rouge]->setScore(0);
+    equipes[Jaune]->setScore(0);
+    puissance4->initialiserPlateau();
 !!!143530.cpp!!!	initialiserDureeTour() : void
     if(tempsTour != nullptr)
     {
@@ -141,51 +135,47 @@ class Basketgame
         tempsTour = nullptr;
     }
     tempsTour = new QTime(0, 0, TEMPS_TOUR);
+!!!131714.cpp!!!	initialiserParametreEquipe() : void
+    ui->labelVisualisationEquipeRouge->setText(equipes[Rouge]->getNom());
+    ui->labelVisualisationEquipeJaune->setText(equipes[Jaune]->getNom());
+    ui->affichageTotalPanierE1->display(QString::number(0));
+    ui->affichageTotalPanierE2->display(QString::number(0));
+    ui->labelVisualisationEquipeJaune->setStyleSheet(
+      "background-color: transparent; color: black;");
+    ui->labelVisualisationEquipeRouge->setStyleSheet(
+      "background-color: red; color: black;");
+!!!131842.cpp!!!	initialiserCommunication() : void
+    /**
+     * @todo Connecter les signaux/slots entre Communication et Basketgame puis
+     * demarrer la communication
+     */
 !!!151722.cpp!!!	demarrerChronometrageTour() : void
     ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
     qDebug() << Q_FUNC_INFO << "tempsTour" << tempsTour->toString("hh:mm:ss");
     minuteurTour->start(TIC_HORLOGE);
-!!!143658.cpp!!!	afficherPlateau() : void
+!!!131970.cpp!!!	afficherPuissance4() : void
     qDebug() << Q_FUNC_INFO << "\"" << PLATEAU_7 << "\"";
     ui->labelVisualisationPlateau->setPixmap(QPixmap(PLATEAU_7));
-!!!151850.cpp!!!	placerPion(in colonne : int) : void
-    int ligne = 0;
-
-    for(ligne = 0; ligne < NB_LIGNES; ++ligne)
-    {
-        if(colonne >= 0 && colonne < NB_COLONNES &&
-           plateau[colonne][ligne] == CouleurJeton::AUCUNE)
-        {
-            plateau[colonne][ligne] =
-              (estEquipeRouge ? CouleurJeton::ROUGE : CouleurJeton::JAUNE);
-            qDebug() << Q_FUNC_INFO << "pion"
-                     << (estEquipeRouge ? CouleurJeton::ROUGE
-                                        : CouleurJeton::JAUNE)
-                     << "ligne" << ligne + 1 << "colonne" << colonne + 1;
-            afficherUnJeton(ligne, colonne);
-            break;
-        }
-    }
 !!!143786.cpp!!!	afficherUnJeton(in ligne : int, in colonne : int) : void
     if(ligne < 0 || ligne >= NB_LIGNES)
         return;
     if(colonne < 0 || colonne >= NB_COLONNES)
         return;
 
-    QImage   jetonRouge(JETON_ROUGE);
-    QImage   jetonJaune(JETON_JAUNE);
-    QPixmap  puissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
-    QPainter p(&puissance4);
+    QImage  jetonRouge(JETON_ROUGE);
+    QImage  jetonJaune(JETON_JAUNE);
+    QPixmap plateauPuissance4 = ui->labelVisualisationPlateau->pixmap()->copy();
+    QPainter p(&plateauPuissance4);
 
-    qDebug() << Q_FUNC_INFO << "rouge" << plateau->estEquipeRouge() << "ligne"
-             << ligne << "colonne" << colonne;
-    if(plateau->estEquipeRouge())
+    qDebug() << Q_FUNC_INFO << "rouge" << puissance4->estEquipeRouge()
+             << "ligne" << ligne << "colonne" << colonne;
+    if(puissance4->estEquipeRouge())
     {
         p.drawImage(QPoint(DEPLACEMENT_X + (colonne * TAILLE_JETON),
                            DEPLACEMENT_Y - (ligne * TAILLE_JETON)),
                     jetonRouge);
         p.end();
-        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        ui->labelVisualisationPlateau->setPixmap(plateauPuissance4);
     }
     else
     {
@@ -193,7 +183,7 @@ class Basketgame
                            DEPLACEMENT_Y - (ligne * TAILLE_JETON)),
                     jetonJaune);
         p.end();
-        ui->labelVisualisationPlateau->setPixmap(puissance4);
+        ui->labelVisualisationPlateau->setPixmap(plateauPuissance4);
     }
 !!!143914.cpp!!!	afficherTourEquipe() : void
     minuteurTour->stop();
@@ -205,13 +195,13 @@ class Basketgame
 
     minuteurTour->start(TIC_HORLOGE);
 
-    if(plateau->estEquipeRouge())
+    if(puissance4->estEquipeRouge())
     {
         ui->labelVisualisationEquipeRouge->setStyleSheet(
           "background-color: transparent; color: black;");
         ui->labelVisualisationEquipeJaune->setStyleSheet(
           "background-color: yellow; color: black;");
-        plateau->setTourEquipe(false);
+        puissance4->setTourEquipe(false);
     }
     else
     {
@@ -219,18 +209,20 @@ class Basketgame
           "background-color: transparent; color: black;");
         ui->labelVisualisationEquipeRouge->setStyleSheet(
           "background-color: red; color: black;");
-        plateau->setTourEquipe(true);
+        puissance4->setTourEquipe(true);
     }
 !!!144042.cpp!!!	afficherScoreEquipe() : void
-    if(plateau->estEquipeRouge())
+    if(puissance4->estEquipeRouge())
     {
-        scoreEquipeRouge++;
-        ui->affichageTotalPanierE1->display(QString::number(scoreEquipeRouge));
+        equipes[Rouge]->incrementerScore();
+        ui->affichageTotalPanierE1->display(
+          QString::number(equipes[Rouge]->getScore()));
     }
     else
     {
-        scoreEquipeJaune++;
-        ui->affichageTotalPanierE2->display(QString::number(scoreEquipeJaune));
+        equipes[Jaune]->incrementerScore();
+        ui->affichageTotalPanierE2->display(
+          QString::number(equipes[Jaune]->getScore()));
     }
     nbPionsJoues++;
 !!!144298.cpp!!!	attribuerRaccourcisClavier() : void
@@ -255,12 +247,12 @@ class Basketgame
     addAction(simulationPion);
     connect(simulationPion, SIGNAL(triggered()), this, SLOT(simulerPion()));
 #ifdef TEST_ALIGNEMENT
-    QAction* verificationPlateau = new QAction(this);
-    verificationPlateau->setShortcut(QKeySequence(Qt::Key_V));
-    addAction(verificationPlateau);
-    connect(verificationPlateau,
+    QAction* verificationPuissance4 = new QAction(this);
+    verificationPuissance4->setShortcut(QKeySequence(Qt::Key_V));
+    addAction(verificationPuissance4);
+    connect(verificationPuissance4,
             SIGNAL(triggered()),
-            plateau,
+            puissance4,
             SLOT(testUnitaireVerifierPlateau()));
 #endif
 !!!144170.cpp!!!	randInt(in min : int, in max : int) : int

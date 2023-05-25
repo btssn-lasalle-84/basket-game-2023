@@ -7,7 +7,7 @@
  */
 
 #include "communication.h"
-
+#include "basketgame.h"
 Communication::Communication(QObject* parent) :
     QObject(parent), serveur(nullptr), socket(nullptr), connecte(false)
 {
@@ -190,6 +190,11 @@ void Communication::deconnecterTablette(const QBluetoothAddress& adresse)
      */
 }
 
+/**
+ * @brief Connecte la Socket
+ *
+ * @fn Communication::connecterSocket
+ */
 void Communication::connecterSocket()
 {
     socket = serveur->nextPendingConnection();
@@ -213,6 +218,12 @@ void Communication::connecterSocket()
     emit clientConnecte();
 }
 
+
+/**
+ * @brief Deconnecte la Socket
+ *
+ * @fn Communication::deconnecterSocket()
+ */
 void Communication::deconnecterSocket()
 {
     qDebug() << Q_FUNC_INFO;
@@ -220,7 +231,13 @@ void Communication::deconnecterSocket()
     emit clientDeconnecte();
 }
 
-void Communication::recevoirDonnees()
+
+/**
+ * @brief Récuperer les données de la trame
+ *
+ * @fn Communication::recevoirDonnees()
+ */
+void Communication::recevoirDonnees(QStringList champsTrame)
 {
     qDebug() << Q_FUNC_INFO;
     QByteArray donnees;
@@ -231,22 +248,67 @@ void Communication::recevoirDonnees()
     trame += QString(donnees.data());
     qDebug() << Q_FUNC_INFO << "trame" << trame;
 
-    /**
-     * @todo Vérifier au moins que la trame est valide ? elle doit commencer par
-     * le délimiteur de début et se terminer par le délimiteur de fin comme
-     * défini dans le protocole. Remarque : on peut supprimer supprimer ces
-     * délimiteurs une fois vérifiés.
-     */
-    /**
-     * @todo Si la trame est valide alors : (pour commencer, on supposera que
-     * l'on a reçu qu'une trame complète) extraire le type de trame et, en
-     * fonction du type de trame, émettre un signal avec les données de la
-     * trame. Les signaux devront être connectés à des slots de la classe
-     * Basketgame. On n'oublie pas alors d'effacer le contenu de la trame pour
-     * la prochaine réception.
-     */
+    if(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    {
+        QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);
+        qDebug() << Q_FUNC_INFO << trames;
+
+        for(int i = 0; i < trames.count(); ++i)
+        {
+            qDebug() << Q_FUNC_INFO << i << trames[i];
+            champsTrame = trames[i].split(DELIMITEUR_CHAMP);
+            traiterTrame(champsTrame);
+        }
+        trame.clear();
+        qDebug() << Q_FUNC_INFO << "Clear" << trames;
+    }
 }
 
+
+/**
+ * @brief Traiter les données d'une trame
+ *
+ * @fn Communication::traiterTrame()
+ */
+void Communication::traiterTrame(QStringList champsTrame)
+{
+    qDebug() << Q_FUNC_INFO << "trame" << trame;
+
+    while(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    {
+        switch(champsTrame[TYPE_TRAME].toInt())
+        {
+            case TypeTrame::Seance :
+            emit (configurerPartie(champsTrame[NOM_CLUB_ROUGE].toInt() , champsTrame[NOM_CLUB_JAUNE].toInt() , champsTrame[NOMBRE_PANIER].toInt() , champsTrame[TEMPS_TOUR_TRAME].toInt()));
+                qDebug() << Q_FUNC_INFO << "Start"   << champsTrame;
+            break;
+
+            case TypeTrame::Start :
+                emit demanderStart();
+                qDebug() << Q_FUNC_INFO << "Start"   << champsTrame;
+            break;
+
+            case TypeTrame::Tir :
+                emit (marquerPanier(champsTrame[COULEUR_EQUIPE].toInt() , champsTrame[NUMERO_PANIER].toInt()));
+                qDebug() << Q_FUNC_INFO  << "Tir"   << champsTrame;
+            break;
+
+            case TypeTrame::Stop:
+                emit demanderStop();
+                qDebug() << Q_FUNC_INFO << "Stop"   << champsTrame;
+            break;
+
+            case TypeTrame::Reset:
+                emit demanderReset();
+                 qDebug() << Q_FUNC_INFO << "Reset" << champsTrame;
+            break;
+
+            default :
+                 qDebug() << Q_FUNC_INFO << "!!!!"  << champsTrame;
+            break;
+        }
+    }
+}
 QString Communication::getNomPeripheriqueLocal()
 {
     return nomPeripheriqueLocal;

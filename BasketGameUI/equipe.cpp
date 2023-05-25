@@ -30,8 +30,7 @@ Equipe::Equipe(const QString& nom, QObject* parent) :
  */
 Equipe::~Equipe()
 {
-    qDebug() << Q_FUNC_INFO;
-}
+    qDebug() << Q_FUNC_INFO;}
 
 QString Equipe::getNom() const
 {
