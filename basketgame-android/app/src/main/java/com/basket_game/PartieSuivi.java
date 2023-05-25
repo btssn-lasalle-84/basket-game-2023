@@ -10,11 +10,13 @@ import static com.basket_game.Partie.SEUIL_TEMPS_RESTANT;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -47,6 +49,8 @@ public class PartieSuivi extends AppCompatActivity
     private int       tempsRestantTour       = Partie.TEMPS_MAX_TOUR; //!< par défaut
     private Timer     compteurTempsTour      = null;
     private TimerTask tacheCompteurTempsTour = null;
+    private CommunicationBluetooth communicationBluetooth = null;
+    Handler handler = null;
 
     /**
      * Ressources GUI
@@ -68,6 +72,8 @@ public class PartieSuivi extends AppCompatActivity
         afficherNomEquipe2();
         creerBoutonArreterPartie();
         initialiserCompteurTempsTour();
+        initialiserHandler();
+        connecterModules();
     }
 
     /**
@@ -233,6 +239,30 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
+     * @brief Méthode appelée pour connecter les modules Bluetooth
+     */
+    private void connecterModules() {
+        Log.d(TAG, "connecterModules()");
+        if(communicationBluetooth == null) {
+            communicationBluetooth = CommunicationBluetooth.getInstance(handler);
+        }
+        if(communicationBluetooth != null) {
+            // Connecter les trois modules
+            communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_DETECTION, CommunicationBluetooth.ID_MODULE_DETECTION);
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour démarrer la partie
+     */
+    private void demarrerPartie() {
+        Log.d(TAG, "demarrerPartie()");
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.START + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                CommunicationBluetooth.ID_MODULE_DETECTION);
+    }
+
+    /**
      * @brief Méthode appelée pour arrêter la partie
      */
     private void arreterPartie()
@@ -243,5 +273,41 @@ public class PartieSuivi extends AppCompatActivity
         Log.d(TAG, "arreterPartie()");
         Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
         startActivity(intent);
+    }
+
+    /**
+     * @brief Méthode appelée pour initialiser la Handler
+     */
+    @SuppressLint("HandlerLeak")
+    private void initialiserHandler() {
+        Log.d(TAG, "initialiserHandler()");
+        handler = new Handler() {
+            public void handleMessage(Message message) {
+                super.handleMessage(message);
+                //Log.d(TAG, "handleMessage() what = " + message.what);
+
+                switch (message.what)
+                {
+                    case CommunicationBluetooth.CONNEXION_BLUETOOTH:
+                        Log.d(TAG, "handleMessage() CONNEXION_BLUETOOTH " + message.obj.toString());
+                        if(message.obj.toString().equals(CommunicationBluetooth.NOM_MODULE_DETECTION))
+                        {
+                            demarrerPartie();
+                        }
+                        break;
+                    case CommunicationBluetooth.RECEPTION_BLUETOOTH:
+                        Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH");
+                        break;
+                    case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
+                        Log.d(TAG, "handleMessage() DECONNEXION_BLUETOOTH "  + message.obj.toString());
+                        break;
+                    default:
+                        Log.e(TAG, "handleMessage() what = " + message.what + " !!!");
+                }
+
+
+            }
+        };
+        Log.d(TAG, "initialiserHandler() handler = " + handler);
     }
 }
