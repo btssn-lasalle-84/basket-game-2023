@@ -2,14 +2,16 @@
 
 ## Présentation du protocole implanté dans le simulateur ESP'ACE
 
-Ce document présente rapidement le fonctionnement du simulateur ainsi que le protocole implémenté. Le protocole complet est disponible dans Google Drive. Actuellement, la version du protocole est la **0.x**.
+Ce document présente rapidement le fonctionnement du simulateur ainsi que le protocole implémenté. Le protocole complet est disponible dans Google Drive. Actuellement, la version du protocole est la **0.1**.
 
 ## Configuration du simulateur
 
 Valeur par défaut :
 
 ```cpp
-#define NB_PANIERS              7
+#define NB_PANIERS    7
+#define NB_MANCHES    10
+#define MAX_TEMPS_TIR 45
 ```
 
 ```cpp
@@ -19,22 +21,38 @@ Valeur par défaut :
 
 ## Fonctionnement
 
+- Trame de début de séance :
+
+```
+$BASKET;SEANCE;NOM_EQUIPE1;NOM_EQUIPE2;TEMPS;PANIERS;MANCHES;\r\n
+$BASKET;SEANCE;Rouge;Jaune;45;7;5;\r\n
+```
+
 - Trame de début de partie :
 
 ```
-
+$BASKET;START;NUMERO_PARTIE;\r\n
+$BASKET;START;1;\r\n
 ```
 
 - Trames de détection :
 
 ```
-
+$BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n
+$BASKET;TIR;ROUGE;3;\r\n
 ```
 
 - Trame de fin de partie :
 
 ```
+$BASKET;STOP;NUMERO_PARTIE;\r\n
+$BASKET;STOP;1;\r\n
+```
 
+- Trame de réinitialisation :
+
+```
+$BASKET;RESET;\r\n
 ```
 
 ## platform.ini
