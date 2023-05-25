@@ -6,8 +6,6 @@
 
 package com.basket_game;
 
-import static com.basket_game.Partie.SEUIL_TEMPS_RESTANT;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
@@ -20,11 +18,9 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -51,6 +47,7 @@ public class PartieSuivi extends AppCompatActivity
     private TimerTask tacheCompteurTempsTour = null;
     private CommunicationBluetooth communicationBluetooth = null;
     Handler handler = null;
+    private boolean moduleConnecte = false;
 
     /**
      * Ressources GUI
@@ -71,6 +68,9 @@ public class PartieSuivi extends AppCompatActivity
         afficherNomEquipe1();
         afficherNomEquipe2();
         creerBoutonArreterPartie();
+        creerBoutonConnexionModuleDetection();
+        creerBoutonConnexionModuleSignalisation();
+        creerBoutonConnexionModuleEcran();
         initialiserHandler();
     }
 
@@ -158,7 +158,7 @@ public class PartieSuivi extends AppCompatActivity
                     {
                         progressBarTempsRestantTour.setProgress(tempsRestantTour);
 
-                        if (tempsRestantTour <= SEUIL_TEMPS_RESTANT) {
+                        if (tempsRestantTour <= Partie.SEUIL_TEMPS_RESTANT) {
                             progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.RED));
                         }
                     }
@@ -245,7 +245,7 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
-     * @brief Méthode appelée pour arrêter la partie
+     * @brief Méthode appelée pour créer le bouton pour arrêter la partie
      */
     private void creerBoutonArreterPartie()
     {
@@ -255,6 +255,78 @@ public class PartieSuivi extends AppCompatActivity
             public void onClick(View v)
             {
                 arreterPartie();
+            }
+        });
+    }
+
+    /**
+     * @brief Méthode appelée pour créer le bouton pour se connecter au module de détection
+     */
+    private void creerBoutonConnexionModuleDetection()
+    {
+        Button boutonConnexionModuleDetection = findViewById(R.id.boutonConnexionModuleDetection);
+        boutonConnexionModuleDetection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!moduleConnecte)
+                {
+                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_DETECTION, CommunicationBluetooth.ID_MODULE_DETECTION);
+                    boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    moduleConnecte = true;
+                } else {
+                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_DETECTION);
+                    boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    moduleConnecte = false;
+                }
+            }
+        });
+    }
+
+    /**
+     * @brief Méthode appelée pour créer le bouton pour se connecter au module de signalisation
+     */
+    private void creerBoutonConnexionModuleSignalisation()
+    {
+        Button boutonConnexionModuleSignalisation = findViewById(R.id.boutonConnexionModuleSignalisation);
+        boutonConnexionModuleSignalisation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!moduleConnecte)
+                {
+                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_SIGNALISATION, CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                    boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    moduleConnecte = true;
+                } else {
+                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                    boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    moduleConnecte = false;
+                }
+            }
+        });
+    }
+
+    /**
+     * @brief Méthode appelée pour créer le bouton pour se connecter au module écran
+     */
+    private void creerBoutonConnexionModuleEcran()
+    {
+        Button boutonConnexionModuleEcran = findViewById(R.id.boutonConnexionModuleEcran);
+        boutonConnexionModuleEcran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!moduleConnecte)
+                {
+                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN, CommunicationBluetooth.ID_MODULE_ECRAN);
+                    boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    moduleConnecte = true;
+                } else {
+                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_ECRAN);
+                    boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    moduleConnecte = false;
+                }
             }
         });
     }
