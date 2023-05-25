@@ -71,9 +71,52 @@ public class PartieSuivi extends AppCompatActivity
         afficherNomEquipe1();
         afficherNomEquipe2();
         creerBoutonArreterPartie();
-        initialiserCompteurTempsTour();
         initialiserHandler();
+    }
+
+    /**
+     * @brief Méthode appelée au démarrage après le onCreate() ou un restart
+     * après un onStop()
+     */
+    @Override
+    protected void onStart()
+    {
+        super.onStart();
+        Log.d(TAG, "onStart()");
+        initialiserCompteurTempsTour();
         connecterModules();
+    }
+
+    /**
+     * @brief Méthode appelée après onStart() ou après onPause()
+     */
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        Log.d(TAG, "onResume()");
+    }
+
+    /**
+     * @brief Méthode appelée après qu'une boîte de dialogue s'est affichée (on
+     * reprend sur un onResume()) ou avant onStop() (activité plus visible)
+     */
+    @Override
+    protected void onPause()
+    {
+        super.onPause();
+        Log.d(TAG, "onPause()");
+    }
+
+    /**
+     * @brief Méthode appelée lorsque l'activité n'est plus visible
+     */
+    @Override
+    protected void onStop()
+    {
+        communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_DETECTION);
+        super.onStop();
+        Log.d(TAG, "onStop()");
     }
 
     /**
@@ -257,9 +300,7 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void demarrerPartie() {
         Log.d(TAG, "demarrerPartie()");
-        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                        CommunicationBluetooth.Type.START + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
-                CommunicationBluetooth.ID_MODULE_DETECTION);
+        fabriquerTrameDebutPartie();
     }
 
     /**
@@ -269,6 +310,7 @@ public class PartieSuivi extends AppCompatActivity
     {
         arreterCompteur();
         reinitialiserCompteur();
+        fabriquerTrameArretPartie();
 
         Log.d(TAG, "arreterPartie()");
         Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
@@ -296,10 +338,10 @@ public class PartieSuivi extends AppCompatActivity
                         }
                         break;
                     case CommunicationBluetooth.RECEPTION_BLUETOOTH:
-                        Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH");
+                        Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH " + message.obj.toString());
                         break;
                     case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
-                        Log.d(TAG, "handleMessage() DECONNEXION_BLUETOOTH "  + message.obj.toString());
+                        Log.d(TAG, "handleMessage() DECONNEXION_BLUETOOTH " + message.obj.toString());
                         break;
                     default:
                         Log.e(TAG, "handleMessage() what = " + message.what + " !!!");
@@ -309,5 +351,27 @@ public class PartieSuivi extends AppCompatActivity
             }
         };
         Log.d(TAG, "initialiserHandler() handler = " + handler);
+    }
+
+    /**
+     * @brief Méthode appelée pour fabriquer la trame de début de partie
+     */
+    private void fabriquerTrameDebutPartie() {
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.START + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                        CommunicationBluetooth.ID_MODULE_DETECTION);
+    }
+
+    /**
+     * @brief Méthode appelée pour fabriquer la trame d'arrêt de partie
+     */
+    private void fabriquerTrameArretPartie() {
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.STOP + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                CommunicationBluetooth.ID_MODULE_DETECTION);
     }
 }

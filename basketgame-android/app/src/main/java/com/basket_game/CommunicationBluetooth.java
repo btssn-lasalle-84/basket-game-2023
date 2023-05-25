@@ -17,6 +17,7 @@ import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Arrays;
 import java.util.Set;
 import java.util.UUID;
 import java.util.Vector;
@@ -59,7 +60,10 @@ public class CommunicationBluetooth
     private Handler                       handler = null;
     public enum Type {
         SEANCE, START, TIR, STOP, RESET
-    };
+    }
+    public enum CouleurEquipe {
+        ROUGE, JAUNE
+    }
 
     /**
      * @fn getInstance
@@ -248,7 +252,7 @@ public class CommunicationBluetooth
     @SuppressLint("MissingPermission")
     public void seDeconnecter(int idModule)
     {
-        Log.d(TAG, "deconnecter(" + idModule + ")");
+        Log.d(TAG, "seDeconnecter(" + idModule + ")");
         // Fermer les connexions et le socket
         try
         {
@@ -319,14 +323,15 @@ public class CommunicationBluetooth
                 {
                     try
                     {
-                        String message = String.valueOf((char)inputStream.read());
-                        if(message != null)
+                        byte[] donnees = new byte[32];
+                        int  n = inputStream.read(donnees);
+                        if(n > 0)
                         {
                             if(handler != null)
                             {
                                 Message messageHandler = new Message();
                                 messageHandler.what    = RECEPTION_BLUETOOTH;
-                                messageHandler.obj     = message;
+                                messageHandler.obj     = new String(Arrays.copyOfRange(donnees,0,n));
                                 handler.sendMessage(messageHandler);
                             }
                         }
