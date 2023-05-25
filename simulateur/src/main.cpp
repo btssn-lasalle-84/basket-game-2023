@@ -13,6 +13,7 @@
 #define DEBUG
 
 #define SANS_ACK
+#define SANS_BOUTON_JOUEUR_SUIVANT
 
 // Brochages
 #define GPIO_LED_ROUGE   5    //!<
@@ -33,7 +34,7 @@
 
 #define NB_PANIERS    7
 #define NB_MANCHES    10
-#define MAX_TEMPS_TIR 45
+#define MAX_TEMPS_TIR 15 // 45
 
 #define BLUETOOTH
 #ifdef BLUETOOTH
@@ -110,15 +111,16 @@ int           numeroPanier = 0;          //!< de 0 à NB_PANIERS
 int           nbPaniers    = NB_PANIERS; //!< le nombre de paniers détectables
 int           numeroPartie = 0;          //!<
 int           nbManches    = 0;
-int           tempsMaxTir  = 45;
-String        equipe1;
-String        equipe2;
+unsigned long tempsMaxTir  = MAX_TEMPS_TIR * 1000;
+unsigned long tempsPrecedent = 0;
 CouleurEquipe joueurCourant =
   CouleurEquipe::ROUGE; //!< la couleur de l'équipe qui tire
 const String codeEquipe[CouleurEquipe::NbEquipes] = {
     "ROUGE",
     "JAUNE"
 }; //!< code de l'équipe qui tire
+String equipe1 = codeEquipe[CouleurEquipe::ROUGE];
+String equipe2 = codeEquipe[CouleurEquipe::JAUNE];
 // String typePartie;
 bool      refresh    = false; //!< demande rafraichissement de l'écran OLED
 bool      antiRebond = false; //!< anti-rebond
@@ -128,6 +130,25 @@ Afficheur afficheur(ADRESSE_I2C_OLED,
 String    entete        = String(EN_TETE_TRAME);    // caractère séparateur
 String    separateur    = String(DELIMITEUR_CHAMP); // caractère séparateur
 String    delimiteurFin = String(DELIMITEURS_FIN);  // fin de trame
+
+void changerJoueur()
+{
+    // joueur suivant
+    joueurCourant  = (CouleurEquipe)((int(joueurCourant) + 1) % NbEquipes);
+    tempsPrecedent = millis();
+    afficheur.setMessageLigne(Afficheur::Ligne4, codeEquipe[joueurCourant]);
+    refresh = true;
+#ifdef DEBUG
+    if(joueurCourant == CouleurEquipe::ROUGE)
+    {
+        Serial.println("Suivant : ROUGE");
+    }
+    else
+    {
+        Serial.println("Suivant : JAUNE");
+    }
+#endif
+}
 
 String extraireChamp(String& trame, unsigned int numeroChamp)
 {
@@ -195,19 +216,20 @@ void envoyerTrameAcquittement(bool panier = false)
  */
 void envoyerTrameDetection(int numeroPanier, CouleurEquipe couleurEquipe)
 {
+    if(numeroPanier == 0)
+        return;
     char trameEnvoi[64];
 
-    // Format : $basket;P;{NUMERO};{EQUIPE};\r
-
+    // Format : $BASKET;TIR;{EQUIPE};{NUMERO};\r\n
     sprintf((char*)trameEnvoi,
-            "%s;TIR;%s;%d;\r",
+            "%s;TIR;%s;%d;\r\n",
             entete.c_str(),
             codeEquipe[(int)couleurEquipe].c_str(),
             numeroPanier);
     ESPBluetooth.write((uint8_t*)trameEnvoi, strlen((char*)trameEnvoi));
 #ifdef DEBUG
     String trame = String(trameEnvoi);
-    trame.remove(trame.indexOf("\r"), 1);
+    trame.remove(trame.indexOf("\r\n"), 2);
     Serial.print("> ");
     Serial.println(trame);
 #endif
@@ -231,26 +253,21 @@ void IRAM_ATTR tirerPanier()
     if(joueurCourant == CouleurEquipe::ROUGE)
     {
         if(tir == 0)
-            sprintf(strMessageDisplay, "-> Rouge : loupé");
+            sprintf(strMessageDisplay, "%s : loupé", equipe1.c_str());
         else
-            sprintf(strMessageDisplay, "-> Rouge : panier %d", tir);
+            sprintf(strMessageDisplay, "%s : panier %d", equipe1.c_str(), tir);
         afficheur.setMessageLigne(Afficheur::Ligne1, String(strMessageDisplay));
-        String message = afficheur.getMessageLigne(Afficheur::Ligne2);
-        message.remove(0, 3);
-        afficheur.setMessageLigne(Afficheur::Ligne2, message);
     }
     else
     {
         if(tir == 0)
-            sprintf(strMessageDisplay, "-> Jaune : loupé");
+            sprintf(strMessageDisplay, "%s : loupé", equipe2.c_str());
         else
-            sprintf(strMessageDisplay, "-> Jaune : panier %d", tir);
+            sprintf(strMessageDisplay, "%s : panier %d", equipe2.c_str(), tir);
         afficheur.setMessageLigne(Afficheur::Ligne2, String(strMessageDisplay));
-        String message = afficheur.getMessageLigne(Afficheur::Ligne1);
-        message.remove(0, 3);
-        afficheur.setMessageLigne(Afficheur::Ligne1, message);
     }
 
+    refresh    = true;
     antiRebond = true;
 
 #ifdef DEBUG
@@ -273,18 +290,10 @@ void IRAM_ATTR tirerPanier()
     }
 #endif
 
-    // joueur suivant
-    joueurCourant = (CouleurEquipe)((int(joueurCourant) + 1) % NbEquipes);
-#ifdef DEBUG
-    if(joueurCourant == CouleurEquipe::ROUGE)
-    {
-        Serial.println("Suivant : ROUGE");
-    }
-    else
-    {
-        Serial.println("Suivant : JAUNE");
-    }
-#endif
+    if(tir == 0)
+        return;
+
+    changerJoueur();
 }
 
 /**
@@ -293,21 +302,12 @@ void IRAM_ATTR tirerPanier()
  */
 void IRAM_ATTR terminerTir()
 {
+#ifndef SANS_BOUTON_JOUEUR_SUIVANT
     if(etatPartie != EnCours || antiRebond)
         return;
-    // joueur suivant
-    joueurCourant = (CouleurEquipe)((int(joueurCourant) + 1) % NbEquipes);
-#ifdef DEBUG
-    if(joueurCourant == CouleurEquipe::ROUGE)
-    {
-        Serial.println("Suivant : ROUGE");
-    }
-    else
-    {
-        Serial.println("Suivant : JAUNE");
-    }
-#endif
+    changerJoueur();
     antiRebond = true;
+#endif
 }
 
 /**
@@ -381,7 +381,26 @@ void reinitialiserAffichage()
     afficheur.setMessageLigne(Afficheur::Ligne1, "");
     afficheur.setMessageLigne(Afficheur::Ligne2, "");
     afficheur.setMessageLigne(Afficheur::Ligne3, "");
+    afficheur.setMessageLigne(Afficheur::Ligne4, "");
     refresh = true;
+}
+
+/**
+ * @brief Retourne true si l'échéance de la durée fixée a été atteinte
+ * @param intervalle unsigned long
+ * @return bool true si la durée est arrivée à échéance
+ */
+bool estEcheance(unsigned long intervalle)
+{
+    if(etatPartie != EnCours)
+        return false;
+    unsigned long temps = millis();
+    if(temps - tempsPrecedent >= intervalle)
+    {
+        tempsPrecedent = temps;
+        return true;
+    }
+    return false;
 }
 
 /**
@@ -486,12 +505,15 @@ void loop()
         antiRebond = false;
     }
 
+    if(estEcheance(tempsMaxTir))
+    {
+        changerJoueur();
+    }
+
     if(lireTrame(trame))
     {
         typeTrame = verifierTrame(trame);
-        if(typeTrame != Inconnu)
-            afficheur.setMessageLigne(Afficheur::Ligne4, nomsTrame[typeTrame]);
-        refresh = true;
+        refresh   = true;
 #ifdef DEBUG
         if(typeTrame >= 0)
             Serial.println("\nTrame : " + nomsTrame[typeTrame]);
@@ -515,9 +537,9 @@ void loop()
                     String nb;
                     nb = extraireChamp(trame, ChampSeance::TEMPS);
                     if(nb.toInt() > 0 && nb.toInt() <= MAX_TEMPS_TIR)
-                        tempsMaxTir = nb.toInt();
+                        tempsMaxTir = nb.toInt() * 1000;
                     else
-                        tempsMaxTir = MAX_TEMPS_TIR;
+                        tempsMaxTir = MAX_TEMPS_TIR * 1000;
 #ifdef DEBUG
                     Serial.print("Temps max tir : ");
                     Serial.println(tempsMaxTir);
@@ -545,6 +567,11 @@ void loop()
 #ifdef DEBUG
                     Serial.println("Nouvelle séance");
 #endif
+                    reinitialiserAffichage();
+                    envoyerTrameAcquittement(true);
+                    afficheur.setMessageLigne(Afficheur::Ligne3,
+                                              String("Seance"));
+                    afficheur.afficher();
                 }
                 break;
             case TypeTrame::START:
@@ -559,14 +586,17 @@ void loop()
 #endif
                     reinitialiserAffichage();
                     envoyerTrameAcquittement(true);
-                    joueurCourant = CouleurEquipe::ROUGE;
-                    numeroTir     = 0;
-                    etatPartie    = EnCours;
+                    tempsPrecedent = millis();
+                    joueurCourant  = CouleurEquipe::ROUGE;
+                    numeroTir      = 0;
+                    etatPartie     = EnCours;
                     digitalWrite(GPIO_LED_ROUGE, LOW);
                     digitalWrite(GPIO_LED_ORANGE, LOW);
                     digitalWrite(GPIO_LED_VERTE, HIGH);
                     afficheur.setMessageLigne(Afficheur::Ligne3,
                                               String("En cours"));
+                    afficheur.setMessageLigne(Afficheur::Ligne4,
+                                              codeEquipe[joueurCourant]);
                     afficheur.afficher();
 #ifdef DEBUG
                     Serial.println("Nouvelle partie");
