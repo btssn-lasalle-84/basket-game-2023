@@ -7,7 +7,7 @@
  */
 
 #include "communication.h"
-#include "basketgame.h"
+
 Communication::Communication(QObject* parent) :
     QObject(parent), serveur(nullptr), socket(nullptr), connecte(false)
 {
@@ -218,7 +218,6 @@ void Communication::connecterSocket()
     emit clientConnecte();
 }
 
-
 /**
  * @brief Deconnecte la Socket
  *
@@ -231,13 +230,12 @@ void Communication::deconnecterSocket()
     emit clientDeconnecte();
 }
 
-
 /**
  * @brief Récuperer les données de la trame
  *
  * @fn Communication::recevoirDonnees()
  */
-void Communication::recevoirDonnees(QStringList champsTrame)
+void Communication::recevoirDonnees()
 {
     qDebug() << Q_FUNC_INFO;
     QByteArray donnees;
@@ -250,9 +248,11 @@ void Communication::recevoirDonnees(QStringList champsTrame)
 
     if(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
     {
+        /*
         QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);
         qDebug() << Q_FUNC_INFO << trames;
 
+        QStringList champsTrame;
         for(int i = 0; i < trames.count(); ++i)
         {
             qDebug() << Q_FUNC_INFO << i << trames[i];
@@ -260,55 +260,75 @@ void Communication::recevoirDonnees(QStringList champsTrame)
             traiterTrame(champsTrame);
         }
         trame.clear();
-        qDebug() << Q_FUNC_INFO << "Clear" << trames;
+        */
+
+        QStringList champsTrame;
+        champsTrame = trame.split(DELIMITEUR_CHAMP);
+        traiterTrame(champsTrame);
+        trame.clear();
     }
 }
 
+/**
+ * @brief Rcupère le type de trame
+ *
+ * @fn Communication::recupererTypeTrame()
+ */
+Communication::TypeTrame Communication::recupererTypeTrame(QString champType)
+{
+    QVector typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
+    for(int i = 0; i < typesTrame.size(); i++)
+    {
+        if(typesTrame[i] == champType)
+            return TypeTrame(i);
+    }
+    return TypeTrame::Inconnu;
+}
 
 /**
  * @brief Traiter les données d'une trame
  *
  * @fn Communication::traiterTrame()
  */
-void Communication::traiterTrame(QStringList champsTrame)
+void Communication::traiterTrame(const QStringList& champsTrame)
 {
-    qDebug() << Q_FUNC_INFO << "trame" << trame;
+    qDebug() << Q_FUNC_INFO << "champsTrame" << champsTrame;
 
-    while(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    switch(recupererTypeTrame(champsTrame[TYPE_TRAME]))
     {
-        switch(champsTrame[TYPE_TRAME].toInt())
-        {
-            case TypeTrame::Seance :
-            emit (configurerPartie(champsTrame[NOM_CLUB_ROUGE].toInt() , champsTrame[NOM_CLUB_JAUNE].toInt() , champsTrame[NOMBRE_PANIER].toInt() , champsTrame[TEMPS_TOUR_TRAME].toInt()));
-                qDebug() << Q_FUNC_INFO << "Start"   << champsTrame;
-            break;
+        case TypeTrame::Seance:
+            qDebug() << Q_FUNC_INFO << "SEANCE";
+            emit partieConfiguree(champsTrame[NOM_EQUIPE1],
+                                  champsTrame[NOM_EQUIPE2],
+                                  champsTrame[NB_PANIERS].toInt(),
+                                  champsTrame[TEMPS_TOUR_MAX].toInt(),
+                                  champsTrame[NB_MANCHES].toInt());
 
-            case TypeTrame::Start :
-                emit demanderStart();
-                qDebug() << Q_FUNC_INFO << "Start"   << champsTrame;
             break;
-
-            case TypeTrame::Tir :
-                emit (marquerPanier(champsTrame[COULEUR_EQUIPE].toInt() , champsTrame[NUMERO_PANIER].toInt()));
-                qDebug() << Q_FUNC_INFO  << "Tir"   << champsTrame;
+        case TypeTrame::Start:
+            qDebug() << Q_FUNC_INFO << "START";
+            emit partieDemarree(champsTrame[NUMERO_PARTIE].toInt());
             break;
-
-            case TypeTrame::Stop:
-                emit demanderStop();
-                qDebug() << Q_FUNC_INFO << "Stop"   << champsTrame;
+        case TypeTrame::Tir:
+            qDebug() << Q_FUNC_INFO << "TIR";
+            emit tirPanier(champsTrame[COULEUR_EQUIPE],
+                           champsTrame[NUMERO_PANIER].toInt());
             break;
-
-            case TypeTrame::Reset:
-                emit demanderReset();
-                 qDebug() << Q_FUNC_INFO << "Reset" << champsTrame;
+        case TypeTrame::Stop:
+            qDebug() << Q_FUNC_INFO << "STOP";
+            emit partieArretee(champsTrame[NUMERO_PARTIE].toInt());
             break;
-
-            default :
-                 qDebug() << Q_FUNC_INFO << "!!!!"  << champsTrame;
+        case TypeTrame::Reset:
+            qDebug() << Q_FUNC_INFO << "RESET";
+            emit partieReinitialisee();
             break;
-        }
+        default:
+            qDebug() << Q_FUNC_INFO << "type trame inconnu !"
+                     << champsTrame[TYPE_TRAME];
+            break;
     }
 }
+
 QString Communication::getNomPeripheriqueLocal()
 {
     return nomPeripheriqueLocal;
