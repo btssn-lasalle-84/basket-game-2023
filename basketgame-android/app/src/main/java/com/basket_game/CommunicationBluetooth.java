@@ -253,6 +253,8 @@ public class CommunicationBluetooth
     public void seDeconnecter(int idModule)
     {
         Log.d(TAG, "seDeconnecter(" + idModule + ")");
+        if(peripheriques.get(idModule) == null)
+            return;
         // Fermer les connexions et le socket
         try
         {
