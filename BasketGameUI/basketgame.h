@@ -101,6 +101,7 @@ class Basketgame : public QMainWindow
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
+    bool             etatSeance;
 
   public slots:
     void demarrerSeance();
@@ -135,7 +136,6 @@ class Basketgame : public QMainWindow
     QVector<Equipe*> equipes;
     QTime*           tempsTour;
     QTimer*          minuteurTour;
-    bool             etatSeance;
     int              nbPionsJoues;
 
     void initialiserIHM();

@@ -34,6 +34,8 @@ static const QString serviceUuid(
   QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
 static const QString serviceNom(QStringLiteral("BasketGame"));
 
+class Basketgame;
+
 class Communication : public QObject
 {
     Q_OBJECT
@@ -63,6 +65,7 @@ class Communication : public QObject
   public slots:
 
   private:
+    Basketgame*           basketgame;
     QBluetoothLocalDevice peripheriqueLocal;
     QBluetoothServer*     serveur;     //!< Le serveur Bluetooth
     QBluetoothSocket*     socket;      //!< La socket de communication Bluetooth
@@ -70,7 +73,7 @@ class Communication : public QObject
     bool                  connecte; //!< Etat de connexion de la socket client
     QString               nomPeripheriqueLocal;
     QString               adressePeripheriqueLocal;
-    QString trame; //!< Le contenu des données reçues sur la socket
+    QString               trame; //!< Le contenu des données reçues sur la socket
 
     Communication::TypeTrame recupererTypeTrame(QString champType);
     void                     traiterTrame(const QStringList& champsTrame);

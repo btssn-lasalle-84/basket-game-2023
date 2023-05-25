@@ -78,6 +78,50 @@ class Communication
     return nomPeripheriqueLocal;
 !!!128898.cpp!!!	getAdressePeripheriqueLocal() : QString
     return adressePeripheriqueLocal;
+!!!134667.cpp!!!	recupererTypeTrame(in champType : QString) : Communication::TypeTrame
+    QVector typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
+    for(int i = 0; i < typesTrame.size(); i++)
+    {
+        if(typesTrame[i] == champType)
+            return TypeTrame(i);
+    }
+    return TypeTrame::Inconnu;
+!!!129666.cpp!!!	traiterTrame(in champsTrame : QStringList) : void
+    qDebug() << Q_FUNC_INFO << "champsTrame" << champsTrame;
+
+    switch(recupererTypeTrame(champsTrame[TYPE_TRAME]))
+    {
+        case TypeTrame::Seance:
+            qDebug() << Q_FUNC_INFO << "SEANCE";
+            emit partieConfiguree(champsTrame[NOM_EQUIPE1],
+                                  champsTrame[NOM_EQUIPE2],
+                                  champsTrame[NB_PANIERS].toInt(),
+                                  champsTrame[TEMPS_TOUR_MAX].toInt(),
+                                  champsTrame[NB_MANCHES].toInt());
+
+            break;
+        case TypeTrame::Start:
+            qDebug() << Q_FUNC_INFO << "START";
+            emit partieDemarree(champsTrame[NUMERO_PARTIE].toInt());
+            break;
+        case TypeTrame::Tir:
+            qDebug() << Q_FUNC_INFO << "TIR";
+            emit tirPanier(champsTrame[COULEUR_EQUIPE],
+                           champsTrame[NUMERO_PANIER].toInt());
+            break;
+        case TypeTrame::Stop:
+            qDebug() << Q_FUNC_INFO << "STOP";
+            emit partieArretee(champsTrame[NUMERO_PARTIE].toInt());
+            break;
+        case TypeTrame::Reset:
+            qDebug() << Q_FUNC_INFO << "RESET";
+            emit partieReinitialisee();
+            break;
+        default:
+            qDebug() << Q_FUNC_INFO << "type trame inconnu !"
+                     << champsTrame[TYPE_TRAME];
+            break;
+    }
 !!!129026.cpp!!!	connecterTablette(in adresse : QBluetoothAddress) : void
     QString etatAppairage;
     if(peripheriqueLocal.pairingStatus(adresse) ==
@@ -125,35 +169,36 @@ class Communication
     qDebug() << Q_FUNC_INFO;
     connecte = false;
     emit clientDeconnecte();
-!!!129666.cpp!!!	traiterTrame() : void
+!!!129538.cpp!!!	recevoirDonnees() : void
+    qDebug() << Q_FUNC_INFO;
+    QByteArray donnees;
+
+    donnees = socket->readAll();
+    // qDebug() << Q_FUNC_INFO << "donnees" << donnees;
+
+    trame += QString(donnees.data());
     qDebug() << Q_FUNC_INFO << "trame" << trame;
-    while(trame.startsWith(DELIMITEUR_DEBUT) && trame.endsWith(DELIMITEUR_FIN))
+
+    if(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
     {
-        switch()
+        /*
+        QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);
+        qDebug() << Q_FUNC_INFO << trames;
+
+        QStringList champsTrame;
+        for(int i = 0; i < trames.count(); ++i)
         {
-            case TypeTrame::Seance :
-            emit configurerPartie(trame.at(CHAMP_COULEUR_TRAME),
-                                  trame.at(CHAMP_NUMERO_TRAME));
-
-            case TypeTrame::Start :
-                emit demanderStart();
-                qDebug() << Q_FUNC_INFO << "Start" << trame;
-
-
-            case TypeTrame::Tir :
-                qDebug() << Q_FUNC_INFO  << "Tir"   << trame;
-                emit marquerPanier(trame.at(CHAMP_COULEUR_TRAME),
-                                   trame.at(CHAMP_NUMERO_TRAME));
-            case TypeTrame::Stop:
-                emit demanderStop();
-                qDebug() << Q_FUNC_INFO << "Stop" << trame;
-
-            case TypeTrame::Reset:
-                emit demanderReset();
-                 qDebug() << Q_FUNC_INFO << "Reset" << trame;
-            default :
-                qDebug() << Q_FUNC_INFO << "!!!!" << trame;
+            qDebug() << Q_FUNC_INFO << i << trames[i];
+            champsTrame = trames[i].split(DELIMITEUR_CHAMP);
+            traiterTrame(champsTrame);
         }
+        trame.clear();
+        */
+
+        QStringList champsTrame;
+        champsTrame = trame.split(DELIMITEUR_CHAMP);
+        traiterTrame(champsTrame);
+        trame.clear();
     }
 !!!129794.cpp!!!	recupererErreurSocket(in erreurSocket : QBluetoothSocket::SocketError) : void
     qDebug() << Q_FUNC_INFO << erreurSocket;

@@ -7,6 +7,7 @@
  */
 
 #include "communication.h"
+#include "basketgame.h"
 
 Communication::Communication(QObject* parent) :
     QObject(parent), serveur(nullptr), socket(nullptr), connecte(false)
@@ -168,10 +169,18 @@ void Communication::connecterTablette(const QBluetoothAddress& adresse)
     qDebug() << Q_FUNC_INFO << "adresse" << adresse << "pairingStatus"
              << peripheriqueLocal.pairingStatus(adresse) << etatAppairage;
     emit tabletteConnectee();
-    /**
-     * @todo Si on a le temps, on devrait pouvoir gérer les
-     * connexions/déconnexions pendant une partie
-     */
+
+    while(basketgame->etatSeance == true)
+    {
+        if(connecte)
+        {
+         emit tabletteConnectee();
+        }
+        else
+        {
+          emit  tabletteDeconnectee();
+        }
+    }
 }
 
 /**
@@ -183,7 +192,17 @@ void Communication::connecterTablette(const QBluetoothAddress& adresse)
 void Communication::deconnecterTablette(const QBluetoothAddress& adresse)
 {
     qDebug() << Q_FUNC_INFO << "adresse" << adresse;
-    emit tabletteDeconnectee();
+    while(basketgame->etatSeance == true)
+    {
+        if(!connecte)
+        {
+         emit tabletteDeconnectee();
+        }
+        else
+        {
+           emit tabletteConnectee();
+        }
+    }
     /**
      * @todo Si on a le temps on devrait pouvoir gérer les
      * connexions/déconnexions pendant une partie
@@ -270,13 +289,13 @@ void Communication::recevoirDonnees()
 }
 
 /**
- * @brief Rcupère le type de trame
+ * @brief Recupère le type de trame
  *
  * @fn Communication::recupererTypeTrame()
  */
 Communication::TypeTrame Communication::recupererTypeTrame(QString champType)
 {
-    QVector typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
+    QVector<QString> typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
     for(int i = 0; i < typesTrame.size(); i++)
     {
         if(typesTrame[i] == champType)
