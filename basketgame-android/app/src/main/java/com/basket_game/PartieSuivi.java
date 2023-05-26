@@ -448,6 +448,7 @@ public class PartieSuivi extends AppCompatActivity
     {
         Log.d(TAG, "demarrerPartie()");
         boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+        fabriquerTrameSeance();
         fabriquerTrameDebutPartie();
     }
 
@@ -537,8 +538,23 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
-     * @todo Faire la méthode fabriquerTrameSeance() et l'appeler avant fabriquerTrameDebutPartie()
+     * @brief Méthode appelée pour fabriquer la trame contenant les paramètres de la partie
      */
+    private void fabriquerTrameSeance()
+    {
+
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.SEANCE +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getEquipe1().getNomEquipe() +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getEquipe2().getNomEquipe() +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getTempsMaxTour() +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbPaniers() +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbManchesGagnantes() +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                CommunicationBluetooth.ID_MODULE_DETECTION);
+    }
 
     /**
      * @brief Méthode appelée pour fabriquer la trame de début de partie
@@ -575,6 +591,15 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
-     * @todo Faire la méthode fabriquerTrameReset()
+     * @brief Méthode appelée pour fabriquer la trame pour reset la partie
      */
+    private void fabriquerTrameReset()
+    {
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.RESET +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                CommunicationBluetooth.ID_MODULE_DETECTION);
+    }
 }
