@@ -321,6 +321,9 @@ public class PartieSuivi extends AppCompatActivity
                     communicationBluetooth.seConnecter(
                       CommunicationBluetooth.NOM_MODULE_SIGNALISATION,
                       CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                    /**
+                     * @todo Afficher un Toast si le module n'a pas été trouvé
+                     */
                 }
                 else
                 {
@@ -347,6 +350,9 @@ public class PartieSuivi extends AppCompatActivity
                 {
                     communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN,
                                                        CommunicationBluetooth.ID_MODULE_ECRAN);
+                    /**
+                     * @todo Afficher un Toast si le module n'a pas été trouvé
+                     */
                 }
                 else
                 {
@@ -531,10 +537,17 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
+     * @todo Faire la méthode fabriquerTrameSeance() et l'appeler avant fabriquerTrameDebutPartie()
+     */
+
+    /**
      * @brief Méthode appelée pour fabriquer la trame de début de partie
      */
     private void fabriquerTrameDebutPartie()
     {
+        /**
+         * @todo Gérer un numéro de partie
+         */
         communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
                                          CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
                                          CommunicationBluetooth.Type.START +
@@ -549,6 +562,9 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void fabriquerTrameArretPartie()
     {
+        /**
+         * @todo Gérer un numéro de partie
+         */
         communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
                                          CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
                                          CommunicationBluetooth.Type.STOP +
@@ -557,4 +573,8 @@ public class PartieSuivi extends AppCompatActivity
                                          CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
                                        CommunicationBluetooth.ID_MODULE_DETECTION);
     }
+
+    /**
+     * @todo Faire la méthode fabriquerTrameReset()
+     */
 }
