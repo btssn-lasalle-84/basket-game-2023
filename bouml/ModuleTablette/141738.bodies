@@ -8,7 +8,25 @@ class PartieSuivi
         afficherNomEquipe1();
         afficherNomEquipe2();
         creerBoutonArreterPartie();
+        creerBoutonConnexionModuleDetection();
+        creerBoutonConnexionModuleSignalisation();
+        creerBoutonConnexionModuleEcran();
+        initialiserHandler();
+!!!150402.java!!!	onStart() : void
+        super.onStart();
+        Log.d(TAG, "onStart()");
         initialiserCompteurTempsTour();
+        connecterModules();
+!!!150530.java!!!	onResume() : void
+        super.onResume();
+        Log.d(TAG, "onResume()");
+!!!150658.java!!!	onPause() : void
+        super.onPause();
+        Log.d(TAG, "onPause()");
+!!!150786.java!!!	onStop() : void
+        communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_DETECTION);
+        super.onStop();
+        Log.d(TAG, "onStop()");
 !!!158378.java!!!	initialiserCompteurTempsTour() : void
         progressBarTempsRestantTour = (ProgressBar)findViewById(R.id.progressBarTempsRestantTour);
         compteurTempsTour           = new Timer();
@@ -38,7 +56,7 @@ class PartieSuivi
                     {
                         progressBarTempsRestantTour.setProgress(tempsRestantTour);
 
-                        if (tempsRestantTour <= SEUIL_TEMPS_RESTANT) {
+                        if (tempsRestantTour <= Partie.SEUIL_TEMPS_RESTANT) {
                             progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.RED));
                         }
                     }
@@ -113,6 +131,64 @@ class PartieSuivi
                 arreterPartie();
             }
         });
+!!!150914.java!!!	creerBoutonConnexionModuleDetection() : void
+        final boolean[] moduleConnecte = {false};
+        ImageButton boutonConnexionModuleDetection = findViewById(R.id.boutonConnexionModuleDetection);
+        boutonConnexionModuleDetection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!moduleConnecte[0])
+                {
+                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_DETECTION, CommunicationBluetooth.ID_MODULE_DETECTION);
+
+                    boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    moduleConnecte[0] = true;
+                } else {
+                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_DETECTION);
+                    boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    moduleConnecte[0] = false;
+                }
+            }
+        });
+!!!151042.java!!!	creerBoutonConnexionModuleSignalisation() : void
+        final boolean[] moduleConnecte = {false};
+        ImageButton boutonConnexionModuleSignalisation = findViewById(R.id.boutonConnexionModuleSignalisation);
+        boutonConnexionModuleSignalisation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!moduleConnecte[0])
+                {
+                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_SIGNALISATION, CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                    boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    moduleConnecte[0] = true;
+                } else {
+                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                    boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    moduleConnecte[0] = false;
+                }
+            }
+        });
+!!!151170.java!!!	creerBoutonConnexionModuleEcran() : void
+        final boolean[] moduleConnecte = {false};
+        ImageButton boutonConnexionModuleEcran = findViewById(R.id.boutonConnexionModuleEcran);
+        boutonConnexionModuleEcran.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v)
+            {
+                if(!moduleConnecte[0])
+                {
+                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN, CommunicationBluetooth.ID_MODULE_ECRAN);
+                    boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    moduleConnecte[0] = true;
+                } else {
+                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_ECRAN);
+                    boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    moduleConnecte[0] = false;
+                }
+            }
+        });
 !!!165162.java!!!	arreterCompteur() : void
         if (tacheCompteurTempsTour != null)
         {
@@ -123,10 +199,65 @@ class PartieSuivi
         tempsRestantTour = partie.getTempsMaxTour();
         progressBarTempsRestantTour.setProgress(tempsRestantTour);
         progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
+!!!151298.java!!!	connecterModules() : void
+        Log.d(TAG, "connecterModules()");
+        if(communicationBluetooth == null) {
+            communicationBluetooth = CommunicationBluetooth.getInstance(handler);
+        }
+        if(communicationBluetooth != null) {
+            // Connecter les trois modules
+            communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_DETECTION, CommunicationBluetooth.ID_MODULE_DETECTION);
+        }
+!!!151426.java!!!	demarrerPartie() : void
+        Log.d(TAG, "demarrerPartie()");
+        fabriquerTrameDebutPartie();
 !!!144554.java!!!	arreterPartie() : void
         arreterCompteur();
         reinitialiserCompteur();
+        fabriquerTrameArretPartie();
 
         Log.d(TAG, "arreterPartie()");
         Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
         startActivity(intent);
+!!!151554.java!!!	initialiserHandler() : void
+        Log.d(TAG, "initialiserHandler()");
+        handler = new Handler() {
+            public void handleMessage(Message message) {
+                super.handleMessage(message);
+                //Log.d(TAG, "handleMessage() what = " + message.what);
+
+                switch (message.what)
+                {
+                    case CommunicationBluetooth.CONNEXION_BLUETOOTH:
+                        Log.d(TAG, "handleMessage() CONNEXION_BLUETOOTH " + message.obj.toString());
+                        if(message.obj.toString().equals(CommunicationBluetooth.NOM_MODULE_DETECTION))
+                        {
+                            demarrerPartie();
+                        }
+                        break;
+                    case CommunicationBluetooth.RECEPTION_BLUETOOTH:
+                        Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH " + message.obj.toString());
+                        break;
+                    case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
+                        Log.d(TAG, "handleMessage() DECONNEXION_BLUETOOTH " + message.obj.toString());
+                        break;
+                    default:
+                        Log.e(TAG, "handleMessage() what = " + message.what + " !!!");
+                }
+
+
+            }
+        };
+        Log.d(TAG, "initialiserHandler() handler = " + handler);
+!!!151682.java!!!	fabriquerTrameDebutPartie() : void
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.START + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                        CommunicationBluetooth.ID_MODULE_DETECTION);
+!!!151810.java!!!	fabriquerTrameArretPartie() : void
+        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.Type.STOP + CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
+                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                CommunicationBluetooth.ID_MODULE_DETECTION);
