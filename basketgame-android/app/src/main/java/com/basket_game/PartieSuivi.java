@@ -88,7 +88,7 @@ public class PartieSuivi extends AppCompatActivity
         Log.d(TAG, "onStart()");
         initialiserCompteurTempsTour();
         connecterModules();
-        verfierConnexionModules();
+        verifierConnexionModules();
     }
 
     /**
@@ -322,10 +322,10 @@ public class PartieSuivi extends AppCompatActivity
                       CommunicationBluetooth.NOM_MODULE_SIGNALISATION,
                       CommunicationBluetooth.ID_MODULE_SIGNALISATION);
                     Toast toast =
-                            Toast.makeText(getApplicationContext(),
-                                    "Impossible de se connecter au module " +
-                                            CommunicationBluetooth.NOM_MODULE_SIGNALISATION + " !",
-                                    Toast.LENGTH_SHORT);
+                      Toast.makeText(getApplicationContext(),
+                                     "Impossible de se connecter au module " +
+                                       CommunicationBluetooth.NOM_MODULE_SIGNALISATION + " !",
+                                     Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 else
@@ -353,11 +353,10 @@ public class PartieSuivi extends AppCompatActivity
                 {
                     communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN,
                                                        CommunicationBluetooth.ID_MODULE_ECRAN);
-                    Toast toast =
-                            Toast.makeText(getApplicationContext(),
-                                    "Impossible de se connecter au module " +
-                                            CommunicationBluetooth.NOM_MODULE_ECRAN + " !",
-                                    Toast.LENGTH_SHORT);
+                    Toast toast = Toast.makeText(getApplicationContext(),
+                                                 "Impossible de se connecter au module " +
+                                                   CommunicationBluetooth.NOM_MODULE_ECRAN + " !",
+                                                 Toast.LENGTH_SHORT);
                     toast.show();
                 }
                 else
@@ -371,7 +370,7 @@ public class PartieSuivi extends AppCompatActivity
     /**
      * @brief Méthode appelée pour vérifier la connexion aux modules
      */
-    private void verfierConnexionModules()
+    private void verifierConnexionModules()
     {
         if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION))
         {
@@ -453,9 +452,8 @@ public class PartieSuivi extends AppCompatActivity
     private void demarrerPartie()
     {
         Log.d(TAG, "demarrerPartie()");
-        boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-        fabriquerTrameSeance();
-        fabriquerTrameDebutPartie();
+        envoyerTrameSeance();
+        envoyerTrameDebutPartie();
     }
 
     /**
@@ -465,7 +463,7 @@ public class PartieSuivi extends AppCompatActivity
     {
         arreterCompteur();
         reinitialiserCompteur();
-        fabriquerTrameArretPartie();
+        envoyerTrameArretPartie();
 
         Log.d(TAG, "arreterPartie()");
         Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
@@ -492,6 +490,8 @@ public class PartieSuivi extends AppCompatActivity
                         if(message.obj.toString().equals(
                              CommunicationBluetooth.NOM_MODULE_DETECTION))
                         {
+                            boutonConnexionModuleDetection.setBackgroundTintList(
+                              ColorStateList.valueOf(Color.GREEN));
                             demarrerPartie();
                         }
                         else if(message.obj.toString().equals(
@@ -509,6 +509,9 @@ public class PartieSuivi extends AppCompatActivity
                         break;
                     case CommunicationBluetooth.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH " + message.obj.toString());
+                        /**
+                         * @todo Gérer les trames TIR
+                         */
                         break;
                     case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
                         Log.d(TAG,
@@ -544,68 +547,83 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
-     * @brief Méthode appelée pour fabriquer la trame contenant les paramètres de la partie
+     * @brief Méthode appelée pour fabriquer et envoyer la trame contenant les paramètres de la
+     * partie
      */
-    private void fabriquerTrameSeance()
+    private void envoyerTrameSeance()
     {
-
-        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                        CommunicationBluetooth.Type.SEANCE +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getEquipe1().getNomEquipe() +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getEquipe2().getNomEquipe() +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getTempsMaxTour() +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbPaniers() +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbManchesGagnantes() +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
-                CommunicationBluetooth.ID_MODULE_DETECTION);
+        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
+        {
+            communicationBluetooth.envoyer(
+              CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                CommunicationBluetooth.Type.SEANCE +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                partie.getEquipe1().getNomEquipe() +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                partie.getEquipe2().getNomEquipe() +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getTempsMaxTour() +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbPaniers() +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbManchesGagnantes() +
+                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+              i);
+        }
     }
 
     /**
-     * @brief Méthode appelée pour fabriquer la trame de début de partie
+     * @brief Méthode appelée pour fabriquer et envoyer la trame de début de partie
      */
-    private void fabriquerTrameDebutPartie()
+    private void envoyerTrameDebutPartie()
     {
         /**
          * @todo Gérer un numéro de partie
          */
-        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                                         CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                         CommunicationBluetooth.Type.START +
-                                         CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
-                                         CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                         CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
-                                       CommunicationBluetooth.ID_MODULE_DETECTION);
+        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
+        {
+            communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                                             CommunicationBluetooth.Type.START +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                                             CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                                           i);
+        }
     }
 
     /**
-     * @brief Méthode appelée pour fabriquer la trame d'arrêt de partie
+     * @brief Méthode appelée pour fabriquer et envoyer la trame d'arrêt de partie
      */
-    private void fabriquerTrameArretPartie()
+    private void envoyerTrameArretPartie()
     {
         /**
          * @todo Gérer un numéro de partie
          */
-        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                                         CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                         CommunicationBluetooth.Type.STOP +
-                                         CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
-                                         CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                         CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
-                                       CommunicationBluetooth.ID_MODULE_DETECTION);
+        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
+        {
+            communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                                             CommunicationBluetooth.Type.STOP +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                                             CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                                           i);
+        }
     }
 
     /**
-     * @brief Méthode appelée pour fabriquer la trame pour reset la partie
+     * @brief Méthode appelée pour fabriquer et envoyer la trame pour reset la partie
      */
-    private void fabriquerTrameReset()
+    private void envoyerTrameReset()
     {
-        communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                        CommunicationBluetooth.Type.RESET +
-                        CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                        CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
-                CommunicationBluetooth.ID_MODULE_DETECTION);
+        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
+        {
+            communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                                             CommunicationBluetooth.Type.RESET +
+                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                                             CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                                           i);
+        }
     }
 }
