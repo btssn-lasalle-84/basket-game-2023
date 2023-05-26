@@ -24,8 +24,8 @@
 Basketgame::Basketgame(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::basketgame),
     puissance4(new Puissance4(this)), communication(new Communication(this)),
-    tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
-    nbPionsJoues(0)
+    tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
+    etatSeance(false)
 {
     qDebug() << Q_FUNC_INFO;
     equipes.push_back(new Equipe("Rouge", this));
@@ -280,9 +280,13 @@ void Basketgame::initialiserDureeTour()
 void Basketgame::initialiserCommunication()
 {
     /**
-     * @todo Connecter les signaux/slots entre Communication et Basketgame puis
-     * demarrer la communication
+     * @todo Connecter les signaux/slots entre Communication et Basketgame avant
+     * de demarrer la communication
      */
+    if(communication != nullptr)
+    {
+        communication->demarrer();
+    }
 }
 
 /**

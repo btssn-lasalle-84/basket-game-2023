@@ -7,7 +7,6 @@
  */
 
 #include "communication.h"
-#include "basketgame.h"
 
 Communication::Communication(QObject* parent) :
     QObject(parent), serveur(nullptr), socket(nullptr), connecte(false)
@@ -41,7 +40,10 @@ void Communication::demarrer()
         qDebug() << Q_FUNC_INFO;
         serveur =
           new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
-        connect(serveur, SIGNAL(newConnection()), this, SLOT(nouveauClient()));
+        connect(serveur,
+                SIGNAL(newConnection()),
+                this,
+                SLOT(connecterSocket()));
 
         QBluetoothUuid uuid(QBluetoothUuid::Rfcomm);
         serviceInfo = serveur->listen(uuid, serviceNom);
@@ -93,11 +95,12 @@ void Communication::initialiser()
     peripheriqueLocal.powerOn();
     nomPeripheriqueLocal     = peripheriqueLocal.name();
     adressePeripheriqueLocal = peripheriqueLocal.address().toString();
-    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostConnectable);
+    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
     /**
      * @see les appareil qui ne sont pas appairés peuvent decouvrir la Raspberry
      * Pi
      */
+    // peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostConnectable);
     // peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
     qDebug() << Q_FUNC_INFO << "nomPeripheriqueLocal" << nomPeripheriqueLocal
              << "adressePeripheriqueLocal" << adressePeripheriqueLocal
@@ -169,18 +172,6 @@ void Communication::connecterTablette(const QBluetoothAddress& adresse)
     qDebug() << Q_FUNC_INFO << "adresse" << adresse << "pairingStatus"
              << peripheriqueLocal.pairingStatus(adresse) << etatAppairage;
     emit tabletteConnectee();
-
-    while(basketgame->etatSeance == true)
-    {
-        if(connecte)
-        {
-         emit tabletteConnectee();
-        }
-        else
-        {
-          emit  tabletteDeconnectee();
-        }
-    }
 }
 
 /**
@@ -192,17 +183,7 @@ void Communication::connecterTablette(const QBluetoothAddress& adresse)
 void Communication::deconnecterTablette(const QBluetoothAddress& adresse)
 {
     qDebug() << Q_FUNC_INFO << "adresse" << adresse;
-    while(basketgame->etatSeance == true)
-    {
-        if(!connecte)
-        {
-         emit tabletteDeconnectee();
-        }
-        else
-        {
-           emit tabletteConnectee();
-        }
-    }
+    emit tabletteDeconnectee();
     /**
      * @todo Si on a le temps on devrait pouvoir gérer les
      * connexions/déconnexions pendant une partie
@@ -265,7 +246,7 @@ void Communication::recevoirDonnees()
     trame += QString(donnees.data());
     qDebug() << Q_FUNC_INFO << "trame" << trame;
 
-    if(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    if(trame.contains(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
     {
         /*
         QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);
