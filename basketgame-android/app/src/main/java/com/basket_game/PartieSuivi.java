@@ -321,9 +321,12 @@ public class PartieSuivi extends AppCompatActivity
                     communicationBluetooth.seConnecter(
                       CommunicationBluetooth.NOM_MODULE_SIGNALISATION,
                       CommunicationBluetooth.ID_MODULE_SIGNALISATION);
-                    /**
-                     * @todo Afficher un Toast si le module n'a pas été trouvé
-                     */
+                    Toast toast =
+                            Toast.makeText(getApplicationContext(),
+                                    "Impossible de se connecter au module " +
+                                            CommunicationBluetooth.NOM_MODULE_SIGNALISATION + " !",
+                                    Toast.LENGTH_SHORT);
+                    toast.show();
                 }
                 else
                 {
@@ -350,9 +353,12 @@ public class PartieSuivi extends AppCompatActivity
                 {
                     communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN,
                                                        CommunicationBluetooth.ID_MODULE_ECRAN);
-                    /**
-                     * @todo Afficher un Toast si le module n'a pas été trouvé
-                     */
+                    Toast toast =
+                            Toast.makeText(getApplicationContext(),
+                                    "Impossible de se connecter au module " +
+                                            CommunicationBluetooth.NOM_MODULE_ECRAN + " !",
+                                    Toast.LENGTH_SHORT);
+                    toast.show();
                 }
                 else
                 {
