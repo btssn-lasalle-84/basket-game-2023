@@ -189,6 +189,16 @@ public class CommunicationBluetooth
     }
 
     /**
+     * @brief Pour vérifier la connexion
+     */
+    public boolean estConnecte(int idModule) {
+        if (socketsBluetooth.get(idModule) != null && socketsBluetooth.get(idModule).isConnected()) {
+            return true;
+        }
+        return false;
+    }
+
+    /**
      * @brief Pour créer un socket Bluetooth
      */
     @SuppressLint("MissingPermission")

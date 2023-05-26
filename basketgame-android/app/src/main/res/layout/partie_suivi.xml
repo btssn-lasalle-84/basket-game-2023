@@ -17,75 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/logo_basket_game_sans_fond_reduit" />
 
-    <Button
-        android:id="@+id/boutonConnexionModuleDetection"
-        android:layout_width="53dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toTopOf="@+id/boutonConnexionModuleSignalisation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.965" />
-
-    <Button
-        android:id="@+id/boutonConnexionModuleSignalisation"
-        android:layout_width="53dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.782" />
-
-    <Button
-        android:id="@+id/boutonConnexionModuleEcran"
-        android:layout_width="53dp"
-        android:layout_height="55dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boutonConnexionModuleSignalisation"
-        app:layout_constraintVertical_bias="0.16" />
-
-    <ImageView
-        android:id="@+id/imagePanierBasket"
-        android:layout_width="54dp"
-        android:layout_height="78dp"
-        android:layout_marginTop="668dp"
-        android:contentDescription="@string/image_panier"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_panier_basket" />
-
-    <ImageView
-        android:id="@+id/imageChronometre"
-        android:layout_width="60dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="760dp"
-        android:contentDescription="@string/image_chronom_tre"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.074"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_chronometre" />
-
-    <ImageView
-        android:id="@+id/imageTV"
-        android:layout_width="52dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="840dp"
-        android:contentDescription="@string/image_t_l_vision"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.085"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/image_tv" />
-
     <TextView
         android:id="@+id/partieSuivi"
         android:layout_width="wrap_content"
@@ -139,6 +70,82 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/affichageNomEquipe2"
         />
+
+    <TextView
+        android:id="@+id/scoreEquipe1"
+        android:layout_width="93dp"
+        android:layout_height="109dp"
+        android:layout_marginStart="90dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="10"
+        android:textColor="#D00000"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.185"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <TextView
+        android:id="@+id/scoreEquipe2"
+        android:layout_width="93dp"
+        android:layout_height="109dp"
+        android:layout_marginEnd="90dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="8"
+        android:textColor="#FFBE0B"
+        android:textSize="40sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.841"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.43" />
+
+    <ImageButton
+        android:id="@+id/boutonConnexionModuleDetection"
+        android:layout_width="125dp"
+        android:layout_height="101dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_panier_basket"
+        app:layout_constraintBottom_toTopOf="@+id/boutonConnexionModuleSignalisation"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.962"
+        android:contentDescription="bouton connexion module detection" />
+
+    <ImageButton
+        android:id="@+id/boutonConnexionModuleSignalisation"
+        android:layout_width="125dp"
+        android:layout_height="101dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_chronometre"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.775"
+        android:contentDescription="bouton connexion module signalisation" />
+
+    <ImageButton
+        android:id="@+id/boutonConnexionModuleEcran"
+        android:layout_width="125dp"
+        android:layout_height="101dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/image_tv"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/boutonConnexionModuleSignalisation"
+        app:layout_constraintVertical_bias="0.226"
+        android:contentDescription="bouton connexion module ecran" />
 
     <Button
         android:id="@+id/boutonArreterPartie"

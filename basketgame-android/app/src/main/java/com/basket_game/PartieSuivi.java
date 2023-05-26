@@ -47,12 +47,15 @@ public class PartieSuivi extends AppCompatActivity
     private TimerTask tacheCompteurTempsTour = null;
     private CommunicationBluetooth communicationBluetooth = null;
     Handler handler = null;
-    private boolean moduleConnecte = false;
+
 
     /**
      * Ressources GUI
      */
     ProgressBar progressBarTempsRestantTour;
+    ImageButton boutonConnexionModuleDetection;
+    ImageButton boutonConnexionModuleSignalisation;
+    ImageButton boutonConnexionModuleEcran;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -85,6 +88,7 @@ public class PartieSuivi extends AppCompatActivity
         Log.d(TAG, "onStart()");
         initialiserCompteurTempsTour();
         connecterModules();
+        verfierConnexionModules();
     }
 
     /**
@@ -264,20 +268,16 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void creerBoutonConnexionModuleDetection()
     {
-        Button boutonConnexionModuleDetection = findViewById(R.id.boutonConnexionModuleDetection);
+        boutonConnexionModuleDetection = findViewById(R.id.boutonConnexionModuleDetection);
         boutonConnexionModuleDetection.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(!moduleConnecte)
-                {
+            public void onClick(View v) {
+                if(!communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) {
                     communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_DETECTION, CommunicationBluetooth.ID_MODULE_DETECTION);
                     boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    moduleConnecte = true;
                 } else {
                     communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_DETECTION);
                     boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                    moduleConnecte = false;
                 }
             }
         });
@@ -288,22 +288,18 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void creerBoutonConnexionModuleSignalisation()
     {
-        Button boutonConnexionModuleSignalisation = findViewById(R.id.boutonConnexionModuleSignalisation);
+        boutonConnexionModuleSignalisation = findViewById(R.id.boutonConnexionModuleSignalisation);
         boutonConnexionModuleSignalisation.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v)
-            {
-                if(!moduleConnecte)
-                {
-                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_SIGNALISATION, CommunicationBluetooth.ID_MODULE_SIGNALISATION);
-                    boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    moduleConnecte = true;
-                } else {
-                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_SIGNALISATION);
-                    boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                    moduleConnecte = false;
+            public void onClick(View v) {
+                    if(!communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_SIGNALISATION)) {
+                        communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_SIGNALISATION, CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                        boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+                    } else {
+                        communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                        boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+                    }
                 }
-            }
         });
     }
 
@@ -312,23 +308,44 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void creerBoutonConnexionModuleEcran()
     {
-        Button boutonConnexionModuleEcran = findViewById(R.id.boutonConnexionModuleEcran);
+        boutonConnexionModuleEcran = findViewById(R.id.boutonConnexionModuleEcran);
         boutonConnexionModuleEcran.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v)
             {
-                if(!moduleConnecte)
-                {
+                if(!communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)) {
                     communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN, CommunicationBluetooth.ID_MODULE_ECRAN);
                     boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
-                    moduleConnecte = true;
                 } else {
                     communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_ECRAN);
                     boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
-                    moduleConnecte = false;
                 }
             }
         });
+    }
+
+    /**
+     * @brief Méthode appelée pour vérifier la connexion aux modules
+     */
+    private void verfierConnexionModules()
+    {
+        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) {
+            boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+        } else {
+            boutonConnexionModuleDetection.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_SIGNALISATION)) {
+            boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+        } else {
+            boutonConnexionModuleSignalisation.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
+
+        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)) {
+            boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+        } else {
+            boutonConnexionModuleEcran.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
     }
 
     /**
@@ -362,8 +379,9 @@ public class PartieSuivi extends AppCompatActivity
             communicationBluetooth = CommunicationBluetooth.getInstance(handler);
         }
         if(communicationBluetooth != null) {
-            // Connecter les trois modules
             communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_DETECTION, CommunicationBluetooth.ID_MODULE_DETECTION);
+            communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_SIGNALISATION, CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+            communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN, CommunicationBluetooth.ID_MODULE_ECRAN);
         }
     }
 
