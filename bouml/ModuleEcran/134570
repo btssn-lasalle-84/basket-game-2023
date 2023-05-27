@@ -1,7 +1,7 @@
 format 224
 "BasketGameUI" // BasketGameUI
-  revision 3
-  modified_by 42 "tv"
+  revision 6
+  modified_by 11 "nath"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -135,10 +135,10 @@ ${items}};
 //
 
 ${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
-    QMainWindow(parent), ui(new Ui::basketgame), plateau(NB_COLONNES),
-    tempsTour(nullptr), timerTour(new QTimer), etatSeance(false),
-    estVainqueur(false), estEquipeRouge(true), nbPionsJoues(0),
-    nbPionsAlignes(NB_PIONS_ALIGNES), scoreEquipeRouge(0), scoreEquipeJaune(0)
+    QMainWindow(parent), ui(new Ui::basketgame),
+    puissance4(new Puissance4(this)), communication(new Communication(this)),
+    tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
+    nbPionsJoues(0)
 ${throw}{
 ${body}}
 "
@@ -183,7 +183,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::demarrerSeance
+	cpp_def "//@fn Basketgame::demarrerSeance()
 //@brief méthode pour debuter une séance
 //
 
@@ -201,7 +201,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::terminerSeance
+	cpp_def "//@fn Basketgame::terminerSeance()
 //@brief méthode pour détermiquer quand la séance est terminer
 //
 
@@ -233,6 +233,26 @@ ${body}}
 	
       end
 
+      operation 131458 "jouerPion"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "colonne" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::jouerPion
+//@param colonne
+//@brief Joue un pion
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
       operation 135082 "afficherEcran"
 	stereotype "slot"
 	preserve_cpp_body_indent public explicit_return_type "void"
@@ -240,9 +260,8 @@ ${body}}
 	  param in name "ecran" type class_ref 134826 // Ecran
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherEcran
+	cpp_def "//@fn Basketgame::afficherEcran(Basketgame::Ecran ecran)
 //@brief Selectionne la fenêtre et l'affiche
-//@param ecran
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
@@ -260,7 +279,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherEcranAcceuil
+	cpp_def "//@fn Basketgame::afficherEcranAcceuil()
 //@brief Affiche la fenêtre d'accueil
 //
 
@@ -279,7 +298,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherEcranPartie
+	cpp_def "//@fn Basketgame::afficherEcranPartie()
 //@brief Affiche la fenêtre de partie
 //
 
@@ -310,13 +329,13 @@ ${body}}
 	
       end
 
-      operation 142890 "simulerPion"
+      operation 143018 "fermerApplication"
 	preserve_cpp_body_indent public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::simulerPion
-//@brief méthode pour simuler un coup de puissance4
+	cpp_def "//@fn Basketgame::fermerApplication()
+//@brief méthode pour fermer l'application
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -328,13 +347,13 @@ ${body}}
 	
       end
 
-      operation 143018 "fermerApplication"
+      operation 142890 "simulerPion"
 	preserve_cpp_body_indent public explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::fermerApplication
-//@brief méthode pour fermer l'application
+	cpp_def "//@fn Basketgame::simulerPion()
+//@brief méthode pour simuler un coup de puissance4
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -393,64 +412,6 @@ ${items}};
 	end
       end
 
-      class 141482 "CouleurJeton"
-	visibility package stereotype "enum"
-	cpp_decl "${comment}enum ${name} {
-${items}};
-"
-	java_decl ""
-	php_decl ""
-	python_2_2 python_decl ""
-	idl_decl ""
-	explicit_switch_type ""
-	mysql_decl ""
-	
-	attribute 142890 "AUCUNE"
-	  public type class_ref 141482 // CouleurJeton
-	  init_value " 0"
-	  cpp_decl "  ${name}${value},${comment}"
-	  java_decl ""
-	  php_decl ""
-	  python_decl ""
-	  idl_decl ""
-	  mysql_decl ""
-	  MysqlColumn
-	end
-
-	attribute 143018 "ROUGE"
-	  public type class_ref 141482 // CouleurJeton
-	  cpp_decl "  ${name}${value},${comment}"
-	  java_decl ""
-	  php_decl ""
-	  python_decl ""
-	  idl_decl ""
-	  mysql_decl ""
-	  MysqlColumn
-	end
-
-	attribute 143146 "JAUNE"
-	  public type class_ref 141482 // CouleurJeton
-	  cpp_decl "  ${name}${value},${comment}"
-	  java_decl ""
-	  php_decl ""
-	  python_decl ""
-	  idl_decl ""
-	  mysql_decl ""
-	  MysqlColumn
-	end
-
-	attribute 143274 "NB_COULEURS"
-	  public type class_ref 141482 // CouleurJeton
-	  cpp_decl "  ${name}${value},${comment}"
-	  java_decl ""
-	  php_decl ""
-	  python_decl ""
-	  idl_decl ""
-	  mysql_decl ""
-	  MysqlColumn
-	end
-      end
-
       attribute 135082 "ui"
 	private explicit_type "Ui::basketgame"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
@@ -463,17 +424,32 @@ ${items}};
 	MysqlColumn
       end
 
-      attribute 143402 "plateau"
-	private explicit_type "QVector<CouleurJeton> "
-	stereotype "QVector"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+      classrelation 128514 // puissance4 (<unidirectional association>)
+	relation 128514 --->
+	  a role_name "puissance4" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
 "
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
+	    classrelation_ref 128514 // puissance4 (<unidirectional association>)
+	  b parent class_ref 134914 // Puissance4
+      end
+
+      classrelation 128130 // communication (<unidirectional association>)
+	relation 128130 --->
+	  a role_name "communication" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	    classrelation_ref 128130 // communication (<unidirectional association>)
+	  b parent class_ref 128011 // Communication
+      end
+
+      classrelation 128258 // equipes (<unidirectional association>)
+	relation 128258 --->
+	  stereotype "QVector"
+	  a role_name "equipes" private
+	    cpp default "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}*> ${name}${value};
+"
+	    classrelation_ref 128258 // equipes (<unidirectional association>)
+	  b parent class_ref 141610 // Equipe
       end
 
       attribute 143530 "tempsTour"
@@ -488,7 +464,7 @@ ${items}};
 	MysqlColumn
       end
 
-      attribute 143658 "timerTour"
+      attribute 129666 "minuteurTour"
 	private explicit_type "QTimer"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
 "
@@ -512,67 +488,7 @@ ${items}};
 	MysqlColumn
       end
 
-      attribute 143914 "estVainqueur"
-	private explicit_type "bool"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144042 "estEquipeRouge"
-	private explicit_type "bool"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
       attribute 144170 "nbPionsJoues"
-	private explicit_type "int"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144298 "nbPionsAlignes"
-	private explicit_type "int"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144426 "scoreEquipeRouge"
-	private explicit_type "int"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144554 "scoreEquipeJaune"
 	private explicit_type "int"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
 "
@@ -589,7 +505,7 @@ ${items}};
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserIHM
+	cpp_def "//@fn Basketgame::initialiserIHM()
 //@brief méthode pour initialiser l'IHM
 //
 
@@ -607,7 +523,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserEvenements
+	cpp_def "//@fn Basketgame::initialiserEvenements()
 //@brief méthode pour initialiser les évenements et action du programme
 //
 
@@ -620,31 +536,13 @@ ${body}}
 	
       end
 
-      operation 151594 "initialiserEtatPartie"
+      operation 131586 "initialiserPartie"
 	preserve_cpp_body_indent private explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserEtatPartie
+	cpp_def "//@fn Basketgame::initialiserPartie
 //@brief méthode pour initialiser les variables d'une partie
-//
-
-${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 143402 "initialiserPlateau"
-	preserve_cpp_body_indent private explicit_return_type "void"
-	nparams 0
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "//@fn Basketgame::initialiserPlateau
-//@brief méthode pour initialiser le plateau de puissance4
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -661,8 +559,44 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::initialiserDureeTour
+	cpp_def "//@fn Basketgame::initialiserDureeTour()
 //@brief méthode pour initialiser la durée d'un tour pour une équipe
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131714 "initialiserParametreEquipe"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::initialiserParametreEquipe()
+//@brief méthode pour initialiser les paramètres des équipes
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 131842 "initialiserCommunication"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Basketgame::initialiserCommunication
+//@brief méthode pour initialiser la communication en mode serveur
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
@@ -692,32 +626,17 @@ ${body}}
 	
       end
 
-      operation 143658 "afficherPlateau"
+      operation 131970 "afficherPuissance4"
 	preserve_cpp_body_indent private explicit_return_type "void"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherPlateau
-//@brief méthode pour afficher le plateau de puissance4
+	cpp_def "//@fn Basketgame::afficherPuissance4()
+//@brief méthode pour afficher le puissance4 de puissance4
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
 ${body}}
-"
-	
-	
-	
-	
-      end
-
-      operation 151850 "placerPion"
-	preserve_cpp_body_indent private explicit_return_type "void"
-	nparams 1
-	  param in name "colonne" explicit_type "int"
-	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
-"
-	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
 "
 	
 	
@@ -732,10 +651,8 @@ ${body}}
 	  param in name "colonne" explicit_type "int"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherUnJeton
-//@brief méthode pour afficher les jetons dans le plateau de puissance4
-//@param ligne
-//@param colonne
+	cpp_def "//@fn Basketgame::afficherUnJeton(int ligne, int colonne)
+//@brief méthode pour afficher les jetons dans le puissance4 de puissance4
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
@@ -752,7 +669,7 @@ ${body}}
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::afficherTourEquipe
+	cpp_def "//@fn Basketgame::afficherTourEquipe()
 //@brief méthode pour afficher quelle équipe est train de jouer
 //
 
@@ -808,10 +725,9 @@ ${body}}
 	  param in name "max" explicit_type "int"
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "//@fn Basketgame::randInt
-//@brief méthode pour créer une variable aléatoire
-//@param min
-//@param max
+	cpp_def "//@fn Plateau::randInt(int min, int max)
+//@brief méthode qui retourne un nombre entier pseudo-aléatoire entre min et
+//max
 //
 
 ${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${const}${volatile}${throw}${staticnl}{
@@ -855,12 +771,12 @@ ${inlines}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 141098 // <generalisation>
-	relation 141098 ---|>
+      classrelation 128642 // <generalisation>
+	relation 128642 ---|>
 	  a public
 	    cpp default "${type}"
-	    classrelation_ref 141098 // <generalisation>
-	  b parent class_ref 141738 // typedef2
+	    classrelation_ref 128642 // <generalisation>
+	  b parent class_ref 134658 // typedef3
       end
 
       extra_member 141354 "Q_OBJECT"
@@ -873,14 +789,46 @@ ${inlines}
 	mysql ""
       end
 
+      attribute 130690 "nom"
+	private explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130818 "score"
+	private explicit_type "int"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       operation 144426 "Equipe"
 	preserve_cpp_body_indent public explicit_return_type ""
-	nparams 1
-	  param inout name "parent" explicit_type "QWidget"
+	nparams 2
+	  param in name "nom" explicit_type "QString"
+	  param inout name "parent" explicit_type "QObject"
 	    defaultvalue "0"
-	cpp_decl "    ${comment}${inline}explicit ${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+	cpp_decl "    ${comment}${inline}${name}${(}const ${t0} & ${p0}${v0}, ${t1} * ${p1}${v1}${)}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} : QWidget(parent)
+	cpp_def "//@brief Constructeur de la classe Equipe
+//
+//@fn Equipe::Equipe
+//
+//
+
+${inline}${typeprefix}${class}::${name}${(}const ${t0} & ${p0}, ${t1} * ${p1}${)} :
+    QObject(parent), nom(nom), score(0)
 ${throw}{
 ${body}}
 "
@@ -890,24 +838,96 @@ ${body}}
 	
       end
 
-      extra_member 141482 "signals"
+      operation 133634 "~Equipe"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Destructeur de la classe Equipe
+//
+//@fn Equipe::~Equipe
+//
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
 	
-	cpp "  signals:" ""
-	java ""
-	php ""
-	python ""
-	idl ""
-	mysql ""
+	
+	
+	
       end
 
-      extra_member 141610 "slots"
+      operation 133762 "getNom"
+	preserve_cpp_body_indent const public explicit_return_type "QString"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
 	
-	cpp "  public slots:" ""
-	java ""
-	php ""
-	python ""
-	idl ""
-	mysql ""
+	
+	
+	
+      end
+
+      operation 133890 "setNom"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "nom" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134018 "getScore"
+	preserve_cpp_body_indent const public explicit_return_type "int"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134146 "setScore"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "score" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 134274 "incrementerScore"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
       end
     end
 
@@ -924,57 +944,7 @@ ${body}}
       
     end
 
-    class 141866 "Coup"
-      visibility package stereotype "struct"
-      cpp_decl "${comment}${template}struct ${name}${inherit} {
-${members}};
-${inlines}
-"
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      attribute 144682 "ligne"
-	public explicit_type "int"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144810 "colonne"
-	public explicit_type "int"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      attribute 144938 "numero"
-	public explicit_type "int"
-	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
-"
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-    end
-
-    class 141994 "Plateau"
+    class 128011 "Communication"
       visibility package 
       cpp_decl "${comment}${template}class ${name}${inherit} {
 ${members}};
@@ -987,15 +957,15 @@ ${inlines}
       explicit_switch_type ""
       mysql_decl ""
       
-      classrelation 141226 // <generalisation>
-	relation 141226 ---|>
+      classrelation 128002 // <generalisation>
+	relation 128002 ---|>
 	  a public
 	    cpp default "${type}"
-	    classrelation_ref 141226 // <generalisation>
-	  b parent class_ref 141738 // typedef2
+	    classrelation_ref 128002 // <generalisation>
+	  b parent class_ref 134658 // typedef3
       end
 
-      extra_member 141738 "Q_OBJECT"
+      extra_member 128011 "Q_OBJECT"
 	
 	cpp "  Q_OBJECT" ""
 	java ""
@@ -1005,14 +975,95 @@ ${inlines}
 	mysql ""
       end
 
-      operation 144554 "Plateau"
+      class 134786 "TypeTrame"
+	visibility package stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 134539 "Inconnu"
+	  public type class_ref 134786 // TypeTrame
+	  init_value " -1"
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 128002 "Seance"
+	  public type class_ref 134786 // TypeTrame
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 128130 "Start"
+	  public type class_ref 134786 // TypeTrame
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 128258 "Tir"
+	  public type class_ref 134786 // TypeTrame
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 128386 "Stop"
+	  public type class_ref 134786 // TypeTrame
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 128514 "Reset"
+	  public type class_ref 134786 // TypeTrame
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+      end
+
+      operation 128011 "Communication"
 	preserve_cpp_body_indent public explicit_return_type ""
 	nparams 1
-	  param inout name "parent" explicit_type "QWidget"
+	  param inout name "parent" explicit_type "QObject"
 	    defaultvalue "0"
-	cpp_decl "    ${comment}${inline}explicit ${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} : QWidget(parent)
+	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
+    QObject(parent), serveur(nullptr), socket(nullptr), connecte(false)
 ${throw}{
 ${body}}
 "
@@ -1022,7 +1073,151 @@ ${body}}
 	
       end
 
-      extra_member 141866 "slots"
+      operation 128139 "~Communication"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 0
+	cpp_decl "    ${comment}${inline}${virtual}${name}${(}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Destructeur de la classe Communication
+//
+//@fn Communication::~Communication
+//@details Libère les ressources de l'application
+//
+
+${inline}${typeprefix}${class}::${name}${(}${)}${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128002 "initialiser"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Initialise la liaison Bluetooth en mode serveur
+//
+//@fn Communication::initialiser
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128130 "demarrer"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Démarre la communication Bluetooth en mode serveur
+//
+//@fn Communication::demarrer
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128258 "arreter"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Arrête la communication Bluetooth en mode serveur
+//
+//@fn Communication::arreter
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128386 "deconnecter"
+	public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 128514 "estValide"
+	preserve_cpp_body_indent public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128642 "estConnecte"
+	preserve_cpp_body_indent public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128770 "getNomPeripheriqueLocal"
+	preserve_cpp_body_indent public explicit_return_type "QString"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 128898 "getAdressePeripheriqueLocal"
+	preserve_cpp_body_indent public explicit_return_type "QString"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128139 "slots"
 	
 	cpp "  public slots:" ""
 	java ""
@@ -1032,8 +1227,714 @@ ${body}}
 	mysql ""
       end
 
-      attribute 145066 "plateau"
-	private explicit_type "QVector<int> "
+      attribute 128642 "peripheriqueLocal"
+	private explicit_type "QBluetoothLocalDevice"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 128770 "serveur"
+	private explicit_type "QBluetoothServer"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Le serveur Bluetooth"
+      end
+
+      attribute 128011 "socket"
+	private explicit_type "QBluetoothSocket"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} * ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< La socket de communication Bluetooth"
+      end
+
+      attribute 128898 "serviceInfo"
+	private explicit_type "QBluetoothServiceInfo"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Information sur le service Bluetooth"
+      end
+
+      attribute 129026 "connecte"
+	private explicit_type "bool"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Etat de connexion de la socket client"
+      end
+
+      attribute 129154 "nomPeripheriqueLocal"
+	private explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129282 "adressePeripheriqueLocal"
+	private explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 129410 "trame"
+	private explicit_type "QString"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "!< Le contenu des données reçues sur la socket"
+      end
+
+      operation 134667 "recupererTypeTrame"
+	preserve_cpp_body_indent private return_type class_ref 134786 // TypeTrame
+	nparams 1
+	  param in name "champType" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Recupère le type de trame
+//
+//@fn Communication::recupererTypeTrame()
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129666 "traiterTrame"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "champsTrame" explicit_type "QStringList"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Traiter les données d'une trame
+//
+//@fn Communication::traiterTrame()
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128002 "slots"
+	
+	cpp "  private slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 129026 "connecterTablette"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "adresse" explicit_type "QBluetoothAddress"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Connecte la tablette
+//
+//@fn Communication::connecterTablette
+//@param adresse adresse MAC Bluetooth de la tablette
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129154 "deconnecterTablette"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "adresse" explicit_type "QBluetoothAddress"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}const ${t0} & ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Déconnecte la tablette
+//
+//@fn Communication::deconnecterTablette
+//@param adresse adresse MAC Bluetooth de la tablette
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}const ${t0} & ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129282 "connecterSocket"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Connecte la Socket
+//
+//@fn Communication::connecterSocket
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129410 "deconnecterSocket"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Deconnecte la Socket
+//
+//@fn Communication::deconnecterSocket()
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129538 "recevoirDonnees"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Récuperer les données de la trame
+//
+//@fn Communication::recevoirDonnees()
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129794 "recupererErreurSocket"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "erreurSocket" explicit_type "QBluetoothSocket::SocketError"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Récupère et affiche l'erreur socket dans la console de débuguage
+//
+//@fn Communication::recupererErreurSocket
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 129922 "recupererErreurBluetooth"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "erreurBluetooth" explicit_type "QBluetoothLocalDevice::Error"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Récupère et affiche l'erreur Bluetooth dans la console de débuguage
+//
+//@fn Communication::recupererErreurBluetooth
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 130050 "recupererEtatSocket"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 1
+	  param in name "etatSocket" explicit_type "QBluetoothSocket::SocketState"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@brief Récupère et affiche l'etat de la socket dans la console de débuguage
+//
+//@fn Communication::recupererEtatSocket
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128130 "signals"
+	
+	cpp "  signals:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 130178 "clientConnecte"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130306 "clientDeconnecte"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130434 "tabletteConnectee"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130562 "tabletteDeconnectee"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 130690 "trameRecue"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "message" explicit_type "QString"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 134795 "partieConfiguree"
+	private explicit_return_type "void"
+	nparams 5
+	  param in name "nomEquipeRouge" explicit_type "QString"
+	  param in name "nomEquipeJaune" explicit_type "QString"
+	  param in name "nombrePaniers" explicit_type "int"
+	  param in name "tempsTour" explicit_type "int"
+	  param in name "nbManches" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}, ${t2} ${p2}${v2}, ${t3} ${p3}${v3}, ${t4} ${p4}${v4}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 134923 "partieDemarree"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "numeroPartie" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 135051 "partieArretee"
+	private explicit_return_type "void"
+	nparams 1
+	  param in name "numeroPartie" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 135179 "partieReinitialisee"
+	private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+      operation 135307 "tirPanier"
+	private explicit_return_type "void"
+	nparams 2
+	  param in name "couleurEquipe" explicit_type "QString"
+	  param in name "numeroPanier" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}, ${t1} ${p1}${v1}${)}${const}${volatile}${throw}${abstract};
+"
+	
+	
+	
+	
+      end
+
+    end
+
+    class 134658 "typedef3"
+      visibility package stereotype "typedef" explicit_base_type "QObject"
+      cpp_decl "${comment}typedef ${type} ${name};
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+    end
+
+    class 134914 "Puissance4"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 128386 // <generalisation>
+	relation 128386 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 128386 // <generalisation>
+	  b parent class_ref 134658 // typedef3
+      end
+
+      extra_member 128258 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 132098 "Puissance4"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QObject"
+	    defaultvalue "0"
+	cpp_decl "    ${comment}${inline}${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::Puissance4
+//@brief Constructeur de la classe Puissance4
+//
+
+${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
+    QObject(parent), plateau(NB_COLONNES), vainqueur(false), equipeRouge(true)
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132226 "initialiserPlateau"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::initialiserPlateau
+//@brief méthode pour initialiser le plateau de puissance4
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132354 "placerPion"
+	preserve_cpp_body_indent public explicit_return_type "int"
+	nparams 1
+	  param in name "colonne" explicit_type "int"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::placerPion
+//@brief méthode qui lace un pion dans une des colonnes du plateau
+//@param colonne
+//@return ligne ou -1
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132482 "verifierPlateau"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::verifierPlateau
+//@brief méthode pour vérifier si il y a 4 pions alignés de la même
+//couleur sur le plateau
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132610 "estVainqueur"
+	preserve_cpp_body_indent const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::estVainqueur
+//@brief méthode qui retourne true si il y a 4 pions alignés de la même
+//couleur sur le plateau
+//@return bool
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132738 "estEquipeRouge"
+	preserve_cpp_body_indent const public explicit_return_type "bool"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::estEquipeRouge
+//@brief méthode qui retourne true si c'est à l'équipe rouge de jouer
+//@return bool
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 132866 "setTourEquipe"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 1
+	  param in name "estEquipeRouge" explicit_type "bool"
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${t0} ${p0}${v0}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Puissance4::setTourEquipe
+//@brief fixe l'équipe qui doit jouer
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${t0} ${p0}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 128386 "slots"
+	
+	cpp "  public slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 132994 "testUnitaireVerifierPlateau"
+	preserve_cpp_body_indent public explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      class 135042 "CouleurJeton"
+	visibility package stereotype "enum"
+	cpp_decl "${comment}enum ${name} {
+${items}};
+"
+	java_decl ""
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 129794 "AUCUNE"
+	  public type class_ref 135042 // CouleurJeton
+	  init_value " 0"
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 129922 "ROUGE"
+	  public type class_ref 135042 // CouleurJeton
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 130050 "JAUNE"
+	  public type class_ref 135042 // CouleurJeton
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 130178 "NB_COULEURS"
+	  public type class_ref 135042 // CouleurJeton
+	  cpp_decl "  ${name}${value},${comment}"
+	  java_decl ""
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+      end
+
+      attribute 130306 "plateau"
+	private explicit_type "QVector<CouleurJeton> "
 	stereotype "QVector"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
 "
@@ -1045,12 +1946,41 @@ ${body}}
 	MysqlColumn
       end
 
-      operation 144682 "creerPlateau"
-	preserve_cpp_body_indent private explicit_return_type "void"
+      attribute 130434 "vainqueur"
+	private explicit_type "bool"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 130562 "equipeRouge"
+	private explicit_type "bool"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 133122 "verifierLigne"
+	preserve_cpp_body_indent private explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "//@fn Puissance4::verifierLigne
+//@brief méthode pour vérifier si il y a une ligne de 4 pions de la même
+//couleur
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
 ${body}}
 "
 	
@@ -1059,12 +1989,17 @@ ${body}}
 	
       end
 
-      operation 144810 "initialiserPlateau"
-	preserve_cpp_body_indent private explicit_return_type "void"
+      operation 133250 "verifierColonne"
+	preserve_cpp_body_indent private explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "//@fn Puissance4::verifierColonne
+//@brief éthode pour vérifier si il y a une colonne de 4 pions de la même
+//couleur
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
 ${body}}
 "
 	
@@ -1073,12 +2008,17 @@ ${body}}
 	
       end
 
-      operation 144938 "afficherPlateau"
-	preserve_cpp_body_indent private explicit_return_type "void"
+      operation 133378 "verifierDiagonaleMontante"
+	preserve_cpp_body_indent private explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "//@fn Puissance4::verifierDiagonaleMontante
+//@brief éthode pour vérifier si il y a une diagonale montante de 4 pions de la
+//même couleur
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
 ${body}}
 "
 	
@@ -1087,12 +2027,17 @@ ${body}}
 	
       end
 
-      operation 145066 "attribuerRaccourcisClavier"
-	preserve_cpp_body_indent private explicit_return_type "void"
+      operation 133506 "verifierDiagonaleDescendante"
+	preserve_cpp_body_indent private explicit_return_type "bool"
 	nparams 0
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
-	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+	cpp_def "//@fn Puissance4::verifierDiagonaleDescendante
+//@brief éthode pour vérifier si il y a une diagonale descendante de 4 pions de
+//la même couleur
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
 ${body}}
 "
 	
@@ -1181,7 +2126,7 @@ ${namespace_end}"
       end
     end
 
-    artifact 141354 "plateau"
+    artifact 141354 "puissance4"
       stereotype "source"
       cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
 #define ${NAMESPACE}_${NAME}_H
@@ -1200,9 +2145,38 @@ ${namespace_start}
 ${members}
 ${namespace_end}"
       associated_elems
-	class_ref 141866 // Coup
-	class_ref 141994 // Plateau
+	class_ref 134914 // Puissance4
       end
+    end
+
+    artifact 128011 "communication"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 128011 // Communication
+	class_ref 134658 // typedef3
+      end
+    end
+
+    deploymentdiagram 128011 "d"
+      deploymentdiagramsettings
+       end
+      size A4
     end
   end
 end

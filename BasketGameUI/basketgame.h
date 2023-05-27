@@ -9,6 +9,7 @@
  * @version 0.2
  */
 #include <QtWidgets>
+#include <QVector>
 
 /**
  * @def TEST_BASKETGAME
@@ -75,7 +76,9 @@ namespace Ui
 class basketgame;
 }
 
-class Plateau;
+class Puissance4;
+class Communication;
+class Equipe;
 
 /**
  * @class Basketgame
@@ -109,6 +112,7 @@ class Basketgame : public QMainWindow
     void afficherEcranPartie();
     void chronometrerTour();
     void fermerApplication();
+
 #ifdef TEST_BASKETGAME
     void simulerPion();
 #endif
@@ -125,21 +129,23 @@ class Basketgame : public QMainWindow
         NbEquipes
     };
 
-    Ui::basketgame* ui;
-    Plateau*        plateau;
-    QTime*          tempsTour;
-    QTimer*         minuteurTour;
-    bool            etatSeance;
-    int             nbPionsJoues;
-    int             scoreEquipeRouge;
-    int             scoreEquipeJaune;
+    Ui::basketgame*  ui;
+    Puissance4*      puissance4;
+    Communication*   communication;
+    QVector<Equipe*> equipes;
+    QTime*           tempsTour;
+    QTimer*          minuteurTour;
+    int              nbPionsJoues;
+    bool             etatSeance;
 
     void initialiserIHM();
     void initialiserEvenements();
     void initialiserPartie();
     void initialiserDureeTour();
+    void initialiserParametreEquipe();
+    void initialiserCommunication();
     void demarrerChronometrageTour();
-    void afficherPlateau();
+    void afficherPuissance4();
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
     void afficherScoreEquipe();

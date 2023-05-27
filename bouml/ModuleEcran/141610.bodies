@@ -1,3 +1,18 @@
 class Equipe
-!!!144426.cpp!!!	Equipe(inout parent : QWidget = 0)
-
+!!!144426.cpp!!!	Equipe(in nom : QString, inout parent : QObject = 0)
+    qDebug() << Q_FUNC_INFO << "nom" << nom;
+!!!133634.cpp!!!	~Equipe()
+    qDebug() << Q_FUNC_INFO;
+!!!133762.cpp!!!	getNom() : QString
+    return nom;
+!!!133890.cpp!!!	setNom(in nom : QString) : void
+    this->nom = nom;
+    qDebug() << Q_FUNC_INFO << "nom" << nom;
+!!!134018.cpp!!!	getScore() : int
+    return score;
+!!!134146.cpp!!!	setScore(in score : int) : void
+    this->score = score;
+    qDebug() << Q_FUNC_INFO << "score" << score;
+!!!134274.cpp!!!	incrementerScore() : void
+    score++;
+    qDebug() << Q_FUNC_INFO << "score" << score;

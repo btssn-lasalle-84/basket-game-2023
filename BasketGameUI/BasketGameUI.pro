@@ -4,9 +4,8 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
-
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+QT       += core gui widgets
+QT       += bluetooth
 
 TARGET = BasketGameUI
 TEMPLATE = app
@@ -14,11 +13,15 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         basketgame.cpp \
-        plateau.cpp
+        communication.cpp \
+        puissance4.cpp \
+        equipe.cpp
 
 HEADERS  += \
     basketgame.h \
-    plateau.h
+    communication.h \
+    puissance4.h \
+    equipe.h
 
 FORMS    += \
     basketgame.ui
