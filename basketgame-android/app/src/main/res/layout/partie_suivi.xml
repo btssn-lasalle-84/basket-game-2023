@@ -34,7 +34,7 @@
         android:id="@+id/affichageNomEquipe1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="Équipe 2"
+        android:contentDescription="Équipe 1"
         android:gravity="center"
         android:textColor="#D00000"
         android:textSize="50sp"
@@ -72,15 +72,14 @@
         />
 
     <TextView
-        android:id="@+id/scoreEquipe1"
+        android:id="@+id/affichageScoreEquipe1"
         android:layout_width="93dp"
         android:layout_height="109dp"
         android:layout_marginStart="90dp"
+        android:contentDescription="Score Équipe 1"
         android:gravity="center"
-        android:padding="8dp"
-        android:text="10"
         android:textColor="#D00000"
-        android:textSize="40sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.185"
@@ -89,21 +88,22 @@
         app:layout_constraintVertical_bias="0.43" />
 
     <TextView
-        android:id="@+id/scoreEquipe2"
+        android:id="@+id/affichageScoreEquipe2"
         android:layout_width="93dp"
         android:layout_height="109dp"
         android:layout_marginEnd="90dp"
+        android:contentDescription="Score Équipe 2"
         android:gravity="center"
         android:padding="8dp"
-        android:text="8"
         android:textColor="#FFBE0B"
-        android:textSize="40sp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.841"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.43" />
+        app:layout_constraintVertical_bias="0.43"  />
+
 
     <ImageButton
         android:id="@+id/boutonConnexionModuleDetection"

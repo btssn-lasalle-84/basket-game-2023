@@ -48,6 +48,8 @@ public class PartieSuivi extends AppCompatActivity
     private TimerTask              tacheCompteurTempsTour = null;
     private CommunicationBluetooth communicationBluetooth = null;
     Handler                        handler                = null;
+    private int compteurEquipe1 = 0;
+    private int compteurEquipe2 = 0;
 
     /**
      * Ressources GUI
@@ -56,6 +58,8 @@ public class PartieSuivi extends AppCompatActivity
     ImageButton boutonConnexionModuleDetection;
     ImageButton boutonConnexionModuleSignalisation;
     ImageButton boutonConnexionModuleEcran;
+    TextView affichageScoreEquipe1;
+    TextView affichageScoreEquipe2;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -86,6 +90,7 @@ public class PartieSuivi extends AppCompatActivity
     {
         super.onStart();
         Log.d(TAG, "onStart()");
+        initialiserCompteursScores();
         initialiserCompteurTempsTour();
         connecterModules();
         verifierConnexionModules();
@@ -124,7 +129,23 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
-     * @brief Méthode
+     * @brief Méthode permettant d'initialiser les compteurs des scores des équipes
+     */
+    private void initialiserCompteursScores()
+    {
+        compteurEquipe1 = 0;
+        compteurEquipe2 = 0;
+
+        affichageScoreEquipe1 = findViewById(R.id.affichageScoreEquipe1);
+        String scoreEquipe1 = String.valueOf(compteurEquipe1);
+        affichageScoreEquipe1.setText(scoreEquipe1);
+        affichageScoreEquipe2 = findViewById(R.id.affichageScoreEquipe2);
+        String scoreEquipe2 = String.valueOf(compteurEquipe2);
+        affichageScoreEquipe2.setText(scoreEquipe2);
+    }
+
+    /**
+     * @brief Méthode permettant d'initialiser le compteur du temps
      */
     private void initialiserCompteurTempsTour()
     {
@@ -251,6 +272,28 @@ public class PartieSuivi extends AppCompatActivity
             affichageNomEquipe2.setText(nomEquipe2);
             partie.getEquipe2().setNomEquipe(nomEquipe2);
         }
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher le score de l'équipe 1
+     */
+    private void afficherScoreEquipe1()
+    {
+        affichageScoreEquipe1 = findViewById(R.id.affichageScoreEquipe1);
+        String scoreEquipe1 = String.valueOf(compteurEquipe1);
+        Log.d(TAG, "afficherScoreEquipe1() compteurEquipe1 = " + compteurEquipe1);
+        affichageScoreEquipe1.setText(scoreEquipe1);
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher le score de l'équipe 2
+     */
+    private void afficherScoreEquipe2()
+    {
+        TextView affichageScoreEquipe2 = findViewById(R.id.affichageScoreEquipe2);
+        String scoreEquipe2 = String.valueOf(compteurEquipe2);
+        Log.d(TAG, "afficherScoreEquipe2() compteurEquipe2 = " + compteurEquipe2);
+        affichageScoreEquipe2.setText(scoreEquipe2);
     }
 
     /**
@@ -509,9 +552,22 @@ public class PartieSuivi extends AppCompatActivity
                         break;
                     case CommunicationBluetooth.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH " + message.obj.toString());
-                        /**
-                         * @todo Gérer les trames TIR
-                         */
+                        String trameTir = message.obj.toString();
+                        communicationBluetooth.envoyer(trameTir, CommunicationBluetooth.ID_MODULE_ECRAN);
+
+                        String[] elements = trameTir.split(CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME);
+                        if(elements.length >= 4 && elements[1].equals(String.valueOf(CommunicationBluetooth.Type.TIR))) {
+                            String couleur = elements[2];
+
+                            if (couleur.equals(String.valueOf(CommunicationBluetooth.CouleurEquipe.ROUGE))) {
+                                compteurEquipe1++;
+                                afficherScoreEquipe1();
+                            } else if (couleur.equals(String.valueOf(CommunicationBluetooth.CouleurEquipe.JAUNE))) {
+                                compteurEquipe2++;
+                                afficherScoreEquipe2();
+                            }
+                        }
+                        reinitialiserCompteur();
                         break;
                     case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
                         Log.d(TAG,
