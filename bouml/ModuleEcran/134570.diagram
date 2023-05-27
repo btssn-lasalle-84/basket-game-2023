@@ -14,22 +14,22 @@ classcanvas 128386 class_ref 141610 // Equipe
 end
 classcanvas 128642 class_ref 134914 // Puissance4
   classdiagramsettings member_max_width 0 end
-  xyzwh 207.6 392.4 3005 362 287
+  xyzwh 207.6 392.4 3005 679 523
 end
 relationcanvas 128258 relation_ref 128130 // <unidirectional association>
   from ref 128130 z 2007 to ref 128002
-  role_a_pos 1136 413 3000 no_role_b
+  role_a_pos 1192 642 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128514 relation_ref 128258 // <unidirectional association>
   decenter_end 957
-  from ref 128130 z 3006 stereotype "<<QVector>>" xyz 635 295.5 3006 to ref 128386
-  role_a_pos 602 275 3000 no_role_b
+  from ref 128130 z 3006 stereotype "<<QVector>>" xyz 635 295 3006 to ref 128386
+  role_a_pos 717 346 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128770 relation_ref 128514 // <unidirectional association>
   from ref 128130 z 3006 to ref 128642
-  role_a_pos 585 463 3000 no_role_b
+  role_a_pos 717 611 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end

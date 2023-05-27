@@ -18,11 +18,12 @@ class Communication
     peripheriqueLocal.powerOn();
     nomPeripheriqueLocal     = peripheriqueLocal.name();
     adressePeripheriqueLocal = peripheriqueLocal.address().toString();
-    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostConnectable);
+    peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
     /**
      * @see les appareil qui ne sont pas appairés peuvent decouvrir la Raspberry
      * Pi
      */
+    // peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostConnectable);
     // peripheriqueLocal.setHostMode(QBluetoothLocalDevice::HostDiscoverable);
     qDebug() << Q_FUNC_INFO << "nomPeripheriqueLocal" << nomPeripheriqueLocal
              << "adressePeripheriqueLocal" << adressePeripheriqueLocal
@@ -46,7 +47,10 @@ class Communication
         qDebug() << Q_FUNC_INFO;
         serveur =
           new QBluetoothServer(QBluetoothServiceInfo::RfcommProtocol, this);
-        connect(serveur, SIGNAL(newConnection()), this, SLOT(nouveauClient()));
+        connect(serveur,
+                SIGNAL(newConnection()),
+                this,
+                SLOT(connecterSocket()));
 
         QBluetoothUuid uuid(QBluetoothUuid::Rfcomm);
         serviceInfo = serveur->listen(uuid, serviceNom);
@@ -79,7 +83,7 @@ class Communication
 !!!128898.cpp!!!	getAdressePeripheriqueLocal() : QString
     return adressePeripheriqueLocal;
 !!!134667.cpp!!!	recupererTypeTrame(in champType : QString) : Communication::TypeTrame
-    QVector typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
+    QVector<QString> typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
     for(int i = 0; i < typesTrame.size(); i++)
     {
         if(typesTrame[i] == champType)
@@ -134,10 +138,6 @@ class Communication
     qDebug() << Q_FUNC_INFO << "adresse" << adresse << "pairingStatus"
              << peripheriqueLocal.pairingStatus(adresse) << etatAppairage;
     emit tabletteConnectee();
-    /**
-     * @todo Si on a le temps, on devrait pouvoir gérer les
-     * connexions/déconnexions pendant une partie
-     */
 !!!129154.cpp!!!	deconnecterTablette(in adresse : QBluetoothAddress) : void
     qDebug() << Q_FUNC_INFO << "adresse" << adresse;
     emit tabletteDeconnectee();
@@ -179,7 +179,7 @@ class Communication
     trame += QString(donnees.data());
     qDebug() << Q_FUNC_INFO << "trame" << trame;
 
-    if(trame.startsWith(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    if(trame.contains(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
     {
         /*
         QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);

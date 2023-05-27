@@ -1,7 +1,7 @@
 format 224
 "BasketGameUI" // BasketGameUI
-  revision 6
-  modified_by 11 "nath"
+  revision 7
+  modified_by 42 "tv"
   // class settings
   
   classdiagramsettings member_max_width 0 end
@@ -137,8 +137,8 @@ ${items}};
 ${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} :
     QMainWindow(parent), ui(new Ui::basketgame),
     puissance4(new Puissance4(this)), communication(new Communication(this)),
-    tempsTour(nullptr), minuteurTour(new QTimer), etatSeance(false),
-    nbPionsJoues(0)
+    tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
+    etatSeance(false)
 ${throw}{
 ${body}}
 "
@@ -476,8 +476,8 @@ ${items}};
 	MysqlColumn
       end
 
-      attribute 143786 "etatSeance"
-	private explicit_type "bool"
+      attribute 144170 "nbPionsJoues"
+	private explicit_type "int"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -488,8 +488,8 @@ ${items}};
 	MysqlColumn
       end
 
-      attribute 144170 "nbPionsJoues"
-	private explicit_type "int"
+      attribute 143786 "etatSeance"
+	private explicit_type "bool"
 	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
 "
 	java_decl ""
@@ -1666,7 +1666,6 @@ ${body}}
 	
 	
       end
-
     end
 
     class 134658 "typedef3"
@@ -1867,7 +1866,7 @@ ${body}}
 	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
 "
 	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
-  ${body}}
+${body}}
 "
 	
 	
@@ -2046,6 +2045,188 @@ ${body}}
 	
       end
     end
+
+    class 148266 "Coup"
+      visibility package stereotype "struct"
+      cpp_decl "${comment}${template}struct ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      attribute 150698 "ligne"
+	public explicit_type "int"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150826 "colonne"
+	public explicit_type "int"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 150954 "numero"
+	public explicit_type "int"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${type} ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+    end
+
+    class 148394 "Plateau"
+      visibility package 
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl ""
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl ""
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      classrelation 141098 // <generalisation>
+	relation 141098 ---|>
+	  a public
+	    cpp default "${type}"
+	    classrelation_ref 141098 // <generalisation>
+	  b parent class_ref 141738 // typedef2
+      end
+
+      extra_member 147882 "Q_OBJECT"
+	
+	cpp "  Q_OBJECT" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      operation 158250 "Plateau"
+	preserve_cpp_body_indent public explicit_return_type ""
+	nparams 1
+	  param inout name "parent" explicit_type "QWidget"
+	    defaultvalue "0"
+	cpp_decl "    ${comment}${inline}explicit ${name}${(}${t0} * ${p0}${v0}${)}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${class}::${name}${(}${t0} * ${p0}${)} : QWidget(parent)
+${throw}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      extra_member 148010 "slots"
+	
+	cpp "  public slots:" ""
+	java ""
+	php ""
+	python ""
+	idl ""
+	mysql ""
+      end
+
+      attribute 151082 "plateau"
+	private explicit_type "QVector<int> "
+	stereotype "QVector"
+	cpp_decl "    ${comment}${static}${thread_local}${mutable}${volatile}${const}${stereotype}<${type}> ${name}${value};
+"
+	java_decl ""
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      operation 158378 "creerPlateau"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 158506 "initialiserPlateau"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "//@fn Plateau::initialiserPlateau
+//@brief méthode pour initialiser le plateau de puissance4
+//
+
+${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 158634 "afficherPlateau"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+
+      operation 158762 "attribuerRaccourcisClavier"
+	preserve_cpp_body_indent private explicit_return_type "void"
+	nparams 0
+	cpp_decl "    ${comment}${friend}${static}${inline}${virtual}${typeprefix}${type} ${name}${(}${)}${const}${volatile}${throw}${abstract};
+"
+	cpp_def "${comment}${inline}${typeprefix}${type} ${class}::${name}${(}${)}${const}${volatile}${throw}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	
+      end
+    end
   end
 
   deploymentview 134570 "BasketGameUI"
@@ -2169,7 +2350,6 @@ ${members}
 ${namespace_end}"
       associated_elems
 	class_ref 128011 // Communication
-	class_ref 134658 // typedef3
       end
     end
 
@@ -2177,6 +2357,30 @@ ${namespace_end}"
       deploymentdiagramsettings
        end
       size A4
+    end
+
+    artifact 147882 "plateau"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      associated_elems
+	class_ref 148266 // Coup
+	class_ref 148394 // Plateau
+      end
     end
   end
 end

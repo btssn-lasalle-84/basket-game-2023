@@ -27,6 +27,7 @@ var NAVTREE =
   [ "Projet basket-game", "index.html", [
     [ "A propos", "index.html", null ],
     [ "README", "md__mnt_sda_home_tv__documents_git_projets_2023_basket_game_2023__r_e_a_d_m_e.html", null ],
+    [ "Liste des choses à faire", "todo.html", null ],
     [ "Paquetages", "namespaces.html", [
       [ "Paquetages", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -35,7 +36,7 @@ var NAVTREE =
       [ "Index des structures de données", "classes.html", null ],
       [ "Hiérarchie des classes", "hierarchy.html", "hierarchy" ],
       [ "Champs de donnée", "functions.html", [
-        [ "Tout", "functions.html", null ],
+        [ "Tout", "functions.html", "functions_dup" ],
         [ "Fonctions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ],
         [ "Énumérations", "functions_enum.html", null ],
@@ -56,7 +57,7 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_android_manifest_8xml.html",
-"values_2themes_8xml_source.html"
+"classcom_1_1basket__game_1_1_partie_interrompue.html#a83568c6514fc6a3dfedc8bf76231de5f"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

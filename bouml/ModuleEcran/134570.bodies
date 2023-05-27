@@ -146,9 +146,13 @@ class Basketgame
       "background-color: red; color: black;");
 !!!131842.cpp!!!	initialiserCommunication() : void
     /**
-     * @todo Connecter les signaux/slots entre Communication et Basketgame puis
-     * demarrer la communication
+     * @todo Connecter les signaux/slots entre Communication et Basketgame avant
+     * de demarrer la communication
      */
+    if(communication != nullptr)
+    {
+        communication->demarrer();
+    }
 !!!151722.cpp!!!	demarrerChronometrageTour() : void
     ui->tempsTour->setText(tempsTour->toString("hh:mm:ss"));
     qDebug() << Q_FUNC_INFO << "tempsTour" << tempsTour->toString("hh:mm:ss");

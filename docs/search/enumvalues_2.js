@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['nb_5fcouleurs_357',['NB_COULEURS',['../class_plateau.html#ab04cbf5a133d66d6488a63b855a0c0f3a4cb0dec9846206a0567b3f9b4385fcf1',1,'Plateau']]],
-  ['nbequipes_358',['NbEquipes',['../class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a5e7d6254e1a6a1f4c5d004313df0f83e',1,'Basketgame']]]
+  ['jaune_609',['JAUNE',['../class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262adbcd15e57c864dd836367bb5d7c15b0e',1,'Puissance4']]],
+  ['jaune_610',['Jaune',['../class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c',1,'Basketgame']]]
 ];

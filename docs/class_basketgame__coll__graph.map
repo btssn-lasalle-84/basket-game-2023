@@ -1,6 +1,7 @@
 <map id="Basketgame" name="Basketgame">
-<area shape="rect" id="node1" title="La GUI de l&#39;application Basketgame." alt="" coords="10,463,239,951"/>
-<area shape="rect" id="node2" href="$class_q_main_window.html" title=" " alt="" coords="5,227,121,305"/>
-<area shape="rect" id="node3" href="$class_plateau.html" title=" " alt="" coords="145,132,384,400"/>
-<area shape="rect" id="node4" href="$class_q_object.html" title=" " alt="" coords="227,5,302,83"/>
+<area shape="rect" id="node1" title="La GUI de l&#39;application Basketgame." alt="" coords="149,653,378,1156"/>
+<area shape="rect" id="node2" href="$class_q_main_window.html" title=" " alt="" coords="5,323,121,400"/>
+<area shape="rect" id="node3" href="$class_communication.html" title="Définit la classe de communication bluetooth." alt="" coords="145,132,381,591"/>
+<area shape="rect" id="node4" href="$class_q_object.html" title=" " alt="" coords="357,5,431,83"/>
+<area shape="rect" id="node5" href="$class_puissance4.html" title=" " alt="" coords="405,227,644,495"/>
 </map>
