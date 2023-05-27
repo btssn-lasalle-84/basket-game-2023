@@ -6,9 +6,6 @@
 
 package com.basket_game;
 
-import static com.basket_game.Partie.TEMPS_MAX_TOUR;
-import static com.basket_game.Partie.TEMPS_TOUR_PAR_DEFAUT;
-
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -21,7 +18,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
-import java.io.Serializable;
 
 /**
  * @class PartieParametres
@@ -73,7 +69,7 @@ public class PartieParametres extends AppCompatActivity
         String   nomEquipe     = editionEquipe.getText().toString();
         Equipe   equipe        = new Equipe(nomEquipe);
         Log.d(TAG, "recupererNomEquipe() equipe = " + nomEquipe);
-        intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, (Serializable)equipe);
+        intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, equipe);
     }
 
     /**
@@ -92,7 +88,7 @@ public class PartieParametres extends AppCompatActivity
         }
         else
         {
-            tempsMaxTour = TEMPS_TOUR_PAR_DEFAUT;
+            tempsMaxTour = Partie.TEMPS_TOUR_PAR_DEFAUT;
             Log.d(TAG, "recupererTempsMaxTour() tempsMaxTour = " + tempsMaxTour);
         }
         intentDonneesPartieSuivi.putExtra("tempsMaxTour", tempsMaxTour);
@@ -166,7 +162,7 @@ public class PartieParametres extends AppCompatActivity
     private void editerTempsTour()
     {
         EditText editionTempsTour = findViewById(R.id.editionTempsTour);
-        editionTempsTour.setText(String.valueOf(TEMPS_MAX_TOUR)); // par défaut
+        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR)); // par défaut
         editionTempsTour.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence texteSaisi,
@@ -193,9 +189,9 @@ public class PartieParametres extends AppCompatActivity
                 {
                     int tempsTour = Integer.parseInt(valeur);
                     Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
-                    if(tempsTour > TEMPS_MAX_TOUR)
+                    if(tempsTour > Partie.TEMPS_MAX_TOUR)
                     {
-                        editionTempsTour.setText(String.valueOf(TEMPS_MAX_TOUR));
+                        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR));
                         Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
                     }
                 }

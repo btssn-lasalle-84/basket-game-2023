@@ -8,12 +8,20 @@ class Plateau
         plateau[i].resize(NB_LIGNES);
     }
 !!!144810.cpp!!!	initialiserPlateau() : void
-    // un QVector de QVector
+    vainqueur = false;
+    for(int i = 0; i < plateau.size(); ++i)
+    {
+        plateau[i].resize(NB_LIGNES);
+    }
+
+    qDebug() << Q_FUNC_INFO << "colonnes" << plateau.size() << "lignes"
+             << plateau[0].size();
+
     for(int colonne = 0; colonne < plateau.size(); ++colonne)
     {
         for(int ligne = 0; ligne < plateau[colonne].size(); ++ligne)
         {
-            plateau[colonne][ligne] = LIBRE;
+            plateau[colonne][ligne] = CouleurJeton::AUCUNE;
         }
     }
 !!!144938.cpp!!!	afficherPlateau() : void

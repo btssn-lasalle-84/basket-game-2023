@@ -1,6 +1,6 @@
 format 224
 "ModuleTablette"
-  revision 13
+  revision 16
   modified_by 42 "tv"
   java_root_dir "../../"
 
@@ -322,115 +322,18 @@ format 224
 	  on usecase_ref 128514 // dialoguer avec les modules
       end
     end
-  end
 
-  classview 128002 "Diagramme de classe basket-game"
-    
-    classdiagramsettings member_max_width 0 end
-    
-    classcompositediagramsettings end
-    
-    collaborationdiagramsettings end
-    
-    objectdiagramsettings end
-    
-    objectcompositediagramsettings end
-    
-    sequencediagramsettings end
-    
-    statediagramsettings
-     end
-    
-    
-    activitydiagramsettings
-     end
-    classdiagram 128130 "Diagramme de classe"
-      classdiagramsettings member_max_width 0 end
+    usecasediagram 141186 "uc général"
+      usecasediagramsettings end
       size A4
     end
 
-    class 128258 "Equipe"
-      visibility package 
+    class 142210 "Joueurs"
+      visibility package stereotype "actor"
       cpp_decl ""
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
-      
-      attribute 128002 "equipe1"
-	private explicit_type "String"
-	cpp_decl ""
-	java_decl ""
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 129282 "getEquipe1"
-	public explicit_return_type ""
-	nparams 0
-	
-	
-	
-	
-	
-      end
-
-      operation 129410 "setEquipe1"
-	public explicit_return_type ""
-	nparams 0
-	
-	
-	
-	
-	
-      end
-
-      attribute 134530 "equipe2"
-	private explicit_type "String"
-	cpp_decl ""
-	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
 "
-	php_decl ""
-	python_decl ""
-	idl_decl ""
-	mysql_decl ""
-	MysqlColumn
-      end
-
-      operation 135938 "getEquipe2"
-	public explicit_return_type ""
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-
-      operation 136066 "setEquipe2"
-	public explicit_return_type ""
-	nparams 0
-	
-	java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
-  ${body}}
-"
-	
-	
-	
-      end
-    end
-
-    class 128386 "Entraineur"
-      visibility package 
-      cpp_decl ""
-      java_decl ""
       php_decl ""
       python_2_2 python_decl ""
       idl_decl ""
@@ -439,28 +342,32 @@ format 224
       
     end
 
-    class 128642 "Communication"
-      visibility package 
-      cpp_decl ""
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
+    usecase 142082 "produire des sons"
       
-    end
-
-    class 128898 "BasketGame"
-      visibility package 
-      cpp_decl ""
-      java_decl ""
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
-      explicit_switch_type ""
-      mysql_decl ""
+      usecasediagramsettings end
       
+      sequencediagramsettings end
+      
+      collaborationdiagramsettings end
+      
+      classdiagramsettings member_max_width 0 end
+      
+      classcompositediagramsettings end
+      
+      objectdiagramsettings end
+      
+      objectcompositediagramsettings end
+      
+      statediagramsettings
+       end
+      
+      activitydiagramsettings
+       end
+      simplerelation 142082
+	-_->
+	  stereotype "extend"
+	  on usecase_ref 135298 // visualiser le suivi d'une partie
+      end
     end
   end
 

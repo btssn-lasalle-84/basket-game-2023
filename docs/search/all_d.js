@@ -1,26 +1,9 @@
 var searchData=
 [
-  ['partie_112',['Partie',['../classcom_1_1basket__game_1_1_partie.html',1,'com::basket_game']]],
-  ['partie_113',['partie',['../classcom_1_1basket__game_1_1_partie_suivi.html#aa385d23e7bbe72c48f4e88e5c3cf7cc8',1,'com::basket_game::PartieSuivi']]],
-  ['partie_114',['Partie',['../classcom_1_1basket__game_1_1_partie.html#a2d4007181c9ba45548bbad03af1eae16',1,'com.basket_game.Partie.Partie()'],['../class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba0f63b8c1d2f71e04fbce03ea851f469b',1,'Basketgame::Partie()']]],
-  ['partie_2ejava_115',['Partie.java',['../_partie_8java.html',1,'']]],
-  ['partie_5finterrompue_2exml_116',['partie_interrompue.xml',['../partie__interrompue_8xml.html',1,'']]],
-  ['partie_5fparametres_2exml_117',['partie_parametres.xml',['../partie__parametres_8xml.html',1,'']]],
-  ['partie_5fsuivi_2exml_118',['partie_suivi.xml',['../partie__suivi_8xml.html',1,'']]],
-  ['partie_5fterminee_2exml_119',['partie_terminee.xml',['../partie__terminee_8xml.html',1,'']]],
-  ['partieinterrompue_120',['PartieInterrompue',['../classcom_1_1basket__game_1_1_partie_interrompue.html',1,'com::basket_game']]],
-  ['partieinterrompue_2ejava_121',['PartieInterrompue.java',['../_partie_interrompue_8java.html',1,'']]],
-  ['partieparametres_122',['PartieParametres',['../classcom_1_1basket__game_1_1_partie_parametres.html',1,'com::basket_game']]],
-  ['partieparametres_2ejava_123',['PartieParametres.java',['../_partie_parametres_8java.html',1,'']]],
-  ['partiesuivi_124',['PartieSuivi',['../classcom_1_1basket__game_1_1_partie_suivi.html',1,'com::basket_game']]],
-  ['partiesuivi_2ejava_125',['PartieSuivi.java',['../_partie_suivi_8java.html',1,'']]],
-  ['partieterminee_126',['PartieTerminee',['../classcom_1_1basket__game_1_1_partie_terminee.html',1,'com::basket_game']]],
-  ['partieterminee_2ejava_127',['PartieTerminee.java',['../_partie_terminee_8java.html',1,'']]],
-  ['placerpion_128',['placerPion',['../class_plateau.html#aa5f3ed5ce76c8b1ea209d8cdba99c069',1,'Plateau']]],
-  ['plateau_129',['Plateau',['../class_plateau.html',1,'Plateau'],['../class_plateau.html#a6e4a3eaa5c42c4b0abe4b95246bdcdd4',1,'Plateau::Plateau()']]],
-  ['plateau_130',['plateau',['../class_basketgame.html#a50690bd0f330558a9a6e7222d4f501f0',1,'Basketgame::plateau()'],['../class_plateau.html#a99ebf615cb733c2351921b30c723fd7c',1,'Plateau::plateau()']]],
-  ['plateau_2ecpp_131',['plateau.cpp',['../plateau_8cpp.html',1,'']]],
-  ['plateau_2eh_132',['plateau.h',['../plateau_8h.html',1,'']]],
-  ['plateau_5f7_133',['PLATEAU_7',['../basketgame_8h.html#a32c741ca954b6e9b14bc102fd9f3e415',1,'basketgame.h']]],
-  ['progressbartempsrestanttour_134',['progressBarTempsRestantTour',['../classcom_1_1basket__game_1_1_partie_suivi.html#a89a5b5493f8cd7909e9eff52e5e5b78d',1,'com::basket_game::PartieSuivi']]]
+  ['oncreate_188',['onCreate',['../classcom_1_1basket__game_1_1_basket_game.html#a61107da518c9ce426ed01d3fccd7b673',1,'com.basket_game.BasketGame.onCreate()'],['../classcom_1_1basket__game_1_1_partie_interrompue.html#ae8fa1a6155e6c226852c4c04df6dc276',1,'com.basket_game.PartieInterrompue.onCreate()'],['../classcom_1_1basket__game_1_1_partie_parametres.html#a7ab0f4abb49dd7e985f822eb7224e8c0',1,'com.basket_game.PartieParametres.onCreate()'],['../classcom_1_1basket__game_1_1_partie_suivi.html#a5410bee96526713809127676060b9d79',1,'com.basket_game.PartieSuivi.onCreate()'],['../classcom_1_1basket__game_1_1_partie_terminee.html#a241a9bd099d9d046ec1d02295a69020b',1,'com.basket_game.PartieTerminee.onCreate()']]],
+  ['ondestroy_189',['onDestroy',['../classcom_1_1basket__game_1_1_basket_game.html#a3b260d56a50aff9ccad8ec28212e5604',1,'com::basket_game::BasketGame']]],
+  ['onpause_190',['onPause',['../classcom_1_1basket__game_1_1_basket_game.html#a67fb5f1fa55c4db2daf3fb7ab1c55953',1,'com.basket_game.BasketGame.onPause()'],['../classcom_1_1basket__game_1_1_partie_suivi.html#a5bed136e95be9788e10343e9593d4c19',1,'com.basket_game.PartieSuivi.onPause()']]],
+  ['onresume_191',['onResume',['../classcom_1_1basket__game_1_1_basket_game.html#ae827779afd947a670e1f8ec8b048fbe7',1,'com.basket_game.BasketGame.onResume()'],['../classcom_1_1basket__game_1_1_partie_suivi.html#affcc914b91dbac186699b9633f50b0ff',1,'com.basket_game.PartieSuivi.onResume()']]],
+  ['onstart_192',['onStart',['../classcom_1_1basket__game_1_1_basket_game.html#af176c3753496d1442fc27e1f9d61f7f1',1,'com.basket_game.BasketGame.onStart()'],['../classcom_1_1basket__game_1_1_partie_suivi.html#ae95e11ada1fd42905e8dc5d811e25aa9',1,'com.basket_game.PartieSuivi.onStart()']]],
+  ['onstop_193',['onStop',['../classcom_1_1basket__game_1_1_basket_game.html#ad38f57464ece19437176a3f1620b1403',1,'com.basket_game.BasketGame.onStop()'],['../classcom_1_1basket__game_1_1_partie_suivi.html#a0278ff61d155e465cce0be4a38b520db',1,'com.basket_game.PartieSuivi.onStop()']]]
 ];

@@ -1,6 +1,6 @@
 format 224
 "basket_game" // basket_game
-  revision 7
+  revision 9
   modified_by 42 "tv"
   // class settings
   
@@ -179,14 +179,23 @@ ${members}}
     end
 
     class 134570 "BasketGame"
-      visibility public 
-      cpp_decl ""
+      visibility public stereotype "activity"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
 ${members}}
 "
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
       explicit_switch_type ""
       mysql_decl ""
       
@@ -340,13 +349,22 @@ et détruite par le système Android)
 
     class 134826 "Partie"
       visibility public 
-      cpp_decl ""
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
 ${members}}
 "
-      php_decl ""
-      python_2_2 python_decl ""
-      idl_decl ""
+      php_decl "${comment}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      python_2_2 python_decl "class ${name}${inherit}:
+${docstring}${members}
+"
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
       explicit_switch_type ""
       mysql_decl ""
       
@@ -755,7 +773,7 @@ ${members}}
     end
 
     class 141482 "PartieInterrompue"
-      visibility public 
+      visibility public stereotype "activity"
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
 ${members}}
@@ -843,7 +861,7 @@ ${members}}
     end
 
     class 141610 "PartieParametres"
-      visibility public 
+      visibility public stereotype "activity"
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
 ${members}}
@@ -1029,7 +1047,7 @@ ${members}}
     end
 
     class 141738 "PartieSuivi"
-      visibility public 
+      visibility public stereotype "activity"
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
 ${members}}
@@ -1161,6 +1179,28 @@ Attributs
 	MysqlColumn
       end
 
+      classrelation 128130 // communicationBluetooth (<unidirectional association>)
+	relation 128130 --->
+	  a role_name "communicationBluetooth" init_value " null" private
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128130 // communicationBluetooth (<unidirectional association>)
+	  b parent class_ref 148738 // CommunicationBluetooth
+      end
+
+      attribute 144642 "handler"
+	package explicit_type "Handler"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
       attribute 157226 "progressBarTempsRestantTour"
 	package explicit_type "ProgressBar"
 	cpp_decl ""
@@ -1174,6 +1214,42 @@ Attributs
 	comment "Ressources GUI
 
 "
+      end
+
+      attribute 170282 "boutonConnexionModuleDetection"
+	package explicit_type "ImageButton"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170410 "boutonConnexionModuleSignalisation"
+	package explicit_type "ImageButton"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 170538 "boutonConnexionModuleEcran"
+	package explicit_type "ImageButton"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
       end
 
       operation 144042 "onCreate"
@@ -1190,6 +1266,72 @@ Attributs
 	
 	
 	comment "@brief Méthode appelée à la création de l'activité
+"
+      end
+
+      operation 150402 "onStart"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée au démarrage après le onCreate() ou un restart
+après un onStop()
+"
+      end
+
+      operation 150530 "onResume"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée après onStart() ou après onPause()
+"
+      end
+
+      operation 150658 "onPause"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée après qu'une boîte de dialogue s'est affichée (on
+reprend sur un onResume()) ou avant onStop() (activité plus visible)
+"
+      end
+
+      operation 150786 "onStop"
+	protected explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@Override
+"
+	
+	
+	
+	comment "@brief Méthode appelée lorsque l'activité n'est plus visible
 "
       end
 
@@ -1273,7 +1415,63 @@ Attributs
 	
 	
 	
-	comment "@brief Méthode appelée pour arrêter la partie
+	comment "@brief Méthode appelée pour créer le bouton pour arrêter la partie
+"
+      end
+
+      operation 150914 "creerBoutonConnexionModuleDetection"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour créer le bouton pour se connecter au module de détection
+"
+      end
+
+      operation 151042 "creerBoutonConnexionModuleSignalisation"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour créer le bouton pour se connecter au module de signalisation
+"
+      end
+
+      operation 151170 "creerBoutonConnexionModuleEcran"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour créer le bouton pour se connecter au module écran
+"
+      end
+
+      operation 172202 "verifierConnexionModules"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour vérifier la connexion aux modules
 "
       end
 
@@ -1305,6 +1503,34 @@ Attributs
 "
       end
 
+      operation 151298 "connecterModules"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour connecter les modules Bluetooth
+"
+      end
+
+      operation 151426 "demarrerPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour démarrer la partie
+"
+      end
+
       operation 144554 "arreterPartie"
 	private explicit_return_type "void"
 	nparams 0
@@ -1318,10 +1544,84 @@ Attributs
 	comment "@brief Méthode appelée pour arrêter la partie
 "
       end
+
+      operation 151554 "initialiserHandler"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint(\"HandlerLeak\")
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour initialiser la Handler
+"
+      end
+
+      operation 172330 "envoyerTrameSeance"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour fabriquer et envoyer la trame contenant les paramètres de la
+partie
+"
+      end
+
+      operation 172458 "envoyerTrameDebutPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour fabriquer et envoyer la trame de début de partie
+"
+      end
+
+      operation 172586 "envoyerTrameArretPartie"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour fabriquer et envoyer la trame d'arrêt de partie
+"
+      end
+
+      operation 172714 "envoyerTrameReset"
+	private explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Méthode appelée pour fabriquer et envoyer la trame pour reset la partie
+"
+      end
+
     end
 
     class 141866 "PartieTerminee"
-      visibility public 
+      visibility public stereotype "activity"
       cpp_decl ""
       java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
 ${members}}
@@ -1404,6 +1704,606 @@ ${members}}
 "
       end
     end
+
+    class 148738 "CommunicationBluetooth"
+      visibility public stereotype "singleton"
+      cpp_decl "${comment}${template}class ${name}${inherit} {
+${members}};
+${inlines}
+"
+      java_decl "${comment}${@}${visibility}${static}${final}${abstract}class ${name}${extends}${implements} {
+${members}}
+"
+      php_decl ""
+      python_2_2 python_decl ""
+      idl_decl "${comment}${abstract}${custom}valuetype ${name}${inherit} {
+${members}};
+"
+      explicit_switch_type ""
+      mysql_decl ""
+      
+      comment "@class Communication
+@brief Définit la classe de communication bluetooth
+"
+      attribute 141058 "TAG"
+	class_attribute const_attribute private explicit_type "String"
+	init_value " \"_CommunicationBluetooth\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment "Constantes
+
+!< TAG pour les logs (cf. Logcat)"
+      end
+
+      attribute 141186 "identifiantUUID"
+	class_attribute const_attribute private explicit_type "UUID"
+	init_value "
+      UUID.fromString(\"00001101-0000-1000-8000-00805F9B34FB\")"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141314 "CONNEXION_BLUETOOTH"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141442 "RECEPTION_BLUETOOTH"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141570 "DECONNEXION_BLUETOOTH"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 141698 "NOM_MODULE_DETECTION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"basket-detection\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " émission/réception"
+      end
+
+      attribute 141826 "NOM_MODULE_SIGNALISATION"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"basket-signalisation\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " émission"
+      end
+
+      attribute 141954 "NOM_MODULE_ECRAN"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"basket-ecran\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " émission"
+      end
+
+      attribute 142082 "ID_MODULE_DETECTION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 0"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " émission/réception"
+      end
+
+      attribute 142210 "ID_MODULE_SIGNALISATION"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 1"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " émission"
+      end
+
+      attribute 142338 "ID_MODULE_ECRAN"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 2"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " émission"
+      end
+
+      attribute 142466 "NB_MODULES"
+	class_attribute const_attribute public explicit_type "int"
+	init_value " 3"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 142594 "DELIMITEUR_DEBUT_TRAME"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"$BASKET\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " délimiteur début trame"
+      end
+
+      attribute 142722 "DELIMITEUR_FIN_TRAME"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \"\\r\\n\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " délimiteur fin trame"
+      end
+
+      attribute 142850 "DELIMITEUR_CHAMPS_TRAME"
+	class_attribute const_attribute public explicit_type "String"
+	init_value " \";\""
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " délimiteur champs trame"
+      end
+
+      classrelation 128002 // communication (<unidirectional association>)
+	relation 128002 --->
+	  a role_name "communication" init_value " null" class_relation private
+	    comment "
+Attributs
+
+"
+	    java "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	    classrelation_ref 128002 // communication (<unidirectional association>)
+	  b parent class_ref 148738 // CommunicationBluetooth
+      end
+
+      attribute 142978 "adaptateurBluetooth"
+	private explicit_type "BluetoothAdapter"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143106 "peripheriques"
+	private explicit_type "BluetoothDevice"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143234 "socketsBluetooth"
+	private explicit_type "BluetoothSocket"
+	stereotype "Vector"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${stereotype}<${type}> ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143362 "inputStream"
+	private explicit_type "InputStream"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+	comment " pour le module de détection"
+      end
+
+      attribute 143490 "filExecutionReception"
+	private explicit_type "Thread"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      attribute 143618 "handler"
+	private explicit_type "Handler"
+	init_value " null"
+	cpp_decl ""
+	java_decl "  ${comment}${@}${visibility}${static}${final}${transient}${volatile}${type} ${name}${value};
+"
+	php_decl ""
+	python_decl ""
+	idl_decl ""
+	mysql_decl ""
+	MysqlColumn
+      end
+
+      class 148866 "Type"
+	visibility public stereotype "enum"
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 143746 "SEANCE"
+	  public type class_ref 148866 // Type
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 143874 "START"
+	  public type class_ref 148866 // Type
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 144002 "TIR"
+	  public type class_ref 148866 // Type
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 144130 "STOP"
+	  public type class_ref 148866 // Type
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 144258 "RESET"
+	  public type class_ref 148866 // Type
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+      end
+
+      class 148994 "CouleurEquipe"
+	visibility public stereotype "enum"
+	cpp_decl ""
+	java_decl "${comment}${@}${visibility}${static}${final}${abstract}enum ${name}${implements} {
+${items};
+${members}}
+"
+	php_decl ""
+	python_2_2 python_decl ""
+	idl_decl ""
+	explicit_switch_type ""
+	mysql_decl ""
+	
+	attribute 144386 "ROUGE"
+	  public type class_ref 148994 // CouleurEquipe
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+
+	attribute 144514 "JAUNE"
+	  public type class_ref 148994 // CouleurEquipe
+	  cpp_decl ""
+	  java_decl "  ${@}${name}${value},${comment}"
+	  php_decl ""
+	  python_decl ""
+	  idl_decl ""
+	  mysql_decl ""
+	  MysqlColumn
+	end
+      end
+
+      operation 149122 "getInstance"
+	class_operation public return_type class_ref 148738 // CommunicationBluetooth
+	nparams 1
+	  param inout name "handler" explicit_type "Handler"
+	
+	preserve_java_body_indent synchronized java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@fn getInstance
+@brief Retourne l'instance Communication
+"
+      end
+
+      operation 149250 "CommunicationBluetooth"
+	public explicit_return_type ""
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur par défaut
+"
+      end
+
+      operation 149378 "CommunicationBluetooth"
+	public explicit_return_type ""
+	nparams 1
+	  param inout name "handler" explicit_type "Handler"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${synchronized}${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Constructeur d'initialisation
+"
+      end
+
+      operation 149506 "setHandler"
+	public explicit_return_type "void"
+	nparams 1
+	  param inout name "handler" explicit_type "Handler"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@fn setHandler
+@brief Fixe le gestionnaire de messages du thread UI
+@param handler Handler le gestionnaire de messages du thread UI
+"
+      end
+
+      operation 149634 "activer"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint({ \"MissingPermission\" })
+"
+	
+	
+	
+	comment "@brief Pour activer le bluetooth
+"
+      end
+
+      operation 149762 "seConnecter"
+	public explicit_return_type "boolean"
+	nparams 2
+	  param in name "nomPeripherique" explicit_type "String"
+	  param in name "idModule" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint(\"MissingPermission\")
+"
+	
+	
+	
+	comment "@brief Pour se connecter
+"
+      end
+
+      operation 172074 "estConnecte"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "idModule" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Pour vérifier la connexion
+"
+      end
+
+      operation 149890 "creerSocket"
+	public explicit_return_type "boolean"
+	nparams 1
+	  param in name "idModule" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint(\"MissingPermission\")
+"
+	
+	
+	
+	comment "@brief Pour créer un socket Bluetooth
+"
+      end
+
+      operation 150018 "seDeconnecter"
+	public explicit_return_type "void"
+	nparams 1
+	  param in name "idModule" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}${)}${throws}${staticnl}{
+  ${body}}
+"
+	java_annotation "@SuppressLint(\"MissingPermission\")
+"
+	
+	
+	
+	comment "@brief Pour se déconnecter
+"
+      end
+
+      operation 150146 "envoyer"
+	public explicit_return_type "void"
+	nparams 2
+	  param in name "message" explicit_type "String"
+	  param in name "idModule" explicit_type "int"
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${t0} ${p0}, ${t1} ${p1}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Pour envoyer un message via le Bluetooth
+"
+      end
+
+      operation 150274 "recevoir"
+	public explicit_return_type "void"
+	nparams 0
+	
+	preserve_java_body_indent java_def "  ${comment}${@}${visibility}${final}${static}${abstract}${synchronized}${type} ${name}${(}${)}${throws}${staticnl}{
+  ${body}}
+"
+	
+	
+	
+	comment "@brief Pour recevoir des messages via le Bluetooth
+"
+      end
+    end
   end
 
   deploymentview 134530 "basket_game"
@@ -1429,16 +2329,54 @@ ${definition}"
 
     artifact 134570 "BasketGame"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       java_src "${comment}
 ${package}
 ${imports}
-import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
 ${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${use}
+${definition}
+?>
+"
+      python_src "${comment}
+${import}
+${definition}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
       associated_elems
 	class_ref 134570 // BasketGame
       end
@@ -1450,11 +2388,48 @@ ${definition}"
 
     artifact 134826 "Partie"
       stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
       java_src "${comment}
 ${package}
 ${imports}
 import android.util.Log;
 ${definition}"
+      php_src "<?php
+${comment}
+${namespace}
+${require_once}
+${use}
+${definition}
+?>
+"
+      python_src "${comment}
+${import}
+${definition}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
       associated_elems
 	class_ref 134826 // Partie
       end
@@ -1502,9 +2477,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import java.io.Serializable;
-import static com.basket_game.Partie.TEMPS_MAX_TOUR;
-import static com.basket_game.Partie.TEMPS_TOUR_PAR_DEFAUT;
 ${definition}"
       associated_elems
 	class_ref 141610 // PartieParametres
@@ -1521,21 +2493,22 @@ ${definition}"
 ${package}
 ${imports}
 import androidx.appcompat.app.AppCompatActivity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.io.Serializable;
 import java.util.Timer;
 import java.util.TimerTask;
-import static com.basket_game.Partie.SEUIL_TEMPS_RESTANT;
+import android.widget.Toast;
 ${definition}"
       associated_elems
 	class_ref 141738 // PartieSuivi
@@ -1562,6 +2535,61 @@ ${definition}"
       end
       comment "@file PartieTerminee.java
 @brief Déclaration de la classe PartieTerminee
+@author Guillaumet Florent
+"
+    end
+
+    artifact 141058 "CommunicationBluetooth"
+      stereotype "source"
+      cpp_h "#ifndef ${NAMESPACE}_${NAME}_H
+#define ${NAMESPACE}_${NAME}_H
+
+${comment}
+${includes}
+${declarations}
+${namespace_start}
+${definition}
+${namespace_end}
+#endif
+"
+      cpp_src "${comment}
+${includes}
+${namespace_start}
+${members}
+${namespace_end}"
+      java_src "${comment}
+${package}
+${imports}
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Arrays;
+import java.util.Set;
+import java.util.UUID;
+import java.util.Vector;
+${definition}"
+      idl_src "#ifndef ${MODULE}_${NAME}_H
+#define ${MODULE}_${NAME}_H
+
+${comment}
+${includes}
+${module_start}
+${definition}
+${module_end}
+#endif
+"
+      associated_elems
+	class_ref 148738 // CommunicationBluetooth
+      end
+      comment "@file Communication.java
+@brief Déclaration de la classe CommunicationBluetooth
 @author Guillaumet Florent
 "
     end

@@ -2,27 +2,47 @@ format 224
 
 classcanvas 128042 class_ref 134570 // BasketGame
   classdiagramsettings member_max_width 0 end
-  xyz 141 340 2012
+  color lightmediumgreen
+  xyz 10.5 325.8 2012
 end
 classcanvas 128130 class_ref 135682 // AppCompatActivity
   classdiagramsettings member_max_width 0 end
-  xyz 1254 23 2006
+  color darkgreen
+  xyz 1196 7.8 2006
 end
 classcanvas 128386 class_ref 135426 // Equipe
   classdiagramsettings member_max_width 0 end
-  xyz 1090 1098 2000
+  color lightred
+  xyz 1854 1182.8 2000
 end
 classcanvas 128554 class_ref 134826 // Partie
   classdiagramsettings member_max_width 0 end
-  xyz 1932 954 2006
+  color lightred
+  xyz 1052 1037.3 2006
+end
+classcanvas 128642 class_ref 141482 // PartieInterrompue
+  classdiagramsettings member_max_width 0 end
+  color lightmediumgreen
+  xyz 1580 323.6 2012
+end
+classcanvas 128898 class_ref 141866 // PartieTerminee
+  classdiagramsettings member_max_width 0 end
+  color lightmediumgreen
+  xyz 2070 323.6 2012
 end
 classcanvas 128938 class_ref 141610 // PartieParametres
   classdiagramsettings member_max_width 0 end
-  xyz 940 340 2012
+  color lightmediumgreen
+  xyz 497.6 328.4 2012
+end
+classcanvas 129154 class_ref 148738 // CommunicationBluetooth
+  classdiagramsettings member_max_width 0 end
+  xyz 1773 522.2 3005
 end
 classcanvas 129194 class_ref 141738 // PartieSuivi
   classdiagramsettings member_max_width 0 end
-  xyz 1949 343 2012
+  color lightmediumgreen
+  xyz 1090 338.4 2012
 end
 relationcanvas 128170 relation_ref 134570 // <generalisation>
   from ref 128042 z 2013 to ref 128130
@@ -30,18 +50,39 @@ relationcanvas 128170 relation_ref 134570 // <generalisation>
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128682 relation_ref 134826 // <unidirectional association>
-  from ref 128554 z 2007 to ref 128386
-  role_a_pos 1712 1215 3000 no_role_b
+  from ref 128554 z 2007 to point 1667 1275
+  line 129922 z 2007 to ref 128386
+  role_a_pos 1739 1245 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 128770 relation_ref 141610 // <generalisation>
+  from ref 128642 z 2013 to ref 128130
+  no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 128810 relation_ref 134954 // <unidirectional association>
-  from ref 128554 z 2007 to ref 128386
-  role_a_pos 1712 1215 3000 no_role_b
+  from ref 128554 z 2007 to point 1665 1201
+  line 130050 z 2007 to ref 128386
+  role_a_pos 1739 1200 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129026 relation_ref 142250 // <generalisation>
+  from ref 128898 z 2013 to ref 128130
+  no_role_a no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129066 relation_ref 141738 // <generalisation>
   from ref 128938 z 2013 to ref 128130
   no_role_a no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129282 relation_ref 128002 // <unidirectional association>
+  decenter_begin 35
+  decenter_end 107
+  from ref 129154 z 3006 to point 1717 519
+  line 129410 z 3006 to point 1717 563
+  line 129538 z 3006 to ref 129154
+  role_a_pos 1772 599 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 relationcanvas 129322 relation_ref 141866 // <generalisation>
@@ -51,7 +92,13 @@ relationcanvas 129322 relation_ref 141866 // <generalisation>
 end
 relationcanvas 129450 relation_ref 148778 // <unidirectional association>
   from ref 129194 z 2013 to ref 128554
-  role_a_pos 2244 921 3000 no_role_b
+  role_a_pos 1398 1385 3000 no_role_b
+  no_multiplicity_a no_multiplicity_b
+end
+relationcanvas 129666 relation_ref 128130 // <unidirectional association>
+  decenter_begin 789
+  from ref 129194 z 3006 to ref 129154
+  role_a_pos 1828 1346 3000 no_role_b
   no_multiplicity_a no_multiplicity_b
 end
 end

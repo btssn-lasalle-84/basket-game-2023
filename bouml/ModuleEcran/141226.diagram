@@ -35,12 +35,12 @@ reflexivemsg 128554 synchronous
   label_xy 227 127
 reflexivemsg 128810 synchronous
   to durationcanvas_ref 128682
-  yz 203 2035 msg operation_ref 151594 // "initialiserEtatPartie() : void"
+  yz 203 2035 explicitmsg "<deleted operation>"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 238 175
 reflexivemsg 129066 synchronous
   to durationcanvas_ref 128938
-  yz 261 2035 msg operation_ref 143402 // "initialiserPlateau() : void"
+  yz 261 2035 explicitmsg "<deleted operation>"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 233 232
 reflexivemsg 129322 synchronous
@@ -55,7 +55,7 @@ reflexivemsg 129834 synchronous
   label_xy 235 400
 reflexivemsg 130090 synchronous
   to durationcanvas_ref 129962
-  yz 307 2045 msg operation_ref 143658 // "afficherPlateau() : void"
+  yz 307 2045 explicitmsg "<deleted operation>"
   show_full_operations_definition default show_class_of_operation default drawing_language default show_context_mode default
   label_xy 238 282
 end

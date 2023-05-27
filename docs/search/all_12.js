@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['ui_176',['Ui',['../namespace_ui.html',1,'']]],
-  ['ui_177',['ui',['../class_basketgame.html#a53cf93923d37ece1777b3f2060341c83',1,'Basketgame']]],
-  ['useappcontext_178',['useAppContext',['../classcom_1_1basket__game_1_1_example_instrumented_test.html#ae335484eb356dcf6fd1b50a10b73e6c6',1,'com::basket_game::ExampleInstrumentedTest']]]
+  ['tabletteconnectee_279',['tabletteConnectee',['../class_communication.html#ab2606214f1e90959b439ea2c88f09bff',1,'Communication']]],
+  ['tablettedeconnectee_280',['tabletteDeconnectee',['../class_communication.html#a73c460b01e8c4b8a35a6ed3bcc6bf658',1,'Communication']]],
+  ['tachecompteurtempstour_281',['tacheCompteurTempsTour',['../classcom_1_1basket__game_1_1_partie_suivi.html#a953909b6441a31f7ad3cf2d96260dd7d',1,'com::basket_game::PartieSuivi']]],
+  ['tag_282',['TAG',['../classcom_1_1basket__game_1_1_partie_terminee.html#a0024a218e9ed344a4401402e524818eb',1,'com.basket_game.PartieTerminee.TAG()'],['../classcom_1_1basket__game_1_1_basket_game.html#a721d50ea7dd719f73750e65c62b7e54c',1,'com.basket_game.BasketGame.TAG()'],['../classcom_1_1basket__game_1_1_communication_bluetooth.html#ac02def818cf8890049fe57ce3932d50d',1,'com.basket_game.CommunicationBluetooth.TAG()'],['../classcom_1_1basket__game_1_1_equipe.html#ac12503c0ba1e720561e61af04ca2bc32',1,'com.basket_game.Equipe.TAG()'],['../classcom_1_1basket__game_1_1_partie.html#addaa4e4ab7e0a3f9f2fe89d3cf15efb5',1,'com.basket_game.Partie.TAG()'],['../classcom_1_1basket__game_1_1_partie_interrompue.html#a1107e536539b5aa603cd3e9d97e11004',1,'com.basket_game.PartieInterrompue.TAG()'],['../classcom_1_1basket__game_1_1_partie_parametres.html#ace696874e2cb88ce654c4c2e569a29b5',1,'com.basket_game.PartieParametres.TAG()'],['../classcom_1_1basket__game_1_1_partie_suivi.html#ad2ad276d74a4c6c767a4be93b77c0761',1,'com.basket_game.PartieSuivi.TAG()']]],
+  ['taille_5fjeton_283',['TAILLE_JETON',['../basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5',1,'basketgame.h']]],
+  ['temps_5fmax_5ftour_284',['TEMPS_MAX_TOUR',['../classcom_1_1basket__game_1_1_partie.html#a6c86c7bd82a98c58c0aff8fd6fdf789c',1,'com::basket_game::Partie']]],
+  ['temps_5ftour_285',['TEMPS_TOUR',['../basketgame_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d',1,'basketgame.h']]],
+  ['temps_5ftour_5fmax_286',['TEMPS_TOUR_MAX',['../communication_8h.html#a1ae94c20cef374665c0ecf881354a6d2',1,'communication.h']]],
+  ['temps_5ftour_5fpar_5fdefaut_287',['TEMPS_TOUR_PAR_DEFAUT',['../classcom_1_1basket__game_1_1_partie.html#ad1a9fba96447e8aa561a847731832462',1,'com::basket_game::Partie']]],
+  ['tempsmaxtour_288',['tempsMaxTour',['../classcom_1_1basket__game_1_1_partie.html#aff13135a3b95260d4113d1f55ca7973f',1,'com::basket_game::Partie']]],
+  ['tempsrestanttour_289',['tempsRestantTour',['../classcom_1_1basket__game_1_1_partie_suivi.html#a590b1f76c73672054ebf407bc21aaaa3',1,'com::basket_game::PartieSuivi']]],
+  ['tempstour_290',['tempsTour',['../class_basketgame.html#a15e23eff1679f3e938027ad8e0a25331',1,'Basketgame']]],
+  ['terminerseance_291',['terminerSeance',['../class_basketgame.html#a12655bb7125a1f6240e882e7ff7f4a44',1,'Basketgame']]],
+  ['test_5falignement_292',['TEST_ALIGNEMENT',['../puissance4_8h.html#a58d3ff0c9030ff2d15a4f2e7ac80393b',1,'puissance4.h']]],
+  ['test_5fbasketgame_293',['TEST_BASKETGAME',['../basketgame_8h.html#a6067e1d35e357f2fd00fc015078a8d8e',1,'basketgame.h']]],
+  ['testunitaireverifierplateau_294',['testUnitaireVerifierPlateau',['../class_puissance4.html#a38ffc8bf6e4927d1339463bfc56ae356',1,'Puissance4']]],
+  ['tic_5fhorloge_295',['TIC_HORLOGE',['../basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e',1,'basketgame.h']]],
+  ['tir_296',['TIR',['../enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html#a6322c5bf8d20713592d15fac73edd707',1,'com::basket_game::CommunicationBluetooth::Type']]],
+  ['tir_297',['Tir',['../class_communication.html#af5ee9ed1192d7925d64e4249bf307214a03ab93bcd05f7e9c6f538050b500a7a3',1,'Communication']]],
+  ['tirpanier_298',['tirPanier',['../class_communication.html#af9eba0d7cf03d472ad8909df35402610',1,'Communication']]],
+  ['traitertrame_299',['traiterTrame',['../class_communication.html#a5eafa558813a3844c878de8fa26e1e95',1,'Communication']]],
+  ['trame_300',['trame',['../class_communication.html#a8f98b288efaaf9d0beb36e4ada6f0e8d',1,'Communication']]],
+  ['tramerecue_301',['trameRecue',['../class_communication.html#af7f09c0b35ddb53f24402bb8e5ec6ce7',1,'Communication']]],
+  ['type_302',['Type',['../enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html',1,'com::basket_game::CommunicationBluetooth']]],
+  ['type_5ftrame_303',['TYPE_TRAME',['../communication_8h.html#a8da23fa25560c54c52884746a5d1cc69',1,'communication.h']]],
+  ['typedef2_304',['typedef2',['../classtypedef2.html',1,'']]],
+  ['typetrame_305',['TypeTrame',['../class_communication.html#af5ee9ed1192d7925d64e4249bf307214',1,'Communication']]]
 ];

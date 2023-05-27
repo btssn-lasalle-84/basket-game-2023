@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet basket-game
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -85,11 +85,23 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 
 <div class="contents">
 <div class="textblock">Liste de toutes les fonctions, variables, macros, enumérations, et définitions de type avec des liens vers les fichiers auxquels ils appartiennent :</div><ul>
+<li>COULEUR_EQUIPE
+: <a class="el" href="communication_8h.html#a57bce7bc6c0bb70236a53d455951c069">communication.h</a>
+</li>
+<li>DELIMITEUR_CHAMP
+: <a class="el" href="communication_8h.html#ac3d2c8b3b9dbc07cedf0bfa8a75d268f">communication.h</a>
+</li>
 <li>DEPLACEMENT_X
 : <a class="el" href="basketgame_8h.html#aa8fa59a015c6f27eb6981f1edc321c02">basketgame.h</a>
 </li>
 <li>DEPLACEMENT_Y
 : <a class="el" href="basketgame_8h.html#a10ef75aae56acfeb31de4613036199c9">basketgame.h</a>
+</li>
+<li>ENTETE_DEBUT
+: <a class="el" href="communication_8h.html#ac91f30b1853dcb3c231900051e3db9d4">communication.h</a>
+</li>
+<li>ENTETE_FIN
+: <a class="el" href="communication_8h.html#afe7c69364112dd0794bbd7c782644bfb">communication.h</a>
 </li>
 <li>JETON_JAUNE
 : <a class="el" href="basketgame_8h.html#a431d5a1bef64ec8bcdf7d87d5a3b6858">basketgame.h</a>
@@ -101,19 +113,43 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 : <a class="el" href="main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97">main.cpp</a>
 </li>
 <li>NB_COLONNES
-: <a class="el" href="plateau_8h.html#abfa179ca04bf5c427a56beb8b26c0272">plateau.h</a>
+: <a class="el" href="puissance4_8h.html#abfa179ca04bf5c427a56beb8b26c0272">puissance4.h</a>
 </li>
 <li>NB_LIGNES
-: <a class="el" href="plateau_8h.html#ad8edf09d2d914fdd5eae545ee2bd6ce9">plateau.h</a>
+: <a class="el" href="puissance4_8h.html#ad8edf09d2d914fdd5eae545ee2bd6ce9">puissance4.h</a>
+</li>
+<li>NB_MANCHES
+: <a class="el" href="communication_8h.html#a8b6b6aecaa7b2bd883d1d047bafad79b">communication.h</a>
+</li>
+<li>NB_PANIERS
+: <a class="el" href="communication_8h.html#a3111ede21726613f1bcbd9970c2723d9">communication.h</a>
 </li>
 <li>NB_PIONS
-: <a class="el" href="plateau_8h.html#a6d6f9c3f8c3c6261cad308dccc0380c9">plateau.h</a>
+: <a class="el" href="puissance4_8h.html#a6d6f9c3f8c3c6261cad308dccc0380c9">puissance4.h</a>
 </li>
 <li>NB_PIONS_ALIGNES
-: <a class="el" href="plateau_8h.html#aaa49d9d7cc92acb56fe6f96d7b44c71e">plateau.h</a>
+: <a class="el" href="puissance4_8h.html#aaa49d9d7cc92acb56fe6f96d7b44c71e">puissance4.h</a>
+</li>
+<li>NOM_EQUIPE1
+: <a class="el" href="communication_8h.html#a37b17c8c846c0a24204cc8cba74a95d8">communication.h</a>
+</li>
+<li>NOM_EQUIPE2
+: <a class="el" href="communication_8h.html#ac1539c36b33312f0d1adf70806838722">communication.h</a>
+</li>
+<li>NUMERO_PANIER
+: <a class="el" href="communication_8h.html#ac744856e66e3994e50cbc3f2ec744cfa">communication.h</a>
+</li>
+<li>NUMERO_PARTIE
+: <a class="el" href="communication_8h.html#a66be61e094d65768989f3016168f38a3">communication.h</a>
 </li>
 <li>PLATEAU_7
 : <a class="el" href="basketgame_8h.html#a32c741ca954b6e9b14bc102fd9f3e415">basketgame.h</a>
+</li>
+<li>serviceNom()
+: <a class="el" href="communication_8h.html#a815b49472de465abcac2eed55e1f5c60">communication.h</a>
+</li>
+<li>serviceUuid()
+: <a class="el" href="communication_8h.html#a89b03bf9986896053fdab3d4f80d7c04">communication.h</a>
 </li>
 <li>TAILLE_JETON
 : <a class="el" href="basketgame_8h.html#aff8fb0024e243d1a70033fc6455bc4b5">basketgame.h</a>
@@ -121,14 +157,20 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <li>TEMPS_TOUR
 : <a class="el" href="basketgame_8h.html#a51050f9df4b81a9e1bb5cb69a35a153d">basketgame.h</a>
 </li>
+<li>TEMPS_TOUR_MAX
+: <a class="el" href="communication_8h.html#a1ae94c20cef374665c0ecf881354a6d2">communication.h</a>
+</li>
 <li>TEST_ALIGNEMENT
-: <a class="el" href="plateau_8h.html#a58d3ff0c9030ff2d15a4f2e7ac80393b">plateau.h</a>
+: <a class="el" href="puissance4_8h.html#a58d3ff0c9030ff2d15a4f2e7ac80393b">puissance4.h</a>
 </li>
 <li>TEST_BASKETGAME
 : <a class="el" href="basketgame_8h.html#a6067e1d35e357f2fd00fc015078a8d8e">basketgame.h</a>
 </li>
 <li>TIC_HORLOGE
 : <a class="el" href="basketgame_8h.html#abf764b1c2fbaa637bd0b1b511eedc81e">basketgame.h</a>
+</li>
+<li>TYPE_TRAME
+: <a class="el" href="communication_8h.html#a8da23fa25560c54c52884746a5d1cc69">communication.h</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -137,7 +179,7 @@ $(document).ready(function(){initNavTree('globals.html',''); initResizable(); })
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mardi 23 Mai 2023 06:27:22 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:52 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

@@ -1,0 +1,58 @@
+format 224
+
+classcanvas 128898 class_ref 128130 // Entraineur
+  simpleclassdiagramsettings end
+  xyz 85.5 205.5 2000
+end
+usecasecanvas 129026 usecase_ref 135298 // visualiser le suivi d'une partie
+  xyzwh 310.5 330.5 3005 64 32 label_xy 247.5 362.5
+end
+usecasecanvas 129154 usecase_ref 128258 // paramétrer une partie
+  xyzwh 537.5 64.5 3005 64 32 label_xy 499.5 96.5
+end
+usecasecanvas 129282 usecase_ref 128514 // dialoguer avec les modules
+  xyzwh 662.5 284.5 3005 64 32 label_xy 605.5 316.5
+end
+usecasecanvas 129410 usecase_ref 135042 // lancer une partie
+  xyzwh 537.5 164.5 3005 64 32 label_xy 514.5 196.5
+end
+usecasecanvas 129538 usecase_ref 135554 // gérer une partie
+  xyzwh 310.5 220.5 3005 64 32 label_xy 290.5 252.5
+end
+usecasecanvas 129666 usecase_ref 135170 // créer une partie
+  xyzwh 310.5 117.5 3005 64 32 label_xy 291.5 149.5
+end
+classcanvas 130818 class_ref 142210 // Joueurs
+  simpleclassdiagramsettings end
+  xyz 92 313 2000
+end
+usecasecanvas 131074 usecase_ref 142082 // produire des sons
+  xyzwh 674 368 3005 64 32 label_xy 648 400
+end
+line 129794 ---- decenter_end 140
+  from ref 128898 z 3006 to ref 129026
+simplerelationcanvas 129922 simplerelation_ref 135426
+  from ref 129410 z 3006 stereotype "<<include>>" xyz 590.5 239.5 3000 to ref 129282
+end
+line 130050 ----
+  from ref 128898 z 3006 to ref 129538
+simplerelationcanvas 130178 simplerelation_ref 135170
+  from ref 129410 z 3006 stereotype "<<extend>>" xyz 415.5 154.5 3000 to ref 129666
+end
+line 130306 ----
+  from ref 128898 z 3006 to ref 129666
+simplerelationcanvas 130434 simplerelation_ref 135298
+  from ref 129026 z 3006 stereotype "<<include>>" xyz 476.5 321.5 3000 to ref 129282
+end
+simplerelationcanvas 130562 simplerelation_ref 135042
+  from ref 129154 z 3006 stereotype "<<extend>>" xyz 415.5 104.5 3000 to ref 129666
+end
+simplerelationcanvas 130690 simplerelation_ref 135554
+  from ref 129538 z 3006 stereotype "<<include>>" xyz 476.5 266.5 3000 to ref 129282
+end
+line 130946 ----
+  from ref 130818 z 3006 to ref 129026
+simplerelationcanvas 131202 simplerelation_ref 142082
+  from ref 131074 z 3006 stereotype "<<extend>>" xyz 484 363 3000 to ref 129026
+end
+end
