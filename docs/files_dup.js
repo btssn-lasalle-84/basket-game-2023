@@ -9,10 +9,18 @@ var files_dup =
     ] ],
     [ "basketgame.xml", "basketgame_8xml.html", null ],
     [ "colors.xml", "colors_8xml.html", null ],
-    [ "Communication.java", "_communication_8java.html", [
-      [ "Communication", "classcom_1_1basket__game_1_1_communication.html", null ]
+    [ "communication.cpp", "communication_8cpp.html", null ],
+    [ "communication.h", "communication_8h.html", "communication_8h" ],
+    [ "CommunicationBluetooth.java", "_communication_bluetooth_8java.html", [
+      [ "CommunicationBluetooth", "classcom_1_1basket__game_1_1_communication_bluetooth.html", "classcom_1_1basket__game_1_1_communication_bluetooth" ],
+      [ "CouleurEquipe", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe.html", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe" ],
+      [ "Type", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type" ]
     ] ],
     [ "data_extraction_rules.xml", "data__extraction__rules_8xml.html", null ],
+    [ "equipe.cpp", "equipe_8cpp.html", null ],
+    [ "equipe.h", "equipe_8h.html", [
+      [ "Equipe", "class_equipe.html", "class_equipe" ]
+    ] ],
     [ "Equipe.java", "_equipe_8java.html", [
       [ "Equipe", "classcom_1_1basket__game_1_1_equipe.html", "classcom_1_1basket__game_1_1_equipe" ]
     ] ],
@@ -48,7 +56,12 @@ var files_dup =
       [ "PartieTerminee", "classcom_1_1basket__game_1_1_partie_terminee.html", "classcom_1_1basket__game_1_1_partie_terminee" ]
     ] ],
     [ "plateau.cpp", "plateau_8cpp.html", null ],
-    [ "plateau.h", "plateau_8h.html", "plateau_8h" ],
+    [ "plateau.h", "plateau_8h.html", [
+      [ "Coup", "struct_coup.html", "struct_coup" ],
+      [ "Plateau", "class_plateau.html", "class_plateau" ]
+    ] ],
+    [ "puissance4.cpp", "puissance4_8cpp.html", null ],
+    [ "puissance4.h", "puissance4_8h.html", "puissance4_8h" ],
     [ "ressource.cpp", "ressource_8cpp.html", null ],
     [ "strings.xml", "strings_8xml.html", null ],
     [ "values/themes.xml", "values_2themes_8xml.html", null ],

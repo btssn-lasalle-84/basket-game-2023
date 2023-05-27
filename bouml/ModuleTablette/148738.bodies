@@ -81,6 +81,11 @@ class CommunicationBluetooth
                     " trouvé : " + peripheriques.get(idModule).getAddress());
             return creerSocket(idModule);
         }
+!!!172074.java!!!	estConnecte(in idModule : int) : boolean
+        if (socketsBluetooth.get(idModule) != null && socketsBluetooth.get(idModule).isConnected()) {
+            return true;
+        }
+        return false;
 !!!149890.java!!!	creerSocket(in idModule : int) : boolean
         Log.d(TAG, "creerSocket(" + idModule + ")");
         // Créer le canal Bluetooth

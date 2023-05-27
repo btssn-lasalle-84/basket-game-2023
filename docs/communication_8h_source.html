@@ -1,0 +1,251 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet basket-game:  Fichier source de communication.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet basket-game
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('communication_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">communication.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="communication_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef _COMMUNICATION_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define _COMMUNICATION_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="communication_8h.html#ac91f30b1853dcb3c231900051e3db9d4">   12</a></span>&#160;<span class="preprocessor">#define ENTETE_DEBUT     &quot;$BASKET&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="communication_8h.html#afe7c69364112dd0794bbd7c782644bfb">   13</a></span>&#160;<span class="preprocessor">#define ENTETE_FIN       &quot;\r\n&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="communication_8h.html#ac3d2c8b3b9dbc07cedf0bfa8a75d268f">   14</a></span>&#160;<span class="preprocessor">#define DELIMITEUR_CHAMP &quot;;&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="communication_8h.html#a8da23fa25560c54c52884746a5d1cc69">   15</a></span>&#160;<span class="preprocessor">#define TYPE_TRAME       1</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="comment">// Trame SEANCE :</span></div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="comment">// $BASKET;SEANCE;NOM_EQUIPE1;NOM_EQUIPE2;TEMPS;PANIERS;MANCHES;\r\n</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="communication_8h.html#a37b17c8c846c0a24204cc8cba74a95d8">   18</a></span>&#160;<span class="preprocessor">#define NOM_EQUIPE1    2</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="communication_8h.html#ac1539c36b33312f0d1adf70806838722">   19</a></span>&#160;<span class="preprocessor">#define NOM_EQUIPE2    3</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="communication_8h.html#a1ae94c20cef374665c0ecf881354a6d2">   20</a></span>&#160;<span class="preprocessor">#define TEMPS_TOUR_MAX 4</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="communication_8h.html#a3111ede21726613f1bcbd9970c2723d9">   21</a></span>&#160;<span class="preprocessor">#define NB_PANIERS     5</span></div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="communication_8h.html#a8b6b6aecaa7b2bd883d1d047bafad79b">   22</a></span>&#160;<span class="preprocessor">#define NB_MANCHES     6</span></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="comment">// Trame START : $BASKET;START;NUMERO_PARTIE;\r\n</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="communication_8h.html#a66be61e094d65768989f3016168f38a3">   24</a></span>&#160;<span class="preprocessor">#define NUMERO_PARTIE 2</span></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="comment">// Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n</span></div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="communication_8h.html#a57bce7bc6c0bb70236a53d455951c069">   26</a></span>&#160;<span class="preprocessor">#define COULEUR_EQUIPE 2</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="communication_8h.html#ac744856e66e3994e50cbc3f2ec744cfa">   27</a></span>&#160;<span class="preprocessor">#define NUMERO_PANIER  3</span></div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="preprocessor">#include &lt;QtBluetooth&gt;</span></div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="preprocessor">#include &lt;QString&gt;</span></div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="communication_8h.html#a89b03bf9986896053fdab3d4f80d7c04">   33</a></span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="communication_8h.html#a89b03bf9986896053fdab3d4f80d7c04">serviceUuid</a>(</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;  QStringLiteral(<span class="stringliteral">&quot;00001101-0000-1000-8000-00805F9B34FB&quot;</span>));</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="communication_8h.html#a815b49472de465abcac2eed55e1f5c60">   35</a></span>&#160;<span class="keyword">static</span> <span class="keyword">const</span> QString <a class="code" href="communication_8h.html#a815b49472de465abcac2eed55e1f5c60">serviceNom</a>(QStringLiteral(<span class="stringliteral">&quot;BasketGame&quot;</span>));</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keyword">class </span><a class="code" href="class_basketgame.html">Basketgame</a>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keyword">class </span><a class="code" href="class_communication.html">Communication</a> : <span class="keyword">public</span> <a class="code" href="class_q_object.html">QObject</a></div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;{</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214">   43</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214">TypeTrame</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;    {</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a7b4bbd3517f9fdb3cf73e72542b8f07c">   45</a></span>&#160;        <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a7b4bbd3517f9fdb3cf73e72542b8f07c">Inconnu</a> = -1,</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a5300e7d950aa7267381bdf351cab0c3d">   46</a></span>&#160;        <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a5300e7d950aa7267381bdf351cab0c3d">Seance</a>,</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a73ce626a7525edb144c6ab66e5755122">   47</a></span>&#160;        <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a73ce626a7525edb144c6ab66e5755122">Start</a>,</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a03ab93bcd05f7e9c6f538050b500a7a3">   48</a></span>&#160;        <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a03ab93bcd05f7e9c6f538050b500a7a3">Tir</a>,</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aee5fe3a3e8afd303a27e7bfe488fa2e3">   49</a></span>&#160;        <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aee5fe3a3e8afd303a27e7bfe488fa2e3">Stop</a>,</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;        <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aac522319bb44631b797f192e01c1c7d7">Reset</a></div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aac522319bb44631b797f192e01c1c7d7">   51</a></span>&#160;    };</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <a class="code" href="class_communication.html#a1db0779a564d97a63653c477520815e5">Communication</a>(<a class="code" href="class_q_object.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <a class="code" href="class_communication.html#a75ba08ce908d45251e28e4c1db94e6f4">~Communication</a>();</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a2c10a52807bc7bdc520ec3fae622f672">initialiser</a>();</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#af29ea9a1c2ce29436f2331c322f6ebbf">demarrer</a>();</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a1f4b02441803f9c8e231cb9f304d776b">arreter</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno"><a class="line" href="class_communication.html#a4392bb82ac84b1e18d245f224b2fc471">   58</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a4392bb82ac84b1e18d245f224b2fc471">deconnecter</a>();</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_communication.html#ad598e55e1b9cd054516084af725594f2">estValide</a>();</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_communication.html#a8399665bae100a18091b253d96f1cd9b">estConnecte</a>();</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;    QString <a class="code" href="class_communication.html#abd8196826b75fdea1581825ac602555f">getNomPeripheriqueLocal</a>();</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;    QString <a class="code" href="class_communication.html#a5dcc5eba47de83f7ab3ab86517fb6ca7">getAdressePeripheriqueLocal</a>();</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;  <span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_communication.html#a7a737ac0a2a4731ed5fa203e02af5ac9">   68</a></span>&#160;    QBluetoothLocalDevice <a class="code" href="class_communication.html#a7a737ac0a2a4731ed5fa203e02af5ac9">peripheriqueLocal</a>;</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="class_communication.html#a9cbad7514893f0848d863f266097a99a">   69</a></span>&#160;    QBluetoothServer*     <a class="code" href="class_communication.html#a9cbad7514893f0848d863f266097a99a">serveur</a>;     </div>
+<div class="line"><a name="l00070"></a><span class="lineno"><a class="line" href="class_communication.html#a04e69c2783e9024c03d9b0b8a74d9184">   70</a></span>&#160;    QBluetoothSocket*     <a class="code" href="class_communication.html#a04e69c2783e9024c03d9b0b8a74d9184">socket</a>;      </div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_communication.html#aa9dab8ded475a27e07273a53c7e4167a">   71</a></span>&#160;    QBluetoothServiceInfo <a class="code" href="class_communication.html#aa9dab8ded475a27e07273a53c7e4167a">serviceInfo</a>; </div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="class_communication.html#a391ebaf73e6cf5a08d3bf5fbae31ccf0">   72</a></span>&#160;    <span class="keywordtype">bool</span>                  <a class="code" href="class_communication.html#a391ebaf73e6cf5a08d3bf5fbae31ccf0">connecte</a>; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_communication.html#af4ae90c2315f88dfc4705c1a408f64df">   73</a></span>&#160;    QString               <a class="code" href="class_communication.html#af4ae90c2315f88dfc4705c1a408f64df">nomPeripheriqueLocal</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_communication.html#a29e2b2d6383dba8ff4a1b3b8a50fa2a7">   74</a></span>&#160;    QString               <a class="code" href="class_communication.html#a29e2b2d6383dba8ff4a1b3b8a50fa2a7">adressePeripheriqueLocal</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="class_communication.html#a8f98b288efaaf9d0beb36e4ada6f0e8d">   75</a></span>&#160;    QString <a class="code" href="class_communication.html#a8f98b288efaaf9d0beb36e4ada6f0e8d">trame</a>; </div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <a class="code" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214">Communication::TypeTrame</a> <a class="code" href="class_communication.html#aefdd57499b1c7460dbe427c026b60135">recupererTypeTrame</a>(QString champType);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">void</span>                     <a class="code" href="class_communication.html#a5eafa558813a3844c878de8fa26e1e95">traiterTrame</a>(<span class="keyword">const</span> QStringList&amp; champsTrame);</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;  <span class="keyword">private</span> slots:</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a9aeb681d6d5a985f30ee59d17902fae6">connecterTablette</a>(<span class="keyword">const</span> QBluetoothAddress&amp; adresse);</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a86d1d1f75dd0bb2921440c20dab66b28">deconnecterTablette</a>(<span class="keyword">const</span> QBluetoothAddress&amp; adresse);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a1ef7e4107d98346290f19f76d7eecf32">connecterSocket</a>();</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a5280c11bea5ead32e7a7101fd5b0f9b2">deconnecterSocket</a>();</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#aacb63ba8025e05d50480bcc51f772fca">recevoirDonnees</a>();</div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a4ce817f8eba2aeedc6e12ba225ae2ca5">recupererErreurSocket</a>(QBluetoothSocket::SocketError erreurBluetooth);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#af03e75b46cc4f47cdce1a1301564a1e9">recupererErreurBluetooth</a>(QBluetoothLocalDevice::Error erreurBluetooth);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a9af7fe26d46678841b109d9ccb65cba7">recupererEtatSocket</a>(QBluetoothSocket::SocketState etatBluetooth);</div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;  signals:</div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="class_communication.html#a602c5b9a3b47982b7e1262f7bdd88d15">   91</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a602c5b9a3b47982b7e1262f7bdd88d15">clientConnecte</a>();</div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="class_communication.html#a637454a910c53913ac8f8da7ba648b73">   92</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a637454a910c53913ac8f8da7ba648b73">clientDeconnecte</a>();</div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="class_communication.html#ab2606214f1e90959b439ea2c88f09bff">   93</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#ab2606214f1e90959b439ea2c88f09bff">tabletteConnectee</a>();</div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="class_communication.html#a73c460b01e8c4b8a35a6ed3bcc6bf658">   94</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a73c460b01e8c4b8a35a6ed3bcc6bf658">tabletteDeconnectee</a>();</div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="class_communication.html#af7f09c0b35ddb53f24402bb8e5ec6ce7">   95</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#af7f09c0b35ddb53f24402bb8e5ec6ce7">trameRecue</a>(QString message);</div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="class_communication.html#ae1b2e5053afa06a90b7e9c6d0b7c7555">   96</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#ae1b2e5053afa06a90b7e9c6d0b7c7555">partieConfiguree</a>(QString nomEquipeRouge,</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;                          QString nomEquipeJaune,</div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;                          <span class="keywordtype">int</span>     nombrePaniers,</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160;                          <span class="keywordtype">int</span>     tempsTour,</div>
+<div class="line"><a name="l00100"></a><span class="lineno">  100</span>&#160;                          <span class="keywordtype">int</span>     nbManches);</div>
+<div class="line"><a name="l00101"></a><span class="lineno"><a class="line" href="class_communication.html#a3d3e0a67768f6d750ed2903041ad7720">  101</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a3d3e0a67768f6d750ed2903041ad7720">partieDemarree</a>(<span class="keywordtype">int</span> numeroPartie);</div>
+<div class="line"><a name="l00102"></a><span class="lineno"><a class="line" href="class_communication.html#aabd6b271e63102fe26b0f8c57c8d6484">  102</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#aabd6b271e63102fe26b0f8c57c8d6484">partieArretee</a>(<span class="keywordtype">int</span> numeroPartie);</div>
+<div class="line"><a name="l00103"></a><span class="lineno"><a class="line" href="class_communication.html#a40f18a9c5d0f7f125f2d517b31378a80">  103</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#a40f18a9c5d0f7f125f2d517b31378a80">partieReinitialisee</a>();</div>
+<div class="line"><a name="l00104"></a><span class="lineno"><a class="line" href="class_communication.html#af9eba0d7cf03d472ad8909df35402610">  104</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_communication.html#af9eba0d7cf03d472ad8909df35402610">tirPanier</a>(QString couleurEquipe, <span class="keywordtype">int</span> numeroPanier);</div>
+<div class="line"><a name="l00105"></a><span class="lineno">  105</span>&#160;};</div>
+<div class="line"><a name="l00106"></a><span class="lineno">  106</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclass_basketgame_html"><div class="ttname"><a href="class_basketgame.html">Basketgame</a></div><div class="ttdoc">La GUI de l'application Basketgame.</div><div class="ttdef"><b>Definition:</b> <a href="basketgame_8h_source.html#l00087">basketgame.h:88</a></div></div>
+<div class="ttc" id="aclass_communication_html"><div class="ttname"><a href="class_communication.html">Communication</a></div><div class="ttdoc">Définit la classe de communication bluetooth.</div></div>
+<div class="ttc" id="aclass_communication_html_a04e69c2783e9024c03d9b0b8a74d9184"><div class="ttname"><a href="class_communication.html#a04e69c2783e9024c03d9b0b8a74d9184">Communication::socket</a></div><div class="ttdeci">QBluetoothSocket * socket</div><div class="ttdoc">La socket de communication Bluetooth.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00070">communication.h:70</a></div></div>
+<div class="ttc" id="aclass_communication_html_a1db0779a564d97a63653c477520815e5"><div class="ttname"><a href="class_communication.html#a1db0779a564d97a63653c477520815e5">Communication::Communication</a></div><div class="ttdeci">Communication(QObject *parent=0)</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00011">communication.cpp:11</a></div></div>
+<div class="ttc" id="aclass_communication_html_a1ef7e4107d98346290f19f76d7eecf32"><div class="ttname"><a href="class_communication.html#a1ef7e4107d98346290f19f76d7eecf32">Communication::connecterSocket</a></div><div class="ttdeci">void connecterSocket()</div><div class="ttdoc">Connecte la Socket.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00198">communication.cpp:198</a></div></div>
+<div class="ttc" id="aclass_communication_html_a1f4b02441803f9c8e231cb9f304d776b"><div class="ttname"><a href="class_communication.html#a1f4b02441803f9c8e231cb9f304d776b">Communication::arreter</a></div><div class="ttdeci">void arreter()</div><div class="ttdoc">Arrête la communication Bluetooth en mode serveur.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00059">communication.cpp:59</a></div></div>
+<div class="ttc" id="aclass_communication_html_a29e2b2d6383dba8ff4a1b3b8a50fa2a7"><div class="ttname"><a href="class_communication.html#a29e2b2d6383dba8ff4a1b3b8a50fa2a7">Communication::adressePeripheriqueLocal</a></div><div class="ttdeci">QString adressePeripheriqueLocal</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00074">communication.h:74</a></div></div>
+<div class="ttc" id="aclass_communication_html_a2c10a52807bc7bdc520ec3fae622f672"><div class="ttname"><a href="class_communication.html#a2c10a52807bc7bdc520ec3fae622f672">Communication::initialiser</a></div><div class="ttdeci">void initialiser()</div><div class="ttdoc">Initialise la liaison Bluetooth en mode serveur.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00085">communication.cpp:85</a></div></div>
+<div class="ttc" id="aclass_communication_html_a391ebaf73e6cf5a08d3bf5fbae31ccf0"><div class="ttname"><a href="class_communication.html#a391ebaf73e6cf5a08d3bf5fbae31ccf0">Communication::connecte</a></div><div class="ttdeci">bool connecte</div><div class="ttdoc">Etat de connexion de la socket client.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00072">communication.h:72</a></div></div>
+<div class="ttc" id="aclass_communication_html_a3d3e0a67768f6d750ed2903041ad7720"><div class="ttname"><a href="class_communication.html#a3d3e0a67768f6d750ed2903041ad7720">Communication::partieDemarree</a></div><div class="ttdeci">void partieDemarree(int numeroPartie)</div></div>
+<div class="ttc" id="aclass_communication_html_a40f18a9c5d0f7f125f2d517b31378a80"><div class="ttname"><a href="class_communication.html#a40f18a9c5d0f7f125f2d517b31378a80">Communication::partieReinitialisee</a></div><div class="ttdeci">void partieReinitialisee()</div></div>
+<div class="ttc" id="aclass_communication_html_a4392bb82ac84b1e18d245f224b2fc471"><div class="ttname"><a href="class_communication.html#a4392bb82ac84b1e18d245f224b2fc471">Communication::deconnecter</a></div><div class="ttdeci">void deconnecter()</div></div>
+<div class="ttc" id="aclass_communication_html_a4ce817f8eba2aeedc6e12ba225ae2ca5"><div class="ttname"><a href="class_communication.html#a4ce817f8eba2aeedc6e12ba225ae2ca5">Communication::recupererErreurSocket</a></div><div class="ttdeci">void recupererErreurSocket(QBluetoothSocket::SocketError erreurBluetooth)</div><div class="ttdoc">Récupère et affiche l'erreur socket dans la console de débuguage.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00128">communication.cpp:128</a></div></div>
+<div class="ttc" id="aclass_communication_html_a5280c11bea5ead32e7a7101fd5b0f9b2"><div class="ttname"><a href="class_communication.html#a5280c11bea5ead32e7a7101fd5b0f9b2">Communication::deconnecterSocket</a></div><div class="ttdeci">void deconnecterSocket()</div><div class="ttdoc">Deconnecte la Socket.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00226">communication.cpp:226</a></div></div>
+<div class="ttc" id="aclass_communication_html_a5dcc5eba47de83f7ab3ab86517fb6ca7"><div class="ttname"><a href="class_communication.html#a5dcc5eba47de83f7ab3ab86517fb6ca7">Communication::getAdressePeripheriqueLocal</a></div><div class="ttdeci">QString getAdressePeripheriqueLocal()</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00337">communication.cpp:337</a></div></div>
+<div class="ttc" id="aclass_communication_html_a5eafa558813a3844c878de8fa26e1e95"><div class="ttname"><a href="class_communication.html#a5eafa558813a3844c878de8fa26e1e95">Communication::traiterTrame</a></div><div class="ttdeci">void traiterTrame(const QStringList &amp;champsTrame)</div><div class="ttdoc">Traiter les données d'une trame.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00293">communication.cpp:293</a></div></div>
+<div class="ttc" id="aclass_communication_html_a602c5b9a3b47982b7e1262f7bdd88d15"><div class="ttname"><a href="class_communication.html#a602c5b9a3b47982b7e1262f7bdd88d15">Communication::clientConnecte</a></div><div class="ttdeci">void clientConnecte()</div></div>
+<div class="ttc" id="aclass_communication_html_a637454a910c53913ac8f8da7ba648b73"><div class="ttname"><a href="class_communication.html#a637454a910c53913ac8f8da7ba648b73">Communication::clientDeconnecte</a></div><div class="ttdeci">void clientDeconnecte()</div></div>
+<div class="ttc" id="aclass_communication_html_a73c460b01e8c4b8a35a6ed3bcc6bf658"><div class="ttname"><a href="class_communication.html#a73c460b01e8c4b8a35a6ed3bcc6bf658">Communication::tabletteDeconnectee</a></div><div class="ttdeci">void tabletteDeconnectee()</div></div>
+<div class="ttc" id="aclass_communication_html_a75ba08ce908d45251e28e4c1db94e6f4"><div class="ttname"><a href="class_communication.html#a75ba08ce908d45251e28e4c1db94e6f4">Communication::~Communication</a></div><div class="ttdeci">~Communication()</div><div class="ttdoc">Destructeur de la classe Communication.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00024">communication.cpp:24</a></div></div>
+<div class="ttc" id="aclass_communication_html_a7a737ac0a2a4731ed5fa203e02af5ac9"><div class="ttname"><a href="class_communication.html#a7a737ac0a2a4731ed5fa203e02af5ac9">Communication::peripheriqueLocal</a></div><div class="ttdeci">QBluetoothLocalDevice peripheriqueLocal</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00068">communication.h:68</a></div></div>
+<div class="ttc" id="aclass_communication_html_a8399665bae100a18091b253d96f1cd9b"><div class="ttname"><a href="class_communication.html#a8399665bae100a18091b253d96f1cd9b">Communication::estConnecte</a></div><div class="ttdeci">bool estConnecte()</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00347">communication.cpp:347</a></div></div>
+<div class="ttc" id="aclass_communication_html_a86d1d1f75dd0bb2921440c20dab66b28"><div class="ttname"><a href="class_communication.html#a86d1d1f75dd0bb2921440c20dab66b28">Communication::deconnecterTablette</a></div><div class="ttdeci">void deconnecterTablette(const QBluetoothAddress &amp;adresse)</div><div class="ttdoc">Déconnecte la tablette.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00183">communication.cpp:183</a></div></div>
+<div class="ttc" id="aclass_communication_html_a8f98b288efaaf9d0beb36e4ada6f0e8d"><div class="ttname"><a href="class_communication.html#a8f98b288efaaf9d0beb36e4ada6f0e8d">Communication::trame</a></div><div class="ttdeci">QString trame</div><div class="ttdoc">Le contenu des données reçues sur la socket.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00075">communication.h:75</a></div></div>
+<div class="ttc" id="aclass_communication_html_a9aeb681d6d5a985f30ee59d17902fae6"><div class="ttname"><a href="class_communication.html#a9aeb681d6d5a985f30ee59d17902fae6">Communication::connecterTablette</a></div><div class="ttdeci">void connecterTablette(const QBluetoothAddress &amp;adresse)</div><div class="ttdoc">Connecte la tablette.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00162">communication.cpp:162</a></div></div>
+<div class="ttc" id="aclass_communication_html_a9af7fe26d46678841b109d9ccb65cba7"><div class="ttname"><a href="class_communication.html#a9af7fe26d46678841b109d9ccb65cba7">Communication::recupererEtatSocket</a></div><div class="ttdeci">void recupererEtatSocket(QBluetoothSocket::SocketState etatBluetooth)</div><div class="ttdoc">Récupère et affiche l'etat de la socket dans la console de débuguage.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00139">communication.cpp:139</a></div></div>
+<div class="ttc" id="aclass_communication_html_a9cbad7514893f0848d863f266097a99a"><div class="ttname"><a href="class_communication.html#a9cbad7514893f0848d863f266097a99a">Communication::serveur</a></div><div class="ttdeci">QBluetoothServer * serveur</div><div class="ttdoc">Le serveur Bluetooth.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00069">communication.h:69</a></div></div>
+<div class="ttc" id="aclass_communication_html_aa9dab8ded475a27e07273a53c7e4167a"><div class="ttname"><a href="class_communication.html#aa9dab8ded475a27e07273a53c7e4167a">Communication::serviceInfo</a></div><div class="ttdeci">QBluetoothServiceInfo serviceInfo</div><div class="ttdoc">Information sur le service Bluetooth.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00071">communication.h:71</a></div></div>
+<div class="ttc" id="aclass_communication_html_aabd6b271e63102fe26b0f8c57c8d6484"><div class="ttname"><a href="class_communication.html#aabd6b271e63102fe26b0f8c57c8d6484">Communication::partieArretee</a></div><div class="ttdeci">void partieArretee(int numeroPartie)</div></div>
+<div class="ttc" id="aclass_communication_html_aacb63ba8025e05d50480bcc51f772fca"><div class="ttname"><a href="class_communication.html#aacb63ba8025e05d50480bcc51f772fca">Communication::recevoirDonnees</a></div><div class="ttdeci">void recevoirDonnees()</div><div class="ttdoc">Récuperer les données de la trame.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00238">communication.cpp:238</a></div></div>
+<div class="ttc" id="aclass_communication_html_ab2606214f1e90959b439ea2c88f09bff"><div class="ttname"><a href="class_communication.html#ab2606214f1e90959b439ea2c88f09bff">Communication::tabletteConnectee</a></div><div class="ttdeci">void tabletteConnectee()</div></div>
+<div class="ttc" id="aclass_communication_html_abd8196826b75fdea1581825ac602555f"><div class="ttname"><a href="class_communication.html#abd8196826b75fdea1581825ac602555f">Communication::getNomPeripheriqueLocal</a></div><div class="ttdeci">QString getNomPeripheriqueLocal()</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00332">communication.cpp:332</a></div></div>
+<div class="ttc" id="aclass_communication_html_ad598e55e1b9cd054516084af725594f2"><div class="ttname"><a href="class_communication.html#ad598e55e1b9cd054516084af725594f2">Communication::estValide</a></div><div class="ttdeci">bool estValide()</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00342">communication.cpp:342</a></div></div>
+<div class="ttc" id="aclass_communication_html_ae1b2e5053afa06a90b7e9c6d0b7c7555"><div class="ttname"><a href="class_communication.html#ae1b2e5053afa06a90b7e9c6d0b7c7555">Communication::partieConfiguree</a></div><div class="ttdeci">void partieConfiguree(QString nomEquipeRouge, QString nomEquipeJaune, int nombrePaniers, int tempsTour, int nbManches)</div></div>
+<div class="ttc" id="aclass_communication_html_aefdd57499b1c7460dbe427c026b60135"><div class="ttname"><a href="class_communication.html#aefdd57499b1c7460dbe427c026b60135">Communication::recupererTypeTrame</a></div><div class="ttdeci">Communication::TypeTrame recupererTypeTrame(QString champType)</div><div class="ttdoc">Recupère le type de trame.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00277">communication.cpp:277</a></div></div>
+<div class="ttc" id="aclass_communication_html_af03e75b46cc4f47cdce1a1301564a1e9"><div class="ttname"><a href="class_communication.html#af03e75b46cc4f47cdce1a1301564a1e9">Communication::recupererErreurBluetooth</a></div><div class="ttdeci">void recupererErreurBluetooth(QBluetoothLocalDevice::Error erreurBluetooth)</div><div class="ttdoc">Récupère et affiche l'erreur Bluetooth dans la console de débuguage.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00150">communication.cpp:150</a></div></div>
+<div class="ttc" id="aclass_communication_html_af29ea9a1c2ce29436f2331c322f6ebbf"><div class="ttname"><a href="class_communication.html#af29ea9a1c2ce29436f2331c322f6ebbf">Communication::demarrer</a></div><div class="ttdeci">void demarrer()</div><div class="ttdoc">Démarre la communication Bluetooth en mode serveur.</div><div class="ttdef"><b>Definition:</b> <a href="communication_8cpp_source.html#l00036">communication.cpp:36</a></div></div>
+<div class="ttc" id="aclass_communication_html_af4ae90c2315f88dfc4705c1a408f64df"><div class="ttname"><a href="class_communication.html#af4ae90c2315f88dfc4705c1a408f64df">Communication::nomPeripheriqueLocal</a></div><div class="ttdeci">QString nomPeripheriqueLocal</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00073">communication.h:73</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214">Communication::TypeTrame</a></div><div class="ttdeci">TypeTrame</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00043">communication.h:44</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214a03ab93bcd05f7e9c6f538050b500a7a3"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a03ab93bcd05f7e9c6f538050b500a7a3">Communication::Tir</a></div><div class="ttdeci">@ Tir</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00048">communication.h:48</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214a5300e7d950aa7267381bdf351cab0c3d"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a5300e7d950aa7267381bdf351cab0c3d">Communication::Seance</a></div><div class="ttdeci">@ Seance</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00046">communication.h:46</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214a73ce626a7525edb144c6ab66e5755122"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a73ce626a7525edb144c6ab66e5755122">Communication::Start</a></div><div class="ttdeci">@ Start</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00047">communication.h:47</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214a7b4bbd3517f9fdb3cf73e72542b8f07c"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a7b4bbd3517f9fdb3cf73e72542b8f07c">Communication::Inconnu</a></div><div class="ttdeci">@ Inconnu</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00045">communication.h:45</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214aac522319bb44631b797f192e01c1c7d7"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aac522319bb44631b797f192e01c1c7d7">Communication::Reset</a></div><div class="ttdeci">@ Reset</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00051">communication.h:50</a></div></div>
+<div class="ttc" id="aclass_communication_html_af5ee9ed1192d7925d64e4249bf307214aee5fe3a3e8afd303a27e7bfe488fa2e3"><div class="ttname"><a href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aee5fe3a3e8afd303a27e7bfe488fa2e3">Communication::Stop</a></div><div class="ttdeci">@ Stop</div><div class="ttdef"><b>Definition:</b> <a href="communication_8h_source.html#l00049">communication.h:49</a></div></div>
+<div class="ttc" id="aclass_communication_html_af7f09c0b35ddb53f24402bb8e5ec6ce7"><div class="ttname"><a href="class_communication.html#af7f09c0b35ddb53f24402bb8e5ec6ce7">Communication::trameRecue</a></div><div class="ttdeci">void trameRecue(QString message)</div></div>
+<div class="ttc" id="aclass_communication_html_af9eba0d7cf03d472ad8909df35402610"><div class="ttname"><a href="class_communication.html#af9eba0d7cf03d472ad8909df35402610">Communication::tirPanier</a></div><div class="ttdeci">void tirPanier(QString couleurEquipe, int numeroPanier)</div></div>
+<div class="ttc" id="aclass_q_object_html"><div class="ttname"><a href="class_q_object.html">QObject</a></div></div>
+<div class="ttc" id="acommunication_8h_html_a815b49472de465abcac2eed55e1f5c60"><div class="ttname"><a href="communication_8h.html#a815b49472de465abcac2eed55e1f5c60">serviceNom</a></div><div class="ttdeci">static const QString serviceNom(QStringLiteral(&quot;BasketGame&quot;))</div></div>
+<div class="ttc" id="acommunication_8h_html_a89b03bf9986896053fdab3d4f80d7c04"><div class="ttname"><a href="communication_8h.html#a89b03bf9986896053fdab3d4f80d7c04">serviceUuid</a></div><div class="ttdeci">static const QString serviceUuid(QStringLiteral(&quot;00001101-0000-1000-8000-00805F9B34FB&quot;))</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f8bde49cdb81e3538c6b119afc4e8f4b.html">BasketGameUI</a></li><li class="navelem"><a class="el" href="communication_8h.html">communication.h</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:51 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

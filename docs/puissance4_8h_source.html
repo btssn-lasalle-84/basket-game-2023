@@ -1,0 +1,177 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet basket-game:  Fichier source de puissance4.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet basket-game
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('puissance4_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">puissance4.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="puissance4_8h.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef PUISSANCE4_H</span></div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define PUISSANCE4_H</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;QObject&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;QVector&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="puissance4_8h.html#a58d3ff0c9030ff2d15a4f2e7ac80393b">   17</a></span>&#160;<span class="preprocessor">#define TEST_ALIGNEMENT</span></div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="puissance4_8h.html#aaa49d9d7cc92acb56fe6f96d7b44c71e">   23</a></span>&#160;<span class="preprocessor">#define NB_PIONS_ALIGNES 4</span></div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="puissance4_8h.html#abfa179ca04bf5c427a56beb8b26c0272">   29</a></span>&#160;<span class="preprocessor">#define NB_COLONNES 7</span></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="puissance4_8h.html#ad8edf09d2d914fdd5eae545ee2bd6ce9">   35</a></span>&#160;<span class="preprocessor">#define NB_LIGNES 6</span></div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="puissance4_8h.html#a6d6f9c3f8c3c6261cad308dccc0380c9">   41</a></span>&#160;<span class="preprocessor">#define NB_PIONS (NB_LIGNES * NB_COLONNES)</span></div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="class_puissance4.html">   43</a></span>&#160;<span class="keyword">class </span><a class="code" href="class_puissance4.html">Puissance4</a> : <span class="keyword">public</span> <a class="code" href="class_q_object.html">QObject</a></div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;{</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;    Q_OBJECT</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;  <span class="keyword">public</span>:</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <a class="code" href="class_puissance4.html#a1b0c308b5893919619bc829bcdc3ab09">Puissance4</a>(<a class="code" href="class_q_object.html">QObject</a>* parent = 0);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_puissance4.html#aaae5038c808417b69dcc97e752527027">initialiserPlateau</a>();</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">int</span>  <a class="code" href="class_puissance4.html#a2a3d8d473c0d06c18126f40eb360e685">placerPion</a>(<span class="keywordtype">int</span> colonne);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_puissance4.html#abe7a37e82cd7210f151f19a30590b097">verifierPlateau</a>();</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#a4f347faac067745190090ebb25b50ca1">estVainqueur</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#ad20623ee212a2029f055ff9019aba3de">estEquipeRouge</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_puissance4.html#a8fb3a36a672bd80717eead90a91f27f0">setTourEquipe</a>(<span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#ad20623ee212a2029f055ff9019aba3de">estEquipeRouge</a>);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;  <span class="keyword">public</span> slots:</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="preprocessor">#ifdef TEST_ALIGNEMENT</span></div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="class_puissance4.html#a38ffc8bf6e4927d1339463bfc56ae356">testUnitaireVerifierPlateau</a>();</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="preprocessor">#endif</span></div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;  <span class="keyword">private</span>:</div>
+<div class="line"><a name="l00065"></a><span class="lineno"><a class="line" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262">   65</a></span>&#160;    <span class="keyword">enum</span> <a class="code" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262">CouleurJeton</a></div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;    {</div>
+<div class="line"><a name="l00067"></a><span class="lineno"><a class="line" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262a2428cdf45e0a61b615419897e9d7682e">   67</a></span>&#160;        <a class="code" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262a2428cdf45e0a61b615419897e9d7682e">AUCUNE</a> = 0,</div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262aac6e597b88065fc214b33c45441e48ab">   68</a></span>&#160;        <a class="code" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262aac6e597b88065fc214b33c45441e48ab">ROUGE</a>,</div>
+<div class="line"><a name="l00069"></a><span class="lineno"><a class="line" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262adbcd15e57c864dd836367bb5d7c15b0e">   69</a></span>&#160;        <a class="code" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262adbcd15e57c864dd836367bb5d7c15b0e">JAUNE</a>,</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;        <a class="code" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262aa2f0c28c91ccabff04fbe2c9d94951d6">NB_COULEURS</a></div>
+<div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262aa2f0c28c91ccabff04fbe2c9d94951d6">   71</a></span>&#160;    };</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno"><a class="line" href="class_puissance4.html#a6b1b8e4e7629f2a3d447a5e0fcb9c3bd">   73</a></span>&#160;    QVector&lt;QVector&lt;CouleurJeton&gt; &gt; <a class="code" href="class_puissance4.html#a6b1b8e4e7629f2a3d447a5e0fcb9c3bd">plateau</a>;</div>
+<div class="line"><a name="l00074"></a><span class="lineno"><a class="line" href="class_puissance4.html#a866448f6497380acc3c4d5a9c5090db5">   74</a></span>&#160;    <span class="keywordtype">bool</span>                            <a class="code" href="class_puissance4.html#a866448f6497380acc3c4d5a9c5090db5">vainqueur</a>;</div>
+<div class="line"><a name="l00075"></a><span class="lineno"><a class="line" href="class_puissance4.html#a503afa7448da0b57e6041b012a9565a6">   75</a></span>&#160;    <span class="keywordtype">bool</span>                            <a class="code" href="class_puissance4.html#a503afa7448da0b57e6041b012a9565a6">equipeRouge</a>;</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#a5053eb60209d776445041716eca686e5">verifierLigne</a>();</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#a736f323b03814ab128e535958a3ee687">verifierColonne</a>();</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#aa1c11d51090913ae2d2f166750983e07">verifierDiagonaleMontante</a>();</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="class_puissance4.html#aae8578ad3e895b8f7819148c9fdca6c8">verifierDiagonaleDescendante</a>();</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;};</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160; </div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// PLATEAU_H</span></div>
+<div class="ttc" id="aclass_puissance4_html"><div class="ttname"><a href="class_puissance4.html">Puissance4</a></div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00043">puissance4.h:44</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a1b0c308b5893919619bc829bcdc3ab09"><div class="ttname"><a href="class_puissance4.html#a1b0c308b5893919619bc829bcdc3ab09">Puissance4::Puissance4</a></div><div class="ttdeci">Puissance4(QObject *parent=0)</div><div class="ttdoc">Constructeur de la classe Puissance4.</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00015">puissance4.cpp:15</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a2a3d8d473c0d06c18126f40eb360e685"><div class="ttname"><a href="class_puissance4.html#a2a3d8d473c0d06c18126f40eb360e685">Puissance4::placerPion</a></div><div class="ttdeci">int placerPion(int colonne)</div><div class="ttdoc">méthode qui lace un pion dans une des colonnes du plateau</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00050">puissance4.cpp:50</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a38ffc8bf6e4927d1339463bfc56ae356"><div class="ttname"><a href="class_puissance4.html#a38ffc8bf6e4927d1339463bfc56ae356">Puissance4::testUnitaireVerifierPlateau</a></div><div class="ttdeci">void testUnitaireVerifierPlateau()</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00263">puissance4.cpp:263</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a4f347faac067745190090ebb25b50ca1"><div class="ttname"><a href="class_puissance4.html#a4f347faac067745190090ebb25b50ca1">Puissance4::estVainqueur</a></div><div class="ttdeci">bool estVainqueur() const</div><div class="ttdoc">méthode qui retourne true si il y a 4 pions alignés de la même couleur sur le plateau</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00090">puissance4.cpp:90</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a503afa7448da0b57e6041b012a9565a6"><div class="ttname"><a href="class_puissance4.html#a503afa7448da0b57e6041b012a9565a6">Puissance4::equipeRouge</a></div><div class="ttdeci">bool equipeRouge</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00075">puissance4.h:75</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a5053eb60209d776445041716eca686e5"><div class="ttname"><a href="class_puissance4.html#a5053eb60209d776445041716eca686e5">Puissance4::verifierLigne</a></div><div class="ttdeci">bool verifierLigne()</div><div class="ttdoc">méthode pour vérifier si il y a une ligne de 4 pions de la même couleur</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00119">puissance4.cpp:119</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a6b1b8e4e7629f2a3d447a5e0fcb9c3bd"><div class="ttname"><a href="class_puissance4.html#a6b1b8e4e7629f2a3d447a5e0fcb9c3bd">Puissance4::plateau</a></div><div class="ttdeci">QVector&lt; QVector&lt; CouleurJeton &gt; &gt; plateau</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00073">puissance4.h:73</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a736f323b03814ab128e535958a3ee687"><div class="ttname"><a href="class_puissance4.html#a736f323b03814ab128e535958a3ee687">Puissance4::verifierColonne</a></div><div class="ttdeci">bool verifierColonne()</div><div class="ttdoc">éthode pour vérifier si il y a une colonne de 4 pions de la même couleur.</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00156">puissance4.cpp:156</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a866448f6497380acc3c4d5a9c5090db5"><div class="ttname"><a href="class_puissance4.html#a866448f6497380acc3c4d5a9c5090db5">Puissance4::vainqueur</a></div><div class="ttdeci">bool vainqueur</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00074">puissance4.h:74</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_a8fb3a36a672bd80717eead90a91f27f0"><div class="ttname"><a href="class_puissance4.html#a8fb3a36a672bd80717eead90a91f27f0">Puissance4::setTourEquipe</a></div><div class="ttdeci">void setTourEquipe(bool estEquipeRouge)</div><div class="ttdoc">fixe l'équipe qui doit jouer</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00109">puissance4.cpp:109</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aa1c11d51090913ae2d2f166750983e07"><div class="ttname"><a href="class_puissance4.html#aa1c11d51090913ae2d2f166750983e07">Puissance4::verifierDiagonaleMontante</a></div><div class="ttdeci">bool verifierDiagonaleMontante()</div><div class="ttdoc">éthode pour vérifier si il y a une diagonale montante de 4 pions de la même couleur.</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00229">puissance4.cpp:229</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aaae5038c808417b69dcc97e752527027"><div class="ttname"><a href="class_puissance4.html#aaae5038c808417b69dcc97e752527027">Puissance4::initialiserPlateau</a></div><div class="ttdeci">void initialiserPlateau()</div><div class="ttdoc">méthode pour initialiser le plateau de puissance4</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00024">puissance4.cpp:24</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aad55dd5d85181cf4d311f908e6ef2262"><div class="ttname"><a href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262">Puissance4::CouleurJeton</a></div><div class="ttdeci">CouleurJeton</div><div class="ttdoc">Les différents couleur de jeton.</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00065">puissance4.h:66</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aad55dd5d85181cf4d311f908e6ef2262a2428cdf45e0a61b615419897e9d7682e"><div class="ttname"><a href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262a2428cdf45e0a61b615419897e9d7682e">Puissance4::AUCUNE</a></div><div class="ttdeci">@ AUCUNE</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00067">puissance4.h:67</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aad55dd5d85181cf4d311f908e6ef2262aa2f0c28c91ccabff04fbe2c9d94951d6"><div class="ttname"><a href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262aa2f0c28c91ccabff04fbe2c9d94951d6">Puissance4::NB_COULEURS</a></div><div class="ttdeci">@ NB_COULEURS</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00071">puissance4.h:70</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aad55dd5d85181cf4d311f908e6ef2262aac6e597b88065fc214b33c45441e48ab"><div class="ttname"><a href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262aac6e597b88065fc214b33c45441e48ab">Puissance4::ROUGE</a></div><div class="ttdeci">@ ROUGE</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00068">puissance4.h:68</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aad55dd5d85181cf4d311f908e6ef2262adbcd15e57c864dd836367bb5d7c15b0e"><div class="ttname"><a href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262adbcd15e57c864dd836367bb5d7c15b0e">Puissance4::JAUNE</a></div><div class="ttdeci">@ JAUNE</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8h_source.html#l00069">puissance4.h:69</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_aae8578ad3e895b8f7819148c9fdca6c8"><div class="ttname"><a href="class_puissance4.html#aae8578ad3e895b8f7819148c9fdca6c8">Puissance4::verifierDiagonaleDescendante</a></div><div class="ttdeci">bool verifierDiagonaleDescendante()</div><div class="ttdoc">éthode pour vérifier si il y a une diagonale descendante de 4 pions de la même couleur.</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00192">puissance4.cpp:192</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_abe7a37e82cd7210f151f19a30590b097"><div class="ttname"><a href="class_puissance4.html#abe7a37e82cd7210f151f19a30590b097">Puissance4::verifierPlateau</a></div><div class="ttdeci">void verifierPlateau()</div><div class="ttdoc">méthode pour vérifier si il y a 4 pions alignés de la même couleur sur le plateau</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00075">puissance4.cpp:75</a></div></div>
+<div class="ttc" id="aclass_puissance4_html_ad20623ee212a2029f055ff9019aba3de"><div class="ttname"><a href="class_puissance4.html#ad20623ee212a2029f055ff9019aba3de">Puissance4::estEquipeRouge</a></div><div class="ttdeci">bool estEquipeRouge() const</div><div class="ttdoc">méthode qui retourne true si c'est à l'équipe rouge de jouer</div><div class="ttdef"><b>Definition:</b> <a href="puissance4_8cpp_source.html#l00100">puissance4.cpp:100</a></div></div>
+<div class="ttc" id="aclass_q_object_html"><div class="ttname"><a href="class_q_object.html">QObject</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_f8bde49cdb81e3538c6b119afc4e8f4b.html">BasketGameUI</a></li><li class="navelem"><a class="el" href="puissance4_8h.html">puissance4.h</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:51 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>

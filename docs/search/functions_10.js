@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['verifiercolonne_310',['verifierColonne',['../class_plateau.html#a4f8e3bee3c2ccc6c16db8e2cf61c72a5',1,'Plateau']]],
-  ['verifierdiagonaledescendante_311',['verifierDiagonaleDescendante',['../class_plateau.html#ac2710a29d93e23cb48f88f25a7526284',1,'Plateau']]],
-  ['verifierdiagonalemontante_312',['verifierDiagonaleMontante',['../class_plateau.html#a3f0381948aeb1499983392695864f0d1',1,'Plateau']]],
-  ['verifierligne_313',['verifierLigne',['../class_plateau.html#adbe39e17b5df1ac09d0535acc3ad4c70',1,'Plateau']]],
-  ['verifierplateau_314',['verifierPlateau',['../class_plateau.html#a88d104aae4ef62529ca8797f71b63026',1,'Plateau']]]
+  ['verifiercolonne_514',['verifierColonne',['../class_puissance4.html#a736f323b03814ab128e535958a3ee687',1,'Puissance4']]],
+  ['verifierconnexionmodules_515',['verifierConnexionModules',['../classcom_1_1basket__game_1_1_partie_suivi.html#a1e62bbffd16ee913696c146a01a9eaf9',1,'com::basket_game::PartieSuivi']]],
+  ['verifierdiagonaledescendante_516',['verifierDiagonaleDescendante',['../class_puissance4.html#aae8578ad3e895b8f7819148c9fdca6c8',1,'Puissance4']]],
+  ['verifierdiagonalemontante_517',['verifierDiagonaleMontante',['../class_puissance4.html#aa1c11d51090913ae2d2f166750983e07',1,'Puissance4']]],
+  ['verifierligne_518',['verifierLigne',['../class_puissance4.html#a5053eb60209d776445041716eca686e5',1,'Puissance4']]],
+  ['verifierplateau_519',['verifierPlateau',['../class_puissance4.html#abe7a37e82cd7210f151f19a30590b097',1,'Puissance4']]]
 ];

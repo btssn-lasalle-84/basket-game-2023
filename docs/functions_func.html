@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet basket-game
-   &#160;<span id="projectnumber">0.1</span>
+   &#160;<span id="projectnumber">1.0</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -87,6 +87,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 &#160;
 
 <h3><a id="index_a"></a>- a -</h3><ul>
+<li>activer()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#ac08f211641428847993bc809d148ae57">com.basket_game.CommunicationBluetooth</a>
+</li>
 <li>addition_isCorrect()
 : <a class="el" href="classcom_1_1basket__game_1_1_example_unit_test.html#aa5495c6434c5276eb8ce2c4a4c06b58a">com.basket_game.ExampleUnitTest</a>
 </li>
@@ -112,7 +115,10 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 : <a class="el" href="classcom_1_1basket__game_1_1_basket_game.html#a6a0e3733e59baf11fd829fa457a46f55">com.basket_game.BasketGame</a>
 </li>
 <li>afficherPlateau()
-: <a class="el" href="class_basketgame.html#ad8a772072cb69114275d464d668bb95d">Basketgame</a>
+: <a class="el" href="class_plateau.html#aa417a49b3fef4ada1b84ebff579b98fd">Plateau</a>
+</li>
+<li>afficherPuissance4()
+: <a class="el" href="class_basketgame.html#aa79df8096caa04da648f6fb458a1adab">Basketgame</a>
 </li>
 <li>afficherScoreEquipe()
 : <a class="el" href="class_basketgame.html#a6dbae5082d36a03eac6d1264c7b43c98">Basketgame</a>
@@ -126,6 +132,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>afficherUnJeton()
 : <a class="el" href="class_basketgame.html#a080826a6ecab39c5f0195be2d9226820">Basketgame</a>
 </li>
+<li>arreter()
+: <a class="el" href="class_communication.html#a1f4b02441803f9c8e231cb9f304d776b">Communication</a>
+</li>
 <li>arreterCompteur()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#add0d7f7342d0b2a0ab7d59ecc17e982d">com.basket_game.PartieSuivi</a>
 </li>
@@ -134,6 +143,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>attribuerRaccourcisClavier()
 : <a class="el" href="class_basketgame.html#aeaaed3c71b363b79315a89903223ed0c">Basketgame</a>
+, <a class="el" href="class_plateau.html#abdf06fec81f43616d5f2c44d74e5406f">Plateau</a>
 </li>
 </ul>
 
@@ -149,8 +159,29 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>chronometrerTour()
 : <a class="el" href="class_basketgame.html#ae4f7523300692fbc62ddd2ba3afea470">Basketgame</a>
 </li>
+<li>clientConnecte()
+: <a class="el" href="class_communication.html#a602c5b9a3b47982b7e1262f7bdd88d15">Communication</a>
+</li>
+<li>clientDeconnecte()
+: <a class="el" href="class_communication.html#a637454a910c53913ac8f8da7ba648b73">Communication</a>
+</li>
+<li>Communication()
+: <a class="el" href="class_communication.html#a1db0779a564d97a63653c477520815e5">Communication</a>
+</li>
+<li>CommunicationBluetooth()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a0de0566a4af2da37992b057714e0e77c">com.basket_game.CommunicationBluetooth</a>
+</li>
 <li>compterTempsRestantTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#ae1661dafc2ad24e255645b5682962d85">com.basket_game.PartieSuivi</a>
+</li>
+<li>connecterModules()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a0b5984989a76d16aa47a4d120f3d7106">com.basket_game.PartieSuivi</a>
+</li>
+<li>connecterSocket()
+: <a class="el" href="class_communication.html#a1ef7e4107d98346290f19f76d7eecf32">Communication</a>
+</li>
+<li>connecterTablette()
+: <a class="el" href="class_communication.html#a9aeb681d6d5a985f30ee59d17902fae6">Communication</a>
 </li>
 <li>creerBoutonAfficherMenuPrincipal()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_interrompue.html#a83568c6514fc6a3dfedc8bf76231de5f">com.basket_game.PartieInterrompue</a>
@@ -158,18 +189,46 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>creerBoutonArreterPartie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a68c9d671ca8f90b3464787a82ad28c7c">com.basket_game.PartieSuivi</a>
 </li>
+<li>creerBoutonConnexionModuleDetection()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#af221d63302764d468aef4471471726f9">com.basket_game.PartieSuivi</a>
+</li>
+<li>creerBoutonConnexionModuleEcran()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a20f1411b1fbe9e6662c69807bae12b4d">com.basket_game.PartieSuivi</a>
+</li>
+<li>creerBoutonConnexionModuleSignalisation()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a341458f44537bb03db698d90ad81f439">com.basket_game.PartieSuivi</a>
+</li>
 <li>creerBoutonRecommencerPartie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_interrompue.html#a4060c6c0e223dfa7c91fea2da875bc6b">com.basket_game.PartieInterrompue</a>
+</li>
+<li>creerPlateau()
+: <a class="el" href="class_plateau.html#aa99782d04d23352158bbf8288fa46b16">Plateau</a>
+</li>
+<li>creerSocket()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a49749659ef0139aa6c04160d540f336c">com.basket_game.CommunicationBluetooth</a>
 </li>
 </ul>
 
 
 <h3><a id="index_d"></a>- d -</h3><ul>
+<li>deconnecter()
+: <a class="el" href="class_communication.html#a4392bb82ac84b1e18d245f224b2fc471">Communication</a>
+</li>
+<li>deconnecterSocket()
+: <a class="el" href="class_communication.html#a5280c11bea5ead32e7a7101fd5b0f9b2">Communication</a>
+</li>
+<li>deconnecterTablette()
+: <a class="el" href="class_communication.html#a86d1d1f75dd0bb2921440c20dab66b28">Communication</a>
+</li>
+<li>demarrer()
+: <a class="el" href="class_communication.html#af29ea9a1c2ce29436f2331c322f6ebbf">Communication</a>
+</li>
 <li>demarrerChronometrageTour()
 : <a class="el" href="class_basketgame.html#ac4a3b678de222e623c4d8ca97133fc10">Basketgame</a>
 </li>
 <li>demarrerPartie()
 : <a class="el" href="class_basketgame.html#a1262edd607d26d1676d17bf86df17e71">Basketgame</a>
+, <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a20a86ecd6c1de2b6744e83993999b175">com.basket_game.PartieSuivi</a>
 </li>
 <li>demarrerSeance()
 : <a class="el" href="class_basketgame.html#a7c7d9ad8e7b08dbdd5b3d60676349bca">Basketgame</a>
@@ -181,14 +240,37 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>editerTempsTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_parametres.html#aa34c1b7d5e4087b34531f1885ca6d6be">com.basket_game.PartieParametres</a>
 </li>
+<li>envoyer()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#ac8aa0f735f611badb07174fdb4e0ed44">com.basket_game.CommunicationBluetooth</a>
+</li>
+<li>envoyerTrameArretPartie()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a8aa7175e5a791ce41b8199b07314c342">com.basket_game.PartieSuivi</a>
+</li>
+<li>envoyerTrameDebutPartie()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad683744422124bf6f60afd7463e10d84">com.basket_game.PartieSuivi</a>
+</li>
+<li>envoyerTrameReset()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a2c677c6d44a03eca3e8a135e62760a85">com.basket_game.PartieSuivi</a>
+</li>
+<li>envoyerTrameSeance()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#aecd1d979f87cb9c6a7c0f878c8001b9c">com.basket_game.PartieSuivi</a>
+</li>
 <li>Equipe()
 : <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a6fc0c70f3d6516529d3ebc047d80b859">com.basket_game.Equipe</a>
+, <a class="el" href="class_equipe.html#a9061be6c0291626e21de0d7156657563">Equipe</a>
+</li>
+<li>estConnecte()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#aa934fca5791d73ab706c0eb634ea202a">com.basket_game.CommunicationBluetooth</a>
+, <a class="el" href="class_communication.html#a8399665bae100a18091b253d96f1cd9b">Communication</a>
 </li>
 <li>estEquipeRouge()
-: <a class="el" href="class_plateau.html#ab2bb1b5ce203908966bb1ae52a26108e">Plateau</a>
+: <a class="el" href="class_puissance4.html#ad20623ee212a2029f055ff9019aba3de">Puissance4</a>
 </li>
 <li>estVainqueur()
-: <a class="el" href="class_plateau.html#abd8812d28e086974da656a4af23240c7">Plateau</a>
+: <a class="el" href="class_puissance4.html#a4f347faac067745190090ebb25b50ca1">Puissance4</a>
+</li>
+<li>estValide()
+: <a class="el" href="class_communication.html#ad598e55e1b9cd054516084af725594f2">Communication</a>
 </li>
 </ul>
 
@@ -201,11 +283,17 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_g"></a>- g -</h3><ul>
+<li>getAdressePeripheriqueLocal()
+: <a class="el" href="class_communication.html#a5dcc5eba47de83f7ab3ab86517fb6ca7">Communication</a>
+</li>
 <li>getEquipe1()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2">com.basket_game.Partie</a>
 </li>
 <li>getEquipe2()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734">com.basket_game.Partie</a>
+</li>
+<li>getInstance()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a508b81fb5c9ff3e05ac1ed0a7a7bc32d">com.basket_game.CommunicationBluetooth</a>
 </li>
 <li>getNbManchesGagnantes()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a47208b9a58e97ae2c4bd642c09d4d02e">com.basket_game.Partie</a>
@@ -213,8 +301,17 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>getNbPaniers()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a72049a972000f379dd157e193c1b8e21">com.basket_game.Partie</a>
 </li>
+<li>getNom()
+: <a class="el" href="class_equipe.html#ac01112c584b628bfeb2a3ab6f3836eaa">Equipe</a>
+</li>
 <li>getNomEquipe()
-: <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a9758da3ad97be1f686ee0712f3a1d8f6">com.basket_game.Equipe</a>
+: <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a9a51ba2c9d97dcd507b6f8552b362e51">com.basket_game.Equipe</a>
+</li>
+<li>getNomPeripheriqueLocal()
+: <a class="el" href="class_communication.html#abd8196826b75fdea1581825ac602555f">Communication</a>
+</li>
+<li>getScore()
+: <a class="el" href="class_equipe.html#a8dddab6cff7ae215149790113910ef3d">Equipe</a>
 </li>
 <li>getTempsMaxTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a36a4bc98491a1bc559123e9943c3cbc1">com.basket_game.Partie</a>
@@ -223,8 +320,17 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_i"></a>- i -</h3><ul>
+<li>incrementerScore()
+: <a class="el" href="class_equipe.html#ae94872c756a2ab61d59e1ae3798ae49b">Equipe</a>
+</li>
+<li>initialiser()
+: <a class="el" href="class_communication.html#a2c10a52807bc7bdc520ec3fae622f672">Communication</a>
+</li>
 <li>initialiserActivite()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_parametres.html#a46b9a2747c3004231e48126f972bed86">com.basket_game.PartieParametres</a>
+</li>
+<li>initialiserCommunication()
+: <a class="el" href="class_basketgame.html#a852439c10c3a8945b95bb28e387fb9ba">Basketgame</a>
 </li>
 <li>initialiserCompteurTempsTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a09014b8b26263d4041487c9066f60777">com.basket_game.PartieSuivi</a>
@@ -235,14 +341,21 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>initialiserEvenements()
 : <a class="el" href="class_basketgame.html#ab2eb5b6fa669ec43062e461867438ed0">Basketgame</a>
 </li>
+<li>initialiserHandler()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a4bc3a96bf4305fe3e1f061946032418f">com.basket_game.PartieSuivi</a>
+</li>
 <li>initialiserIHM()
 : <a class="el" href="class_basketgame.html#ac6956c6eb30ad123cd5044cb7ef7e01d">Basketgame</a>
+</li>
+<li>initialiserParametreEquipe()
+: <a class="el" href="class_basketgame.html#aa8f8f3a0d25e347d27d0d41aaa0ef82c">Basketgame</a>
 </li>
 <li>initialiserPartie()
 : <a class="el" href="class_basketgame.html#a195dee07c3590ffbf71cf721a1e5726f">Basketgame</a>
 </li>
 <li>initialiserPlateau()
 : <a class="el" href="class_plateau.html#a377ef0741a48130bbd39ba4d57ddb539">Plateau</a>
+, <a class="el" href="class_puissance4.html#aaae5038c808417b69dcc97e752527027">Puissance4</a>
 </li>
 </ul>
 
@@ -267,15 +380,19 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 </li>
 <li>onPause()
 : <a class="el" href="classcom_1_1basket__game_1_1_basket_game.html#a67fb5f1fa55c4db2daf3fb7ab1c55953">com.basket_game.BasketGame</a>
+, <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a5bed136e95be9788e10343e9593d4c19">com.basket_game.PartieSuivi</a>
 </li>
 <li>onResume()
 : <a class="el" href="classcom_1_1basket__game_1_1_basket_game.html#ae827779afd947a670e1f8ec8b048fbe7">com.basket_game.BasketGame</a>
+, <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#affcc914b91dbac186699b9633f50b0ff">com.basket_game.PartieSuivi</a>
 </li>
 <li>onStart()
 : <a class="el" href="classcom_1_1basket__game_1_1_basket_game.html#af176c3753496d1442fc27e1f9d61f7f1">com.basket_game.BasketGame</a>
+, <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#ae95e11ada1fd42905e8dc5d811e25aa9">com.basket_game.PartieSuivi</a>
 </li>
 <li>onStop()
 : <a class="el" href="classcom_1_1basket__game_1_1_basket_game.html#ad38f57464ece19437176a3f1620b1403">com.basket_game.BasketGame</a>
+, <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a0278ff61d155e465cce0be4a38b520db">com.basket_game.PartieSuivi</a>
 </li>
 </ul>
 
@@ -284,11 +401,26 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>Partie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a2d4007181c9ba45548bbad03af1eae16">com.basket_game.Partie</a>
 </li>
+<li>partieArretee()
+: <a class="el" href="class_communication.html#aabd6b271e63102fe26b0f8c57c8d6484">Communication</a>
+</li>
+<li>partieConfiguree()
+: <a class="el" href="class_communication.html#ae1b2e5053afa06a90b7e9c6d0b7c7555">Communication</a>
+</li>
+<li>partieDemarree()
+: <a class="el" href="class_communication.html#a3d3e0a67768f6d750ed2903041ad7720">Communication</a>
+</li>
+<li>partieReinitialisee()
+: <a class="el" href="class_communication.html#a40f18a9c5d0f7f125f2d517b31378a80">Communication</a>
+</li>
 <li>placerPion()
-: <a class="el" href="class_plateau.html#aa5f3ed5ce76c8b1ea209d8cdba99c069">Plateau</a>
+: <a class="el" href="class_puissance4.html#a2a3d8d473c0d06c18126f40eb360e685">Puissance4</a>
 </li>
 <li>Plateau()
-: <a class="el" href="class_plateau.html#a6e4a3eaa5c42c4b0abe4b95246bdcdd4">Plateau</a>
+: <a class="el" href="class_plateau.html#a6da1eaad5e515d26fb11844fd8960c28">Plateau</a>
+</li>
+<li>Puissance4()
+: <a class="el" href="class_puissance4.html#a1b0c308b5893919619bc829bcdc3ab09">Puissance4</a>
 </li>
 </ul>
 
@@ -297,8 +429,23 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>randInt()
 : <a class="el" href="class_basketgame.html#a5faf430789aab2ed69686f7d5baba78d">Basketgame</a>
 </li>
+<li>recevoir()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#af36d4c705e6c66ecfeb2fbd5d74d7a38">com.basket_game.CommunicationBluetooth</a>
+</li>
+<li>recevoirDonnees()
+: <a class="el" href="class_communication.html#aacb63ba8025e05d50480bcc51f772fca">Communication</a>
+</li>
 <li>recommencerPartie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_terminee.html#aeb1b7a95ee98e15094f0343b73007c0e">com.basket_game.PartieTerminee</a>
+</li>
+<li>recupererErreurBluetooth()
+: <a class="el" href="class_communication.html#af03e75b46cc4f47cdce1a1301564a1e9">Communication</a>
+</li>
+<li>recupererErreurSocket()
+: <a class="el" href="class_communication.html#a4ce817f8eba2aeedc6e12ba225ae2ca5">Communication</a>
+</li>
+<li>recupererEtatSocket()
+: <a class="el" href="class_communication.html#a9af7fe26d46678841b109d9ccb65cba7">Communication</a>
 </li>
 <li>recupererNbManches()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_parametres.html#a832bf3c5403a339533a06d54f21d2ce4">com.basket_game.PartieParametres</a>
@@ -315,6 +462,9 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>recupererTempsMaxTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_parametres.html#a04233e2dbde03d7d71cd1271e6fe28b8">com.basket_game.PartieParametres</a>
 </li>
+<li>recupererTypeTrame()
+: <a class="el" href="class_communication.html#aefdd57499b1c7460dbe427c026b60135">Communication</a>
+</li>
 <li>reinitialiserCompteur()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#ab2d9325b040d95bffa8767dc542b10a9">com.basket_game.PartieSuivi</a>
 </li>
@@ -322,11 +472,20 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>seConnecter()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a1f9b32fb8d8dbca3a21d717e6733ca5d">com.basket_game.CommunicationBluetooth</a>
+</li>
+<li>seDeconnecter()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a07d8e02bf1a6cea45fb7554e37ee186e">com.basket_game.CommunicationBluetooth</a>
+</li>
 <li>setEquipe1()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#aae7100a48f37980d46ba456f7d828dec">com.basket_game.Partie</a>
 </li>
 <li>setEquipe2()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#adc69d752419506f7e9dd3df5304ddf55">com.basket_game.Partie</a>
+</li>
+<li>setHandler()
+: <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#adf31b7c1ca00c0400ff265d59553e4c7">com.basket_game.CommunicationBluetooth</a>
 </li>
 <li>setNbManchesGagnantes()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a115509c832b9fdf908a762c1157215c5">com.basket_game.Partie</a>
@@ -334,14 +493,20 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>setNbPaniers()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a6383decb1b16a121bf342928d149b86c">com.basket_game.Partie</a>
 </li>
+<li>setNom()
+: <a class="el" href="class_equipe.html#a8e2da28a959589500b15e1e06ebc34b6">Equipe</a>
+</li>
 <li>setNomEquipe()
-: <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a55a3ec8376b2a40ab7d9aa9047ce28e4">com.basket_game.Equipe</a>
+: <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a3c7a34320f366bbc19a5974f119178e9">com.basket_game.Equipe</a>
+</li>
+<li>setScore()
+: <a class="el" href="class_equipe.html#aff78c1be3c888e124dd4c04dab15dd0c">Equipe</a>
 </li>
 <li>setTempsMaxTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a5c7ad89428e1e97e9b70ffacca15d0c8">com.basket_game.Partie</a>
 </li>
 <li>setTourEquipe()
-: <a class="el" href="class_plateau.html#a7232ee9eae432dd40aa8e84bd8de9a73">Plateau</a>
+: <a class="el" href="class_puissance4.html#a8fb3a36a672bd80717eead90a91f27f0">Puissance4</a>
 </li>
 <li>simulerPion()
 : <a class="el" href="class_basketgame.html#a317fb5eaabf5974860cb00050407b070">Basketgame</a>
@@ -350,11 +515,26 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 
 <h3><a id="index_t"></a>- t -</h3><ul>
+<li>tabletteConnectee()
+: <a class="el" href="class_communication.html#ab2606214f1e90959b439ea2c88f09bff">Communication</a>
+</li>
+<li>tabletteDeconnectee()
+: <a class="el" href="class_communication.html#a73c460b01e8c4b8a35a6ed3bcc6bf658">Communication</a>
+</li>
 <li>terminerSeance()
 : <a class="el" href="class_basketgame.html#a12655bb7125a1f6240e882e7ff7f4a44">Basketgame</a>
 </li>
 <li>testUnitaireVerifierPlateau()
-: <a class="el" href="class_plateau.html#a0ffc514df34a3bcaa8586fd5234f3410">Plateau</a>
+: <a class="el" href="class_puissance4.html#a38ffc8bf6e4927d1339463bfc56ae356">Puissance4</a>
+</li>
+<li>tirPanier()
+: <a class="el" href="class_communication.html#af9eba0d7cf03d472ad8909df35402610">Communication</a>
+</li>
+<li>traiterTrame()
+: <a class="el" href="class_communication.html#a5eafa558813a3844c878de8fa26e1e95">Communication</a>
+</li>
+<li>trameRecue()
+: <a class="el" href="class_communication.html#af7f09c0b35ddb53f24402bb8e5ec6ce7">Communication</a>
 </li>
 </ul>
 
@@ -368,19 +548,22 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 
 <h3><a id="index_v"></a>- v -</h3><ul>
 <li>verifierColonne()
-: <a class="el" href="class_plateau.html#a4f8e3bee3c2ccc6c16db8e2cf61c72a5">Plateau</a>
+: <a class="el" href="class_puissance4.html#a736f323b03814ab128e535958a3ee687">Puissance4</a>
+</li>
+<li>verifierConnexionModules()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a1e62bbffd16ee913696c146a01a9eaf9">com.basket_game.PartieSuivi</a>
 </li>
 <li>verifierDiagonaleDescendante()
-: <a class="el" href="class_plateau.html#ac2710a29d93e23cb48f88f25a7526284">Plateau</a>
+: <a class="el" href="class_puissance4.html#aae8578ad3e895b8f7819148c9fdca6c8">Puissance4</a>
 </li>
 <li>verifierDiagonaleMontante()
-: <a class="el" href="class_plateau.html#a3f0381948aeb1499983392695864f0d1">Plateau</a>
+: <a class="el" href="class_puissance4.html#aa1c11d51090913ae2d2f166750983e07">Puissance4</a>
 </li>
 <li>verifierLigne()
-: <a class="el" href="class_plateau.html#adbe39e17b5df1ac09d0535acc3ad4c70">Plateau</a>
+: <a class="el" href="class_puissance4.html#a5053eb60209d776445041716eca686e5">Puissance4</a>
 </li>
 <li>verifierPlateau()
-: <a class="el" href="class_plateau.html#a88d104aae4ef62529ca8797f71b63026">Plateau</a>
+: <a class="el" href="class_puissance4.html#abe7a37e82cd7210f151f19a30590b097">Puissance4</a>
 </li>
 </ul>
 
@@ -389,6 +572,12 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <li>~Basketgame()
 : <a class="el" href="class_basketgame.html#a08d3bd066cc6a2206a1d7ebdf2f58085">Basketgame</a>
 </li>
+<li>~Communication()
+: <a class="el" href="class_communication.html#a75ba08ce908d45251e28e4c1db94e6f4">Communication</a>
+</li>
+<li>~Equipe()
+: <a class="el" href="class_equipe.html#a0945b155ec07eb62362547b8d962f98a">Equipe</a>
+</li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
@@ -396,7 +585,7 @@ $(document).ready(function(){initNavTree('functions_func.html',''); initResizabl
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Mardi 23 Mai 2023 06:27:22 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:52 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

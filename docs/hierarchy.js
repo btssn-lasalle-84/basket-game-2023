@@ -1,6 +1,8 @@
 var hierarchy =
 [
-    [ "com.basket_game.Communication", "classcom_1_1basket__game_1_1_communication.html", null ],
+    [ "com.basket_game.CommunicationBluetooth", "classcom_1_1basket__game_1_1_communication_bluetooth.html", null ],
+    [ "com.basket_game.CommunicationBluetooth.CouleurEquipe", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe.html", null ],
+    [ "Coup", "struct_coup.html", null ],
     [ "com.basket_game.ExampleInstrumentedTest", "classcom_1_1basket__game_1_1_example_instrumented_test.html", null ],
     [ "com.basket_game.ExampleUnitTest", "classcom_1_1basket__game_1_1_example_unit_test.html", null ],
     [ "com.basket_game.Partie", "classcom_1_1basket__game_1_1_partie.html", null ],
@@ -8,6 +10,12 @@ var hierarchy =
       [ "Basketgame", "class_basketgame.html", null ]
     ] ],
     [ "QObject", "class_q_object.html", [
+      [ "Communication", "class_communication.html", null ],
+      [ "Equipe", "class_equipe.html", null ],
+      [ "Puissance4", "class_puissance4.html", null ]
+    ] ],
+    [ "com.basket_game.CommunicationBluetooth.Type", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html", null ],
+    [ "typedef2", "classtypedef2.html", [
       [ "Plateau", "class_plateau.html", null ]
     ] ],
     [ "AppCompatActivity", null, [

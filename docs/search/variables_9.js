@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['vainqueur_349',['vainqueur',['../class_plateau.html#aa6d2f0ee7986304b8c92f1bb22f82ab3',1,'Plateau']]]
+  ['ligne_555',['ligne',['../struct_coup.html#a742fec4d6f2e479b396c8e1570e58840',1,'Coup']]]
 ];
