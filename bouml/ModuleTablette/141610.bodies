@@ -3,21 +3,19 @@ class PartieParametres
         super.onCreate(savedInstanceState);
         setContentView(R.layout.partie_parametres);
         Log.d(TAG, "onCreate()");
-
         initialiserActivite();
-        editerTempsTour();
         afficherSuiviPartie();
 !!!165546.java!!!	initialiserActivite() : void
         Spinner choixNbPaniers = findViewById(R.id.choixNbPaniers);
         choixNbPaniers.setSelection(NUMERO_ID_PANIERS_DEFAUT); //!< Par défaut 4 paniers
-
         intentDonneesPartieSuivi = new Intent(PartieParametres.this, PartieSuivi.class);
+        editerTempsTour();
 !!!143786.java!!!	recupererNomEquipe(in idEquipe : int, in numeroEquipe : int) : void
         EditText editionEquipe = findViewById(idEquipe);
         String   nomEquipe     = editionEquipe.getText().toString();
         Equipe   equipe        = new Equipe(nomEquipe);
         Log.d(TAG, "recupererNomEquipe() equipe = " + nomEquipe);
-        intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, (Serializable)equipe);
+        intentDonneesPartieSuivi.putExtra("equipe" + numeroEquipe, equipe);
 !!!151722.java!!!	recupererTempsMaxTour() : void
         EditText editionTempsTour   = findViewById(R.id.editionTempsTour);
         String   tempsMaxTourChoisi = editionTempsTour.getText().toString();
@@ -30,7 +28,7 @@ class PartieParametres
         }
         else
         {
-            tempsMaxTour = TEMPS_TOUR_PAR_DEFAUT;
+            tempsMaxTour = Partie.TEMPS_TOUR_PAR_DEFAUT;
             Log.d(TAG, "recupererTempsMaxTour() tempsMaxTour = " + tempsMaxTour);
         }
         intentDonneesPartieSuivi.putExtra("tempsMaxTour", tempsMaxTour);
@@ -80,7 +78,7 @@ class PartieParametres
         });
 !!!151850.java!!!	editerTempsTour() : void
         EditText editionTempsTour = findViewById(R.id.editionTempsTour);
-        editionTempsTour.setText(String.valueOf(TEMPS_MAX_TOUR)); // par défaut
+        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR)); // par défaut
         editionTempsTour.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence texteSaisi,
@@ -107,9 +105,9 @@ class PartieParametres
                 {
                     int tempsTour = Integer.parseInt(valeur);
                     Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
-                    if(tempsTour > TEMPS_MAX_TOUR)
+                    if(tempsTour > Partie.TEMPS_MAX_TOUR)
                     {
-                        editionTempsTour.setText(String.valueOf(TEMPS_MAX_TOUR));
+                        editionTempsTour.setText(String.valueOf(Partie.TEMPS_MAX_TOUR));
                         Log.d(TAG, "afterTextChanged() tempsTour = " + tempsTour);
                     }
                 }

@@ -18,6 +18,9 @@
     <string name="recommencer_une_partie">Recommencer une partie</string>
     <string name="partie_termin_e">Partie Terminée</string>
     <string name="basket_game_suivi_partie">Partie</string>
+    <string name="image_panier">image panier</string>
+    <string name="image_t_l_vision">image télévision</string>
+    <string name="image_chronom_tre">image chronomètre</string>
     <string-array name="nombreColonnes">
         <item>2</item>
         <item>3</item>
