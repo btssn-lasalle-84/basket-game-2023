@@ -11,20 +11,32 @@ Seance::~Seance()
     qDebug() << Q_FUNC_INFO;
 
 }
-
-void Seance::setNombreManche(int nbManche)
+/**
+ * @fn Seance::setNombreManche()
+ * @brief Modifie le nombre de manche
+ */
+void Seance::setNombreManches(int nbManches)
 {
-    this->nbManche = nbManche;
+    this->nbManches = nbManches;
 }
 
-int Seance::getNombreManche() const
+/**
+ * @fn Seance::getNombreManche()
+ * @brief Retourne le nombre de manche
+ */
+int Seance::getNombreManches() const
 {
-    return nbManche;
+    return nbManches;
 }
 
-void Seance::decrementerNbManche()
+
+/**
+ * @fn Seance::decrementerNbManche
+ * @brief méthode qui décremente le nombre de manche joué
+ */
+void Seance::decrementerNbManches()
 {
-    nbManche--;
-    qDebug() << Q_FUNC_INFO << nbManche ;
+    nbManches--;
+    qDebug() << Q_FUNC_INFO << nbManches ;
 }
 

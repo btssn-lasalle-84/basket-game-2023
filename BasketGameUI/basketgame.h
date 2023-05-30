@@ -57,19 +57,19 @@
  * @def JETON_ROUGE
  * @brief Définit l'image d'un jeton rouge
  */
-#define JETON_ROUGE ":/ressources/jetonRouge.png"
+#define JETON_ROUGE ":/ressources/images/jetonRouge.png"
 
 /**
  * @def JETON_JAUNE
  * @brief Définit l'image d'un jeton jaune
  */
-#define JETON_JAUNE ":/ressources/jetonJaune.png"
+#define JETON_JAUNE ":/ressources/images/jetonJaune.png"
 
 /**
  * @def PLATEAU_7
  * @brief Définit l'image d'un plateau à 7 colonnes
  */
-#define PLATEAU_7 ":/ressources/puissance4_7.png"
+#define PLATEAU_7 ":/ressources/images/puissance4_7.png"
 
 
 namespace Ui
@@ -104,8 +104,11 @@ class Basketgame : public QMainWindow
     ~Basketgame();
 
   public slots:
-    void demarrerSeance();
-    void terminerSeance();
+    void demarrerSeance(int numeroPartie);
+    void terminerSeance(int numeroPartie);
+    void reinitialiseSeance();
+    void configuerSeance(QString nomEquipeRouge,QString nomEquipeJaune,
+                         int nombrePaniers,int tempsTour,int nbManches);
     void demarrerManche();
     void terminerManche();
     void jouerPion(int colonne);
@@ -141,7 +144,6 @@ class Basketgame : public QMainWindow
     QTimer*          minuteurTour;
     int              nbPionsJoues;
     bool             etatManche;
-    bool             etatSeance;
     int              nombreManche;
 
     void initialiserIHM();
@@ -149,7 +151,7 @@ class Basketgame : public QMainWindow
     void initialiserManche();
     void initialiserSeance();
     void initialiserDureeTour();
-    void initialiserParametreEquipe();
+    void initialiserParametresEquipe();
     void initialiserCommunication();
     void demarrerChronometrageTour();
     void afficherPuissance4();

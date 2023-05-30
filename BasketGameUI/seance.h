@@ -10,12 +10,13 @@ public:
     explicit Seance(QObject *parent = 0);
     ~Seance();
 
-    int     getNombreManche() const ;
-    void    setNombreManche(int nbManche);
+    int     getNombreManches() const ;
+    void    setNombreManches(int nbManches);
     void    decrementerNbManche();
 
 private:
-        int          nbManche;
+        int          nbManches;
+        bool         etatSeance;
 };
 
 #endif // SEANCE_H

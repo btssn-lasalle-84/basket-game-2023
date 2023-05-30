@@ -248,20 +248,6 @@ void Communication::recevoirDonnees()
 
     if(trame.contains(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
     {
-        /*
-        QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);
-        qDebug() << Q_FUNC_INFO << trames;
-
-        QStringList champsTrame;
-        for(int i = 0; i < trames.count(); ++i)
-        {
-            qDebug() << Q_FUNC_INFO << i << trames[i];
-            champsTrame = trames[i].split(DELIMITEUR_CHAMP);
-            traiterTrame(champsTrame);
-        }
-        trame.clear();
-        */
-
         QStringList champsTrame;
         champsTrame = trame.split(DELIMITEUR_CHAMP);
         traiterTrame(champsTrame);
