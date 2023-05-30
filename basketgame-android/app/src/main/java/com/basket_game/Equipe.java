@@ -25,6 +25,8 @@ public class Equipe implements Serializable
      * @brief Attributs
      */
     private String nomEquipe; //!< le nom de l'équipe
+    public static int compteurEquipe1 = 0;
+    public static int compteurEquipe2 = 0;
 
     /**
      * @brief Constructeur de la classe Equipe

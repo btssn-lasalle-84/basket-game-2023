@@ -44,9 +44,6 @@ public class CommunicationBluetooth
     public final static int ID_MODULE_SIGNALISATION = 1; // émission
     public final static int ID_MODULE_ECRAN         = 2; // émission
     public final static int NB_MODULES              = 3;
-    public final static String DELIMITEUR_DEBUT_TRAME         = "$BASKET"; // délimiteur début trame
-    public final static String DELIMITEUR_FIN_TRAME         = "\r\n"; // délimiteur fin trame
-    public final static String DELIMITEUR_CHAMPS_TRAME         = ";"; // délimiteur champs trame
 
     /**
      * Attributs
@@ -58,12 +55,7 @@ public class CommunicationBluetooth
     private InputStream                   inputStream         = null; // pour le module de détection
     private Thread                        filExecutionReception;
     private Handler                       handler = null;
-    public enum Type {
-        SEANCE, START, TIR, STOP, RESET
-    }
-    public enum CouleurEquipe {
-        ROUGE, JAUNE
-    }
+
 
     /**
      * @fn getInstance

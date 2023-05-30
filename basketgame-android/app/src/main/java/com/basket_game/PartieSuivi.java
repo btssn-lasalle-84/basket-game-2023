@@ -48,8 +48,7 @@ public class PartieSuivi extends AppCompatActivity
     private TimerTask              tacheCompteurTempsTour = null;
     private CommunicationBluetooth communicationBluetooth = null;
     Handler                        handler                = null;
-    private int compteurEquipe1 = 0;
-    private int compteurEquipe2 = 0;
+
 
     /**
      * Ressources GUI
@@ -133,14 +132,14 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void initialiserCompteursScores()
     {
-        compteurEquipe1 = 0;
-        compteurEquipe2 = 0;
+        Equipe.compteurEquipe1 = 0;
+        Equipe.compteurEquipe2 = 0;
 
         affichageScoreEquipe1 = findViewById(R.id.affichageScoreEquipe1);
-        String scoreEquipe1 = String.valueOf(compteurEquipe1);
+        String scoreEquipe1 = String.valueOf(Equipe.compteurEquipe1);
         affichageScoreEquipe1.setText(scoreEquipe1);
         affichageScoreEquipe2 = findViewById(R.id.affichageScoreEquipe2);
-        String scoreEquipe2 = String.valueOf(compteurEquipe2);
+        String scoreEquipe2 = String.valueOf(Equipe.compteurEquipe2);
         affichageScoreEquipe2.setText(scoreEquipe2);
     }
 
@@ -280,8 +279,8 @@ public class PartieSuivi extends AppCompatActivity
     private void afficherScoreEquipe1()
     {
         affichageScoreEquipe1 = findViewById(R.id.affichageScoreEquipe1);
-        String scoreEquipe1 = String.valueOf(compteurEquipe1);
-        Log.d(TAG, "afficherScoreEquipe1() compteurEquipe1 = " + compteurEquipe1);
+        String scoreEquipe1 = String.valueOf(Equipe.compteurEquipe1);
+        Log.d(TAG, "afficherScoreEquipe1() compteurEquipe1 = " + Equipe.compteurEquipe1);
         affichageScoreEquipe1.setText(scoreEquipe1);
     }
 
@@ -291,8 +290,8 @@ public class PartieSuivi extends AppCompatActivity
     private void afficherScoreEquipe2()
     {
         TextView affichageScoreEquipe2 = findViewById(R.id.affichageScoreEquipe2);
-        String scoreEquipe2 = String.valueOf(compteurEquipe2);
-        Log.d(TAG, "afficherScoreEquipe2() compteurEquipe2 = " + compteurEquipe2);
+        String scoreEquipe2 = String.valueOf(Equipe.compteurEquipe2);
+        Log.d(TAG, "afficherScoreEquipe2() compteurEquipe2 = " + Equipe.compteurEquipe2);
         affichageScoreEquipe2.setText(scoreEquipe2);
     }
 
@@ -461,7 +460,7 @@ public class PartieSuivi extends AppCompatActivity
     /**
      * @brief Méthode appelée pour réinitialiser le compteur
      */
-    private void reinitialiserCompteur()
+    private void reinitialiserCompteurTemps()
     {
         tempsRestantTour = partie.getTempsMaxTour();
         progressBarTempsRestantTour.setProgress(tempsRestantTour);
@@ -505,7 +504,7 @@ public class PartieSuivi extends AppCompatActivity
     private void arreterPartie()
     {
         arreterCompteur();
-        reinitialiserCompteur();
+        reinitialiserCompteurTemps();
         envoyerTrameArretPartie();
 
         Log.d(TAG, "arreterPartie()");
@@ -554,20 +553,21 @@ public class PartieSuivi extends AppCompatActivity
                         Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH " + message.obj.toString());
                         String trameTir = message.obj.toString();
                         communicationBluetooth.envoyer(trameTir, CommunicationBluetooth.ID_MODULE_ECRAN);
+                        communicationBluetooth.envoyer(trameTir, CommunicationBluetooth.ID_MODULE_SIGNALISATION);
 
-                        String[] elements = trameTir.split(CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME);
-                        if(elements.length >= 4 && elements[1].equals(String.valueOf(CommunicationBluetooth.Type.TIR))) {
+                        String[] elements = trameTir.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
+                        if(elements.length >= 4 && elements[1].equals(String.valueOf(ProtocoleBasket.Type.TIR))) {
                             String couleur = elements[2];
 
-                            if (couleur.equals(String.valueOf(CommunicationBluetooth.CouleurEquipe.ROUGE))) {
-                                compteurEquipe1++;
+                            if (couleur.equals(String.valueOf(ProtocoleBasket.CouleurEquipe.ROUGE))) {
+                                Equipe.compteurEquipe1++;
                                 afficherScoreEquipe1();
-                            } else if (couleur.equals(String.valueOf(CommunicationBluetooth.CouleurEquipe.JAUNE))) {
-                                compteurEquipe2++;
+                            } else if (couleur.equals(String.valueOf(ProtocoleBasket.CouleurEquipe.JAUNE))) {
+                                Equipe.compteurEquipe2++;
                                 afficherScoreEquipe2();
                             }
                         }
-                        reinitialiserCompteur();
+                        reinitialiserCompteurTemps();
                         break;
                     case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
                         Log.d(TAG,
@@ -611,18 +611,18 @@ public class PartieSuivi extends AppCompatActivity
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
             communicationBluetooth.envoyer(
-              CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                CommunicationBluetooth.Type.SEANCE +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                    ProtocoleBasket.DELIMITEUR_DEBUT_TRAME +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.Type.SEANCE +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
                 partie.getEquipe1().getNomEquipe() +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
                 partie.getEquipe2().getNomEquipe() +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getTempsMaxTour() +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbPaniers() +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + partie.getNbManchesGagnantes() +
-                CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getTempsMaxTour() +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNbPaniers() +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNbManchesGagnantes() +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.DELIMITEUR_FIN_TRAME,
               i);
         }
     }
@@ -637,12 +637,12 @@ public class PartieSuivi extends AppCompatActivity
          */
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
-            communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                             CommunicationBluetooth.Type.START +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                             CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+            communicationBluetooth.envoyer(ProtocoleBasket.DELIMITEUR_DEBUT_TRAME +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.Type.START +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + "1" +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.DELIMITEUR_FIN_TRAME,
                                            i);
         }
     }
@@ -657,12 +657,12 @@ public class PartieSuivi extends AppCompatActivity
          */
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
-            communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                             CommunicationBluetooth.Type.STOP +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME + "1" +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                             CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+            communicationBluetooth.envoyer(ProtocoleBasket.DELIMITEUR_DEBUT_TRAME +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.Type.STOP +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + "1" +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.DELIMITEUR_FIN_TRAME,
                                            i);
         }
     }
@@ -674,11 +674,11 @@ public class PartieSuivi extends AppCompatActivity
     {
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
-            communicationBluetooth.envoyer(CommunicationBluetooth.DELIMITEUR_DEBUT_TRAME +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                             CommunicationBluetooth.Type.RESET +
-                                             CommunicationBluetooth.DELIMITEUR_CHAMPS_TRAME +
-                                             CommunicationBluetooth.DELIMITEUR_FIN_TRAME,
+            communicationBluetooth.envoyer(ProtocoleBasket.DELIMITEUR_DEBUT_TRAME +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.Type.RESET +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.DELIMITEUR_FIN_TRAME,
                                            i);
         }
     }
