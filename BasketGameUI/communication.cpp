@@ -329,21 +329,37 @@ void Communication::traiterTrame(const QStringList& champsTrame)
     }
 }
 
+/**
+ * @fn Communication::getNomPeripheriqueLocal()
+ * @brief Retourne le nom du peripherique local
+ */
 QString Communication::getNomPeripheriqueLocal()
 {
     return nomPeripheriqueLocal;
 }
 
+/**
+ * @fn Communication::getAdressePeripheriqueLocal()
+ * @brief Retourne l'adresse du peripherique local
+ */
 QString Communication::getAdressePeripheriqueLocal()
 {
     return adressePeripheriqueLocal;
 }
 
+/**
+ * @fn Communication::estValide()
+ * @brief Retourne si le peripherique local est valide
+ */
 bool Communication::estValide()
 {
     return peripheriqueLocal.isValid();
 }
 
+/**
+ * @fn Communication::estConnecte()
+ * @brief Retourne si le peripherique est connecté
+ */
 bool Communication::estConnecte()
 {
     return connecte;

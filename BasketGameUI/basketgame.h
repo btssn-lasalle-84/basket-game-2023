@@ -71,6 +71,7 @@
  */
 #define PLATEAU_7 ":/ressources/puissance4_7.png"
 
+
 namespace Ui
 {
 class basketgame;
@@ -79,7 +80,7 @@ class basketgame;
 class Puissance4;
 class Communication;
 class Equipe;
-
+class Seance;
 /**
  * @class Basketgame
  * @brief La GUI de l'application Basketgame
@@ -105,7 +106,8 @@ class Basketgame : public QMainWindow
   public slots:
     void demarrerSeance();
     void terminerSeance();
-    void demarrerPartie();
+    void demarrerManche();
+    void terminerManche();
     void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
@@ -133,14 +135,19 @@ class Basketgame : public QMainWindow
     Puissance4*      puissance4;
     Communication*   communication;
     QVector<Equipe*> equipes;
+    Seance*          seance;
+
     QTime*           tempsTour;
     QTimer*          minuteurTour;
     int              nbPionsJoues;
+    bool             etatManche;
     bool             etatSeance;
+    int              nombreManche;
 
     void initialiserIHM();
     void initialiserEvenements();
-    void initialiserPartie();
+    void initialiserManche();
+    void initialiserSeance();
     void initialiserDureeTour();
     void initialiserParametreEquipe();
     void initialiserCommunication();
@@ -148,7 +155,8 @@ class Basketgame : public QMainWindow
     void afficherPuissance4();
     void afficherUnJeton(int ligne, int colonne);
     void afficherTourEquipe();
-    void afficherScoreEquipe();
+    void afficherScorePanierEquipe();
+    void afficherScoreMancheEquipe();
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();

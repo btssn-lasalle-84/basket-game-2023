@@ -10,6 +10,7 @@
 #include "puissance4.h"
 #include "communication.h"
 #include "equipe.h"
+#include "seance.h"
 #include "ui_basketgame.h"
 #include <QPainter>
 #include <QAction>
@@ -24,12 +25,14 @@
 Basketgame::Basketgame(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::basketgame),
     puissance4(new Puissance4(this)), communication(new Communication(this)),
-    tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
-    etatSeance(false)
+    seance(new Seance(this)),
+    tempsTour(nullptr), minuteurTour(new QTimer),
+    nbPionsJoues(0), etatManche(false) , etatSeance(false)
 {
-    qDebug() << Q_FUNC_INFO;
     equipes.push_back(new Equipe("Rouge", this));
     equipes.push_back(new Equipe("Jaune", this));
+    seance->setNombreManche(10);
+    qDebug() << Q_FUNC_INFO;
     initialiserIHM();
     initialiserEvenements();
     initialiserCommunication();
@@ -49,79 +52,6 @@ Basketgame::~Basketgame()
     delete ui;
     qDebug() << Q_FUNC_INFO;
 }
-
-/**
- * @fn Basketgame::demarrerSeance()
- * @brief méthode pour debuter une séance
- */
-void Basketgame::demarrerSeance()
-{
-    if(!etatSeance && ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
-    {
-        etatSeance = true;
-        demarrerPartie();
-    }
-}
-
-/**
- * @fn Basketgame::terminerSeance()
- * @brief méthode pour détermiquer quand la séance est terminer
- */
-void Basketgame::terminerSeance()
-{
-    if(puissance4->estVainqueur())
-    {
-        etatSeance = false;
-        initialiserDureeTour();
-        ui->tempsTour->setText("00:00:00");
-        minuteurTour->stop();
-        qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues
-                 << "estVainqueur" << puissance4->estVainqueur();
-    }
-    else if(nbPionsJoues == NB_PIONS)
-    {
-        etatSeance = false;
-        initialiserDureeTour();
-        ui->tempsTour->setText("00:00:00");
-        minuteurTour->stop();
-    }
-}
-
-/**
- * @fn Basketgame::demarrerPartie
- * @brief
- */
-void Basketgame::demarrerPartie()
-{
-    if(etatSeance)
-    {
-        qDebug() << Q_FUNC_INFO;
-        initialiserPartie();
-        initialiserDureeTour();
-        initialiserParametreEquipe();
-        demarrerChronometrageTour();
-        afficherPuissance4();
-    }
-}
-
-/**
- * @fn Basketgame::jouerPion
- * @param colonne
- * @brief Joue un pion
- */
-void Basketgame::jouerPion(int colonne)
-{
-    int ligne = puissance4->placerPion(colonne);
-    if(ligne != -1)
-    {
-        afficherUnJeton(ligne, colonne);
-        afficherScoreEquipe();
-        puissance4->verifierPlateau();
-        terminerSeance();
-        afficherTourEquipe();
-    }
-}
-
 /**
  * @fn Basketgame::afficherEcran(Basketgame::Ecran ecran)
  * @brief Selectionne la fenêtre et l'affiche
@@ -152,6 +82,220 @@ void Basketgame::afficherEcranPartie()
 }
 
 /**
+ * @fn Basketgame::fermerApplication()
+ * @brief méthode pour fermer l'application
+ */
+void Basketgame::fermerApplication()
+{
+    this->close();
+}
+/**
+ * @fn Basketgame::demarrerSeance()
+ * @brief méthode pour debuter une séance
+ */
+void Basketgame::demarrerSeance()
+{
+    if(!etatSeance && ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
+    {
+        ui->messageAttente->hide();
+        etatSeance = true;
+        seance->setNombreManche(4);
+        equipes[Rouge]->setScoreManche(0);
+        equipes[Jaune]->setScoreManche(0);
+        initialiserSeance();
+        initialiserParametreEquipe();
+        demarrerManche();
+    }
+}
+
+/**
+ * @fn Basketgame::demarrerPartie
+ * @brief
+ */
+void Basketgame::demarrerManche()
+{
+    if(etatSeance)
+    {
+        qDebug() << Q_FUNC_INFO;
+        initialiserManche();
+        initialiserDureeTour();
+        demarrerChronometrageTour();
+        afficherPuissance4();
+    }
+}
+
+/**
+ * @fn Basketgame::terminerSeance()
+ * @brief méthode pour détermiquer quand la séance est terminer
+ */
+void Basketgame::terminerSeance()
+{
+    if(seance->getNombreManche() == 0)
+    {
+        afficherEcranAcceuil();
+        if(equipes[Rouge]->getScoreManche() > equipes[Jaune]->getScoreManche())
+        {
+               ui->messageVainqueur->setText("Rouge");
+               ui->messageVainqueur->setStyleSheet(
+                 "background-color: red; color: black; font: 20pt;");
+        }
+        else
+        {
+            ui->messageVainqueur->setText("Jaune");
+            ui->messageVainqueur->setStyleSheet(
+              "background-color: yellow; color: black; font: 20pt;");
+        }
+        etatSeance = false;
+        demarrerSeance();
+    }
+}
+
+/**
+ * @fn Basketgame::terminerManche()
+ * @brief méthode pour détermiquer quand une manche est terminer
+ */
+void Basketgame::terminerManche()
+{
+    if(puissance4->estVainqueur())
+    {
+        initialiserDureeTour();
+        ui->tempsTour->setText("00:00:00");
+        minuteurTour->stop();
+        qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues
+                 << "estVainqueur" << puissance4->estVainqueur();
+        demarrerManche();
+        afficherScoreMancheEquipe();
+        terminerSeance();
+    }
+    else if(nbPionsJoues == NB_PIONS)
+    {
+        etatSeance = false;
+        initialiserDureeTour();
+        ui->tempsTour->setText("00:00:00");
+        minuteurTour->stop();
+        afficherScoreMancheEquipe();
+        terminerSeance();
+    }
+}
+
+/**
+ * @fn Basketgame::initialiserIHM()
+ * @brief méthode pour initialiser l'IHM
+ */
+void Basketgame::initialiserIHM()
+{
+    ui->setupUi(this);
+
+#ifdef PLEIN_ECRAN_RPI
+    showFullScreen();
+#else
+    resize(qApp->desktop()->availableGeometry(this).width(),
+           qApp->desktop()->availableGeometry(this).height());
+    setMinimumSize(qApp->desktop()->availableGeometry(this).width(),
+                   qApp->desktop()->availableGeometry(this).height());
+    // showMaximized();
+#endif
+    afficherEcranAcceuil();
+}
+
+/**
+ * @fn Basketgame::initialiserManche
+ * @brief méthode pour initialiser les variables d'une manche
+ */
+void Basketgame::initialiserManche()
+{
+    nbPionsJoues = 0;
+    equipes[Rouge]->setScorePanier(0);
+    equipes[Jaune]->setScorePanier(0);
+    ui->affichageTotalPanierE1->display(QString::number(0));
+    ui->affichageTotalPanierE2->display(QString::number(0));
+    puissance4->initialiserPlateau();
+}
+
+void Basketgame::initialiserSeance()
+{
+    nbPionsJoues = 0;
+    equipes[Rouge]->setScoreManche(0);
+    equipes[Jaune]->setScoreManche(0);
+    puissance4->initialiserPlateau();
+}
+
+/**
+ * @fn Basketgame::initialiserParametreEquipe()
+ * @brief méthode pour initialiser les paramètres des équipes
+ */
+
+void Basketgame::initialiserParametreEquipe()
+{
+    ui->labelVisualisationEquipeRouge->setText(equipes[Rouge]->getNom());
+    ui->labelVisualisationEquipeJaune->setText(equipes[Jaune]->getNom());
+    ui->affichageTotalPanierE1->display(QString::number(0));
+    ui->affichageTotalPanierE2->display(QString::number(0));
+    ui->affichageTotalMancheE1->display(QString::number(0));
+    ui->affichageTotalMancheE2->display(QString::number(0));
+    ui->labelVisualisationEquipeJaune->setStyleSheet(
+      "background-color: transparent; color: transparent;");
+    ui->labelVisualisationEquipeRouge->setStyleSheet(
+      "background-color: red; color: black;font: 20pt;");
+}
+/**
+ * @fn Basketgame::initialiserEvenements()
+ * @brief méthode pour initialiser les évenements et action du programme
+ */
+void Basketgame::initialiserEvenements()
+{
+    // le minuteur
+    connect(minuteurTour, SIGNAL(timeout()), this, SLOT(chronometrerTour()));
+}
+
+/**
+ * @fn Basketgame::initialiserDureeTour()
+ * @brief méthode pour initialiser la durée d'un tour pour une équipe
+ */
+void Basketgame::initialiserDureeTour()
+{
+    if(tempsTour != nullptr)
+    {
+        delete tempsTour;
+        tempsTour = nullptr;
+    }
+    tempsTour = new QTime(0, 0, TEMPS_TOUR);
+}
+
+/**
+ * @fn Basketgame::initialiserCommunication
+ * @brief méthode pour initialiser la communication en mode serveur
+ */
+void Basketgame::initialiserCommunication()
+{
+    connect(communication,SIGNAL(clientConnecte()),this, SLOT(demarrerSeance()));
+    connect(communication,SIGNAL(clientDeconnecte()),this, SLOT(afficherEcranAcceuil()));
+
+    if(communication != nullptr)
+    {
+        communication->demarrer();
+    }
+}
+
+/**
+ * @fn Basketgame::jouerPion
+ * @param colonne
+ * @brief Joue un pion
+ */
+void Basketgame::jouerPion(int colonne)
+{
+    int ligne = puissance4->placerPion(colonne);
+    if(ligne != -1)
+    {
+        afficherUnJeton(ligne, colonne);
+        afficherScorePanierEquipe();
+        puissance4->verifierPlateau();
+        terminerManche();
+        afficherTourEquipe();
+    }
+}
+
+/**
  * @fn Basketgame::chronometrerTour
  * @brief méthode pour chronometrer un tour de puissance4
  */
@@ -177,115 +321,19 @@ void Basketgame::chronometrerTour()
         if(puissance4->estEquipeRouge())
         {
             ui->labelVisualisationEquipeRouge->setStyleSheet(
-              "background-color: transparent; color: black;");
+              "background-color: transparent; color: transparent;");
             ui->labelVisualisationEquipeJaune->setStyleSheet(
-              "background-color: yellow; color: black;");
+              "background-color: yellow; color: black;font: 20pt;");
             puissance4->setTourEquipe(false);
         }
         else
         {
             ui->labelVisualisationEquipeJaune->setStyleSheet(
-              "background-color: transparent; color: black;");
+              "background-color: transparent; color: transparent;");
             ui->labelVisualisationEquipeRouge->setStyleSheet(
-              "background-color: red; color: black;");
+              "background-color: red; color: black;font: 20pt;");
             puissance4->setTourEquipe(true);
         }
-    }
-}
-
-/**
- * @fn Basketgame::fermerApplication()
- * @brief méthode pour fermer l'application
- */
-void Basketgame::fermerApplication()
-{
-    this->close();
-}
-
-/**
- * @fn Basketgame::initialiserIHM()
- * @brief méthode pour initialiser l'IHM
- */
-void Basketgame::initialiserIHM()
-{
-    ui->setupUi(this);
-
-#ifdef PLEIN_ECRAN_RPI
-    showFullScreen();
-#else
-    resize(qApp->desktop()->availableGeometry(this).width(),
-           qApp->desktop()->availableGeometry(this).height());
-    setMinimumSize(qApp->desktop()->availableGeometry(this).width(),
-                   qApp->desktop()->availableGeometry(this).height());
-    // showMaximized();
-#endif
-    afficherEcranAcceuil();
-}
-
-/**
- * @fn Basketgame::initialiserParametreEquipe()
- * @brief méthode pour initialiser les paramètres des équipes
- */
-void Basketgame::initialiserParametreEquipe()
-{
-    ui->labelVisualisationEquipeRouge->setText(equipes[Rouge]->getNom());
-    ui->labelVisualisationEquipeJaune->setText(equipes[Jaune]->getNom());
-    ui->affichageTotalPanierE1->display(QString::number(0));
-    ui->affichageTotalPanierE2->display(QString::number(0));
-    ui->labelVisualisationEquipeJaune->setStyleSheet(
-      "background-color: transparent; color: black;");
-    ui->labelVisualisationEquipeRouge->setStyleSheet(
-      "background-color: red; color: black;");
-}
-/**
- * @fn Basketgame::initialiserEvenements()
- * @brief méthode pour initialiser les évenements et action du programme
- */
-void Basketgame::initialiserEvenements()
-{
-    // le minuteur
-    connect(minuteurTour, SIGNAL(timeout()), this, SLOT(chronometrerTour()));
-}
-
-/**
- * @fn Basketgame::initialiserPartie
- * @brief méthode pour initialiser les variables d'une partie
- */
-void Basketgame::initialiserPartie()
-{
-    nbPionsJoues = 0;
-    equipes[Rouge]->setScore(0);
-    equipes[Jaune]->setScore(0);
-    puissance4->initialiserPlateau();
-}
-
-/**
- * @fn Basketgame::initialiserDureeTour()
- * @brief méthode pour initialiser la durée d'un tour pour une équipe
- */
-void Basketgame::initialiserDureeTour()
-{
-    if(tempsTour != nullptr)
-    {
-        delete tempsTour;
-        tempsTour = nullptr;
-    }
-    tempsTour = new QTime(0, 0, TEMPS_TOUR);
-}
-
-/**
- * @fn Basketgame::initialiserCommunication
- * @brief méthode pour initialiser la communication en mode serveur
- */
-void Basketgame::initialiserCommunication()
-{
-    /**
-     * @todo Connecter les signaux/slots entre Communication et Basketgame avant
-     * de demarrer la communication
-     */
-    if(communication != nullptr)
-    {
-        communication->demarrer();
     }
 }
 
@@ -364,17 +412,17 @@ void Basketgame::afficherTourEquipe()
     if(puissance4->estEquipeRouge())
     {
         ui->labelVisualisationEquipeRouge->setStyleSheet(
-          "background-color: transparent; color: black;");
+          "background-color: transparent; color: transparent;");
         ui->labelVisualisationEquipeJaune->setStyleSheet(
-          "background-color: yellow; color: black;");
+          "background-color: yellow; color: black; font: 20pt;");
         puissance4->setTourEquipe(false);
     }
     else
     {
         ui->labelVisualisationEquipeJaune->setStyleSheet(
-          "background-color: transparent; color: black;");
+          "background-color: transparent; color: transparent;");
         ui->labelVisualisationEquipeRouge->setStyleSheet(
-          "background-color: red; color: black;");
+          "background-color: red; color: black;font: 20pt;");
         puissance4->setTourEquipe(true);
     }
 }
@@ -383,21 +431,37 @@ void Basketgame::afficherTourEquipe()
  * @fn Basketgame::afficherScoreEquipe
  * @brief méthode pour afficher le nombre de paniers pour chaque équipe
  */
-void Basketgame::afficherScoreEquipe()
+void Basketgame::afficherScorePanierEquipe()
 {
     if(puissance4->estEquipeRouge())
     {
-        equipes[Rouge]->incrementerScore();
+        equipes[Rouge]->incrementerScorePanier();
         ui->affichageTotalPanierE1->display(
-          QString::number(equipes[Rouge]->getScore()));
+        QString::number(equipes[Rouge]->getScorePanier()));
     }
     else
     {
-        equipes[Jaune]->incrementerScore();
+        equipes[Jaune]->incrementerScorePanier();
         ui->affichageTotalPanierE2->display(
-          QString::number(equipes[Jaune]->getScore()));
+        QString::number(equipes[Jaune]->getScorePanier()));
     }
     nbPionsJoues++;
+}
+void Basketgame::afficherScoreMancheEquipe()
+{
+    if(puissance4->estEquipeRouge())
+    {
+        equipes[Rouge]->incrementerScoreManche();
+        ui->affichageTotalMancheE1->display(
+        QString::number(equipes[Rouge]->getScoreManche()));
+    }
+    else
+    {
+        equipes[Jaune]->incrementerScoreManche();
+        ui->affichageTotalMancheE2->display(
+        QString::number(equipes[Jaune]->getScoreManche()));
+    }
+    seance->decrementerNbManche();
 }
 
 #ifdef TEST_BASKETGAME

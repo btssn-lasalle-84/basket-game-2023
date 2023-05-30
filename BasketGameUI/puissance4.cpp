@@ -82,7 +82,7 @@ void Puissance4::verifierPlateau()
 }
 
 /**
- * @fn Puissance4::estVainqueur
+ * @fn Puissance4::estVainqueurManche
  * @brief méthode qui retourne true si il y a 4 pions alignés de la même
  * couleur sur le plateau
  * @return bool
