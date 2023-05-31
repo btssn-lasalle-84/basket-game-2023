@@ -105,6 +105,37 @@
         app:layout_constraintVertical_bias="0.43"  />
 
 
+    <TextView
+        android:id="@+id/affichageNumeroPanier"
+        android:layout_width="496dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="90dp"
+        android:contentDescription="Numéro panier"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.616" />
+
+    <TextView
+        android:id="@+id/affichageCouleurEquipe"
+        android:layout_width="496dp"
+        android:layout_height="79dp"
+        android:layout_marginStart="90dp"
+        android:contentDescription="Couleur équipe"
+        android:gravity="center"
+        android:textSize="50sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.252"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.757" />
+
     <ImageButton
         android:id="@+id/boutonConnexionModuleDetection"
         android:layout_width="125dp"

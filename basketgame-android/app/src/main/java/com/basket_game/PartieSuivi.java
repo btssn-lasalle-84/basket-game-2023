@@ -21,6 +21,8 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
 import android.widget.Toast;
@@ -48,6 +50,8 @@ public class PartieSuivi extends AppCompatActivity
     private TimerTask              tacheCompteurTempsTour = null;
     private CommunicationBluetooth communicationBluetooth = null;
     Handler                        handler                = null;
+    private String numeroPanier;
+    private String couleur;
 
     /**
      * Ressources GUI
@@ -58,6 +62,8 @@ public class PartieSuivi extends AppCompatActivity
     ImageButton boutonConnexionModuleEcran;
     TextView    affichageScoreEquipe1;
     TextView    affichageScoreEquipe2;
+    TextView affichageNumeroPanier;
+    TextView affichageCouleurEquipe;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -90,6 +96,9 @@ public class PartieSuivi extends AppCompatActivity
         Log.d(TAG, "onStart()");
         initialiserCompteursScores();
         initialiserCompteurTempsTour();
+        initialiserAffichageNumeroPanier();
+        initialiserAffichageCouleurEquipe();
+        partie.reinitialiserNumeroManche();
         connecterModules();
         verifierConnexionModules();
     }
@@ -143,6 +152,26 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
+     * @brief Méthode permettant d'initialiser le TextView permettant l'affichage du numéro de panier
+     */
+    private void initialiserAffichageNumeroPanier()
+    {
+        affichageNumeroPanier = findViewById(R.id.affichageNumeroPanier);
+        String numeroPanier = "Panier N°";
+        affichageNumeroPanier.setText(numeroPanier);
+    }
+
+    /**
+     * @brief Méthode permettant d'initialiser le TextView permettant l'affichage du numéro de panier
+     */
+    private void initialiserAffichageCouleurEquipe()
+    {
+        affichageCouleurEquipe = findViewById(R.id.affichageCouleurEquipe);
+        String couleur = "";
+        affichageCouleurEquipe.setText(couleur);
+    }
+
+    /**
      * @brief Méthode permettant d'initialiser le compteur du temps
      */
     private void initialiserCompteurTempsTour()
@@ -156,7 +185,6 @@ public class PartieSuivi extends AppCompatActivity
         progressBarTempsRestantTour.setProgress(tempsRestantTour);
         progressBarTempsRestantTour.setProgressTintList(ColorStateList.valueOf(Color.GREEN));
 
-        compterTempsRestantTour();
     }
 
     /**
@@ -204,12 +232,12 @@ public class PartieSuivi extends AppCompatActivity
     private void recupererParametresPartie()
     {
         intentDonneesPartieSuivi = getIntent();
-        Equipe equipe1           = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe1");
+        Equipe equipe1 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe1");
         if(equipe1 != null)
         {
             Log.d(TAG, "onCreate() equipe1 = " + equipe1.getNomEquipe());
         }
-        Equipe equipe2 = (Equipe)intentDonneesPartieSuivi.getSerializableExtra("equipe2");
+        Equipe equipe2 = (Equipe) intentDonneesPartieSuivi.getSerializableExtra("equipe2");
         if(equipe2 != null)
         {
             Log.d(TAG, "onCreate() equipe2 = " + equipe2.getNomEquipe());
@@ -292,6 +320,34 @@ public class PartieSuivi extends AppCompatActivity
         String   scoreEquipe2          = String.valueOf(partie.getEquipe2().getScore());
         Log.d(TAG, "afficherScoreEquipe2() score Equipe2 = " + partie.getEquipe2().getScore());
         affichageScoreEquipe2.setText(scoreEquipe2);
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher le numéro de panier
+     */
+    private void afficherNumeroPanier()
+    {
+        affichageNumeroPanier = findViewById(R.id.affichageNumeroPanier);
+        Log.d(TAG, "afficherNumeroPanier() numero panier = " + numeroPanier);
+        affichageNumeroPanier.setText(numeroPanier);
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher la couleur de l'équipe ayant mis le panier
+     */
+    private void afficherCouleurEquipe()
+    {
+        affichageCouleurEquipe = findViewById(R.id.affichageCouleurEquipe);
+        Log.d(TAG, "affichageCouleurEquipe() couleur Equipe = " + couleur);
+        if(Objects.equals(couleur, ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
+        {
+            affichageCouleurEquipe.setTextColor(Color.parseColor("#D00000"));
+        }
+        else if(Objects.equals(couleur, ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
+        {
+            affichageCouleurEquipe.setTextColor(Color.parseColor("#FFBE0B"));
+        }
+        affichageCouleurEquipe.setText(couleur);
     }
 
     /**
@@ -534,18 +590,21 @@ public class PartieSuivi extends AppCompatActivity
                             boutonConnexionModuleDetection.setBackgroundTintList(
                               ColorStateList.valueOf(Color.GREEN));
                             demarrerPartie();
+                            compterTempsRestantTour();
                         }
                         else if(message.obj.toString().equals(
                                   CommunicationBluetooth.NOM_MODULE_SIGNALISATION))
                         {
                             boutonConnexionModuleSignalisation.setBackgroundTintList(
                               ColorStateList.valueOf(Color.GREEN));
+                            compterTempsRestantTour();
                         }
                         else if(message.obj.toString().equals(
                                   CommunicationBluetooth.NOM_MODULE_ECRAN))
                         {
                             boutonConnexionModuleEcran.setBackgroundTintList(
                               ColorStateList.valueOf(Color.GREEN));
+                            compterTempsRestantTour();
                         }
                         break;
                     case CommunicationBluetooth.RECEPTION_BLUETOOTH:
@@ -555,43 +614,66 @@ public class PartieSuivi extends AppCompatActivity
                         {
                             String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
                             Log.d(TAG, "handleMessage() champs " + champs);
-                            // est-ce une trame TIR ? à tester avec le simulateur !
                             if(champs.length >= ProtocoleBasket.NB_CHAMPS_TRAME_TIR &&
                                champs[ProtocoleBasket.CHAMP_TYPE_TRAME].equals(
-                                 String.valueOf(ProtocoleBasket.TYPE_TRAME_TIR)))
+                                       ProtocoleBasket.TYPE_TRAME_TIR))
                             {
+                                String trameTir = trame;
                                 communicationBluetooth.envoyer(
-                                  trame,
+                                  trameTir,
                                   CommunicationBluetooth.ID_MODULE_ECRAN);
                                 communicationBluetooth.envoyer(
-                                  trame,
+                                  trameTir,
                                   CommunicationBluetooth.ID_MODULE_SIGNALISATION);
 
-                                String couleur = champs[ProtocoleBasket.CHAMP_COULEUR_EQUIPE];
+                                couleur = champs[ProtocoleBasket.CHAMP_COULEUR_EQUIPE];
+                                numeroPanier = champs[ProtocoleBasket.CHAMP_NUMERO_PANIER];
+                                Log.d(TAG, "handleMessage() couleur " + couleur);
                                 if(couleur.equals(
-                                     String.valueOf(ProtocoleBasket.COULEUR_EQUIPE_ROUGE)))
+                                        ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
                                 {
-                                    /**
-                                     * @todo Utiliser incrementerScore() pour l'équipe1 de la Partie
-                                     */
+                                    partie.getEquipe1().incrementerScore();
                                     afficherScoreEquipe1();
                                 }
                                 else if(couleur.equals(
-                                          String.valueOf(ProtocoleBasket.COULEUR_EQUIPE_JAUNE)))
+                                        ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
                                 {
-                                    /**
-                                     * @todo Utiliser incrementerScore() pour l'équipe2 de la Partie
-                                     */
+                                    partie.getEquipe2().incrementerScore();
                                     afficherScoreEquipe2();
                                 }
-                                /**
-                                 * @todo Afficher le numéro de panier et la couleur d'équipe dans un
-                                 * TextView
-                                 */
+                                afficherNumeroPanier();
+                                afficherCouleurEquipe();
 
                                 reinitialiserCompteurTemps();
                             }
                         }
+                        if(verifierTrame(trame))
+                        {
+                            String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
+                            Log.d(TAG, "handleMessage() champs " + champs);
+                            if(champs.length >= ProtocoleBasket.NB_CHAMPS_TRAME_FIN &&
+                                    champs[ProtocoleBasket.CHAMP_TYPE_TRAME].equals(
+                                            ProtocoleBasket.TYPE_TRAME_FIN))
+                            {
+                                String trameFin = trame;
+                                communicationBluetooth.envoyer(
+                                        trameFin,
+                                        CommunicationBluetooth.ID_MODULE_DETECTION);
+                                communicationBluetooth.envoyer(
+                                        trameFin,
+                                        CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                                arreterCompteur();
+                                reinitialiserCompteurTemps();
+                                if(partie.getNumeroManche() == partie.getNbManchesGagnantes())
+                                {
+                                    Intent intent = new Intent(PartieSuivi.this, PartieTerminee.class);
+                                    startActivity(intent);
+                                }
+                            }
+                            partie.incrementerNumeroManche();
+                        }
+
+
                         break;
                     case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
                         Log.d(TAG,
@@ -601,21 +683,24 @@ public class PartieSuivi extends AppCompatActivity
                         {
                             boutonConnexionModuleDetection.setBackgroundTintList(
                               ColorStateList.valueOf(Color.RED));
-                            /**
-                             * @todo Que fait-on si on a une partie en cours ???
-                             */
+                            arreterCompteur();
+                            envoyerTramePausePartie();
                         }
                         else if(message.obj.toString().equals(
                                   CommunicationBluetooth.NOM_MODULE_SIGNALISATION))
                         {
                             boutonConnexionModuleSignalisation.setBackgroundTintList(
                               ColorStateList.valueOf(Color.RED));
+                            arreterCompteur();
+                            envoyerTramePausePartie();
                         }
                         else if(message.obj.toString().equals(
                                   CommunicationBluetooth.NOM_MODULE_ECRAN))
                         {
                             boutonConnexionModuleEcran.setBackgroundTintList(
                               ColorStateList.valueOf(Color.RED));
+                            arreterCompteur();
+                            envoyerTramePausePartie();
                         }
                         break;
                     default:
@@ -631,9 +716,10 @@ public class PartieSuivi extends AppCompatActivity
      */
     private boolean verifierTrame(String trame)
     {
-        /**
-         * @todo Vérifier si la trame est valide (délimiteurs)
-         */
+        if(trame.startsWith(ProtocoleBasket.DELIMITEUR_DEBUT_TRAME) && trame.endsWith(ProtocoleBasket.DELIMITEUR_FIN_TRAME ))
+        {
+            return true;
+        }
         return false;
     }
 
@@ -663,14 +749,11 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void envoyerTrameDebutPartie()
     {
-        /**
-         * @todo Gérer un numéro de partie
-         */
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
             communicationBluetooth.envoyer(
               ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                ProtocoleBasket.TYPE_TRAME_START + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + "1" +
+                ProtocoleBasket.TYPE_TRAME_START + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
                 ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
               i);
         }
@@ -681,14 +764,11 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void envoyerTrameArretPartie()
     {
-        /**
-         * @todo Gérer un numéro de partie
-         */
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
             communicationBluetooth.envoyer(
               ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                ProtocoleBasket.TYPE_TRAME_STOP + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + "1" +
+                ProtocoleBasket.TYPE_TRAME_STOP + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
                 ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
               i);
         }
@@ -706,6 +786,21 @@ public class PartieSuivi extends AppCompatActivity
                 ProtocoleBasket.TYPE_TRAME_RESET + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
                 ProtocoleBasket.DELIMITEUR_FIN_TRAME,
               i);
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour fabriquer et envoyer la trame de pause de partie (si un des modules se déconnecte)
+     */
+    private void envoyerTramePausePartie()
+    {
+        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
+        {
+            communicationBluetooth.envoyer(
+                    ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                            ProtocoleBasket.TYPE_TRAME_PAUSE + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
+                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
+                    i);
         }
     }
 }

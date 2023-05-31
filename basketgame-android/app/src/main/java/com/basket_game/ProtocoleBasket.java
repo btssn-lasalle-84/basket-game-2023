@@ -23,14 +23,15 @@ public class ProtocoleBasket
     public final static String TYPE_TRAME_SEANCE = "SEANCE";
     public final static String TYPE_TRAME_START  = "START";
     public final static String TYPE_TRAME_TIR    = "TIR";
+    // Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n
     public final static String TYPE_TRAME_STOP   = "STOP";
     public final static String TYPE_TRAME_RESET  = "RESET";
-
-    // Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n
+    public final static String TYPE_TRAME_PAUSE  = "PAUSE";
+    public final static String TYPE_TRAME_FIN  = "FIN";
     public final static int CHAMP_COULEUR_EQUIPE = 2;
     public final static int CHAMP_NUMERO_PANIER  = 3;
     public final static int NB_CHAMPS_TRAME_TIR  = 4;
-
+    public final static int NB_CHAMPS_TRAME_FIN  = 3;
     public final static String COULEUR_EQUIPE_ROUGE = "ROUGE";
     public final static String COULEUR_EQUIPE_JAUNE = "JAUNE";
 

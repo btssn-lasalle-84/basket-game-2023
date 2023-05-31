@@ -71,22 +71,27 @@ public class Equipe implements Serializable
     }
 
     /**
-     *
      * @brief Accesseur Equipe
-     * @fn getNomEquipe
-     * @details Retourne le nom
-     * @return String
+     * @fn getScore
+     * @details Retourne le score
+     * @return int
      */
     public int getScore()
     {
         return score;
     }
 
+    /**
+     * @brief Méthode appelée pour réinitialiser le score des équipes
+     */
     public void reinitialiserScore()
     {
         this.score = 0;
     }
 
+    /**
+     * @brief Méthode appelée pour incrémenter de 1 le score
+     */
     public void incrementerScore()
     {
         this.score++;
