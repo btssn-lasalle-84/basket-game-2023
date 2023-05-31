@@ -92,10 +92,9 @@ class Communication : public QObject
     void clientDeconnecte();
     void tabletteConnectee();
     void tabletteDeconnectee();
-    void trameRecue(QString message);
     void partieConfiguree(QString nomEquipeRouge,
                           QString nomEquipeJaune,
-                          int     nombrePaniers,
+                          int     nbPaniers,
                           int     tempsTour,
                           int     nbManches);
     void partieDemarree(int numeroPartie);

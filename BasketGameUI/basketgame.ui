@@ -310,7 +310,7 @@ color: white;</string>
                <number>0</number>
               </property>
               <property name="digitCount">
-               <number>1</number>
+               <number>5</number>
               </property>
              </widget>
             </item>
@@ -387,7 +387,7 @@ background-color: transparent;</string>
                <enum>Qt::AutoText</enum>
               </property>
               <property name="pixmap">
-               <pixmap resource="ressources.qrc">:/ressources/puissance4_7.png</pixmap>
+               <pixmap>:/ressources/puissance4_7.png</pixmap>
               </property>
               <property name="scaledContents">
                <bool>false</bool>
@@ -509,7 +509,7 @@ color: white;</string>
                <bool>false</bool>
               </property>
               <property name="digitCount">
-               <number>1</number>
+               <number>5</number>
               </property>
              </widget>
             </item>
@@ -526,8 +526,6 @@ color: white;</string>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="ressources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>

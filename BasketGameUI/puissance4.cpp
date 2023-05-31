@@ -135,7 +135,7 @@ bool Puissance4::verifierLigne()
             }
             else if(plateau[colonne][ligne] == CouleurJeton::ROUGE &&
                     plateau[colonne + 1][ligne] == CouleurJeton::ROUGE &&
-                    plateau[colonne + 2][ligne] == CouleurJeton::ROUGE &&
+                        plateau[colonne + 2][ligne] == CouleurJeton::ROUGE &&
                     plateau[colonne + 3][ligne] == CouleurJeton::ROUGE)
             {
                 vainqueur = true;

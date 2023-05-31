@@ -71,16 +71,14 @@
  */
 #define PLATEAU_7 ":/ressources/images/puissance4_7.png"
 
-
 namespace Ui
 {
 class basketgame;
 }
-
+using namespace std;
 class Puissance4;
 class Communication;
 class Equipe;
-class Seance;
 /**
  * @class Basketgame
  * @brief La GUI de l'application Basketgame
@@ -99,24 +97,41 @@ class Basketgame : public QMainWindow
         Partie,
     };
 
+    /**
+     * @enum Etat
+     * @brief Les différents états de la gestion du Basketgame
+     */
+    enum Etat
+    {
+        Attente,
+        Configure,
+        EnCours,
+        Stop,
+        Termine,
+        NbEtats
+    };
+
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
+    int     getNombreManches() const ;
 
   public slots:
-    void demarrerSeance(int numeroPartie);
-    void terminerSeance(int numeroPartie);
+    void demarrerSeance();
+    void terminerSeance();
     void reinitialiseSeance();
-    void configuerSeance(QString nomEquipeRouge,QString nomEquipeJaune,
-                         int nombrePaniers,int tempsTour,int nbManches);
-    void demarrerManche();
-    void terminerManche();
+    void decrementerNbManches();
+    void configurerSeance(QString nomEquipeRouge,QString nomEquipeJaune,
+                         int nbPaniers,int tempsTour,int nbManches);
+    void demarrerManche(int numeroManche);
+    void terminerManche(int numeroManche);
     void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void chronometrerTour();
     void fermerApplication();
+
 
 #ifdef TEST_BASKETGAME
     void simulerPion();
@@ -138,13 +153,14 @@ class Basketgame : public QMainWindow
     Puissance4*      puissance4;
     Communication*   communication;
     QVector<Equipe*> equipes;
-    Seance*          seance;
 
     QTime*           tempsTour;
     QTimer*          minuteurTour;
     int              nbPionsJoues;
-    bool             etatManche;
-    int              nombreManche;
+    int              nombreManches;
+    int              nombrePaniers;
+    int              tempsRecuperer;
+    Etat             etatBasketgame;
 
     void initialiserIHM();
     void initialiserEvenements();
