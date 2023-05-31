@@ -25,9 +25,10 @@
 Basketgame::Basketgame(QWidget* parent) :
     QMainWindow(parent), ui(new Ui::basketgame),
     puissance4(new Puissance4(this)), communication(new Communication(this)),
-    tempsTour(nullptr), minuteurTour(new QTimer),
-    nbPionsJoues(0), etatBasketgame(Etat::Attente) , nombreManches(0) ,
-    nombrePaniers(0) ,recupererTemps(0)
+    tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
+    numeroManche(0), nombreManches(NB_MANCHES_MIN),
+    nombrePaniers(NB_PANIERS_MAX), tempsTourConfigure(TEMPS_TOUR),
+    etatBasketgame(Etat::Attente)
 {
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
@@ -93,52 +94,66 @@ void Basketgame::fermerApplication()
  */
 void Basketgame::demarrerSeance()
 {
-    #ifdef TEST_SANS_BLUETOOTH
-    configurerSeance("Avignon","Sorgues",7,45,2);
-    #endif
-    if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine ) && ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
+#ifdef TEST_SANS_BLUETOOTH
+    configurerSeance("Avignon", "Sorgues", 7, 45, 2);
+#endif
+    if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
+       ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
     {
-        int numeroManches = getNombreManches();
         initialiserParametresEquipe();
-        demarrerManche(numeroManches);
         ui->messageAttente->hide();
-
     }
 }
 
 /**
  * @fn Basketgame::terminerSeance()
- * @brief méthode pour détermiquer quand la séance est terminer
+ * @brief méthode pour mettre fin à une séance
  */
 void Basketgame::terminerSeance()
 {
+    afficherEcranAcceuil();
+    etatBasketgame = Etat::Termine;
+}
+
+/**
+ * @fn Basketgame::evaluerSeance()
+ * @brief méthode pour détermiquer quand la séance est terminée
+ */
+void Basketgame::evaluerSeance()
+{
     if(getNombreManches() == 0)
     {
-        afficherEcranAcceuil();
         if(equipes[Rouge]->getScoreManche() > equipes[Jaune]->getScoreManche())
         {
-               ui->messageVainqueur->setText("Vainqueur est : " + equipes[Rouge]->getNom());
-               ui->messageVainqueur->setStyleSheet(
-                 "background-color: red; color: black; font: 20pt;");
+            ui->messageVainqueur->setText("Vainqueur est : " +
+                                          equipes[Rouge]->getNom());
+            ui->messageVainqueur->setStyleSheet(
+              "background-color: red; color: black; font: 20pt;");
         }
         else
         {
-            ui->messageVainqueur->setText("Vainqueur est : " + equipes[Jaune]->getNom());
+            ui->messageVainqueur->setText("Vainqueur est : " +
+                                          equipes[Jaune]->getNom());
             ui->messageVainqueur->setStyleSheet(
               "background-color: yellow; color: black; font: 20pt;");
         }
-        etatBasketgame = Etat::Termine;
+        terminerSeance();
+    }
+    else
+    {
+        ui->messageVainqueur->setText("");
     }
 }
+
 /**
- * @fn Basketgame::demarrerPartie
+ * @fn Basketgame::demarrerManche
  * @brief
  */
-void Basketgame::demarrerManche(int numeroManches)
+void Basketgame::demarrerManche(int numeroManche)
 {
     if(etatBasketgame != Etat::Attente || etatBasketgame != Etat::EnCours)
     {
-        qDebug() << Q_FUNC_INFO;
+        qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
         initialiserManche();
         initialiserDureeTour();
         demarrerChronometrageTour();
@@ -149,30 +164,40 @@ void Basketgame::demarrerManche(int numeroManches)
 
 /**
  * @fn Basketgame::terminerManche()
- * @brief méthode pour détermiquer quand une manche est terminer
+ * @brief méthode pour terminer une manche
  */
-void Basketgame::terminerManche(int numeroManches)
+void Basketgame::terminerManche(int numeroManche)
 {
-    if(puissance4->estVainqueur())
+    qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
+    if(etatBasketgame == Etat::EnCours)
     {
         initialiserDureeTour();
         ui->tempsTour->setText("00:00:00");
         minuteurTour->stop();
-        qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues
-                 << "estVainqueur" << puissance4->estVainqueur();
-        numeroManches = getNombreManches();
-        demarrerManche(numeroManches);
-        afficherScoreMancheEquipe();
-        terminerSeance();
+        etatBasketgame = Etat::Arrete;
+        evaluerSeance();
     }
-    else if(nbPionsJoues == NB_PIONS)
+}
+
+/**
+ * @fn Basketgame::evaluerManche()
+ * @brief méthode pour déterminer quand une manche est terminée
+ */
+void Basketgame::evaluerManche(int numeroManche)
+{
+    qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
+    qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues << "estVainqueur"
+             << puissance4->estVainqueur();
+    if(etatBasketgame == Etat::EnCours)
     {
-        initialiserDureeTour();
-        ui->tempsTour->setText("00:00:00");
-        minuteurTour->stop();
-        demarrerManche(numeroManches);
-        afficherScoreMancheEquipe();
-        terminerSeance();
+        if(puissance4->estVainqueur())
+        {
+            terminerManche(numeroManche);
+        }
+        else if(nbPionsJoues == NB_PIONS)
+        {
+            terminerManche(numeroManche);
+        }
     }
 }
 
@@ -251,7 +276,7 @@ void Basketgame::initialiserDureeTour()
         delete tempsTour;
         tempsTour = nullptr;
     }
-    tempsTour = new QTime(0, 0 , recupererTemps);
+    tempsTour = new QTime(0, 0, tempsTourConfigure);
 }
 
 /**
@@ -262,36 +287,74 @@ void Basketgame::initialiserCommunication()
 {
     if(communication != nullptr)
     {
-
-        connect(communication, SIGNAL(clientConnecte()), this, SLOT(afficherEcranPartie()));
-        connect(communication, SIGNAL(clientDeconnecte()), this, SLOT(afficherEcranAcceuil()));
-        connect(communication, SIGNAL(partieDemarree(int)), this, SLOT(demarrerManche(int numeroManche)));
-        connect(communication, SIGNAL(partieArretee(int)), this, SLOT(terminerManche(int numeroManche)));
-        connect(communication, SIGNAL(partieConfiguree(QString,QString,int,int,int)),
-                this, SLOT(configurerSeance(QString nomEquipeRouge,QString nomEquipeJaune,int nombrePaniers,int tempsTour,int nbManches)));
-        connect(communication, SIGNAL(partieReinitialisee()), this, SLOT(reinitialiseSeance()));
+        connect(communication,
+                SIGNAL(clientConnecte()),
+                this,
+                SLOT(afficherEcranPartie()));
+        connect(communication,
+                SIGNAL(clientDeconnecte()),
+                this,
+                SLOT(afficherEcranAcceuil()));
+        /**
+         * @todo Il faut déterminer le rôle des trames STAT et STOP. Est-ce
+         * qu'elles démarrent et/ou arrêtent une SEANCE ou une MANCHE ?
+         */
+        connect(communication,
+                SIGNAL(partieDemarree(int)),
+                this,
+                SLOT(demarrerManche(int)));
+        connect(communication,
+                SIGNAL(partieArretee(int)),
+                this,
+                SLOT(terminerManche(int)));
+        connect(communication,
+                SIGNAL(partieConfiguree(QString, QString, int, int, int)),
+                this,
+                SLOT(configurerSeance(QString, QString, int, int, int)));
+        connect(communication,
+                SIGNAL(partieReinitialisee()),
+                this,
+                SLOT(reinitialiserSeance()));
+        /**
+         * @todo Gérer la trame TIR
+         */
 
         communication->demarrer();
     }
 }
 
-void Basketgame::reinitialiseSeance()
+void Basketgame::reinitialiserSeance()
 {
-    qDebug() << Q_FUNC_INFO << "etatbasketGame reset" << etatBasketgame ;
+    qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
     etatBasketgame = Etat::Termine;
+    /**
+     * @todo Qu'est-ce que l'on fait après un RESET ? On revient à l'écran
+     * d'accueil ?
+     */
 }
 
-void Basketgame::configurerSeance(QString nomEquipeRouge,QString nomEquipeJaune,int nbPaniers,int tempsTour,int nbManches)
-{    
+void Basketgame::configurerSeance(QString nomEquipeRouge,
+                                  QString nomEquipeJaune,
+                                  int     nbPaniers,
+                                  int     tempsTour,
+                                  int     nbManches)
+{
     if(etatBasketgame == Etat::Attente || etatBasketgame == Etat::Termine)
     {
-        qDebug() << Q_FUNC_INFO << "nomEquipeRouge" << nomEquipeRouge << "nomEquipeJaune" << nomEquipeJaune << "nombrePaniers" << nbPaniers << "tempsTour" << tempsTour << "nbManches" << nbManches;
+        qDebug() << Q_FUNC_INFO << "nomEquipeRouge" << nomEquipeRouge
+                 << "nomEquipeJaune" << nomEquipeJaune << "nombrePaniers"
+                 << nbPaniers << "tempsTour" << tempsTour << "nbManches"
+                 << nbManches;
+        supprimerEquipes();
         equipes.push_back(new Equipe(nomEquipeRouge, this));
         equipes.push_back(new Equipe(nomEquipeJaune, this));
-        nombrePaniers  = nbPaniers;
-        nombreManches  = nbManches;
-        recupererTemps = tempsTour;
-        etatBasketgame = Etat::Configure;
+        nombrePaniers      = nbPaniers;
+        nombreManches      = nbManches;
+        tempsTourConfigure = tempsTour;
+        etatBasketgame     = Etat::Configure;
+        /**
+         * @todo Mettre à jour l'affichage
+         */
     }
 }
 
@@ -309,7 +372,7 @@ void Basketgame::jouerPion(int colonne)
         afficherScorePanierEquipe();
         puissance4->verifierPlateau();
         int numeroManche = getNombreManches();
-        terminerManche(numeroManche);
+        evaluerManche(numeroManche);
         afficherTourEquipe();
     }
 }
@@ -425,8 +488,7 @@ void Basketgame::afficherTourEquipe()
 
     if(etatBasketgame == Etat::EnCours)
     {
-
-    minuteurTour->start(TIC_HORLOGE);
+        minuteurTour->start(TIC_HORLOGE);
 
         if(puissance4->estEquipeRouge())
         {
@@ -444,7 +506,7 @@ void Basketgame::afficherTourEquipe()
               "background-color: red; color: black;font: 20pt;");
             puissance4->setTourEquipe(true);
         }
-            }
+    }
     else
         return;
 }
@@ -461,15 +523,15 @@ void Basketgame::afficherScorePanierEquipe()
         {
             equipes[Rouge]->incrementerScorePanier();
             ui->affichageTotalPanierE1->display(
-            QString::number(equipes[Rouge]->getScorePanier()));
+              QString::number(equipes[Rouge]->getScorePanier()));
         }
         else
         {
             equipes[Jaune]->incrementerScorePanier();
             ui->affichageTotalPanierE2->display(
-            QString::number(equipes[Jaune]->getScorePanier()));
+              QString::number(equipes[Jaune]->getScorePanier()));
         }
-    nbPionsJoues++;
+        nbPionsJoues++;
     }
 }
 void Basketgame::afficherScoreMancheEquipe()
@@ -480,16 +542,50 @@ void Basketgame::afficherScoreMancheEquipe()
         {
             equipes[Rouge]->incrementerScoreManche();
             ui->affichageTotalMancheE1->display(
-            QString::number(equipes[Rouge]->getScoreManche()));
+              QString::number(equipes[Rouge]->getScoreManche()));
         }
         else
         {
             equipes[Jaune]->incrementerScoreManche();
             ui->affichageTotalMancheE2->display(
-            QString::number(equipes[Jaune]->getScoreManche()));
+              QString::number(equipes[Jaune]->getScoreManche()));
         }
-    decrementerNbManches();
+        decrementerNbManches();
     }
+}
+
+/**
+ * @fn Basketgame::getNombreManche()
+ * @brief Retourne le nombre de manche
+ */
+int Basketgame::getNombreManches() const
+{
+    return nombreManches;
+}
+
+/**
+ * @fn Basketgame::decrementerNbManche
+ * @brief méthode qui décremente le nombre de manche joué
+ */
+void Basketgame::decrementerNbManches()
+{
+    if(etatBasketgame != Etat::EnCours)
+        return;
+    nombreManches--;
+    qDebug() << Q_FUNC_INFO << "nombreManches" << nombreManches;
+}
+
+/**
+ * @fn Basketgame::supprimerEquipes
+ * @brief méthode qui détruit les équipes déjà créées
+ */
+void Basketgame::supprimerEquipes()
+{
+    for(int i = 0; i < equipes.size(); ++i)
+    {
+        delete equipes[i];
+    }
+    equipes.clear();
 }
 
 #ifdef TEST_BASKETGAME
@@ -500,13 +596,12 @@ void Basketgame::afficherScoreMancheEquipe()
 void Basketgame::simulerPion()
 {
     if(etatBasketgame != Etat::EnCours)
-    return;
+        return;
 
     // simule un pion dans une colonne
     int colonne = randInt(0, NB_COLONNES - 1);
     // et le joue
     jouerPion(colonne);
-
 }
 /**
  * @fn Basketgame::attribuerRaccourcisClavier
@@ -555,26 +650,3 @@ int Basketgame::randInt(int min, int max)
     return qrand() % ((max + 1) - min) + min;
 }
 #endif
-
-/**
- * @fn Basketgame::getNombreManche()
- * @brief Retourne le nombre de manche
- */
-int Basketgame::getNombreManches() const
-{
-    return nombreManches;
-}
-
-
-/**
- * @fn Basketgame::decrementerNbManche
- * @brief méthode qui décremente le nombre de manche joué
- */
-void Basketgame::decrementerNbManches()
-{
-    if(etatBasketgame != Etat::EnCours)
-    return;
-    nombreManches--;
-    qDebug() << Q_FUNC_INFO << "nombreManches" <<nombreManches ;
-
-}

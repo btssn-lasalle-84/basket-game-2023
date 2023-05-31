@@ -36,6 +36,18 @@
 #define TEMPS_TOUR 30 // en s
 
 /**
+ * @def NB_PANIERS
+ * @brief Le nombre de paniers par défaut
+ */
+#define NB_PANIERS_MAX 7
+
+/**
+ * @def NB_MANCHES
+ * @brief Le nombre de manches par défaut
+ */
+#define NB_MANCHES_MIN 1
+
+/**
  * @def TAILLE_JETON
  * @brief Définit la taille de l'affichage du jeton
  */
@@ -106,7 +118,7 @@ class Basketgame : public QMainWindow
         Attente,
         Configure,
         EnCours,
-        Stop,
+        Arrete,
         Termine,
         NbEtats
     };
@@ -114,24 +126,27 @@ class Basketgame : public QMainWindow
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
-    int     getNombreManches() const ;
 
   public slots:
     void demarrerSeance();
     void terminerSeance();
-    void reinitialiseSeance();
-    void decrementerNbManches();
-    void configurerSeance(QString nomEquipeRouge,QString nomEquipeJaune,
-                         int nbPaniers,int tempsTour,int nbManches);
+    void evaluerSeance();
+    void reinitialiserSeance();
+
+    void configurerSeance(QString nomEquipeRouge,
+                          QString nomEquipeJaune,
+                          int     nbPaniers,
+                          int     tempsTour,
+                          int     nbManches);
     void demarrerManche(int numeroManche);
     void terminerManche(int numeroManche);
+    void evaluerManche(int numeroManche);
     void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
     void afficherEcranPartie();
     void chronometrerTour();
     void fermerApplication();
-
 
 #ifdef TEST_BASKETGAME
     void simulerPion();
@@ -154,13 +169,14 @@ class Basketgame : public QMainWindow
     Communication*   communication;
     QVector<Equipe*> equipes;
 
-    QTime*           tempsTour;
-    QTimer*          minuteurTour;
-    int              nbPionsJoues;
-    int              nombreManches;
-    int              nombrePaniers;
-    int              tempsRecuperer;
-    Etat             etatBasketgame;
+    QTime*  tempsTour;
+    QTimer* minuteurTour;
+    int     nbPionsJoues;
+    int     numeroManche;
+    int     nombreManches;
+    int     nombrePaniers;
+    int     tempsTourConfigure;
+    Etat    etatBasketgame;
 
     void initialiserIHM();
     void initialiserEvenements();
@@ -175,6 +191,9 @@ class Basketgame : public QMainWindow
     void afficherTourEquipe();
     void afficherScorePanierEquipe();
     void afficherScoreMancheEquipe();
+    int  getNombreManches() const;
+    void decrementerNbManches();
+    void supprimerEquipes();
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();
