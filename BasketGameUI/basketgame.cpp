@@ -97,6 +97,7 @@ void Basketgame::demarrerSeance()
 #ifdef TEST_SANS_BLUETOOTH
     configurerSeance("Avignon", "Sorgues", 7, 45, 2);
 #endif
+
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
        ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
     {
@@ -151,6 +152,7 @@ void Basketgame::evaluerSeance()
  */
 void Basketgame::demarrerManche(int numeroManche)
 {
+      qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
     if(etatBasketgame != Etat::Attente || etatBasketgame != Etat::EnCours)
     {
         qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
@@ -295,10 +297,10 @@ void Basketgame::initialiserCommunication()
                 SIGNAL(clientDeconnecte()),
                 this,
                 SLOT(afficherEcranAcceuil()));
-        /**
-         * @todo Il faut déterminer le rôle des trames STAT et STOP. Est-ce
-         * qu'elles démarrent et/ou arrêtent une SEANCE ou une MANCHE ?
-         */
+        connect(communication,
+                SIGNAL(clientReconnecte()),this,SLOT(arreterManche()));
+        connect(communication,
+                SIGNAL(clientDeconnecte()),this,SLOT(recommencerManche()));
         connect(communication,
                 SIGNAL(partieDemarree(int)),
                 this,
@@ -315,11 +317,47 @@ void Basketgame::initialiserCommunication()
                 SIGNAL(partieReinitialisee()),
                 this,
                 SLOT(reinitialiserSeance()));
-        /**
-         * @todo Gérer la trame TIR
-         */
+        connect(communication,SIGNAL(tirPanier(QString,int)),this,SLOT(gererTir(QString,int)));
 
         communication->demarrer();
+    }
+}
+
+void Basketgame::arreterManche()
+{
+    if(etatBasketgame == Etat::EnCours)
+    {
+        etatBasketgame = Etat::Arrete;
+        minuteurTour->stop();
+    }
+}
+
+void Basketgame::recommencerManche()
+{
+    if(etatBasketgame == Etat::Arrete)
+    {
+        etatBasketgame = Etat::EnCours;
+        minuteurTour->start();
+    }
+}
+
+void Basketgame::gererTir(QString couleurEquipe , int numeroPanier)
+{
+    if(etatBasketgame == Etat::EnCours)
+    {
+        if(CouleurEquipe::Rouge == couleurEquipe.toInt())
+        {
+            puissance4->estEquipeRouge();
+            int colonne = numeroPanier;
+            jouerPion(colonne);
+        }
+        else if (CouleurEquipe::Jaune == couleurEquipe.toInt())
+        {
+            int colonne = numeroPanier;
+            jouerPion(colonne);
+        }
+        qDebug() << Q_FUNC_INFO << "numeroPanier" << numeroPanier << "couleurEquipe" << couleurEquipe;
+
     }
 }
 
@@ -327,10 +365,7 @@ void Basketgame::reinitialiserSeance()
 {
     qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
     etatBasketgame = Etat::Termine;
-    /**
-     * @todo Qu'est-ce que l'on fait après un RESET ? On revient à l'écran
-     * d'accueil ?
-     */
+    afficherEcranAcceuil();
 }
 
 void Basketgame::configurerSeance(QString nomEquipeRouge,
@@ -352,9 +387,7 @@ void Basketgame::configurerSeance(QString nomEquipeRouge,
         nombreManches      = nbManches;
         tempsTourConfigure = tempsTour;
         etatBasketgame     = Etat::Configure;
-        /**
-         * @todo Mettre à jour l'affichage
-         */
+        demarrerManche(nombreManches);
     }
 }
 
@@ -599,9 +632,11 @@ void Basketgame::simulerPion()
         return;
 
     // simule un pion dans une colonne
-    int colonne = randInt(0, NB_COLONNES - 1);
     // et le joue
-    jouerPion(colonne);
+#ifdef TEST_SANS_BLUETOOTH
+            gererTir("Rouge", 4);
+        #endif
+    gererTir(couleurEquipe, numeroPanier);
 }
 /**
  * @fn Basketgame::attribuerRaccourcisClavier
@@ -629,6 +664,15 @@ void Basketgame::attribuerRaccourcisClavier()
     simulationPion->setShortcut(QKeySequence(Qt::Key_Space));
     addAction(simulationPion);
     connect(simulationPion, SIGNAL(triggered()), this, SLOT(simulerPion()));
+    QAction* simulationStop = new QAction(this);
+    simulationStop->setShortcut(QKeySequence(Qt::Key_A));
+    addAction(simulationStop);
+    connect(simulationStop, SIGNAL(triggered()), this, SLOT(arreterManche()));
+    QAction* simulationRecommencer = new QAction(this);
+    simulationRecommencer->setShortcut(QKeySequence(Qt::Key_R));
+    addAction(simulationRecommencer);
+    connect(simulationRecommencer, SIGNAL(triggered()), this, SLOT(recommencerManche()));
+
 #ifdef TEST_ALIGNEMENT
     QAction* verificationPuissance4 = new QAction(this);
     verificationPuissance4->setShortcut(QKeySequence(Qt::Key_V));

@@ -49,6 +49,7 @@ void Puissance4::initialiserPlateau()
  */
 int Puissance4::placerPion(int colonne)
 {
+
     int ligne = 0;
     for(ligne = 0; ligne < NB_LIGNES; ++ligne)
     {

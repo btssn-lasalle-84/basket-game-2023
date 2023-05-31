@@ -188,6 +188,10 @@ void Communication::deconnecterTablette(const QBluetoothAddress& adresse)
      * @todo Si on a le temps on devrait pouvoir gérer les
      * connexions/déconnexions pendant une partie
      */
+    if(estConnecte())
+    {
+        emit clientReconnecte();
+    }
 }
 
 /**

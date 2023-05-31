@@ -119,6 +119,7 @@ class Basketgame : public QMainWindow
         Configure,
         EnCours,
         Arrete,
+        Recommence,
         Termine,
         NbEtats
     };
@@ -132,6 +133,9 @@ class Basketgame : public QMainWindow
     void terminerSeance();
     void evaluerSeance();
     void reinitialiserSeance();
+    void arreterManche();
+    void recommencerManche() ;
+    void gererTir(QString couleurEquipe , int numeroPanier);
 
     void configurerSeance(QString nomEquipeRouge,
                           QString nomEquipeJaune,
@@ -173,9 +177,11 @@ class Basketgame : public QMainWindow
     QTimer* minuteurTour;
     int     nbPionsJoues;
     int     numeroManche;
+    int     numeroPanier;
     int     nombreManches;
     int     nombrePaniers;
     int     tempsTourConfigure;
+    QString  couleurEquipe;
     Etat    etatBasketgame;
 
     void initialiserIHM();

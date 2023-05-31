@@ -69,7 +69,7 @@ class Communication : public QObject
     QBluetoothServer*     serveur;     //!< Le serveur Bluetooth
     QBluetoothSocket*     socket;      //!< La socket de communication Bluetooth
     QBluetoothServiceInfo serviceInfo; //!< Information sur le service Bluetooth
-    bool                  connecte; //!< Etat de connexion de la socket client
+    bool                  connecte;    //!< Etat de connexion de la socket client
     QString               nomPeripheriqueLocal;
     QString               adressePeripheriqueLocal;
     QString trame; //!< Le contenu des données reçues sur la socket
@@ -89,6 +89,7 @@ class Communication : public QObject
 
   signals:
     void clientConnecte();
+    void clientReconnecte();
     void clientDeconnecte();
     void tabletteConnectee();
     void tabletteDeconnectee();
@@ -97,8 +98,8 @@ class Communication : public QObject
                           int     nbPaniers,
                           int     tempsTour,
                           int     nbManches);
-    void partieDemarree(int numeroPartie);
-    void partieArretee(int numeroPartie);
+    void partieDemarree(int numeroManche);
+    void partieArretee(int numeroManche);
     void partieReinitialisee();
     void tirPanier(QString couleurEquipe, int numeroPanier);
 };
