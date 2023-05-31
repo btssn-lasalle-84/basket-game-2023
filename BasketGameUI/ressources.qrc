@@ -3,5 +3,8 @@
         <file>ressources/images/jetonJaune.png</file>
         <file>ressources/images/puissance4_7.png</file>
         <file>ressources/images/jetonRouge.png</file>
+        <file>ressources/sons/finManche.wav</file>
+        <file>ressources/sons/tirReussi.wav</file>
+        <file>ressources/sons/finSeance.wav</file>
     </qresource>
 </RCC>

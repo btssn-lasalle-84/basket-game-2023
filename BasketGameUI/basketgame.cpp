@@ -14,6 +14,8 @@
 #include <QPainter>
 #include <QAction>
 #include <QDebug>
+
+
 #define TEST_SANS_BLUETOOTH
 
 /**
@@ -30,6 +32,10 @@ Basketgame::Basketgame(QWidget* parent) :
     nombrePaniers(NB_PANIERS_MAX), tempsTourConfigure(TEMPS_TOUR),
     etatBasketgame(Etat::Attente)
 {
+    finManche = new QSound(SONS_FIN_MANCHE, this);
+    finSeance = new QSound(SONS_FIN_SEANCE, this);
+    tirReussi = new QSound(SONS_TIR_REUSSI, this);
+
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
     initialiserEvenements();
@@ -139,6 +145,9 @@ void Basketgame::evaluerSeance()
               "background-color: yellow; color: black; font: 20pt;");
         }
         terminerSeance();
+        finSeance->play();
+        qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
+
     }
     else
     {
@@ -178,6 +187,9 @@ void Basketgame::terminerManche(int numeroManche)
         minuteurTour->stop();
         etatBasketgame = Etat::Arrete;
         evaluerSeance();
+        finManche->play();
+        qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
+
     }
 }
 
@@ -564,6 +576,8 @@ void Basketgame::afficherScorePanierEquipe()
             ui->affichageTotalPanierE2->display(
               QString::number(equipes[Jaune]->getScorePanier()));
         }
+        tirReussi->play();
+        qDebug() << Q_FUNC_INFO << "\"" << SONS_TIR_REUSSI << "\"";
         nbPionsJoues++;
     }
 }
@@ -632,11 +646,9 @@ void Basketgame::simulerPion()
         return;
 
     // simule un pion dans une colonne
-    // et le joue
-#ifdef TEST_SANS_BLUETOOTH
-            gererTir("Rouge", 4);
-        #endif
-    gererTir(couleurEquipe, numeroPanier);
+            int colonne = randInt(0, NB_COLONNES - 1);
+               // et le joue
+               jouerPion(colonne);
 }
 /**
  * @fn Basketgame::attribuerRaccourcisClavier

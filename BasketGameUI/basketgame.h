@@ -10,6 +10,7 @@
  */
 #include <QtWidgets>
 #include <QVector>
+#include <QSound>
 
 /**
  * @def TEST_BASKETGAME
@@ -83,6 +84,11 @@
  */
 #define PLATEAU_7 ":/ressources/images/puissance4_7.png"
 
+#define SONS_FIN_SEANCE  ":/ressources/sons/finSeance.wav"
+
+#define SONS_FIN_MANCHE  ":/ressources/sons/finManche.wav"
+
+#define SONS_TIR_REUSSI  ":/ressources/sons/tirReussi.wav"
 namespace Ui
 {
 class basketgame;
@@ -182,7 +188,10 @@ class Basketgame : public QMainWindow
     int     nombrePaniers;
     int     tempsTourConfigure;
     QString  couleurEquipe;
-    Etat    etatBasketgame;
+    Etat        etatBasketgame;
+    QSound      *finSeance;
+    QSound      *finManche;
+    QSound      *tirReussi;
 
     void initialiserIHM();
     void initialiserEvenements();
