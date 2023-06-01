@@ -41,7 +41,11 @@ public class ProtocoleBasket
         START,
         TIR,
         STOP,
-        RESET
+        RESET,
+        PAUSE,
+        RESTART,
+        FIN,
+        INCONNU
     }
     public enum CouleurEquipe
     {

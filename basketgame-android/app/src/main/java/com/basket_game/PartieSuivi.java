@@ -101,6 +101,7 @@ public class PartieSuivi extends AppCompatActivity
         partie.reinitialiserNumeroManche();
         connecterModules();
         verifierConnexionModules();
+        compterTempsRestantTour();
     }
 
     /**
@@ -157,7 +158,7 @@ public class PartieSuivi extends AppCompatActivity
     private void initialiserAffichageNumeroPanier()
     {
         affichageNumeroPanier = findViewById(R.id.affichageNumeroPanier);
-        String numeroPanier = "Panier N°";
+        String numeroPanier = "";
         affichageNumeroPanier.setText(numeroPanier);
     }
 
@@ -329,7 +330,16 @@ public class PartieSuivi extends AppCompatActivity
     {
         affichageNumeroPanier = findViewById(R.id.affichageNumeroPanier);
         Log.d(TAG, "afficherNumeroPanier() numero panier = " + numeroPanier);
-        affichageNumeroPanier.setText(numeroPanier);
+        String panierNumero = "Panier N°" + numeroPanier;
+        if(Objects.equals(couleur, ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
+        {
+            affichageNumeroPanier.setTextColor(Color.parseColor("#D00000"));
+        }
+        else if(Objects.equals(couleur, ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
+        {
+            affichageNumeroPanier.setTextColor(Color.parseColor("#FFBE0B"));
+        }
+        affichageNumeroPanier.setText(panierNumero);
     }
 
     /**
@@ -348,6 +358,92 @@ public class PartieSuivi extends AppCompatActivity
             affichageCouleurEquipe.setTextColor(Color.parseColor("#FFBE0B"));
         }
         affichageCouleurEquipe.setText(couleur);
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher la connexion Bluetooth
+     */
+    private void afficherConnexionBluetooth(String trame)
+    {
+        if(trame.equals(
+                CommunicationBluetooth.NOM_MODULE_DETECTION))
+        {
+            boutonConnexionModuleDetection.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.GREEN));
+
+        }
+        else if(trame.equals(
+                CommunicationBluetooth.NOM_MODULE_SIGNALISATION))
+        {
+            boutonConnexionModuleSignalisation.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.GREEN));
+        }
+        else if(trame.equals(
+                CommunicationBluetooth.NOM_MODULE_ECRAN))
+        {
+            boutonConnexionModuleEcran.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.GREEN));
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour gérer la connexion Bluetooth
+     */
+    private void gererConnexionBluetooth(String trame) {
+        /**
+         * @todo Gérer la connexion Bluetooth
+         */
+        // modules minimum pour jouer
+        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION) && (communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN))) {
+            demarrerPartie();
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher la déconnexion Bluetooth
+     */
+    private void afficherDeconnexionBluetooth(String trame)
+    {
+        if(trame.equals(
+                CommunicationBluetooth.NOM_MODULE_DETECTION))
+        {
+            boutonConnexionModuleDetection.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.RED));
+        }
+        else if(trame.equals(
+                CommunicationBluetooth.NOM_MODULE_SIGNALISATION))
+        {
+            boutonConnexionModuleSignalisation.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.RED));
+        }
+        else if(trame.equals(
+                CommunicationBluetooth.NOM_MODULE_ECRAN))
+        {
+            boutonConnexionModuleEcran.setBackgroundTintList(
+                    ColorStateList.valueOf(Color.RED));
+        }
+        else
+        {
+            return;
+        }
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher la déconnexion Bluetooth
+     */
+    private void gererDeconnexionBluetooth(String trame) {
+        /**
+         * @todo Gérer la déconnexion Bluetooth
+         */
+        // au moins un module déconnecté
+        if(!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) || (!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)))) {
+            arreterCompteurTemps();
+            envoyerTramePausePartie();
+        }
     }
 
     /**
@@ -412,23 +508,24 @@ public class PartieSuivi extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                if(!communicationBluetooth.estConnecte(
-                     CommunicationBluetooth.ID_MODULE_SIGNALISATION))
+                if(!communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_SIGNALISATION))
                 {
-                    communicationBluetooth.seConnecter(
-                      CommunicationBluetooth.NOM_MODULE_SIGNALISATION,
-                      CommunicationBluetooth.ID_MODULE_SIGNALISATION);
-                    Toast toast =
-                      Toast.makeText(getApplicationContext(),
-                                     "Impossible de se connecter au module " +
-                                       CommunicationBluetooth.NOM_MODULE_SIGNALISATION + " !",
-                                     Toast.LENGTH_SHORT);
-                    toast.show();
+                    if(!communicationBluetooth.seConnecter(
+                            CommunicationBluetooth.NOM_MODULE_SIGNALISATION,
+                            CommunicationBluetooth.ID_MODULE_SIGNALISATION))
+                    {
+                        Toast toast =
+                                Toast.makeText(getApplicationContext(),
+                                        "Impossible de se connecter au module " +
+                                                CommunicationBluetooth.NOM_MODULE_SIGNALISATION + " !",
+                                        Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
                 else
                 {
                     communicationBluetooth.seDeconnecter(
-                      CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+                            CommunicationBluetooth.ID_MODULE_SIGNALISATION);
                 }
             }
         });
@@ -448,17 +545,22 @@ public class PartieSuivi extends AppCompatActivity
             {
                 if(!communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN))
                 {
-                    communicationBluetooth.seConnecter(CommunicationBluetooth.NOM_MODULE_ECRAN,
-                                                       CommunicationBluetooth.ID_MODULE_ECRAN);
-                    Toast toast = Toast.makeText(getApplicationContext(),
-                                                 "Impossible de se connecter au module " +
-                                                   CommunicationBluetooth.NOM_MODULE_ECRAN + " !",
-                                                 Toast.LENGTH_SHORT);
-                    toast.show();
+                    if(!communicationBluetooth.seConnecter(
+                            CommunicationBluetooth.NOM_MODULE_ECRAN,
+                            CommunicationBluetooth.ID_MODULE_ECRAN))
+                    {
+                        Toast toast =
+                                Toast.makeText(getApplicationContext(),
+                                        "Impossible de se connecter au module " +
+                                                CommunicationBluetooth.NOM_MODULE_ECRAN + " !",
+                                        Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                 }
                 else
                 {
-                    communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_ECRAN);
+                    communicationBluetooth.seDeconnecter(
+                            CommunicationBluetooth.ID_MODULE_ECRAN);
                 }
             }
         });
@@ -503,7 +605,7 @@ public class PartieSuivi extends AppCompatActivity
     /**
      * @brief Méthode appelée pour arrêter le compteur
      */
-    private void arreterCompteur()
+    private void arreterCompteurTemps()
     {
         if(tacheCompteurTempsTour != null)
         {
@@ -558,12 +660,12 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void arreterPartie()
     {
-        arreterCompteur();
+        arreterCompteurTemps();
         reinitialiserCompteurTemps();
         envoyerTrameArretPartie();
 
         Log.d(TAG, "arreterPartie()");
-        Intent intent = new Intent(PartieSuivi.this, PartieInterrompue.class);
+        Intent intent = new Intent(PartieSuivi.this, PartieArretee.class);
         startActivity(intent);
     }
 
@@ -584,124 +686,31 @@ public class PartieSuivi extends AppCompatActivity
                 {
                     case CommunicationBluetooth.CONNEXION_BLUETOOTH:
                         Log.d(TAG, "handleMessage() CONNEXION_BLUETOOTH " + message.obj.toString());
-                        if(message.obj.toString().equals(
-                             CommunicationBluetooth.NOM_MODULE_DETECTION))
-                        {
-                            boutonConnexionModuleDetection.setBackgroundTintList(
-                              ColorStateList.valueOf(Color.GREEN));
-                            demarrerPartie();
-                            compterTempsRestantTour();
-                        }
-                        else if(message.obj.toString().equals(
-                                  CommunicationBluetooth.NOM_MODULE_SIGNALISATION))
-                        {
-                            boutonConnexionModuleSignalisation.setBackgroundTintList(
-                              ColorStateList.valueOf(Color.GREEN));
-                            compterTempsRestantTour();
-                        }
-                        else if(message.obj.toString().equals(
-                                  CommunicationBluetooth.NOM_MODULE_ECRAN))
-                        {
-                            boutonConnexionModuleEcran.setBackgroundTintList(
-                              ColorStateList.valueOf(Color.GREEN));
-                            compterTempsRestantTour();
-                        }
+                        afficherConnexionBluetooth(message.obj.toString());
+                        gererConnexionBluetooth(message.obj.toString());
                         break;
                     case CommunicationBluetooth.RECEPTION_BLUETOOTH:
                         Log.d(TAG, "handleMessage() RECEPTION_BLUETOOTH " + message.obj.toString());
                         String trame = message.obj.toString();
                         if(verifierTrame(trame))
                         {
-                            String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
-                            Log.d(TAG, "handleMessage() champs " + champs);
-                            if(champs.length >= ProtocoleBasket.NB_CHAMPS_TRAME_TIR &&
-                               champs[ProtocoleBasket.CHAMP_TYPE_TRAME].equals(
-                                       ProtocoleBasket.TYPE_TRAME_TIR))
+                            ProtocoleBasket.Type typeTrame = identifierTypeTrame(trame);
+                            switch (typeTrame)
                             {
-                                String trameTir = trame;
-                                communicationBluetooth.envoyer(
-                                  trameTir,
-                                  CommunicationBluetooth.ID_MODULE_ECRAN);
-                                communicationBluetooth.envoyer(
-                                  trameTir,
-                                  CommunicationBluetooth.ID_MODULE_SIGNALISATION);
-
-                                couleur = champs[ProtocoleBasket.CHAMP_COULEUR_EQUIPE];
-                                numeroPanier = champs[ProtocoleBasket.CHAMP_NUMERO_PANIER];
-                                Log.d(TAG, "handleMessage() couleur " + couleur);
-                                if(couleur.equals(
-                                        ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
-                                {
-                                    partie.getEquipe1().incrementerScore();
-                                    afficherScoreEquipe1();
-                                }
-                                else if(couleur.equals(
-                                        ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
-                                {
-                                    partie.getEquipe2().incrementerScore();
-                                    afficherScoreEquipe2();
-                                }
-                                afficherNumeroPanier();
-                                afficherCouleurEquipe();
-
-                                reinitialiserCompteurTemps();
+                                case TIR:
+                                    gererTrameTir(trame);
+                                    break;
+                                case FIN:
+                                    gererTrameFin(trame);
+                                    break;
                             }
                         }
-                        if(verifierTrame(trame))
-                        {
-                            String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
-                            Log.d(TAG, "handleMessage() champs " + champs);
-                            if(champs.length >= ProtocoleBasket.NB_CHAMPS_TRAME_FIN &&
-                                    champs[ProtocoleBasket.CHAMP_TYPE_TRAME].equals(
-                                            ProtocoleBasket.TYPE_TRAME_FIN))
-                            {
-                                String trameFin = trame;
-                                communicationBluetooth.envoyer(
-                                        trameFin,
-                                        CommunicationBluetooth.ID_MODULE_DETECTION);
-                                communicationBluetooth.envoyer(
-                                        trameFin,
-                                        CommunicationBluetooth.ID_MODULE_SIGNALISATION);
-                                arreterCompteur();
-                                reinitialiserCompteurTemps();
-                                if(partie.getNumeroManche() == partie.getNbManchesGagnantes())
-                                {
-                                    Intent intent = new Intent(PartieSuivi.this, PartieTerminee.class);
-                                    startActivity(intent);
-                                }
-                            }
-                            partie.incrementerNumeroManche();
-                        }
-
-
                         break;
                     case CommunicationBluetooth.DECONNEXION_BLUETOOTH:
                         Log.d(TAG,
                               "handleMessage() DECONNEXION_BLUETOOTH " + message.obj.toString());
-                        if(message.obj.toString().equals(
-                             CommunicationBluetooth.NOM_MODULE_DETECTION))
-                        {
-                            boutonConnexionModuleDetection.setBackgroundTintList(
-                              ColorStateList.valueOf(Color.RED));
-                            arreterCompteur();
-                            envoyerTramePausePartie();
-                        }
-                        else if(message.obj.toString().equals(
-                                  CommunicationBluetooth.NOM_MODULE_SIGNALISATION))
-                        {
-                            boutonConnexionModuleSignalisation.setBackgroundTintList(
-                              ColorStateList.valueOf(Color.RED));
-                            arreterCompteur();
-                            envoyerTramePausePartie();
-                        }
-                        else if(message.obj.toString().equals(
-                                  CommunicationBluetooth.NOM_MODULE_ECRAN))
-                        {
-                            boutonConnexionModuleEcran.setBackgroundTintList(
-                              ColorStateList.valueOf(Color.RED));
-                            arreterCompteur();
-                            envoyerTramePausePartie();
-                        }
+                        afficherDeconnexionBluetooth(message.obj.toString());
+                        gererDeconnexionBluetooth(message.obj.toString());
                         break;
                     default:
                         Log.e(TAG, "handleMessage() what = " + message.what + " !!!");
@@ -709,6 +718,56 @@ public class PartieSuivi extends AppCompatActivity
             }
         };
         Log.d(TAG, "initialiserHandler() handler = " + handler);
+    }
+
+    private void gererTrameTir(String trame) {
+        String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
+        Log.d(TAG, "gererTrameTir() champs " + champs);
+        communicationBluetooth.envoyer(
+          trame,
+          CommunicationBluetooth.ID_MODULE_ECRAN);
+        communicationBluetooth.envoyer(
+          trame,
+          CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+
+        couleur = champs[ProtocoleBasket.CHAMP_COULEUR_EQUIPE];
+        numeroPanier = champs[ProtocoleBasket.CHAMP_NUMERO_PANIER];
+        Log.d(TAG, "gererTrameTir() couleur = " + couleur + " - numeroPanier = " + numeroPanier);
+        if(couleur.equals(
+                ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
+        {
+            partie.getEquipe1().incrementerScore();
+            afficherScoreEquipe1();
+        }
+        else if(couleur.equals(
+                ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
+        {
+            partie.getEquipe2().incrementerScore();
+            afficherScoreEquipe2();
+        }
+        afficherNumeroPanier();
+        afficherCouleurEquipe();
+
+        reinitialiserCompteurTemps();
+    }
+
+    private void gererTrameFin(String trame) {
+        String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
+        Log.d(TAG, "gererTrameFin() champs " + champs);
+        communicationBluetooth.envoyer(
+                trame,
+                CommunicationBluetooth.ID_MODULE_DETECTION);
+        communicationBluetooth.envoyer(
+                trame,
+                CommunicationBluetooth.ID_MODULE_SIGNALISATION);
+        arreterCompteurTemps();
+        reinitialiserCompteurTemps();
+        partie.incrementerNumeroManche();
+        if(partie.getNumeroManche() > partie.getNbManchesGagnantes())
+        {
+            Intent intent = new Intent(PartieSuivi.this, PartieArretee.class);
+            startActivity(intent);
+        }
     }
 
     /**
@@ -721,6 +780,32 @@ public class PartieSuivi extends AppCompatActivity
             return true;
         }
         return false;
+    }
+
+    /**
+     * @brief Méthode appelée pour identifier le type de trame
+     */
+    private ProtocoleBasket.Type identifierTypeTrame(String trame) {
+        String[] champs = trame.split(ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME);
+        Log.d(TAG, "identifierTypeTrame() champs " + champs);
+        if(champs.length >= ProtocoleBasket.NB_CHAMPS_TRAME_TIR &&
+                champs[ProtocoleBasket.CHAMP_TYPE_TRAME].equals(
+                        ProtocoleBasket.TYPE_TRAME_TIR))
+        {
+            Log.d(TAG, "identifierTypeTrame() ProtocoleBasket.Type.TIR");
+            return ProtocoleBasket.Type.TIR;
+        }
+        else if(champs.length >= ProtocoleBasket.NB_CHAMPS_TRAME_FIN &&
+                champs[ProtocoleBasket.CHAMP_TYPE_TRAME].equals(
+                        ProtocoleBasket.TYPE_TRAME_FIN))
+        {
+            Log.d(TAG, "identifierTypeTrame() ProtocoleBasket.Type.FIN");
+            return ProtocoleBasket.Type.FIN;
+        }
+        else {
+            Log.d(TAG, "identifierTypeTrame() ProtocoleBasket.Type.INCONNU");
+            return ProtocoleBasket.Type.INCONNU;
+        }
     }
 
     /**

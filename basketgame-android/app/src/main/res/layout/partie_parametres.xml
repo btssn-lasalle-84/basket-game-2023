@@ -7,19 +7,17 @@
     tools:context=".BasketGame"
     android:background="#181821" >
 
-    <TextView
-        android:id="@+id/parametres"
-        android:layout_width="299dp"
-        android:layout_height="204dp"
-        android:gravity="center"
-        android:text="@string/param_tres"
-        android:textColor="#FFFFFF"
-        android:textSize="50sp"
+    <ImageView
+        android:id="@+id/logo2"
+        android:layout_width="328dp"
+        android:layout_height="259dp"
+        android:contentDescription="@string/logo_basket_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintVertical_bias="0.007"
+        app:srcCompat="@drawable/logo_basket_game_sans_fond" />
 
     <EditText
         android:id="@+id/editionEquipe1"
@@ -62,10 +60,9 @@
         android:text="@string/lancer_la_partie"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.925"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.889" />
+        app:layout_constraintVertical_bias="0.91" />
 
     <LinearLayout
         android:layout_width="354dp"
