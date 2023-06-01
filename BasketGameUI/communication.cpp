@@ -188,10 +188,6 @@ void Communication::deconnecterTablette(const QBluetoothAddress& adresse)
      * @todo Si on a le temps on devrait pouvoir gérer les
      * connexions/déconnexions pendant une partie
      */
-    if(estConnecte())
-    {
-        emit clientReconnecte();
-    }
 }
 
 /**
@@ -288,7 +284,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
     {
         case TypeTrame::Seance:
             qDebug() << Q_FUNC_INFO << "SEANCE";
-            emit partieConfiguree(champsTrame[NOM_EQUIPE1],
+            emit seanceConfiguree(champsTrame[NOM_EQUIPE1],
                                   champsTrame[NOM_EQUIPE2],
                                   champsTrame[NB_PANIERS].toInt(),
                                   champsTrame[TEMPS_TOUR_MAX].toInt(),
@@ -297,7 +293,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Start:
             qDebug() << Q_FUNC_INFO << "START";
-            emit partieDemarree(champsTrame[NUMERO_PARTIE].toInt());
+            emit mancheDemarree(champsTrame[NUMERO_PARTIE].toInt());
             break;
         case TypeTrame::Tir:
             qDebug() << Q_FUNC_INFO << "TIR";
@@ -306,7 +302,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Stop:
             qDebug() << Q_FUNC_INFO << "STOP";
-            emit partieArretee(champsTrame[NUMERO_PARTIE].toInt());
+            emit mancheArretee(champsTrame[NUMERO_PARTIE].toInt());
             break;
         case TypeTrame::Reset:
             qDebug() << Q_FUNC_INFO << "RESET";

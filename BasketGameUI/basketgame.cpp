@@ -15,7 +15,6 @@
 #include <QAction>
 #include <QDebug>
 
-
 #define TEST_SANS_BLUETOOTH
 
 /**
@@ -81,6 +80,10 @@ void Basketgame::afficherEcranAcceuil()
  */
 void Basketgame::afficherEcranPartie()
 {
+    /**
+     * @todo Il faudrait peut-être enlever toutes les références à la notion de
+     * partie !!!
+     */
     qDebug() << Q_FUNC_INFO;
     afficherEcran(Basketgame::Ecran::Partie);
 }
@@ -147,7 +150,6 @@ void Basketgame::evaluerSeance()
         terminerSeance();
         finSeance->play();
         qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
-
     }
     else
     {
@@ -161,7 +163,7 @@ void Basketgame::evaluerSeance()
  */
 void Basketgame::demarrerManche(int numeroManche)
 {
-      qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
+    qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
     if(etatBasketgame != Etat::Attente || etatBasketgame != Etat::EnCours)
     {
         qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
@@ -189,7 +191,6 @@ void Basketgame::terminerManche(int numeroManche)
         evaluerSeance();
         finManche->play();
         qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
-
     }
 }
 
@@ -309,27 +310,44 @@ void Basketgame::initialiserCommunication()
                 SIGNAL(clientDeconnecte()),
                 this,
                 SLOT(afficherEcranAcceuil()));
+        /**
+         * @todo A revoir !?
+         */
         connect(communication,
-                SIGNAL(clientReconnecte()),this,SLOT(arreterManche()));
+                SIGNAL(clientReconnecte()),
+                this,
+                SLOT(arreterManche()));
+        /**
+         * @todo A revoir !?
+         */
         connect(communication,
-                SIGNAL(clientDeconnecte()),this,SLOT(recommencerManche()));
+                SIGNAL(clientDeconnecte()),
+                this,
+                SLOT(recommencerManche()));
         connect(communication,
-                SIGNAL(partieDemarree(int)),
+                SIGNAL(mancheDemarree(int)),
                 this,
                 SLOT(demarrerManche(int)));
         connect(communication,
-                SIGNAL(partieArretee(int)),
+                SIGNAL(mancheArretee(int)),
                 this,
                 SLOT(terminerManche(int)));
         connect(communication,
-                SIGNAL(partieConfiguree(QString, QString, int, int, int)),
+                SIGNAL(seanceConfiguree(QString, QString, int, int, int)),
                 this,
                 SLOT(configurerSeance(QString, QString, int, int, int)));
+        /**
+         * @todo La notion de partie n'existe plus ! On RESET la séance ou la
+         * manche ?
+         */
         connect(communication,
                 SIGNAL(partieReinitialisee()),
                 this,
                 SLOT(reinitialiserSeance()));
-        connect(communication,SIGNAL(tirPanier(QString,int)),this,SLOT(gererTir(QString,int)));
+        connect(communication,
+                SIGNAL(tirPanier(QString, int)),
+                this,
+                SLOT(gererTir(QString, int)));
 
         communication->demarrer();
     }
@@ -353,23 +371,29 @@ void Basketgame::recommencerManche()
     }
 }
 
-void Basketgame::gererTir(QString couleurEquipe , int numeroPanier)
+void Basketgame::gererTir(QString couleurEquipe, int numeroPanier)
 {
     if(etatBasketgame == Etat::EnCours)
     {
+        /**
+         * @todo couleurEquipe n'est pas un INT ! Le protocole indique qu'il est
+         * soit égal à "ROUGE" ou "JAUNE" !!! D'autre part, le ALORS et le SINO
+         * font la même chose : ils jouent un pion dans une colonne !
+         */
         if(CouleurEquipe::Rouge == couleurEquipe.toInt())
         {
+            /**
+             * @todo estEquipeRouge() est une méthode qui retourne un bool ???
+             */
             puissance4->estEquipeRouge();
-            int colonne = numeroPanier;
-            jouerPion(colonne);
+            jouerPion(numeroPanier);
         }
-        else if (CouleurEquipe::Jaune == couleurEquipe.toInt())
+        else if(CouleurEquipe::Jaune == couleurEquipe.toInt())
         {
-            int colonne = numeroPanier;
-            jouerPion(colonne);
+            jouerPion(numeroPanier);
         }
-        qDebug() << Q_FUNC_INFO << "numeroPanier" << numeroPanier << "couleurEquipe" << couleurEquipe;
-
+        qDebug() << Q_FUNC_INFO << "numeroPanier" << numeroPanier
+                 << "couleurEquipe" << couleurEquipe;
     }
 }
 
@@ -646,9 +670,9 @@ void Basketgame::simulerPion()
         return;
 
     // simule un pion dans une colonne
-            int colonne = randInt(0, NB_COLONNES - 1);
-               // et le joue
-               jouerPion(colonne);
+    int colonne = randInt(0, NB_COLONNES - 1);
+    // et le joue
+    jouerPion(colonne);
 }
 /**
  * @fn Basketgame::attribuerRaccourcisClavier
@@ -683,7 +707,10 @@ void Basketgame::attribuerRaccourcisClavier()
     QAction* simulationRecommencer = new QAction(this);
     simulationRecommencer->setShortcut(QKeySequence(Qt::Key_R));
     addAction(simulationRecommencer);
-    connect(simulationRecommencer, SIGNAL(triggered()), this, SLOT(recommencerManche()));
+    connect(simulationRecommencer,
+            SIGNAL(triggered()),
+            this,
+            SLOT(recommencerManche()));
 
 #ifdef TEST_ALIGNEMENT
     QAction* verificationPuissance4 = new QAction(this);
