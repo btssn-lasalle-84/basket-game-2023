@@ -21,7 +21,7 @@
 #define NB_PANIERS     5
 #define NB_MANCHES     6
 // Trame START : $BASKET;START;NUMERO_PARTIE;\r\n
-#define NUMERO_PARTIE 2
+#define NUMERO_Seance 2
 // Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n
 #define COULEUR_EQUIPE 2
 #define NUMERO_PANIER  3
@@ -61,6 +61,7 @@ class Communication : public QObject
 
     QString getNomPeripheriqueLocal();
     QString getAdressePeripheriqueLocal();
+    void envoyer(QString trameEnvoyer);
 
   public slots:
 
@@ -100,7 +101,7 @@ class Communication : public QObject
                           int     nbManches);
     void mancheDemarree(int numeroManche);
     void mancheArretee(int numeroManche);
-    void partieReinitialisee();
+    void SeanceReinitialisee();
     void tirPanier(QString couleurEquipe, int numeroPanier);
 };
 

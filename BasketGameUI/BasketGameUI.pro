@@ -6,7 +6,6 @@
 
 QT       += core gui widgets
 QT       += bluetooth
-QT       += multimedia
 
 TARGET = BasketGameUI
 TEMPLATE = app

@@ -10,7 +10,7 @@
  */
 #include <QtWidgets>
 #include <QVector>
-#include <QSound>
+//#include <QSound>
 
 /**
  * @def TEST_BASKETGAME
@@ -112,7 +112,7 @@ class Basketgame : public QMainWindow
     enum Ecran
     {
         Accueil,
-        Partie,
+        Seance,
     };
 
     /**
@@ -121,11 +121,12 @@ class Basketgame : public QMainWindow
      */
     enum Etat
     {
+        Deconnecte,
         Attente,
         Configure,
+        Demarre,
         EnCours,
-        Arrete,
-        Recommence,
+        Sauvegarde,
         Termine,
         NbEtats
     };
@@ -139,10 +140,7 @@ class Basketgame : public QMainWindow
     void terminerSeance();
     void evaluerSeance();
     void reinitialiserSeance();
-    void arreterManche();
-    void recommencerManche() ;
     void gererTir(QString couleurEquipe , int numeroPanier);
-
     void configurerSeance(QString nomEquipeRouge,
                           QString nomEquipeJaune,
                           int     nbPaniers,
@@ -154,7 +152,7 @@ class Basketgame : public QMainWindow
     void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
-    void afficherEcranPartie();
+    void afficherEcranSeance();
     void chronometrerTour();
     void fermerApplication();
 
@@ -171,6 +169,7 @@ class Basketgame : public QMainWindow
     {
         Rouge = 0,
         Jaune,
+        Aucune,
         NbEquipes
     };
 
@@ -188,10 +187,12 @@ class Basketgame : public QMainWindow
     int     nombrePaniers;
     int     tempsTourConfigure;
     QString  couleurEquipe;
+    QString  nomEquipeJaunes;
+    QString  nomEquipeRouges;
     Etat        etatBasketgame;
-    QSound      *finSeance;
-    QSound      *finManche;
-    QSound      *tirReussi;
+    //QSound      *finSeance;
+    //QSound      *finManche;
+    //QSound      *tirReussi;
 
     void initialiserIHM();
     void initialiserEvenements();
@@ -209,6 +210,8 @@ class Basketgame : public QMainWindow
     int  getNombreManches() const;
     void decrementerNbManches();
     void supprimerEquipes();
+    static CouleurEquipe convertirCouleurRecus(QString couleurEquipe);
+    static QString envoyerTrameConvertit(CouleurEquipe couleurEquipe);
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();

@@ -15,8 +15,6 @@
 #include <QAction>
 #include <QDebug>
 
-#define TEST_SANS_BLUETOOTH
-
 /**
  * @brief Constructeur de la classe Basketgame
  *
@@ -29,11 +27,11 @@ Basketgame::Basketgame(QWidget* parent) :
     tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
     numeroManche(0), nombreManches(NB_MANCHES_MIN),
     nombrePaniers(NB_PANIERS_MAX), tempsTourConfigure(TEMPS_TOUR),
-    etatBasketgame(Etat::Attente)
+    etatBasketgame(Etat::Attente), nomEquipeRouges("") , nomEquipeJaunes("")
 {
-    finManche = new QSound(SONS_FIN_MANCHE, this);
-    finSeance = new QSound(SONS_FIN_SEANCE, this);
-    tirReussi = new QSound(SONS_TIR_REUSSI, this);
+    //finManche = new QSound(SONS_FIN_MANCHE, this);
+    //finSeance = new QSound(SONS_FIN_SEANCE, this);
+    //tirReussi = new QSound(SONS_TIR_REUSSI, this);
 
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
@@ -42,6 +40,7 @@ Basketgame::Basketgame(QWidget* parent) :
 #ifdef TEST_BASKETGAME
     attribuerRaccourcisClavier();
 #endif
+#define TEST_SANS_BLUETOOTH
 }
 /**
  * @brief Destructeur de la classe Basketgame
@@ -75,17 +74,14 @@ void Basketgame::afficherEcranAcceuil()
 }
 
 /**
- * @fn Basketgame::afficherEcranPartie()
- * @brief Affiche la fenêtre de partie
+ * @fn Basketgame::afficherEcranSeance()
+ * @brief Affiche la fenêtre de Seance
  */
-void Basketgame::afficherEcranPartie()
+void Basketgame::afficherEcranSeance()
 {
-    /**
-     * @todo Il faudrait peut-être enlever toutes les références à la notion de
-     * partie !!!
-     */
+
     qDebug() << Q_FUNC_INFO;
-    afficherEcran(Basketgame::Ecran::Partie);
+    afficherEcran(Basketgame::Ecran::Seance);
 }
 
 /**
@@ -96,22 +92,20 @@ void Basketgame::fermerApplication()
 {
     this->close();
 }
-
 /**
- * @fn Basketgame::demarrerSeance()
+ * @fn Basketgame::ws()
  * @brief méthode pour debuter une séance
  */
 void Basketgame::demarrerSeance()
 {
 #ifdef TEST_SANS_BLUETOOTH
-    configurerSeance("Avignon", "Sorgues", 7, 45, 2);
+    configurerSeance("Avignon", "Sorgues", 7, 15, 2);
 #endif
-
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
-       ui->ecrans->currentIndex() == Basketgame::Ecran::Partie)
+       ui->ecrans->currentIndex() == Basketgame::Ecran::Seance)
     {
-        initialiserParametresEquipe();
         ui->messageAttente->hide();
+        demarrerManche(numeroManche);
     }
 }
 
@@ -148,8 +142,8 @@ void Basketgame::evaluerSeance()
               "background-color: yellow; color: black; font: 20pt;");
         }
         terminerSeance();
-        finSeance->play();
-        qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
+        //finSeance->play();
+        //qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
     }
     else
     {
@@ -168,6 +162,8 @@ void Basketgame::demarrerManche(int numeroManche)
     {
         qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
         initialiserManche();
+        initialiserParametresEquipe();
+
         initialiserDureeTour();
         demarrerChronometrageTour();
         afficherPuissance4();
@@ -187,10 +183,9 @@ void Basketgame::terminerManche(int numeroManche)
         initialiserDureeTour();
         ui->tempsTour->setText("00:00:00");
         minuteurTour->stop();
-        etatBasketgame = Etat::Arrete;
         evaluerSeance();
-        finManche->play();
-        qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
+        //finManche->play();
+        //qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
     }
 }
 
@@ -201,14 +196,13 @@ void Basketgame::terminerManche(int numeroManche)
 void Basketgame::evaluerManche(int numeroManche)
 {
     qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
-    qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues << "estVainqueur"
-             << puissance4->estVainqueur();
+    qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues << "estVainqueur";
     if(etatBasketgame == Etat::EnCours)
     {
         if(puissance4->estVainqueur())
-        {
-            terminerManche(numeroManche);
-        }
+             {
+                terminerManche(numeroManche);
+             }
         else if(nbPionsJoues == NB_PIONS)
         {
             terminerManche(numeroManche);
@@ -305,25 +299,11 @@ void Basketgame::initialiserCommunication()
         connect(communication,
                 SIGNAL(clientConnecte()),
                 this,
-                SLOT(afficherEcranPartie()));
+                SLOT(afficherEcranSeance()));
         connect(communication,
                 SIGNAL(clientDeconnecte()),
                 this,
                 SLOT(afficherEcranAcceuil()));
-        /**
-         * @todo A revoir !?
-         */
-        connect(communication,
-                SIGNAL(clientReconnecte()),
-                this,
-                SLOT(arreterManche()));
-        /**
-         * @todo A revoir !?
-         */
-        connect(communication,
-                SIGNAL(clientDeconnecte()),
-                this,
-                SLOT(recommencerManche()));
         connect(communication,
                 SIGNAL(mancheDemarree(int)),
                 this,
@@ -336,12 +316,8 @@ void Basketgame::initialiserCommunication()
                 SIGNAL(seanceConfiguree(QString, QString, int, int, int)),
                 this,
                 SLOT(configurerSeance(QString, QString, int, int, int)));
-        /**
-         * @todo La notion de partie n'existe plus ! On RESET la séance ou la
-         * manche ?
-         */
         connect(communication,
-                SIGNAL(partieReinitialisee()),
+                SIGNAL(SeanceReinitialisee()),
                 this,
                 SLOT(reinitialiserSeance()));
         connect(communication,
@@ -353,57 +329,37 @@ void Basketgame::initialiserCommunication()
     }
 }
 
-void Basketgame::arreterManche()
-{
-    if(etatBasketgame == Etat::EnCours)
-    {
-        etatBasketgame = Etat::Arrete;
-        minuteurTour->stop();
-    }
-}
-
-void Basketgame::recommencerManche()
-{
-    if(etatBasketgame == Etat::Arrete)
-    {
-        etatBasketgame = Etat::EnCours;
-        minuteurTour->start();
-    }
-}
-
+/**
+ * @fn Basketgame::gererTir
+ * @brief méthode pour gerer les tir reçu d'une trame
+ */
 void Basketgame::gererTir(QString couleurEquipe, int numeroPanier)
 {
     if(etatBasketgame == Etat::EnCours)
     {
-        /**
-         * @todo couleurEquipe n'est pas un INT ! Le protocole indique qu'il est
-         * soit égal à "ROUGE" ou "JAUNE" !!! D'autre part, le ALORS et le SINO
-         * font la même chose : ils jouent un pion dans une colonne !
-         */
-        if(CouleurEquipe::Rouge == couleurEquipe.toInt())
-        {
-            /**
-             * @todo estEquipeRouge() est une méthode qui retourne un bool ???
-             */
-            puissance4->estEquipeRouge();
-            jouerPion(numeroPanier);
-        }
-        else if(CouleurEquipe::Jaune == couleurEquipe.toInt())
-        {
-            jouerPion(numeroPanier);
-        }
+        convertirCouleurRecus(couleurEquipe);
+        jouerPion(numeroPanier - 1 );
         qDebug() << Q_FUNC_INFO << "numeroPanier" << numeroPanier
                  << "couleurEquipe" << couleurEquipe;
     }
 }
 
+/**
+ * @fn Basketgame::reinitialiserSeance
+ * @brief méthode pour reinitialiser la seance
+ */
 void Basketgame::reinitialiserSeance()
 {
     qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
-    etatBasketgame = Etat::Termine;
+    etatBasketgame = Etat::Attente;
     afficherEcranAcceuil();
+
 }
 
+/**
+ * @fn Basketgame::configurerSeance
+ * @brief méthode pour configurer la seance
+ */
 void Basketgame::configurerSeance(QString nomEquipeRouge,
                                   QString nomEquipeJaune,
                                   int     nbPaniers,
@@ -423,10 +379,45 @@ void Basketgame::configurerSeance(QString nomEquipeRouge,
         nombreManches      = nbManches;
         tempsTourConfigure = tempsTour;
         etatBasketgame     = Etat::Configure;
-        demarrerManche(nombreManches);
     }
 }
+QString Basketgame::envoyerTrameConvertit(CouleurEquipe couleurEquipe)
+{
+      QString couleurString;
+      switch (couleurEquipe)
+      {
+          case Rouge:
+              couleurString = "Rouge";
+              break;
+          case Jaune:
+              couleurString = "Jaune";
+              break;
+          case Aucune:
+              couleurString = "Aucune";
+              break;
+          default:
+              couleurString = "Inconnue";
+              break;
+      }
+      return couleurString;
+}
 
+Basketgame::CouleurEquipe Basketgame::convertirCouleurRecus(QString couleurEquipe)
+{
+    if (couleurEquipe == "Rouge")
+    {
+        return CouleurEquipe::Rouge;
+    }
+    else if (couleurEquipe == "Jaune")
+    {
+        return CouleurEquipe::Jaune;
+    }
+    else
+    {
+        qDebug() << Q_FUNC_INFO << "CouleurEquipe non reconnu " << couleurEquipe;
+        return CouleurEquipe::Aucune;
+    }
+}
 /**
  * @fn Basketgame::jouerPion
  * @param colonne
@@ -600,8 +591,8 @@ void Basketgame::afficherScorePanierEquipe()
             ui->affichageTotalPanierE2->display(
               QString::number(equipes[Jaune]->getScorePanier()));
         }
-        tirReussi->play();
-        qDebug() << Q_FUNC_INFO << "\"" << SONS_TIR_REUSSI << "\"";
+        //tirReussi->play();
+        //qDebug() << Q_FUNC_INFO << "\"" << SONS_TIR_REUSSI << "\"";
         nbPionsJoues++;
     }
 }
@@ -668,11 +659,11 @@ void Basketgame::simulerPion()
 {
     if(etatBasketgame != Etat::EnCours)
         return;
-
-    // simule un pion dans une colonne
+#ifdef TEST_SANS_BLUETOOTH
     int colonne = randInt(0, NB_COLONNES - 1);
     // et le joue
     jouerPion(colonne);
+#endif
 }
 /**
  * @fn Basketgame::attribuerRaccourcisClavier
@@ -691,7 +682,7 @@ void Basketgame::attribuerRaccourcisClavier()
     connect(simulationConnexion,
             SIGNAL(triggered()),
             this,
-            SLOT(afficherEcranPartie()));
+            SLOT(afficherEcranSeance()));
     QAction* demarrageSeance = new QAction(this);
     demarrageSeance->setShortcut(QKeySequence(Qt::Key_S));
     addAction(demarrageSeance);
@@ -700,17 +691,13 @@ void Basketgame::attribuerRaccourcisClavier()
     simulationPion->setShortcut(QKeySequence(Qt::Key_Space));
     addAction(simulationPion);
     connect(simulationPion, SIGNAL(triggered()), this, SLOT(simulerPion()));
-    QAction* simulationStop = new QAction(this);
-    simulationStop->setShortcut(QKeySequence(Qt::Key_A));
-    addAction(simulationStop);
-    connect(simulationStop, SIGNAL(triggered()), this, SLOT(arreterManche()));
-    QAction* simulationRecommencer = new QAction(this);
-    simulationRecommencer->setShortcut(QKeySequence(Qt::Key_R));
-    addAction(simulationRecommencer);
-    connect(simulationRecommencer,
+    QAction* simulationReinitialiser= new QAction(this);
+    simulationReinitialiser->setShortcut(QKeySequence(Qt::Key_P));
+    addAction(simulationReinitialiser);
+    connect(simulationReinitialiser,
             SIGNAL(triggered()),
             this,
-            SLOT(recommencerManche()));
+            SLOT(reinitialiserSeance()));
 
 #ifdef TEST_ALIGNEMENT
     QAction* verificationPuissance4 = new QAction(this);

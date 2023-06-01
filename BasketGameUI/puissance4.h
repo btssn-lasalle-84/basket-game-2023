@@ -18,7 +18,7 @@
 
 /**
  * @def NB_PIONS_ALIGNES
- * @brief Définit le nombre de pions pour gagner une partie
+ * @brief Définit le nombre de pions pour gagner une Seance
  */
 #define NB_PIONS_ALIGNES 4
 

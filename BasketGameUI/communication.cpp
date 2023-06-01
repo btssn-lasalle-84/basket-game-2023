@@ -293,7 +293,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Start:
             qDebug() << Q_FUNC_INFO << "START";
-            emit mancheDemarree(champsTrame[NUMERO_PARTIE].toInt());
+            emit mancheDemarree(champsTrame[NUMERO_Seance].toInt());
             break;
         case TypeTrame::Tir:
             qDebug() << Q_FUNC_INFO << "TIR";
@@ -302,11 +302,11 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Stop:
             qDebug() << Q_FUNC_INFO << "STOP";
-            emit mancheArretee(champsTrame[NUMERO_PARTIE].toInt());
+            emit mancheArretee(champsTrame[NUMERO_Seance].toInt());
             break;
         case TypeTrame::Reset:
             qDebug() << Q_FUNC_INFO << "RESET";
-            emit partieReinitialisee();
+            emit SeanceReinitialisee();
             break;
         default:
             qDebug() << Q_FUNC_INFO << "type trame inconnu !"
@@ -349,4 +349,13 @@ bool Communication::estValide()
 bool Communication::estConnecte()
 {
     return connecte;
+}
+void Communication::envoyer(QString trameEnvoyer)
+{
+
+    // vérifie la connexion du périphrique
+    if(!estConnecte())
+        return;
+    qDebug() << Q_FUNC_INFO << trameEnvoyer;
+    socket->write(trameEnvoyer.toLocal8Bit());
 }
