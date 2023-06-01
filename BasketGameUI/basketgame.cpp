@@ -27,11 +27,11 @@ Basketgame::Basketgame(QWidget* parent) :
     tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
     numeroManche(0), nombreManches(NB_MANCHES_MIN),
     nombrePaniers(NB_PANIERS_MAX), tempsTourConfigure(TEMPS_TOUR),
-    etatBasketgame(Etat::Attente), nomEquipeRouges("") , nomEquipeJaunes("")
+    etatBasketgame(Etat::Attente)
 {
-    //finManche = new QSound(SONS_FIN_MANCHE, this);
-    //finSeance = new QSound(SONS_FIN_SEANCE, this);
-    //tirReussi = new QSound(SONS_TIR_REUSSI, this);
+    // finManche = new QSound(SONS_FIN_MANCHE, this);
+    // finSeance = new QSound(SONS_FIN_SEANCE, this);
+    // tirReussi = new QSound(SONS_TIR_REUSSI, this);
 
     qDebug() << Q_FUNC_INFO;
     initialiserIHM();
@@ -40,7 +40,6 @@ Basketgame::Basketgame(QWidget* parent) :
 #ifdef TEST_BASKETGAME
     attribuerRaccourcisClavier();
 #endif
-#define TEST_SANS_BLUETOOTH
 }
 /**
  * @brief Destructeur de la classe Basketgame
@@ -79,7 +78,6 @@ void Basketgame::afficherEcranAcceuil()
  */
 void Basketgame::afficherEcranSeance()
 {
-
     qDebug() << Q_FUNC_INFO;
     afficherEcran(Basketgame::Ecran::Seance);
 }
@@ -98,7 +96,7 @@ void Basketgame::fermerApplication()
  */
 void Basketgame::demarrerSeance()
 {
-#ifdef TEST_SANS_BLUETOOTH
+#ifdef TEST_BASKETGAME
     configurerSeance("Avignon", "Sorgues", 7, 15, 2);
 #endif
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
@@ -142,8 +140,8 @@ void Basketgame::evaluerSeance()
               "background-color: yellow; color: black; font: 20pt;");
         }
         terminerSeance();
-        //finSeance->play();
-        //qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
+        // finSeance->play();
+        // qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
     }
     else
     {
@@ -184,8 +182,8 @@ void Basketgame::terminerManche(int numeroManche)
         ui->tempsTour->setText("00:00:00");
         minuteurTour->stop();
         evaluerSeance();
-        //finManche->play();
-        //qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
+        // finManche->play();
+        // qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
     }
 }
 
@@ -200,9 +198,9 @@ void Basketgame::evaluerManche(int numeroManche)
     if(etatBasketgame == Etat::EnCours)
     {
         if(puissance4->estVainqueur())
-             {
-                terminerManche(numeroManche);
-             }
+        {
+            terminerManche(numeroManche);
+        }
         else if(nbPionsJoues == NB_PIONS)
         {
             terminerManche(numeroManche);
@@ -337,8 +335,8 @@ void Basketgame::gererTir(QString couleurEquipe, int numeroPanier)
 {
     if(etatBasketgame == Etat::EnCours)
     {
-        convertirCouleurRecus(couleurEquipe);
-        jouerPion(numeroPanier - 1 );
+        convertirCouleurRecue(couleurEquipe);
+        jouerPion(numeroPanier - 1);
         qDebug() << Q_FUNC_INFO << "numeroPanier" << numeroPanier
                  << "couleurEquipe" << couleurEquipe;
     }
@@ -353,7 +351,6 @@ void Basketgame::reinitialiserSeance()
     qDebug() << Q_FUNC_INFO << "etatBasketgame" << etatBasketgame;
     etatBasketgame = Etat::Attente;
     afficherEcranAcceuil();
-
 }
 
 /**
@@ -381,40 +378,42 @@ void Basketgame::configurerSeance(QString nomEquipeRouge,
         etatBasketgame     = Etat::Configure;
     }
 }
-QString Basketgame::envoyerTrameConvertit(CouleurEquipe couleurEquipe)
+QString Basketgame::convertirCouleurEmise(CouleurEquipe couleurEquipe)
 {
-      QString couleurString;
-      switch (couleurEquipe)
-      {
-          case Rouge:
-              couleurString = "Rouge";
-              break;
-          case Jaune:
-              couleurString = "Jaune";
-              break;
-          case Aucune:
-              couleurString = "Aucune";
-              break;
-          default:
-              couleurString = "Inconnue";
-              break;
-      }
-      return couleurString;
+    QString couleurString;
+    switch(couleurEquipe)
+    {
+        case Rouge:
+            couleurString = "Rouge";
+            break;
+        case Jaune:
+            couleurString = "Jaune";
+            break;
+        case Aucune:
+            couleurString = "Aucune";
+            break;
+        default:
+            couleurString = "Inconnue";
+            break;
+    }
+    return couleurString;
 }
 
-Basketgame::CouleurEquipe Basketgame::convertirCouleurRecus(QString couleurEquipe)
+Basketgame::CouleurEquipe Basketgame::convertirCouleurRecue(
+  QString couleurEquipe)
 {
-    if (couleurEquipe == "Rouge")
+    if(couleurEquipe == "Rouge")
     {
         return CouleurEquipe::Rouge;
     }
-    else if (couleurEquipe == "Jaune")
+    else if(couleurEquipe == "Jaune")
     {
         return CouleurEquipe::Jaune;
     }
     else
     {
-        qDebug() << Q_FUNC_INFO << "CouleurEquipe non reconnu " << couleurEquipe;
+        qDebug() << Q_FUNC_INFO << "couleurEquipe" << couleurEquipe
+                 << "non reconnue";
         return CouleurEquipe::Aucune;
     }
 }
@@ -591,8 +590,8 @@ void Basketgame::afficherScorePanierEquipe()
             ui->affichageTotalPanierE2->display(
               QString::number(equipes[Jaune]->getScorePanier()));
         }
-        //tirReussi->play();
-        //qDebug() << Q_FUNC_INFO << "\"" << SONS_TIR_REUSSI << "\"";
+        // tirReussi->play();
+        // qDebug() << Q_FUNC_INFO << "\"" << SONS_TIR_REUSSI << "\"";
         nbPionsJoues++;
     }
 }
@@ -659,11 +658,9 @@ void Basketgame::simulerPion()
 {
     if(etatBasketgame != Etat::EnCours)
         return;
-#ifdef TEST_SANS_BLUETOOTH
     int colonne = randInt(0, NB_COLONNES - 1);
     // et le joue
     jouerPion(colonne);
-#endif
 }
 /**
  * @fn Basketgame::attribuerRaccourcisClavier
@@ -691,7 +688,7 @@ void Basketgame::attribuerRaccourcisClavier()
     simulationPion->setShortcut(QKeySequence(Qt::Key_Space));
     addAction(simulationPion);
     connect(simulationPion, SIGNAL(triggered()), this, SLOT(simulerPion()));
-    QAction* simulationReinitialiser= new QAction(this);
+    QAction* simulationReinitialiser = new QAction(this);
     simulationReinitialiser->setShortcut(QKeySequence(Qt::Key_P));
     addAction(simulationReinitialiser);
     connect(simulationReinitialiser,
