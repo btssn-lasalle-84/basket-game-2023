@@ -25,6 +25,7 @@ public class Equipe implements Serializable
      * @brief Attributs
      */
     private String nomEquipe; //!< le nom de l'équipe
+    public int     score;
 
     /**
      * @brief Constructeur de la classe Equipe
@@ -33,6 +34,7 @@ public class Equipe implements Serializable
     {
         Log.d(TAG, "Equipe()");
         this.nomEquipe = "";
+        this.score     = 0;
     }
 
     /**
@@ -66,5 +68,32 @@ public class Equipe implements Serializable
     public void setNomEquipe(String nomEquipe)
     {
         this.nomEquipe = nomEquipe;
+    }
+
+    /**
+     * @brief Accesseur Equipe
+     * @fn getScore
+     * @details Retourne le score
+     * @return int
+     */
+    public int getScore()
+    {
+        return score;
+    }
+
+    /**
+     * @brief Méthode appelée pour réinitialiser le score des équipes
+     */
+    public void reinitialiserScore()
+    {
+        this.score = 0;
+    }
+
+    /**
+     * @brief Méthode appelée pour incrémenter de 1 le score
+     */
+    public void incrementerScore()
+    {
+        this.score++;
     }
 }

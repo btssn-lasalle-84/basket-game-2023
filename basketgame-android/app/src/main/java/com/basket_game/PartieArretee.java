@@ -1,6 +1,6 @@
 /**
- * @file PartieInterrompue.java
- * @brief Déclaration de la classe PartieInterrompue
+ * @file PartieArretee.java
+ * @brief Déclaration de la classe PartieArretee
  * @author Guillaumet Florent
  */
 
@@ -9,23 +9,21 @@ package com.basket_game;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 /**
- * @class PartieInterrompue
- * @brief L'activité qui indique l'interruption de la partie
+ * @class PartieArretee
+ * @brief L'activité qui indique l'arrêt de la partie
  */
-public class PartieInterrompue extends AppCompatActivity
+public class PartieArretee extends AppCompatActivity
 {
     /**
      * Constantes
      */
-    private static final String TAG = "_PartieInterrompue"; //!< TAG pour les logs (cf. Logcat)
+    private static final String TAG = "_PartieArretee"; //!< TAG pour les logs (cf. Logcat)
 
     /**
      * Attributs
@@ -38,7 +36,7 @@ public class PartieInterrompue extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.partie_interrompue);
+        setContentView(R.layout.partie_arretee);
         Log.d(TAG, "onCreate()");
 
         creerBoutonRecommencerPartie();
@@ -72,7 +70,7 @@ public class PartieInterrompue extends AppCompatActivity
             public void onClick(View v)
             {
                 Log.d(TAG, "afficherMenuPrincipal()");
-                Intent intent = new Intent(PartieInterrompue.this, BasketGame.class);
+                Intent intent = new Intent(PartieArretee.this, BasketGame.class);
                 startActivity(intent);
             }
         });

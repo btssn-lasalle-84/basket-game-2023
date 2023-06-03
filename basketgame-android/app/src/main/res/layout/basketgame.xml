@@ -7,19 +7,6 @@
     tools:context=".BasketGame"
     android:background="#181821" >
 
-    <TextView
-        android:id="@+id/bienvenue"
-        android:layout_width="299dp"
-        android:layout_height="204dp"
-        android:gravity="center"
-        android:text="@string/bienvenue_basket_game"
-        android:textSize="50sp"
-        app:layout_constraintBottom_toTopOf="@+id/boutonNouvellePartie"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:textColor="#FFFFFF" />
-
     <Button
         android:id="@+id/boutonNouvellePartie"
         android:layout_width="203dp"
@@ -28,20 +15,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.427" />
+        app:layout_constraintTop_toBottomOf="@+id/logo"
+        app:layout_constraintVertical_bias="0.889" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="404dp"
+        android:layout_height="317dp"
+        android:contentDescription="@string/logo_basket_game"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boutonNouvellePartie"
-        app:layout_constraintVertical_bias="0.509"
-        app:srcCompat="@drawable/logo_basket_game_sans_fond"
-        android:contentDescription="@string/logo_basket_game" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.007"
+        app:srcCompat="@drawable/logo_basket_game_sans_fond" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

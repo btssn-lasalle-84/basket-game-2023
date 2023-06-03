@@ -37,16 +37,13 @@ public class CommunicationBluetooth
     public final static int CONNEXION_BLUETOOTH     = 0;
     public final static int RECEPTION_BLUETOOTH     = 1;
     public final static int DECONNEXION_BLUETOOTH   = 2;
-    public final static String NOM_MODULE_DETECTION     = "basket-detection"; // émission/réception
-    public final static String NOM_MODULE_SIGNALISATION = "basket-signalisation"; // émission
-    public final static String NOM_MODULE_ECRAN         = "basket-ecran"; // émission
+    public final static String NOM_MODULE_DETECTION     = "basket-detection"; // émission/réception basket-detection
+    public final static String NOM_MODULE_SIGNALISATION = "basket-signalisation"; // émission basket-signalisation
+    public final static String NOM_MODULE_ECRAN         = "CV-PC-BTS-SN-27"; // émission basket-ecran
     public final static int ID_MODULE_DETECTION     = 0; // émission/réception
     public final static int ID_MODULE_SIGNALISATION = 1; // émission
-    public final static int ID_MODULE_ECRAN         = 2; // émission
+    public final static int ID_MODULE_ECRAN         = 2; // émission/réception
     public final static int NB_MODULES              = 3;
-    public final static String DELIMITEUR_DEBUT_TRAME         = "$BASKET"; // délimiteur début trame
-    public final static String DELIMITEUR_FIN_TRAME         = "\r\n"; // délimiteur fin trame
-    public final static String DELIMITEUR_CHAMPS_TRAME         = ";"; // délimiteur champs trame
 
     /**
      * Attributs
@@ -58,12 +55,7 @@ public class CommunicationBluetooth
     private InputStream                   inputStream         = null; // pour le module de détection
     private Thread                        filExecutionReception;
     private Handler                       handler = null;
-    public enum Type {
-        SEANCE, START, TIR, STOP, RESET
-    }
-    public enum CouleurEquipe {
-        ROUGE, JAUNE
-    }
+
 
     /**
      * @fn getInstance
