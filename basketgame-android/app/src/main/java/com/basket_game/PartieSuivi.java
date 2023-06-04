@@ -18,8 +18,10 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Objects;
@@ -45,6 +47,7 @@ public class PartieSuivi extends AppCompatActivity
      */
     private Partie                 partie;                   //!< la partie entre deux équipes
     private Intent                 intentDonneesPartieSuivi; //!< les données de la partie
+    private Intent                 intentDonneesPartieArretee; //!< les données de la fin de partie
     private int                    tempsRestantTour       = Partie.TEMPS_MAX_TOUR; //!< par défaut
     private Timer                  compteurTempsTour      = null;
     private TimerTask              tacheCompteurTempsTour = null;
@@ -75,6 +78,7 @@ public class PartieSuivi extends AppCompatActivity
         setContentView(R.layout.partie_suivi);
         Log.d(TAG, "onCreate()");
 
+        initialiserActivite();
         recupererParametresPartie();
         afficherNomEquipe1();
         afficherNomEquipe2();
@@ -94,7 +98,8 @@ public class PartieSuivi extends AppCompatActivity
     {
         super.onStart();
         Log.d(TAG, "onStart()");
-        initialiserCompteursScores();
+        initialiserCompteursScoresPanier();
+        initialiserCompteursScoresManche();
         initialiserCompteurTempsTour();
         initialiserAffichageNumeroPanier();
         initialiserAffichageCouleurEquipe();
@@ -137,19 +142,36 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
-     * @brief Méthode permettant d'initialiser les compteurs des scores des équipes
+     * @brief Méthode qui intialise la vue de l'activité
      */
-    private void initialiserCompteursScores()
+    private void initialiserActivite()
     {
-        partie.getEquipe1().reinitialiserScore();
-        partie.getEquipe2().reinitialiserScore();
+        intentDonneesPartieArretee = new Intent(PartieSuivi.this, PartieArretee.class);
+    }
+
+    /**
+     * @brief Méthode permettant d'initialiser les compteurs du nombre de panier des équipes
+     */
+    private void initialiserCompteursScoresPanier()
+    {
+        partie.getEquipe1().reinitialiserScorePanier();
+        partie.getEquipe2().reinitialiserScorePanier();
 
         affichageScoreEquipe1 = findViewById(R.id.affichageScoreEquipe1);
-        String scoreEquipe1   = String.valueOf(partie.getEquipe1().getScore());
+        String scoreEquipe1   = String.valueOf(partie.getEquipe1().getScorePanier());
         affichageScoreEquipe1.setText(scoreEquipe1);
         affichageScoreEquipe2 = findViewById(R.id.affichageScoreEquipe2);
-        String scoreEquipe2   = String.valueOf(partie.getEquipe2().getScore());
+        String scoreEquipe2   = String.valueOf(partie.getEquipe2().getScorePanier());
         affichageScoreEquipe2.setText(scoreEquipe2);
+    }
+
+    /**
+     * @brief Méthode permettant d'initialiser les compteurs des scores des manches gagnées des équipes
+     */
+    private void initialiserCompteursScoresManche()
+    {
+        partie.getEquipe1().reinitialiserScoreManche();
+        partie.getEquipe2().reinitialiserScoreManche();
     }
 
     /**
@@ -307,8 +329,8 @@ public class PartieSuivi extends AppCompatActivity
     private void afficherScoreEquipe1()
     {
         affichageScoreEquipe1 = findViewById(R.id.affichageScoreEquipe1);
-        String scoreEquipe1   = String.valueOf(partie.getEquipe1().getScore());
-        Log.d(TAG, "afficherScoreEquipe1() score Equipe1 = " + partie.getEquipe1().getScore());
+        String scoreEquipe1   = String.valueOf(partie.getEquipe1().getScorePanier());
+        Log.d(TAG, "afficherScoreEquipe1() score Equipe1 = " + partie.getEquipe1().getScorePanier());
         affichageScoreEquipe1.setText(scoreEquipe1);
     }
 
@@ -318,8 +340,8 @@ public class PartieSuivi extends AppCompatActivity
     private void afficherScoreEquipe2()
     {
         TextView affichageScoreEquipe2 = findViewById(R.id.affichageScoreEquipe2);
-        String   scoreEquipe2          = String.valueOf(partie.getEquipe2().getScore());
-        Log.d(TAG, "afficherScoreEquipe2() score Equipe2 = " + partie.getEquipe2().getScore());
+        String   scoreEquipe2          = String.valueOf(partie.getEquipe2().getScorePanier());
+        Log.d(TAG, "afficherScoreEquipe2() score Equipe2 = " + partie.getEquipe2().getScorePanier());
         affichageScoreEquipe2.setText(scoreEquipe2);
     }
 
@@ -394,11 +416,8 @@ public class PartieSuivi extends AppCompatActivity
      * @brief Méthode appelée pour gérer la connexion Bluetooth
      */
     private void gererConnexionBluetooth(String trame) {
-        /**
-         * @todo Gérer la connexion Bluetooth
-         */
         // modules minimum pour jouer
-        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION) && (communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN))) {
+        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION) /*&& (communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN))*/) {
             demarrerPartie();
         }
     }
@@ -436,11 +455,8 @@ public class PartieSuivi extends AppCompatActivity
      * @brief Méthode appelée pour afficher la déconnexion Bluetooth
      */
     private void gererDeconnexionBluetooth(String trame) {
-        /**
-         * @todo Gérer la déconnexion Bluetooth
-         */
         // au moins un module déconnecté
-        if(!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) || (!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)))) {
+        if(!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) /*|| (!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)))*/) {
             arreterCompteurTemps();
             envoyerTramePausePartie();
         }
@@ -670,6 +686,23 @@ public class PartieSuivi extends AppCompatActivity
     }
 
     /**
+     * @brief Méthode appelée pour récupérer le vainqueur de la partie
+     */
+    private void recupererVainqueurPartie()
+    {
+        int scoreMancheEquipe1 = partie.getEquipe1().getScoreManche();
+        int scoreMancheEquipe2 = partie.getEquipe2().getScoreManche();
+
+        if (scoreMancheEquipe1 > scoreMancheEquipe2) {
+            intentDonneesPartieArretee.putExtra("equipeGagnante", 1);
+        } else if (scoreMancheEquipe1 < scoreMancheEquipe2) {
+            intentDonneesPartieArretee.putExtra("equipeGagnante", 2);
+        } else {
+            intentDonneesPartieArretee.putExtra("equipeGagnante", 0); // Egalité
+        }
+    }
+
+    /**
      * @brief Méthode appelée pour initialiser la Handler
      */
     @SuppressLint("HandlerLeak")
@@ -736,13 +769,13 @@ public class PartieSuivi extends AppCompatActivity
         if(couleur.equals(
                 ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
         {
-            partie.getEquipe1().incrementerScore();
+            partie.getEquipe1().incrementerScorePanier();
             afficherScoreEquipe1();
         }
         else if(couleur.equals(
                 ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
         {
-            partie.getEquipe2().incrementerScore();
+            partie.getEquipe2().incrementerScorePanier();
             afficherScoreEquipe2();
         }
         afficherNumeroPanier();
@@ -762,12 +795,34 @@ public class PartieSuivi extends AppCompatActivity
                 CommunicationBluetooth.ID_MODULE_SIGNALISATION);
         arreterCompteurTemps();
         reinitialiserCompteurTemps();
-        partie.incrementerNumeroManche();
-        if(partie.getNumeroManche() > partie.getNbManchesGagnantes())
+        initialiserCompteursScoresPanier();
+        initialiserAffichageNumeroPanier();
+        initialiserAffichageCouleurEquipe();
+
+        couleur = champs[ProtocoleBasket.CHAMP_COULEUR_EQUIPE];
+        Log.d(TAG, "gererTrameFin() couleur = " + couleur);
+        if(couleur.equals(
+                ProtocoleBasket.COULEUR_EQUIPE_ROUGE))
         {
-            Intent intent = new Intent(PartieSuivi.this, PartieArretee.class);
-            startActivity(intent);
+            partie.getEquipe1().incrementerScoreManche();
+            Log.d(TAG, "gererTrameFin() Score Manche Equipe1 = " + partie.getEquipe1().getScoreManche());
         }
+        else if(couleur.equals(
+                ProtocoleBasket.COULEUR_EQUIPE_JAUNE))
+        {
+            partie.getEquipe2().incrementerScoreManche();
+            Log.d(TAG, "gererTrameFin() Score Manche Equipe2 = " + partie.getEquipe2().getScoreManche());
+        }
+
+        Log.d(TAG, "gererTrameFin() Manche " + partie.getNumeroManche() + "/" + partie.getNbManchesGagnantes());
+        if(partie.getNumeroManche() == partie.getNbManchesGagnantes())
+        {
+            recupererVainqueurPartie();
+            intentDonneesPartieArretee.putExtra("nomEquipe1", partie.getEquipe1().getNomEquipe());
+            intentDonneesPartieArretee.putExtra("nomEquipe2", partie.getEquipe2().getNomEquipe());
+            startActivity(intentDonneesPartieArretee);
+        }
+        partie.incrementerNumeroManche();
     }
 
     /**
