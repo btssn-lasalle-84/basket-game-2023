@@ -9,6 +9,8 @@ package com.basket_game;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
@@ -380,6 +382,34 @@ public class PartieSuivi extends AppCompatActivity
             affichageCouleurEquipe.setTextColor(Color.parseColor("#FFBE0B"));
         }
         affichageCouleurEquipe.setText(couleur);
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher la boite de dialogue
+     */
+    private void afficherBoiteDialogue() {
+        Log.d(TAG, "afficherBoiteDialogue() Manche suivante = " + partie.getNumeroManche());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Prochaine manche");
+        builder.setMessage("Voulez-vous lancer la manche " + partie.getNumeroManche() + " ?");
+
+        builder.setPositiveButton("Lancer", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                envoyerTrameDebutPartie();
+                compterTempsRestantTour();
+            }
+        });
+
+        builder.setNegativeButton("Annuler", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     /**
@@ -823,6 +853,10 @@ public class PartieSuivi extends AppCompatActivity
             startActivity(intentDonneesPartieArretee);
         }
         partie.incrementerNumeroManche();
+        if(partie.getNumeroManche() <= partie.getNbManchesGagnantes())
+        {
+            afficherBoiteDialogue();
+        }
     }
 
     /**
