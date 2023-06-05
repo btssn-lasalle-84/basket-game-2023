@@ -9,10 +9,14 @@ package com.basket_game;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 /**
  * @class PartieArretee
@@ -28,6 +32,16 @@ public class PartieArretee extends AppCompatActivity
     /**
      * Attributs
      */
+    private Intent                 intentDonneesPartieArretee;
+    private Intent intentDonneesPartieSuivi;
+    private String vainqueur;
+    private int equipeGagnante;
+    private String nomEquipe1;
+    private String nomEquipe2;
+    /**
+     * Ressources GUI
+     */
+    TextView affichageVainqueur;
 
     /**
      * @brief Méthode appelée à la création de l'activité
@@ -41,6 +55,8 @@ public class PartieArretee extends AppCompatActivity
 
         creerBoutonRecommencerPartie();
         creerBoutonAfficherMenuPrincipal();
+        recupererVainqueur();
+        afficherVainqueur();
     }
 
     /**
@@ -74,5 +90,40 @@ public class PartieArretee extends AppCompatActivity
                 startActivity(intent);
             }
         });
+    }
+
+    /**
+     * @brief Méthode appelée pour récupérer le vainqueur de la partie
+     */
+    private void recupererVainqueur()
+    {
+        intentDonneesPartieArretee = getIntent();
+        equipeGagnante = intentDonneesPartieArretee.getIntExtra("equipeGagnante", -1);
+        Log.d(TAG, "recupererVainqueur() equipeGagnante = " + equipeGagnante);
+        nomEquipe1 = intentDonneesPartieArretee.getStringExtra("nomEquipe1");
+        nomEquipe2 = intentDonneesPartieArretee.getStringExtra("nomEquipe2");
+    }
+
+    /**
+     * @brief Méthode appelée pour afficher le vainqueur de la partie
+     */
+    private void afficherVainqueur()
+    {
+        affichageVainqueur = findViewById(R.id.affichageVainqueur);
+        if (equipeGagnante == 1) {
+            vainqueur = "Bravo " + nomEquipe1 + " !";
+            affichageVainqueur.setTextColor(Color.parseColor("#D00000"));
+        } else if (equipeGagnante == 2) {
+            vainqueur = "Bravo " + nomEquipe2 + " !";
+            affichageVainqueur.setTextColor(Color.parseColor("#FFBE0B"));
+        } else if (equipeGagnante == 0){
+            vainqueur = "Egalité !";
+        }
+        else
+        {
+            vainqueur = "";
+        }
+        affichageVainqueur.setText(vainqueur);
+        Log.d(TAG, "afficherVainqueur() Vainqueur = " + vainqueur);
     }
 }

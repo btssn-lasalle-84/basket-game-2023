@@ -39,7 +39,7 @@ public class CommunicationBluetooth
     public final static int DECONNEXION_BLUETOOTH   = 2;
     public final static String NOM_MODULE_DETECTION     = "basket-detection"; // émission/réception basket-detection
     public final static String NOM_MODULE_SIGNALISATION = "basket-signalisation"; // émission basket-signalisation
-    public final static String NOM_MODULE_ECRAN         = "CV-PC-BTS-SN-27"; // émission basket-ecran
+    public final static String NOM_MODULE_ECRAN         = "basket-ecran"; // émission basket-ecran - CV-PC-BTS-SN-27
     public final static int ID_MODULE_DETECTION     = 0; // émission/réception
     public final static int ID_MODULE_SIGNALISATION = 1; // émission
     public final static int ID_MODULE_ECRAN         = 2; // émission/réception

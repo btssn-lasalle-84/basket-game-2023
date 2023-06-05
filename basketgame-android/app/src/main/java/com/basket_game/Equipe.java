@@ -25,7 +25,8 @@ public class Equipe implements Serializable
      * @brief Attributs
      */
     private String nomEquipe; //!< le nom de l'équipe
-    public int     score;
+    public int     scorePanier;
+    public int     scoreManche;
 
     /**
      * @brief Constructeur de la classe Equipe
@@ -34,7 +35,8 @@ public class Equipe implements Serializable
     {
         Log.d(TAG, "Equipe()");
         this.nomEquipe = "";
-        this.score     = 0;
+        this.scorePanier     = 0;
+        this.scoreManche     = 0;
     }
 
     /**
@@ -72,28 +74,55 @@ public class Equipe implements Serializable
 
     /**
      * @brief Accesseur Equipe
-     * @fn getScore
-     * @details Retourne le score
+     * @fn getScorePanier
+     * @details Retourne le nombre de panier inscrits
      * @return int
      */
-    public int getScore()
+    public int getScorePanier()
     {
-        return score;
+        return scorePanier;
     }
 
     /**
-     * @brief Méthode appelée pour réinitialiser le score des équipes
+     * @brief Méthode appelée pour réinitialiser le nombre de panier des équipes
      */
-    public void reinitialiserScore()
+    public void reinitialiserScorePanier()
     {
-        this.score = 0;
+        this.scorePanier = 0;
     }
 
     /**
-     * @brief Méthode appelée pour incrémenter de 1 le score
+     * @brief Méthode appelée pour incrémenter de 1 le scorePanier
      */
-    public void incrementerScore()
+    public void incrementerScorePanier()
     {
-        this.score++;
+        this.scorePanier++;
+    }
+
+    /**
+     * @brief Accesseur Equipe
+     * @fn getScoreManche
+     * @details Retourne le nombre de manche gagnée par l'équipe
+     * @return int
+     */
+    public int getScoreManche()
+    {
+        return scoreManche;
+    }
+
+    /**
+     * @brief Méthode appelée pour réinitialiser le nombre de manche gagnée
+     */
+    public void reinitialiserScoreManche()
+    {
+        this.scoreManche = 0;
+    }
+
+    /**
+     * @brief Méthode appelée pour incrémenter de 1 le nombre de manche gagnée
+     */
+    public void incrementerScoreManche()
+    {
+        this.scoreManche++;
     }
 }
