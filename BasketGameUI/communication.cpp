@@ -48,6 +48,7 @@ void Communication::demarrer()
         QBluetoothUuid uuid(QBluetoothUuid::Rfcomm);
         serviceInfo = serveur->listen(uuid, serviceNom);
         // qDebug() << "serviceInfo" << serviceInfo;
+
     }
 }
 
@@ -350,12 +351,13 @@ bool Communication::estConnecte()
 {
     return connecte;
 }
-void Communication::envoyer(QString trameEnvoyer)
+void Communication::envoyer(QString trame)
 {
-
-    // vérifie la connexion du périphrique
-    if(!estConnecte())
+    if (socket == NULL || !socket->isOpen())
+    {
         return;
-    qDebug() << Q_FUNC_INFO << trameEnvoyer;
-    socket->write(trameEnvoyer.toLocal8Bit());
+    }
+    trame += "\r\n";
+    socket->write(trame.toLatin1());
+
 }

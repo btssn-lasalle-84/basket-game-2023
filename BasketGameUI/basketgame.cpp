@@ -14,7 +14,7 @@
 #include <QPainter>
 #include <QAction>
 #include <QDebug>
-
+#define TEST_BASKETGAME
 /**
  * @brief Constructeur de la classe Basketgame
  *
@@ -90,6 +90,7 @@ void Basketgame::fermerApplication()
 {
     this->close();
 }
+
 /**
  * @fn Basketgame::ws()
  * @brief méthode pour debuter une séance
@@ -97,7 +98,7 @@ void Basketgame::fermerApplication()
 void Basketgame::demarrerSeance()
 {
 #ifdef TEST_BASKETGAME
-    configurerSeance("Avignon", "Sorgues", 7, 15, 2);
+    configurerSeance("Avignon", "Sorgues", 7, 15, 4);
 #endif
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
        ui->ecrans->currentIndex() == Basketgame::Ecran::Seance)
@@ -160,11 +161,10 @@ void Basketgame::demarrerManche(int numeroManche)
     {
         qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
         initialiserManche();
-        initialiserParametresEquipe();
-
         initialiserDureeTour();
         demarrerChronometrageTour();
         afficherPuissance4();
+        afficherScoreMancheEquipe();
         etatBasketgame = Etat::EnCours;
     }
 }
@@ -187,6 +187,15 @@ void Basketgame::terminerManche(int numeroManche)
     }
 }
 
+void Basketgame::envoyerVainqueur()
+{
+    QString couleurString;
+    QString trame =
+    QString("$BASKET;FIN;") + couleurString + QString::number(numeroManche) + QString(";\r");
+    qDebug() << Q_FUNC_INFO << trame;
+
+            communication->envoyer(trame);
+}
 /**
  * @fn Basketgame::evaluerManche()
  * @brief méthode pour déterminer quand une manche est terminée
@@ -200,6 +209,9 @@ void Basketgame::evaluerManche(int numeroManche)
         if(puissance4->estVainqueur())
         {
             terminerManche(numeroManche);
+            demarrerManche(numeroManche);
+            envoyerVainqueur();
+
         }
         else if(nbPionsJoues == NB_PIONS)
         {
@@ -322,7 +334,6 @@ void Basketgame::initialiserCommunication()
                 SIGNAL(tirPanier(QString, int)),
                 this,
                 SLOT(gererTir(QString, int)));
-
         communication->demarrer();
     }
 }

@@ -32,7 +32,7 @@
 
 static const QString serviceUuid(
   QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
-static const QString serviceNom(QStringLiteral("BasketGame"));
+static const QString serviceNom(QStringLiteral("74:EB:80:1D:A8:63"));
 
 class Basketgame;
 

@@ -89,6 +89,12 @@
 #define SONS_FIN_MANCHE ":/ressources/sons/finManche.wav"
 
 #define SONS_TIR_REUSSI ":/ressources/sons/tirReussi.wav"
+
+#define VAINQUEUR_ROUGE "$basket;ROUGE;4;\r\n"
+
+#define VAINQUEUR_JAUNE "$basket;ROUGE;4;\r\n"
+
+#define TEST_BASKETGAME
 namespace Ui
 {
 class basketgame;
@@ -136,6 +142,7 @@ class Basketgame : public QMainWindow
     ~Basketgame();
 
   public slots:
+    void envoyerVainqueur();
     void demarrerSeance();
     void terminerSeance();
     void evaluerSeance();
@@ -187,6 +194,7 @@ class Basketgame : public QMainWindow
     int     nombrePaniers;
     int     tempsTourConfigure;
     Etat    etatBasketgame;
+
     // QSound      *finSeance;
     // QSound      *finManche;
     // QSound      *tirReussi;
