@@ -20,10 +20,8 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.Arrays;
@@ -62,6 +60,7 @@ public class PartieSuivi extends AppCompatActivity
     private boolean[] trameEnvoyeeDebutPartie = new boolean[CommunicationBluetooth.NB_MODULES];
     private boolean[] trameEnvoyeeArretPartie = new boolean[CommunicationBluetooth.NB_MODULES];
     private boolean[] trameEnvoyeePausePartie = new boolean[CommunicationBluetooth.NB_MODULES];
+
     /**
      * Ressources GUI
      */
@@ -400,7 +399,9 @@ public class PartieSuivi extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Prochaine manche");
         builder.setMessage("Voulez-vous lancer la manche " + partie.getNumeroManche() + " ?");
-
+        for (int i = 0; i < CommunicationBluetooth.NB_MODULES; i++) {
+            trameEnvoyeeDebutPartie[i] = false;
+        }
         builder.setPositiveButton("Lancer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
