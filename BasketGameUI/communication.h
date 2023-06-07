@@ -9,8 +9,8 @@
  * @version 1.0
  */
 
-#define ENTETE_DEBUT     "$BASKET"
-#define ENTETE_FIN       "\r\n"
+#define DELIMITEUR_DEBUT     "$BASKET"
+#define DELIMITEUR_FIN       "\r\n"
 #define DELIMITEUR_CHAMP ";"
 #define TYPE_TRAME       1
 // Trame SEANCE :
@@ -25,6 +25,8 @@
 // Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n
 #define COULEUR_EQUIPE 2
 #define NUMERO_PANIER  3
+// Trame FIN : $BASKET;FIN;COULEUR;NUMERO_MANCHE;\r\n
+#define TYPE_TRAME_FIN "FIN"
 
 #include <QObject>
 #include <QtBluetooth>
@@ -47,7 +49,8 @@ class Communication : public QObject
         Start,
         Tir,
         Stop,
-        Reset
+        Reset,
+        Fin
     };
     Communication(QObject* parent = 0);
     ~Communication();
@@ -61,7 +64,8 @@ class Communication : public QObject
 
     QString getNomPeripheriqueLocal();
     QString getAdressePeripheriqueLocal();
-    void envoyer(QString trameEnvoyer);
+    void envoyer(QString envoyerTrame);
+    static Communication::TypeTrame recupererTypeTrame(QString champType);
 
   public slots:
 
@@ -75,7 +79,7 @@ class Communication : public QObject
     QString               adressePeripheriqueLocal;
     QString trame; //!< Le contenu des données reçues sur la socket
 
-    Communication::TypeTrame recupererTypeTrame(QString champType);
+
     void                     traiterTrame(const QStringList& champsTrame);
 
   private slots:
@@ -101,7 +105,7 @@ class Communication : public QObject
                           int     nbManches);
     void mancheDemarree(int numeroManche);
     void mancheArretee(int numeroManche);
-    void SeanceReinitialisee();
+    void seanceReinitialisee();
     void tirPanier(QString couleurEquipe, int numeroPanier);
 };
 

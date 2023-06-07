@@ -247,7 +247,7 @@ void Communication::recevoirDonnees()
     trame += QString(donnees.data());
     qDebug() << Q_FUNC_INFO << "trame" << trame;
 
-    if(trame.contains(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    if(trame.contains(DELIMITEUR_DEBUT) && trame.endsWith(DELIMITEUR_FIN))
     {
         QStringList champsTrame;
         champsTrame = trame.split(DELIMITEUR_CHAMP);
@@ -263,7 +263,7 @@ void Communication::recevoirDonnees()
  */
 Communication::TypeTrame Communication::recupererTypeTrame(QString champType)
 {
-    QVector<QString> typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
+    QVector<QString> typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET", "FIN" };
     for(int i = 0; i < typesTrame.size(); i++)
     {
         if(typesTrame[i] == champType)
@@ -307,7 +307,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Reset:
             qDebug() << Q_FUNC_INFO << "RESET";
-            emit SeanceReinitialisee();
+            emit seanceReinitialisee();
             break;
         default:
             qDebug() << Q_FUNC_INFO << "type trame inconnu !"
@@ -351,13 +351,18 @@ bool Communication::estConnecte()
 {
     return connecte;
 }
-void Communication::envoyer(QString trame)
+
+/**
+ * @fn Communication::envoyer()
+ * @brief méthode pour envoyer une trame au module de gestion
+ */
+void Communication::envoyer(QString envoyerTrame)
 {
     if (socket == NULL || !socket->isOpen())
     {
         return;
     }
-    trame += "\r\n";
-    socket->write(trame.toLatin1());
+    socket->write(envoyerTrame.toLocal8Bit());
+    qDebug() << Q_FUNC_INFO << envoyerTrame;
 
 }

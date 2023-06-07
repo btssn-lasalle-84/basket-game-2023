@@ -79,22 +79,35 @@
 #define JETON_JAUNE ":/ressources/images/jetonJaune.png"
 
 /**
- * @def PLATEAU_7
- * @brief Définit l'image d'un plateau à 7 colonnes
+ * @def PLATEAU
+ * @brief Définit l'image d'un plateau de 2 à 7 colonnes
  */
-#define PLATEAU_7 ":/ressources/images/puissance4_7.png"
+#define PLATEAU ":/ressources/images/puissance4_"
 
+/**
+ * @def SONS_FIN_SEANCE
+ * @brief Définit le sons d'une fin de séance
+ */
 #define SONS_FIN_SEANCE ":/ressources/sons/finSeance.wav"
 
+/**
+ * @def SONS_FIN_MANCHE
+ * @brief Définit le sons d'une fin de manche
+ */
 #define SONS_FIN_MANCHE ":/ressources/sons/finManche.wav"
 
+/**
+ * @def SONS_TIR_REUSSI
+ * @brief Définit le sons d'un tir réussi
+ */
 #define SONS_TIR_REUSSI ":/ressources/sons/tirReussi.wav"
 
-#define VAINQUEUR_ROUGE "$basket;ROUGE;4;\r\n"
-
-#define VAINQUEUR_JAUNE "$basket;ROUGE;4;\r\n"
-
 #define TEST_BASKETGAME
+
+/**
+ * @def NB_PIONS
+ * @brief Définit le nombre de pions max
+ */
 namespace Ui
 {
 class basketgame;
@@ -136,13 +149,18 @@ class Basketgame : public QMainWindow
         Termine,
         NbEtats
     };
-
+    enum CouleurEquipe
+    {
+        Rouge = 0,
+        Jaune,
+        Aucune,
+        NbEquipes
+    };
   public:
     explicit Basketgame(QWidget* parent = 0);
     ~Basketgame();
 
-  public slots:
-    void envoyerVainqueur();
+  public slots:    
     void demarrerSeance();
     void terminerSeance();
     void evaluerSeance();
@@ -156,6 +174,7 @@ class Basketgame : public QMainWindow
     void demarrerManche(int numeroManche);
     void terminerManche(int numeroManche);
     void evaluerManche(int numeroManche);
+    void envoyerVainqueurManche(int numeroManche, bool vainqueur);
     void jouerPion(int colonne);
     void afficherEcran(Basketgame::Ecran ecran);
     void afficherEcranAcceuil();
@@ -172,13 +191,6 @@ class Basketgame : public QMainWindow
      * @enum CouleurEquipe
      * @brief Les différentes couleur d'equipe
      */
-    enum CouleurEquipe
-    {
-        Rouge = 0,
-        Jaune,
-        Aucune,
-        NbEquipes
-    };
 
     Ui::basketgame*  ui;
     Puissance4*      puissance4;
@@ -216,7 +228,6 @@ class Basketgame : public QMainWindow
     void                 decrementerNbManches();
     void                 supprimerEquipes();
     static CouleurEquipe convertirCouleurRecue(QString couleurEquipe);
-    static QString       convertirCouleurEmise(CouleurEquipe couleurEquipe);
 
 #ifdef TEST_BASKETGAME
     void attribuerRaccourcisClavier();

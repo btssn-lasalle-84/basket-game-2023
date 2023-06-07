@@ -34,12 +34,6 @@
  */
 #define NB_LIGNES 6
 
-/**
- * @def NB_PIONS
- * @brief Définit le nombre de pions max
- */
-#define NB_PIONS (NB_LIGNES * NB_COLONNES)
-
 class Puissance4 : public QObject
 {
     Q_OBJECT

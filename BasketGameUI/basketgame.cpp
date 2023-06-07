@@ -26,9 +26,10 @@ Basketgame::Basketgame(QWidget* parent) :
     puissance4(new Puissance4(this)), communication(new Communication(this)),
     tempsTour(nullptr), minuteurTour(new QTimer), nbPionsJoues(0),
     numeroManche(0), nombreManches(NB_MANCHES_MIN),
-    nombrePaniers(NB_PANIERS_MAX), tempsTourConfigure(TEMPS_TOUR),
+    nombrePaniers(NB_COLONNES), tempsTourConfigure(TEMPS_TOUR),
     etatBasketgame(Etat::Attente)
 {
+    puissance4->initialiserPlateau();
     // finManche = new QSound(SONS_FIN_MANCHE, this);
     // finSeance = new QSound(SONS_FIN_SEANCE, this);
     // tirReussi = new QSound(SONS_TIR_REUSSI, this);
@@ -98,7 +99,7 @@ void Basketgame::fermerApplication()
 void Basketgame::demarrerSeance()
 {
 #ifdef TEST_BASKETGAME
-    configurerSeance("Avignon", "Sorgues", 7, 15, 4);
+    configurerSeance("Avignon", "Sorgues", 4 , 15, 4);
 #endif
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
        ui->ecrans->currentIndex() == Basketgame::Ecran::Seance)
@@ -164,7 +165,6 @@ void Basketgame::demarrerManche(int numeroManche)
         initialiserDureeTour();
         demarrerChronometrageTour();
         afficherPuissance4();
-        afficherScoreMancheEquipe();
         etatBasketgame = Etat::EnCours;
     }
 }
@@ -187,15 +187,6 @@ void Basketgame::terminerManche(int numeroManche)
     }
 }
 
-void Basketgame::envoyerVainqueur()
-{
-    QString couleurString;
-    QString trame =
-    QString("$BASKET;FIN;") + couleurString + QString::number(numeroManche) + QString(";\r");
-    qDebug() << Q_FUNC_INFO << trame;
-
-            communication->envoyer(trame);
-}
 /**
  * @fn Basketgame::evaluerManche()
  * @brief méthode pour déterminer quand une manche est terminée
@@ -208,16 +199,43 @@ void Basketgame::evaluerManche(int numeroManche)
     {
         if(puissance4->estVainqueur())
         {
+            envoyerVainqueurManche(numeroManche, true);
+            terminerManche(numeroManche);
+            afficherScoreMancheEquipe();
+            demarrerManche(numeroManche);
+        }
+        else if(nbPionsJoues == nbPionsMaxJoues)
+        {
+         //   envoyerVainqueurManche(numeroManche, false);
             terminerManche(numeroManche);
             demarrerManche(numeroManche);
-            envoyerVainqueur();
-
-        }
-        else if(nbPionsJoues == NB_PIONS)
-        {
-            terminerManche(numeroManche);
         }
     }
+}
+
+/**
+ * @fn Basketgame::envoyerVainqueurManche()
+ * @brief méthode pour envoyer une trame qui contient le vainqueur d'une manche
+ */
+void Basketgame::envoyerVainqueurManche(int numeroManche, bool vainqueur)
+{
+    QString couleurVainqueur = "JAUNE";
+
+    if(vainqueur)
+    {
+        if(puissance4->estEquipeRouge())
+        {
+            couleurVainqueur = "ROUGE";
+        }
+    }
+    else
+    {
+        couleurVainqueur = "NUL";
+    }
+    QString envoyerTrame = QString(DELIMITEUR_DEBUT) + QString(DELIMITEUR_CHAMP) + TYPE_TRAME_FIN
+            + QString(DELIMITEUR_CHAMP) + couleurVainqueur + QString(DELIMITEUR_CHAMP) + QString::number(numeroManche) + QString(DELIMITEUR_CHAMP) + QString(DELIMITEUR_FIN);
+    qDebug() << Q_FUNC_INFO << envoyerTrame;
+    communication->envoyer(envoyerTrame);
 }
 
 /**
@@ -327,7 +345,7 @@ void Basketgame::initialiserCommunication()
                 this,
                 SLOT(configurerSeance(QString, QString, int, int, int)));
         connect(communication,
-                SIGNAL(SeanceReinitialisee()),
+                SIGNAL(seanceReinitialisee()),
                 this,
                 SLOT(reinitialiserSeance()));
         connect(communication,
@@ -387,29 +405,14 @@ void Basketgame::configurerSeance(QString nomEquipeRouge,
         nombreManches      = nbManches;
         tempsTourConfigure = tempsTour;
         etatBasketgame     = Etat::Configure;
+        initialiserParametresEquipe();
     }
-}
-QString Basketgame::convertirCouleurEmise(CouleurEquipe couleurEquipe)
-{
-    QString couleurString;
-    switch(couleurEquipe)
-    {
-        case Rouge:
-            couleurString = "Rouge";
-            break;
-        case Jaune:
-            couleurString = "Jaune";
-            break;
-        case Aucune:
-            couleurString = "Aucune";
-            break;
-        default:
-            couleurString = "Inconnue";
-            break;
-    }
-    return couleurString;
 }
 
+/**
+ * @fn Basketgame::CouleurEquipe Basketgame::convertirCouleurRecue(
+ * @brief méthode convertir le QString reçu de la trame tir en Enum CouleurEquipe
+ */
 Basketgame::CouleurEquipe Basketgame::convertirCouleurRecue(
   QString couleurEquipe)
 {
@@ -506,8 +509,10 @@ void Basketgame::demarrerChronometrageTour()
  */
 void Basketgame::afficherPuissance4()
 {
-    qDebug() << Q_FUNC_INFO << "\"" << PLATEAU_7 << "\"";
-    ui->labelVisualisationPlateau->setPixmap(QPixmap(PLATEAU_7));
+    qDebug() << Q_FUNC_INFO << "\"" << PLATEAU << "\"";
+
+    ui->labelVisualisationPlateau->setPixmap(
+          QPixmap(PLATEAU + QString::number(nombrePaniers) + QString(".png")));
 }
 
 /**
@@ -518,7 +523,7 @@ void Basketgame::afficherUnJeton(int ligne, int colonne)
 {
     if(ligne < 0 || ligne >= NB_LIGNES)
         return;
-    if(colonne < 0 || colonne >= NB_COLONNES)
+    if(colonne < 0 || colonne >= nombrePaniers)
         return;
 
     QImage  jetonRouge(JETON_ROUGE);
@@ -606,6 +611,11 @@ void Basketgame::afficherScorePanierEquipe()
         nbPionsJoues++;
     }
 }
+
+/**
+ * @fn Basketgame::afficherScoreMancheEquipe
+ * @brief méthode pour afficher le score de manche remportée
+ */
 void Basketgame::afficherScoreMancheEquipe()
 {
     if(etatBasketgame == Etat::EnCours)
