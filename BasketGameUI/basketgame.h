@@ -38,7 +38,7 @@
 
 /**
  * @def NB_PANIERS
- * @brief Le nombre de paniers par défaut
+ * @brief Le nombre de colonne maximum
  */
 #define NB_PANIERS_MAX 7
 
@@ -66,6 +66,11 @@
  */
 #define DEPLACEMENT_Y 321
 
+/**
+ * @def NB_PIONS_MAX
+ * @brief Définit le nombre maximum de pions possible
+ */
+#define NB_PIONS  42
 /**
  * @def JETON_ROUGE
  * @brief Définit l'image d'un jeton rouge

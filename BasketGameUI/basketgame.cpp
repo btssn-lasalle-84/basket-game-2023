@@ -30,6 +30,7 @@ Basketgame::Basketgame(QWidget* parent) :
     etatBasketgame(Etat::Attente)
 {
     puissance4->initialiserPlateau();
+
     // finManche = new QSound(SONS_FIN_MANCHE, this);
     // finSeance = new QSound(SONS_FIN_SEANCE, this);
     // tirReussi = new QSound(SONS_TIR_REUSSI, this);
@@ -125,7 +126,7 @@ void Basketgame::terminerSeance()
  */
 void Basketgame::evaluerSeance()
 {
-    if(getNombreManches() == 0)
+    if(getNombreManches() == 1)
     {
         if(equipes[Rouge]->getScoreManche() > equipes[Jaune]->getScoreManche())
         {
@@ -142,6 +143,7 @@ void Basketgame::evaluerSeance()
               "background-color: yellow; color: black; font: 20pt;");
         }
         terminerSeance();
+        ui->messageAttente->setText("");
         // finSeance->play();
         // qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_SEANCE << "\"";
     }
@@ -182,6 +184,7 @@ void Basketgame::terminerManche(int numeroManche)
         ui->tempsTour->setText("00:00:00");
         minuteurTour->stop();
         evaluerSeance();
+        decrementerNbManches();
         // finManche->play();
         // qDebug() << Q_FUNC_INFO << "\"" << SONS_FIN_MANCHE << "\"";
     }
@@ -201,10 +204,10 @@ void Basketgame::evaluerManche(int numeroManche)
         {
             envoyerVainqueurManche(numeroManche, true);
             terminerManche(numeroManche);
-            afficherScoreMancheEquipe();
             demarrerManche(numeroManche);
+            afficherScoreMancheEquipe();
         }
-        else if(nbPionsJoues == nbPionsMaxJoues)
+        else if(nbPionsJoues == NB_PIONS)
         {
          //   envoyerVainqueurManche(numeroManche, false);
             terminerManche(numeroManche);
@@ -632,7 +635,6 @@ void Basketgame::afficherScoreMancheEquipe()
             ui->affichageTotalMancheE2->display(
               QString::number(equipes[Jaune]->getScoreManche()));
         }
-        decrementerNbManches();
     }
 }
 
@@ -735,6 +737,6 @@ void Basketgame::attribuerRaccourcisClavier()
  */
 int Basketgame::randInt(int min, int max)
 {
-    return qrand() % ((max + 1) - min) + min;
+    return qrand() % ((max + 4) - min) + min;
 }
 #endif
