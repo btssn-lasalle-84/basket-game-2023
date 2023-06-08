@@ -19,7 +19,8 @@ class Equipe : public QObject
 
   private:
     QString nom;
-    int     score;
+    int     scorePanier;
+    int     scoreManche;
 
   public:
     Equipe(const QString& nom, QObject* parent = 0);
@@ -27,9 +28,13 @@ class Equipe : public QObject
 
     QString getNom() const;
     void    setNom(const QString& nom);
-    int     getScore() const;
-    void    setScore(int score);
-    void    incrementerScore();
+    int     getScorePanier() const;
+    void    setScorePanier(int scorePanier);
+    int     getScoreManche() const;
+    void    setScoreManche(int scoreManche);
+    void    incrementerScorePanier();
+    void    incrementerScoreManche();
+
 };
 
 #endif // EQUIPE_H

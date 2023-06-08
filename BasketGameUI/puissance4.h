@@ -18,7 +18,7 @@
 
 /**
  * @def NB_PIONS_ALIGNES
- * @brief Définit le nombre de pions pour gagner une partie
+ * @brief Définit le nombre de pions pour gagner une Seance
  */
 #define NB_PIONS_ALIGNES 4
 
@@ -33,12 +33,6 @@
  * @brief Définit le nombre de ligne par défaut
  */
 #define NB_LIGNES 6
-
-/**
- * @def NB_PIONS
- * @brief Définit le nombre de pions max
- */
-#define NB_PIONS (NB_LIGNES * NB_COLONNES)
 
 class Puissance4 : public QObject
 {

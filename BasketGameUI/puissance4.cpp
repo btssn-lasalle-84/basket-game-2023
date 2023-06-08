@@ -7,6 +7,7 @@
 
 #include "puissance4.h"
 #include "basketgame.h"
+#define TEST_ALIGNEMENT
 
 /**
  * @fn Puissance4::Puissance4
@@ -49,6 +50,7 @@ void Puissance4::initialiserPlateau()
  */
 int Puissance4::placerPion(int colonne)
 {
+
     int ligne = 0;
     for(ligne = 0; ligne < NB_LIGNES; ++ligne)
     {
@@ -82,7 +84,7 @@ void Puissance4::verifierPlateau()
 }
 
 /**
- * @fn Puissance4::estVainqueur
+ * @fn Puissance4::estVainqueurManche
  * @brief méthode qui retourne true si il y a 4 pions alignés de la même
  * couleur sur le plateau
  * @return bool
@@ -135,7 +137,7 @@ bool Puissance4::verifierLigne()
             }
             else if(plateau[colonne][ligne] == CouleurJeton::ROUGE &&
                     plateau[colonne + 1][ligne] == CouleurJeton::ROUGE &&
-                    plateau[colonne + 2][ligne] == CouleurJeton::ROUGE &&
+                        plateau[colonne + 2][ligne] == CouleurJeton::ROUGE &&
                     plateau[colonne + 3][ligne] == CouleurJeton::ROUGE)
             {
                 vainqueur = true;
@@ -265,11 +267,11 @@ void Puissance4::testUnitaireVerifierPlateau()
     initialiserPlateau();
     int ligne                       = 0;
     int colonne                     = 0;
-    plateau[ligne + 5][colonne + 2] = CouleurJeton::ROUGE;
-    plateau[ligne + 4][colonne + 3] = CouleurJeton::ROUGE;
-    plateau[ligne + 3][colonne + 1] = CouleurJeton::ROUGE;
+    plateau[ligne + 0][colonne + 3] = CouleurJeton::ROUGE;
+    plateau[ligne + 1][colonne + 4] = CouleurJeton::ROUGE;
     plateau[ligne + 2][colonne + 5] = CouleurJeton::ROUGE;
+    plateau[ligne + 3][colonne + 6]=  CouleurJeton::ROUGE;
     verifierPlateau();
-    qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur;
+ qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur;
 }
 #endif
