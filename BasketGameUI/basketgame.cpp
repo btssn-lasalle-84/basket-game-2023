@@ -100,7 +100,7 @@ void Basketgame::fermerApplication()
 void Basketgame::demarrerSeance()
 {
 #ifdef TEST_BASKETGAME
-    configurerSeance("Avignon", "Sorgues", 7 , 15, 3);
+    configurerSeance("Avignon", "Sorgues", 6 , 15, 5);
 #endif
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
        ui->ecrans->currentIndex() == Basketgame::Ecran::Seance)
@@ -227,7 +227,6 @@ void Basketgame::terminerManche(int numeroManche)
 void Basketgame::evaluerManche(int numeroManche)
 {
     qDebug() << Q_FUNC_INFO << "numeroManche" << numeroManche;
-    qDebug() << Q_FUNC_INFO << "nbPionsJoues" << nbPionsJoues << "estVainqueur";
     if(etatBasketgame == Etat::EnCours)
     {
         if(puissance4->estVainqueur())

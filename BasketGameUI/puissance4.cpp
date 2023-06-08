@@ -7,6 +7,7 @@
 
 #include "puissance4.h"
 #include "basketgame.h"
+#define TEST_ALIGNEMENT
 
 /**
  * @fn Puissance4::Puissance4
@@ -266,11 +267,11 @@ void Puissance4::testUnitaireVerifierPlateau()
     initialiserPlateau();
     int ligne                       = 0;
     int colonne                     = 0;
-    plateau[ligne + 5][colonne + 2] = CouleurJeton::ROUGE;
-    plateau[ligne + 4][colonne + 3] = CouleurJeton::ROUGE;
-    plateau[ligne + 3][colonne + 1] = CouleurJeton::ROUGE;
+    plateau[ligne + 0][colonne + 3] = CouleurJeton::ROUGE;
+    plateau[ligne + 1][colonne + 4] = CouleurJeton::ROUGE;
     plateau[ligne + 2][colonne + 5] = CouleurJeton::ROUGE;
+    plateau[ligne + 3][colonne + 6]=  CouleurJeton::ROUGE;
     verifierPlateau();
-    qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur;
+ qDebug() << Q_FUNC_INFO << "estVainqueur" << vainqueur;
 }
 #endif

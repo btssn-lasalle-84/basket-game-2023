@@ -65,6 +65,12 @@
             </property>
             <item>
              <widget class="QLabel" name="labelBasketGame">
+              <property name="maximumSize">
+               <size>
+                <width>400</width>
+                <height>400</height>
+               </size>
+              </property>
               <property name="styleSheet">
                <string notr="true">color: rgb(255, 255, 255);
 font: 48pt &quot;Sans Serif&quot;;
@@ -75,6 +81,9 @@ background-color: transparent;</string>
               </property>
               <property name="pixmap">
                <pixmap resource="ressources.qrc">:/ressources/images/logo-basketgame.png</pixmap>
+              </property>
+              <property name="scaledContents">
+               <bool>true</bool>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -101,7 +110,7 @@ background-color: transparent;</string>
             <item>
              <widget class="QLabel" name="messageAttente">
               <property name="styleSheet">
-               <string notr="true">font:20pt;
+               <string notr="true">font:55pt;
 color: white;</string>
               </property>
               <property name="text">
