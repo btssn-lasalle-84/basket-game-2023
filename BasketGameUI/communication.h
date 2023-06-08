@@ -104,7 +104,7 @@ class Communication : public QObject
                           int     tempsTour,
                           int     nbManches);
     void mancheDemarree(int numeroManche);
-    void mancheArretee(int numeroManche);
+    void mancheTerminee(int numeroManche);
     void seanceReinitialisee();
     void tirPanier(QString couleurEquipe, int numeroPanier);
 };

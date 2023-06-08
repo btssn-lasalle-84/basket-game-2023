@@ -100,7 +100,7 @@ void Basketgame::fermerApplication()
 void Basketgame::demarrerSeance()
 {
 #ifdef TEST_BASKETGAME
-    configurerSeance("Avignon", "Sorgues", 4 , 15, 4);
+    configurerSeance("Avignon", "Sorgues", 3 , 15, 4);
 #endif
     if((etatBasketgame == Etat::Configure || etatBasketgame == Etat::Termine) &&
        ui->ecrans->currentIndex() == Basketgame::Ecran::Seance)
@@ -130,17 +130,23 @@ void Basketgame::evaluerSeance()
     {
         if(equipes[Rouge]->getScoreManche() > equipes[Jaune]->getScoreManche())
         {
-            ui->messageVainqueur->setText("Vainqueur est : " +
-                                          equipes[Rouge]->getNom());
+            ui->messageVainqueur->setText("Bravo " +
+                                          equipes[Rouge]->getNom() + " !");
             ui->messageVainqueur->setStyleSheet(
               "background-color: red; color: black; font: 20pt;");
         }
-        else
+        else if (equipes[Rouge]->getScoreManche() < equipes[Jaune]->getScoreManche())
         {
-            ui->messageVainqueur->setText("Vainqueur est : " +
-                                          equipes[Jaune]->getNom());
+            ui->messageVainqueur->setText("Bravo " +
+                                          equipes[Jaune]->getNom() + " !");
             ui->messageVainqueur->setStyleSheet(
               "background-color: yellow; color: black; font: 20pt;");
+        }
+        else
+        {
+            ui->messageVainqueur->setText("Egalité !");
+            ui->messageVainqueur->setStyleSheet(
+                "background-color: white; color: black; font: 20pt;");
         }
         terminerSeance();
         ui->messageAttente->setText("");
@@ -204,14 +210,13 @@ void Basketgame::evaluerManche(int numeroManche)
         {
             envoyerVainqueurManche(numeroManche, true);
             terminerManche(numeroManche);
-            demarrerManche(numeroManche);
             afficherScoreMancheEquipe();
         }
-        else if(nbPionsJoues == NB_PIONS)
+        else if(nbPionsJoues == ( NB_LIGNES * nombrePaniers ))
         {
-         //   envoyerVainqueurManche(numeroManche, false);
+            qDebug() << Q_FUNC_INFO << "Egalité" << nbPionsJoues;
+            envoyerVainqueurManche(numeroManche, false);
             terminerManche(numeroManche);
-            demarrerManche(numeroManche);
         }
     }
 }
@@ -239,6 +244,7 @@ void Basketgame::envoyerVainqueurManche(int numeroManche, bool vainqueur)
             + QString(DELIMITEUR_CHAMP) + couleurVainqueur + QString(DELIMITEUR_CHAMP) + QString::number(numeroManche) + QString(DELIMITEUR_CHAMP) + QString(DELIMITEUR_FIN);
     qDebug() << Q_FUNC_INFO << envoyerTrame;
     communication->envoyer(envoyerTrame);
+    etatBasketgame = Etat::FinManche;
 }
 
 /**
@@ -291,7 +297,7 @@ void Basketgame::initialiserParametresEquipe()
     ui->affichageTotalMancheE1->display(QString::number(0));
     ui->affichageTotalMancheE2->display(QString::number(0));
     ui->labelVisualisationEquipeJaune->setStyleSheet(
-      "background-color: transparent; color: transparent;");
+      "background-color: white; color: black;font: 20pt");
     ui->labelVisualisationEquipeRouge->setStyleSheet(
       "background-color: red; color: black;font: 20pt;");
 }
@@ -340,7 +346,7 @@ void Basketgame::initialiserCommunication()
                 this,
                 SLOT(demarrerManche(int)));
         connect(communication,
-                SIGNAL(mancheArretee(int)),
+                SIGNAL(mancheTerminee(int)),
                 this,
                 SLOT(terminerManche(int)));
         connect(communication,
@@ -442,14 +448,17 @@ Basketgame::CouleurEquipe Basketgame::convertirCouleurRecue(
 void Basketgame::jouerPion(int colonne)
 {
     int ligne = puissance4->placerPion(colonne);
-    if(ligne != -1)
+    if(etatBasketgame != Etat::FinManche)
     {
-        afficherUnJeton(ligne, colonne);
-        afficherScorePanierEquipe();
-        puissance4->verifierPlateau();
-        int numeroManche = getNombreManches();
-        evaluerManche(numeroManche);
-        afficherTourEquipe();
+        if(ligne != -1)
+        {
+            afficherUnJeton(ligne, colonne);
+            afficherScorePanierEquipe();
+            puissance4->verifierPlateau();
+            int numeroManche = getNombreManches();
+            evaluerManche(numeroManche);
+            afficherTourEquipe();
+        }
     }
 }
 
@@ -479,7 +488,7 @@ void Basketgame::chronometrerTour()
         if(puissance4->estEquipeRouge())
         {
             ui->labelVisualisationEquipeRouge->setStyleSheet(
-              "background-color: transparent; color: transparent;");
+              "background-color: white; color: black;font: 20pt");
             ui->labelVisualisationEquipeJaune->setStyleSheet(
               "background-color: yellow; color: black;font: 20pt;");
             puissance4->setTourEquipe(false);
@@ -487,7 +496,7 @@ void Basketgame::chronometrerTour()
         else
         {
             ui->labelVisualisationEquipeJaune->setStyleSheet(
-              "background-color: transparent; color: transparent;");
+              "background-color: white; color: black;font: 20pt");
             ui->labelVisualisationEquipeRouge->setStyleSheet(
               "background-color: red; color: black;font: 20pt;");
             puissance4->setTourEquipe(true);
@@ -571,7 +580,7 @@ void Basketgame::afficherTourEquipe()
         if(puissance4->estEquipeRouge())
         {
             ui->labelVisualisationEquipeRouge->setStyleSheet(
-              "background-color: transparent; color: transparent;");
+              "background-color: white; color: black; font: 20pt;");
             ui->labelVisualisationEquipeJaune->setStyleSheet(
               "background-color: yellow; color: black; font: 20pt;");
             puissance4->setTourEquipe(false);
@@ -579,7 +588,7 @@ void Basketgame::afficherTourEquipe()
         else
         {
             ui->labelVisualisationEquipeJaune->setStyleSheet(
-              "background-color: transparent; color: transparent;");
+              "background-color: white; color: black;font: 20pt");
             ui->labelVisualisationEquipeRouge->setStyleSheet(
               "background-color: red; color: black;font: 20pt;");
             puissance4->setTourEquipe(true);
@@ -737,6 +746,6 @@ void Basketgame::attribuerRaccourcisClavier()
  */
 int Basketgame::randInt(int min, int max)
 {
-    return qrand() % ((max + 4) - min) + min;
+    return qrand() % ((max) - min) + min;
 }
 #endif

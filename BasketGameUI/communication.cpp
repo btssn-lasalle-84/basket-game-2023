@@ -303,7 +303,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Stop:
             qDebug() << Q_FUNC_INFO << "STOP";
-            emit mancheArretee(champsTrame[NUMERO_Seance].toInt());
+            emit mancheTerminee(champsTrame[NUMERO_Seance].toInt());
             break;
         case TypeTrame::Reset:
             qDebug() << Q_FUNC_INFO << "RESET";

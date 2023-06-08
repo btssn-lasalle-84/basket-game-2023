@@ -10,13 +10,12 @@
  */
 #include <QtWidgets>
 #include <QVector>
-//#include <QSound>
 
 /**
  * @def TEST_BASKETGAME
  * @brief Pour les tests avec le clavier
  */
-//#define TEST_BASKETGAME
+#define TEST_BASKETGAME
 
 /**
  * @def PLEIN_ECRAN_RPI
@@ -107,8 +106,6 @@
  */
 #define SONS_TIR_REUSSI ":/ressources/sons/tirReussi.wav"
 
-#define TEST_BASKETGAME
-
 /**
  * @def NB_PIONS
  * @brief Définit le nombre de pions max
@@ -151,6 +148,7 @@ class Basketgame : public QMainWindow
         Demarre,
         EnCours,
         Sauvegarde,
+        FinManche,
         Termine,
         NbEtats
     };

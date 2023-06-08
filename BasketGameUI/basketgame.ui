@@ -28,7 +28,7 @@
     <item>
      <widget class="QStackedWidget" name="ecrans">
       <property name="currentIndex">
-       <number>1</number>
+       <number>0</number>
       </property>
       <widget class="QWidget" name="ecranAccueil">
        <layout class="QVBoxLayout" name="verticalLayout">
@@ -71,7 +71,10 @@ font: 48pt &quot;Sans Serif&quot;;
 background-color: transparent;</string>
               </property>
               <property name="text">
-               <string>Basket Game</string>
+               <string/>
+              </property>
+              <property name="pixmap">
+               <pixmap resource="ressources.qrc">:/ressources/images/logo-basketgame.png</pixmap>
               </property>
               <property name="alignment">
                <set>Qt::AlignCenter</set>
@@ -102,7 +105,7 @@ background-color: transparent;</string>
 color: white;</string>
               </property>
               <property name="text">
-               <string>Attente de connexion ...</string>
+               <string>Attente de connexion et de configuration...</string>
               </property>
              </widget>
             </item>
@@ -526,6 +529,8 @@ color: white;</string>
   <widget class="QStatusBar" name="statusBar"/>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="ressources.qrc"/>
+ </resources>
  <connections/>
 </ui>
