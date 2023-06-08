@@ -183,6 +183,7 @@ class Basketgame : public QMainWindow
     void afficherEcranAcceuil();
     void afficherEcranSeance();
     void chronometrerTour();
+    void afficherPartieArretee();
     void fermerApplication();
 
 #ifdef TEST_BASKETGAME
