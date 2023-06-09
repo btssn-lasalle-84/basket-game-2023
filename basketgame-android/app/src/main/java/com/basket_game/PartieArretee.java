@@ -33,11 +33,11 @@ public class PartieArretee extends AppCompatActivity
      * Attributs
      */
     private Intent                 intentDonneesPartieArretee;
-    private Intent intentDonneesPartieSuivi;
     private String vainqueur;
     private int equipeGagnante;
     private String nomEquipe1;
     private String nomEquipe2;
+
     /**
      * Ressources GUI
      */

@@ -20,12 +20,11 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ProgressBar;
-import android.widget.Spinner;
 import android.widget.TextView;
 
+import java.util.Arrays;
 import java.util.Objects;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -57,6 +56,10 @@ public class PartieSuivi extends AppCompatActivity
     Handler                        handler                = null;
     private String numeroPanier;
     private String couleur;
+    private boolean[] trameEnvoyeeSeance = new boolean[CommunicationBluetooth.NB_MODULES];
+    private boolean[] trameEnvoyeeDebutPartie = new boolean[CommunicationBluetooth.NB_MODULES];
+    private boolean[] trameEnvoyeeArretPartie = new boolean[CommunicationBluetooth.NB_MODULES];
+    private boolean[] trameEnvoyeePausePartie = new boolean[CommunicationBluetooth.NB_MODULES];
 
     /**
      * Ressources GUI
@@ -109,6 +112,10 @@ public class PartieSuivi extends AppCompatActivity
         connecterModules();
         verifierConnexionModules();
         compterTempsRestantTour();
+        Arrays.fill(trameEnvoyeeSeance, false);
+        Arrays.fill(trameEnvoyeeDebutPartie, false);
+        Arrays.fill(trameEnvoyeeArretPartie, false);
+        Arrays.fill(trameEnvoyeePausePartie, false);
     }
 
     /**
@@ -392,7 +399,9 @@ public class PartieSuivi extends AppCompatActivity
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Prochaine manche");
         builder.setMessage("Voulez-vous lancer la manche " + partie.getNumeroManche() + " ?");
-
+        for (int i = 0; i < CommunicationBluetooth.NB_MODULES; i++) {
+            trameEnvoyeeDebutPartie[i] = false;
+        }
         builder.setPositiveButton("Lancer", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -447,7 +456,7 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void gererConnexionBluetooth(String trame) {
         // modules minimum pour jouer
-        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION) /*&& (communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN))*/) {
+        if(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION) && (communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN))) {
             demarrerPartie();
         }
     }
@@ -486,7 +495,7 @@ public class PartieSuivi extends AppCompatActivity
      */
     private void gererDeconnexionBluetooth(String trame) {
         // au moins un module déconnecté
-        if(!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) /*|| (!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)))*/) {
+        if(!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_DETECTION)) || (!(communicationBluetooth.estConnecte(CommunicationBluetooth.ID_MODULE_ECRAN)))) {
             arreterCompteurTemps();
             envoyerTramePausePartie();
         }
@@ -901,35 +910,39 @@ public class PartieSuivi extends AppCompatActivity
      * @brief Méthode appelée pour fabriquer et envoyer la trame contenant les paramètres de la
      * partie
      */
-    private void envoyerTrameSeance()
-    {
-        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
-        {
-            communicationBluetooth.envoyer(
-              ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                ProtocoleBasket.TYPE_TRAME_SEANCE + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                partie.getEquipe1().getNomEquipe() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                partie.getEquipe2().getNomEquipe() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                partie.getTempsMaxTour() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                partie.getNbPaniers() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                partie.getNbManchesGagnantes() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                ProtocoleBasket.DELIMITEUR_FIN_TRAME,
-              i);
+    private void envoyerTrameSeance() {
+        for (int i = 0; i < CommunicationBluetooth.NB_MODULES; i++) {
+            if (!trameEnvoyeeSeance[i]) {
+                communicationBluetooth.envoyer(
+                        ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                ProtocoleBasket.TYPE_TRAME_SEANCE + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                partie.getEquipe1().getNomEquipe() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                partie.getEquipe2().getNomEquipe() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                partie.getTempsMaxTour() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                partie.getNbPaniers() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                partie.getNbManchesGagnantes() + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                ProtocoleBasket.DELIMITEUR_FIN_TRAME,
+                        i);
+
+                trameEnvoyeeSeance[i] = true; // Met à jour l'état d'envoi de la trame
+            }
         }
     }
 
     /**
      * @brief Méthode appelée pour fabriquer et envoyer la trame de début de partie
      */
-    private void envoyerTrameDebutPartie()
-    {
-        for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
-        {
-            communicationBluetooth.envoyer(
-              ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                ProtocoleBasket.TYPE_TRAME_START + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
-                ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
-              i);
+    private void envoyerTrameDebutPartie() {
+        for (int i = 0; i < CommunicationBluetooth.NB_MODULES; i++) {
+            if (!trameEnvoyeeDebutPartie[i]) {
+                communicationBluetooth.envoyer(
+                        ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                ProtocoleBasket.TYPE_TRAME_START + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
+                                ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
+                        i);
+
+                trameEnvoyeeDebutPartie[i] = true; // Met à jour l'état d'envoi de la trame début partie
+            }
         }
     }
 
@@ -940,11 +953,15 @@ public class PartieSuivi extends AppCompatActivity
     {
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
-            communicationBluetooth.envoyer(
-              ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                ProtocoleBasket.TYPE_TRAME_STOP + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
-                ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
-              i);
+            if(!trameEnvoyeeArretPartie[i]) {
+                communicationBluetooth.envoyer(
+                        ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                ProtocoleBasket.TYPE_TRAME_STOP + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
+                                ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
+                        i);
+
+                trameEnvoyeeArretPartie[i] = true; // Met à jour l'état d'envoi de la trame
+            }
         }
     }
 
@@ -970,11 +987,15 @@ public class PartieSuivi extends AppCompatActivity
     {
         for(int i = 0; i < CommunicationBluetooth.NB_MODULES; i++)
         {
-            communicationBluetooth.envoyer(
-                    ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
-                            ProtocoleBasket.TYPE_TRAME_PAUSE + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
-                            ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
-                    i);
+            if(!trameEnvoyeePausePartie[i]) {
+                communicationBluetooth.envoyer(
+                        ProtocoleBasket.DELIMITEUR_DEBUT_TRAME + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME +
+                                ProtocoleBasket.TYPE_TRAME_PAUSE + ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + partie.getNumeroManche() +
+                                ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME + ProtocoleBasket.DELIMITEUR_FIN_TRAME,
+                        i);
+
+                trameEnvoyeePausePartie[i] = true; // Met à jour l'état d'envoi de la trame
+            }
         }
     }
 }
