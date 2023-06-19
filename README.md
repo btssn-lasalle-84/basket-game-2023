@@ -5,13 +5,16 @@
 # Le projet basket-game 2023
 
 - [Le projet basket-game 2023](#le-projet-basket-game-2023)
+  - [Fonctionnalités](#fonctionnalit%C3%A9s)
   - [Documentation du code](#documentation-du-code)
-  - [Versions](#versions)
+  - [Présentations](#pr%C3%A9sentations)
+  - [Vidéo](#vid%C3%A9o)
+  - [Diagramme de classes](#diagramme-de-classes)
+  - [Screenshots](#screenshots)
+  - [Historique des versions](#historique-des-versions)
     - [1.0](#10)
     - [0.2](#02)
     - [0.1](#01)
-  - [Diagramme de classes](#diagramme-de-classes)
-  - [Planification](#planification)
   - [Simulateur](#simulateur)
   - [Auteurs](#auteurs)
 
@@ -28,6 +31,8 @@
 
 ![](images/basketgame-2023.png)
 
+## Fonctionnalités
+
 ![](images/uc-basketgame-2023.png)
 
 - Android :
@@ -35,58 +40,34 @@
 | Fonctionnalité   | OUI | NON |
 | ------------------------- |:-----:|:-----:|
 | Paramétrer une partie | X |  |
-| Gérer le déroulement d’une partie | - |  |
+| Gérer le déroulement d’une partie | X |  |
 | Dialoguer avec les modules | X |  |
-| Jouer une partie | - |  |
+| Jouer une partie | X |  |
 
 - Qt :
 
 | Fonctionnalité   | OUI | NON |
 | ------------------------- |:-----:|:-----:|
-| Afficher le déroulement d’une partie | - |  |
+| Afficher le déroulement d’une partie | X |  |
 | Gérer le puissance 4 | X |  |
 | Dialoguer avec le module de gestion de partie | X |  |
-| Produire des sons en fonction de la situation |  | X |
+| Produire des sons en fonction de la situation | X |  |
 
 
 ## Documentation du code
 
 https://btssn-lasalle-84.github.io/basket-game-2023/
 
+## Présentations
 
-## Versions
+Diaporamas étudiants IR :
 
-![](images/livraisons-basketgame-2023.png)
+- Nathanael CHANSARD (Qt) : [Revue finale - Chansard.pptx](./diaporamas/Revue%20finale%20-%20Chansard.pptx)
+- Florent GUILLAUMET (Android) : [Revue finale - Guillaumet.pptx](./diaporamas/Revue%20finale%20-%20Guillaumet.pptx)
 
-### 1.0
+## Vidéo
 
-- Android :
-
-![](images/screenshot-android-nouvelle-partie-v1.0.png)
-
-![](images/screenshot-android-parametres-v1.0.png)
-
-![](images/screenshot-android-partie-suivi-v1.0.png)
-
-![](images/screenshot-android-partie-interrompue-v1.0.png)
-
-- Qt :
-
-![](images/screenshot-qt-accueil-basketgame-v0.2.png)
-
-![](images/screenshot-qt-puissance4-basketgame-v1.0.png)
-
-![](images/screenshot-qt-puissance4-1-basketgame-v1.0.png)
-
-![](images/screenshot-qt-puissance4-2-basketgame-v1.0.png)
-
-### 0.2
-
-![](images/jira-tickets-v0.2.png)
-
-### 0.1
-
-![](images/jira-tickets-v0.1.png)
+https://www.youtube.com/@projets-btssn-lasalle84
 
 ## Diagramme de classes
 
@@ -98,11 +79,31 @@ https://btssn-lasalle-84.github.io/basket-game-2023/
 
 ![](images/dc-basketgame-qt-2023.png)
 
-## Planification
+## Screenshots
 
-![](images/gantt-basketgame-2023.png)
+- Android :
 
-![](images/roadbook-basketgame-2023.png)
+![](images/screenshot-android.gif)
+
+- PC Desktop Qt :
+
+![](images/screenshot-qt.gif)
+
+## Historique des versions
+
+![](images/livraisons-basketgame-2023.png)
+
+### 1.0
+
+![](images/jira-tickets-v1.0.png)
+
+### 0.2
+
+![](images/jira-tickets-v0.2.png)
+
+### 0.1
+
+![](images/jira-tickets-v0.1.png)
 
 ## Simulateur
 
