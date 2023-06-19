@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet basket-game
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -93,15 +93,18 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <h1>Le projet basket-game 2023</h1>
 <ul>
 <li><a href="#le-projet-basket-game-2023">Le projet basket-game 2023</a><ul>
+<li><a href="#fonctionnalit%C3%A9s">Fonctionnalités</a></li>
 <li><a href="#documentation-du-code">Documentation du code</a></li>
-<li><a href="#versions">Versions</a><ul>
+<li><a href="#pr%C3%A9sentations">Présentations</a></li>
+<li><a href="#vid%C3%A9o">Vidéo</a></li>
+<li><a href="#diagramme-de-classes">Diagramme de classes</a></li>
+<li><a href="#screenshots">Screenshots</a></li>
+<li><a href="#historique-des-versions">Historique des versions</a><ul>
 <li><a href="#10">1.0</a></li>
 <li><a href="#02">0.2</a></li>
 <li><a href="#01">0.1</a></li>
 </ul>
 </li>
-<li><a href="#diagramme-de-classes">Diagramme de classes</a></li>
-<li><a href="#planification">Planification</a></li>
 <li><a href="#simulateur">Simulateur</a></li>
 <li><a href="#auteurs">Auteurs</a></li>
 </ul>
@@ -117,6 +120,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <li>Module de visualisation de partie (Qt - Raspberry Pi - Écran télévision - IR)​</li>
 </ul>
 <p><img src="basketgame-2023.png" alt="" class="inline"/></p>
+<h2>Fonctionnalités</h2>
 <p><img src="uc-basketgame-2023.png" alt="" class="inline"/></p>
 <ul>
 <li>Android :</li>
@@ -127,11 +131,11 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Paramétrer une partie   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Gérer le déroulement d’une partie   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Gérer le déroulement d’une partie   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Dialoguer avec les modules   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Jouer une partie   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Jouer une partie   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 </table>
 <ul>
 <li>Qt :</li>
@@ -140,37 +144,24 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <tr class="markdownTableHead">
 <th class="markdownTableHeadNone">Fonctionnalité   </th><th class="markdownTableHeadCenter">OUI   </th><th class="markdownTableHeadCenter">NON    </th></tr>
 <tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Afficher le déroulement d’une partie   </td><td class="markdownTableBodyCenter">-   </td><td class="markdownTableBodyCenter"></td></tr>
+<td class="markdownTableBodyNone">Afficher le déroulement d’une partie   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">Gérer le puissance 4   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowOdd">
 <td class="markdownTableBodyNone">Dialoguer avec le module de gestion de partie   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 <tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">Produire des sons en fonction de la situation   </td><td class="markdownTableBodyCenter"></td><td class="markdownTableBodyCenter">X   </td></tr>
+<td class="markdownTableBodyNone">Produire des sons en fonction de la situation   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter"></td></tr>
 </table>
 <h2>Documentation du code</h2>
 <p><a href="https://btssn-lasalle-84.github.io/basket-game-2023/">https://btssn-lasalle-84.github.io/basket-game-2023/</a></p>
-<h2>Versions</h2>
-<p><img src="livraisons-basketgame-2023.png" alt="" class="inline"/></p>
-<h3>1.0</h3>
+<h2>Présentations</h2>
+<p>Diaporamas étudiants IR :</p>
 <ul>
-<li>Android :</li>
+<li>Nathanael CHANSARD (Qt) : <a href="./diaporamas/Revue%20finale%20-%20Chansard.pptx">Revue finale - Chansard.pptx</a></li>
+<li>Florent GUILLAUMET (Android) : <a href="./diaporamas/Revue%20finale%20-%20Guillaumet.pptx">Revue finale - Guillaumet.pptx</a></li>
 </ul>
-<p><img src="screenshot-android-nouvelle-partie-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-parametres-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-partie-suivi-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-android-partie-interrompue-v1.0.png" alt="" class="inline"/></p>
-<ul>
-<li>Qt :</li>
-</ul>
-<p><img src="screenshot-qt-accueil-basketgame-v0.2.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-puissance4-basketgame-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-puissance4-1-basketgame-v1.0.png" alt="" class="inline"/></p>
-<p><img src="screenshot-qt-puissance4-2-basketgame-v1.0.png" alt="" class="inline"/></p>
-<h3>0.2</h3>
-<p><img src="jira-tickets-v0.2.png" alt="" class="inline"/></p>
-<h3>0.1</h3>
-<p><img src="jira-tickets-v0.1.png" alt="" class="inline"/></p>
+<h2>Vidéo</h2>
+<p><a href="https://www.youtube.com/@projets-btssn-lasalle84">https://www.youtube.com/@projets-btssn-lasalle84</a></p>
 <h2>Diagramme de classes</h2>
 <ul>
 <li>Android :</li>
@@ -180,9 +171,23 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <li>Qt :</li>
 </ul>
 <p><img src="dc-basketgame-qt-2023.png" alt="" class="inline"/></p>
-<h2>Planification</h2>
-<p><img src="gantt-basketgame-2023.png" alt="" class="inline"/></p>
-<p><img src="roadbook-basketgame-2023.png" alt="" class="inline"/></p>
+<h2>Screenshots</h2>
+<ul>
+<li>Android :</li>
+</ul>
+<p><img src="screenshot-android.gif" alt="" class="inline"/></p>
+<ul>
+<li>PC Desktop Qt :</li>
+</ul>
+<p><img src="screenshot-qt.gif" alt="" class="inline"/></p>
+<h2>Historique des versions</h2>
+<p><img src="livraisons-basketgame-2023.png" alt="" class="inline"/></p>
+<h3>1.0</h3>
+<p><img src="jira-tickets-v1.0.png" alt="" class="inline"/></p>
+<h3>0.2</h3>
+<p><img src="jira-tickets-v0.2.png" alt="" class="inline"/></p>
+<h3>0.1</h3>
+<p><img src="jira-tickets-v0.1.png" alt="" class="inline"/></p>
 <h2>Simulateur</h2>
 <p><img src="simulateur-2023.png" alt="" class="inline"/></p>
 <p>Lien : Protocole BASKET</p>
@@ -200,7 +205,7 @@ $(document).ready(function(){initNavTree('md__mnt_sda_home_tv__documents_git_pro
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:51 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 21:50:12 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

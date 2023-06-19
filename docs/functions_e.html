@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet basket-game
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -93,8 +93,12 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 <li>editerTempsTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_parametres.html#aa34c1b7d5e4087b34531f1885ca6d6be">com.basket_game.PartieParametres</a>
 </li>
+<li>EnCours
+: <a class="el" href="class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7a46760e9772eac5b290b3269ec8dabb7d">Basketgame</a>
+</li>
 <li>envoyer()
 : <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#ac8aa0f735f611badb07174fdb4e0ed44">com.basket_game.CommunicationBluetooth</a>
+, <a class="el" href="class_communication.html#a62447a1eefbf7a747129ab516d06424a">Communication</a>
 </li>
 <li>envoyerTrameArretPartie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a8aa7175e5a791ce41b8199b07314c342">com.basket_game.PartieSuivi</a>
@@ -102,11 +106,17 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 <li>envoyerTrameDebutPartie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#ad683744422124bf6f60afd7463e10d84">com.basket_game.PartieSuivi</a>
 </li>
+<li>envoyerTramePausePartie()
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a16a19429b21c74c73624bdae249cda31">com.basket_game.PartieSuivi</a>
+</li>
 <li>envoyerTrameReset()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a2c677c6d44a03eca3e8a135e62760a85">com.basket_game.PartieSuivi</a>
 </li>
 <li>envoyerTrameSeance()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#aecd1d979f87cb9c6a7c0f878c8001b9c">com.basket_game.PartieSuivi</a>
+</li>
+<li>envoyerVainqueurManche()
+: <a class="el" href="class_basketgame.html#a4e1f61d1dc7aa939bbf440974c6dbd48">Basketgame</a>
 </li>
 <li>Equipe()
 : <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a6fc0c70f3d6516529d3ebc047d80b859">com.basket_game.Equipe</a>
@@ -123,6 +133,9 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 </li>
 <li>EQUIPE_2
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#ade53ae50506a3716af11abad7691c2e7">com.basket_game.PartieSuivi</a>
+</li>
+<li>equipeGagnante
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_arretee.html#ac575a7ce7a4edfd2fc346f8908621fd6">com.basket_game.PartieArretee</a>
 </li>
 <li>equipeRouge
 : <a class="el" href="class_puissance4.html#a503afa7448da0b57e6041b012a9565a6">Puissance4</a>
@@ -146,8 +159,17 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 <li>estValide()
 : <a class="el" href="class_communication.html#ad598e55e1b9cd054516084af725594f2">Communication</a>
 </li>
-<li>etatSeance
-: <a class="el" href="class_basketgame.html#ab60c97fd56a74ca1590427cf8ca22ab0">Basketgame</a>
+<li>Etat
+: <a class="el" href="class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7">Basketgame</a>
+</li>
+<li>etatBasketgame
+: <a class="el" href="class_basketgame.html#a5eb96e40be093f560e89d97cef8a40da">Basketgame</a>
+</li>
+<li>evaluerManche()
+: <a class="el" href="class_basketgame.html#a2ff0041a29401092ec426c96af21798a">Basketgame</a>
+</li>
+<li>evaluerSeance()
+: <a class="el" href="class_basketgame.html#aa7bd6037ca75fb5c0e4b9f615cfde6a5">Basketgame</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -156,7 +178,7 @@ $(document).ready(function(){initNavTree('functions_e.html',''); initResizable()
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:52 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 21:50:12 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

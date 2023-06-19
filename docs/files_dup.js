@@ -2,7 +2,7 @@ var files_dup =
 [
     [ "AndroidManifest.xml", "_android_manifest_8xml.html", null ],
     [ "backup_rules.xml", "backup__rules_8xml.html", null ],
-    [ "basketgame.cpp", "basketgame_8cpp.html", null ],
+    [ "basketgame.cpp", "basketgame_8cpp.html", "basketgame_8cpp" ],
     [ "basketgame.h", "basketgame_8h.html", "basketgame_8h" ],
     [ "BasketGame.java", "_basket_game_8java.html", [
       [ "BasketGame", "classcom_1_1basket__game_1_1_basket_game.html", "classcom_1_1basket__game_1_1_basket_game" ]
@@ -12,9 +12,7 @@ var files_dup =
     [ "communication.cpp", "communication_8cpp.html", null ],
     [ "communication.h", "communication_8h.html", "communication_8h" ],
     [ "CommunicationBluetooth.java", "_communication_bluetooth_8java.html", [
-      [ "CommunicationBluetooth", "classcom_1_1basket__game_1_1_communication_bluetooth.html", "classcom_1_1basket__game_1_1_communication_bluetooth" ],
-      [ "CouleurEquipe", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe.html", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe" ],
-      [ "Type", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type" ]
+      [ "CommunicationBluetooth", "classcom_1_1basket__game_1_1_communication_bluetooth.html", "classcom_1_1basket__game_1_1_communication_bluetooth" ]
     ] ],
     [ "data_extraction_rules.xml", "data__extraction__rules_8xml.html", null ],
     [ "equipe.cpp", "equipe_8cpp.html", null ],
@@ -39,12 +37,11 @@ var files_dup =
     [ "Partie.java", "_partie_8java.html", [
       [ "Partie", "classcom_1_1basket__game_1_1_partie.html", "classcom_1_1basket__game_1_1_partie" ]
     ] ],
-    [ "partie_interrompue.xml", "partie__interrompue_8xml.html", null ],
+    [ "partie_arretee.xml", "partie__arretee_8xml.html", null ],
     [ "partie_parametres.xml", "partie__parametres_8xml.html", null ],
     [ "partie_suivi.xml", "partie__suivi_8xml.html", null ],
-    [ "partie_terminee.xml", "partie__terminee_8xml.html", null ],
-    [ "PartieInterrompue.java", "_partie_interrompue_8java.html", [
-      [ "PartieInterrompue", "classcom_1_1basket__game_1_1_partie_interrompue.html", "classcom_1_1basket__game_1_1_partie_interrompue" ]
+    [ "PartieArretee.java", "_partie_arretee_8java.html", [
+      [ "PartieArretee", "classcom_1_1basket__game_1_1_partie_arretee.html", "classcom_1_1basket__game_1_1_partie_arretee" ]
     ] ],
     [ "PartieParametres.java", "_partie_parametres_8java.html", [
       [ "PartieParametres", "classcom_1_1basket__game_1_1_partie_parametres.html", "classcom_1_1basket__game_1_1_partie_parametres" ]
@@ -52,15 +49,17 @@ var files_dup =
     [ "PartieSuivi.java", "_partie_suivi_8java.html", [
       [ "PartieSuivi", "classcom_1_1basket__game_1_1_partie_suivi.html", "classcom_1_1basket__game_1_1_partie_suivi" ]
     ] ],
-    [ "PartieTerminee.java", "_partie_terminee_8java.html", [
-      [ "PartieTerminee", "classcom_1_1basket__game_1_1_partie_terminee.html", "classcom_1_1basket__game_1_1_partie_terminee" ]
-    ] ],
     [ "plateau.cpp", "plateau_8cpp.html", null ],
     [ "plateau.h", "plateau_8h.html", [
       [ "Coup", "struct_coup.html", "struct_coup" ],
       [ "Plateau", "class_plateau.html", "class_plateau" ]
     ] ],
-    [ "puissance4.cpp", "puissance4_8cpp.html", null ],
+    [ "ProtocoleBasket.java", "_protocole_basket_8java.html", [
+      [ "CouleurEquipe", "enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html", "enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe" ],
+      [ "ProtocoleBasket", "classcom_1_1basket__game_1_1_protocole_basket.html", "classcom_1_1basket__game_1_1_protocole_basket" ],
+      [ "Type", "enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html", "enumcom_1_1basket__game_1_1_protocole_basket_1_1_type" ]
+    ] ],
+    [ "puissance4.cpp", "puissance4_8cpp.html", "puissance4_8cpp" ],
     [ "puissance4.h", "puissance4_8h.html", "puissance4_8h" ],
     [ "ressource.cpp", "ressource_8cpp.html", null ],
     [ "strings.xml", "strings_8xml.html", null ],

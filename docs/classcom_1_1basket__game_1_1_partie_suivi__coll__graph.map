@@ -1,6 +1,6 @@
 <map id="com.basket_game.PartieSuivi" name="com.basket_game.PartieSuivi">
-<area shape="rect" id="node1" title="L&#39;activité qui permet de suivre la partie." alt="" coords="183,813,465,1316"/>
-<area shape="rect" id="node2" href="$classcom_1_1basket__game_1_1_communication_bluetooth.html" title=" " alt="" coords="5,219,253,751"/>
-<area shape="rect" id="node3" href="$classcom_1_1basket__game_1_1_partie.html" title="Définit une partie entre deux équipes." alt="" coords="412,292,631,677"/>
-<area shape="rect" id="node4" href="$classcom_1_1basket__game_1_1_equipe.html" title="Définit une équipe." alt="" coords="427,5,616,141"/>
+<area shape="rect" id="node1" title="L&#39;activité qui permet de suivre la partie." alt="" coords="185,887,468,1507"/>
+<area shape="rect" id="node2" href="$classcom_1_1basket__game_1_1_communication_bluetooth.html" title=" " alt="" coords="5,336,253,824"/>
+<area shape="rect" id="node3" href="$classcom_1_1basket__game_1_1_partie.html" title="Définit une partie entre deux équipes." alt="" coords="412,358,641,802"/>
+<area shape="rect" id="node4" href="$classcom_1_1basket__game_1_1_equipe.html" title="Définit une équipe." alt="" coords="420,5,633,259"/>
 </map>
