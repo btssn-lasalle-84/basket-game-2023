@@ -1,4 +1,4 @@
 <map id="com.basket_game.Partie" name="com.basket_game.Partie">
-<area shape="rect" id="node1" title="Définit une partie entre deux équipes." alt="" coords="5,219,224,604"/>
-<area shape="rect" id="node2" href="$classcom_1_1basket__game_1_1_equipe.html" title="Définit une équipe." alt="" coords="20,5,209,141"/>
+<area shape="rect" id="node1" title="Définit une partie entre deux équipes." alt="" coords="5,336,235,780"/>
+<area shape="rect" id="node2" href="$classcom_1_1basket__game_1_1_equipe.html" title="Définit une équipe." alt="" coords="13,5,227,259"/>
 </map>

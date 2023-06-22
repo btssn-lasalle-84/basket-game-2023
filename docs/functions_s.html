@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet basket-game
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -87,14 +87,31 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <div class="textblock">Liste de tous les champs de structure et d'union avec des liens vers les structures/unions auxquelles ils appartiennent :</div>
 
 <h3><a id="index_s"></a>- s -</h3><ul>
-<li>score
-: <a class="el" href="class_equipe.html#af70886d8192932e3b80e31848aa44026">Equipe</a>
+<li>Sauvegarde
+: <a class="el" href="class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7a6ad61e5d138768312c5478450182df9f">Basketgame</a>
+</li>
+<li>scoreManche
+: <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#af7dc1ac13c85c73788cb7913fc995b81">com.basket_game.Equipe</a>
+, <a class="el" href="class_equipe.html#a133ea04011625dc7532c12d27f1bf9a5">Equipe</a>
+</li>
+<li>scorePanier
+: <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a757fd634e172307ac43a93fa94ee1e51">com.basket_game.Equipe</a>
+, <a class="el" href="class_equipe.html#a297cbc97be6c67b43b93789e6eca72d9">Equipe</a>
+</li>
+<li>Seance
+: <a class="el" href="class_basketgame.html#af3cc2e5ebbda2ca1e030862760a2992ba19b1e1928f34da9b369e0d335a8df847">Basketgame</a>
 </li>
 <li>SEANCE
-: <a class="el" href="enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html#afe41e8e347edd7fff02b4a969eea74d6">com.basket_game.CommunicationBluetooth.Type</a>
+: <a class="el" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a671dfafbe1bd4ccfdcf5a85c85b30ae0">com.basket_game.ProtocoleBasket.Type</a>
 </li>
 <li>Seance
 : <a class="el" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a5300e7d950aa7267381bdf351cab0c3d">Communication</a>
+</li>
+<li>seanceConfiguree()
+: <a class="el" href="class_communication.html#adf90a5f54b28a411e5942ccd4c6b05d8">Communication</a>
+</li>
+<li>seanceReinitialisee()
+: <a class="el" href="class_communication.html#a9c43168c28e3b4b23d8462ef23151c89">Communication</a>
 </li>
 <li>seConnecter()
 : <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a1f9b32fb8d8dbca3a21d717e6733ca5d">com.basket_game.CommunicationBluetooth</a>
@@ -129,8 +146,11 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <li>setNomEquipe()
 : <a class="el" href="classcom_1_1basket__game_1_1_equipe.html#a3c7a34320f366bbc19a5974f119178e9">com.basket_game.Equipe</a>
 </li>
-<li>setScore()
-: <a class="el" href="class_equipe.html#aff78c1be3c888e124dd4c04dab15dd0c">Equipe</a>
+<li>setScoreManche()
+: <a class="el" href="class_equipe.html#adaa40711707f5d92334828a9ce3ed0d8">Equipe</a>
+</li>
+<li>setScorePanier()
+: <a class="el" href="class_equipe.html#a650652caad33615cf2d2d81323002ce0">Equipe</a>
 </li>
 <li>setTempsMaxTour()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie.html#a5c7ad89428e1e97e9b70ffacca15d0c8">com.basket_game.Partie</a>
@@ -151,16 +171,19 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 : <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a80b1da769527a447820b3e8444daeb8d">com.basket_game.CommunicationBluetooth</a>
 </li>
 <li>START
-: <a class="el" href="enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html#af11a6bf48d455b12ebcff0f8ac6675ca">com.basket_game.CommunicationBluetooth.Type</a>
+: <a class="el" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a667e3f270b4f940221b9f0461e3bd3aa">com.basket_game.ProtocoleBasket.Type</a>
 </li>
 <li>Start
 : <a class="el" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214a73ce626a7525edb144c6ab66e5755122">Communication</a>
 </li>
 <li>STOP
-: <a class="el" href="enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html#abec87f57cabd391129be24484d36b998">com.basket_game.CommunicationBluetooth.Type</a>
+: <a class="el" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a1bae26be09d8615db187f80252915f8f">com.basket_game.ProtocoleBasket.Type</a>
 </li>
 <li>Stop
 : <a class="el" href="class_communication.html#af5ee9ed1192d7925d64e4249bf307214aee5fe3a3e8afd303a27e7bfe488fa2e3">Communication</a>
+</li>
+<li>supprimerEquipes()
+: <a class="el" href="class_basketgame.html#a4a6c2546df9912773df63ea779dc508b">Basketgame</a>
 </li>
 </ul>
 </div><!-- contents -->
@@ -169,7 +192,7 @@ $(document).ready(function(){initNavTree('functions_s.html',''); initResizable()
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:52 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 21:50:12 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

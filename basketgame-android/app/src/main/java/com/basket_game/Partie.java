@@ -44,6 +44,7 @@ public class Partie
     private int     nbPaniers = NB_PANIERS; //!< le nombre de paniers installés
     private Boolean estFinie  = false;      //!< l'état de la partie
     // horodatage
+    public int numeroManche = 1;
 
     /**
      * @brief Constructeur de la classe Partie
@@ -166,5 +167,32 @@ public class Partie
     public void setNbManchesGagnantes(int nbManchesGagnantes)
     {
         this.nbManchesGagnantes = nbManchesGagnantes;
+    }
+
+    /**
+     * @brief Accesseur numeroManche
+     * @fn getNumeroManche
+     * @details Retourne le numero de manche
+     * @return numeroManche
+     */
+    public int getNumeroManche()
+    {
+        return numeroManche;
+    }
+
+    /**
+     * @brief Méthode appelée pour réinitialiser le numéro de manche
+     */
+    public void reinitialiserNumeroManche()
+    {
+        this.numeroManche = 1;
+    }
+
+    /**
+     * @brief Méthode appelée pour incrémenter de 1 le numéro de manche
+     */
+    public void incrementerNumeroManche()
+    {
+        this.numeroManche++;
     }
 }

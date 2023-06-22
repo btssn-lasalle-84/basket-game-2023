@@ -48,6 +48,7 @@ void Communication::demarrer()
         QBluetoothUuid uuid(QBluetoothUuid::Rfcomm);
         serviceInfo = serveur->listen(uuid, serviceNom);
         // qDebug() << "serviceInfo" << serviceInfo;
+
     }
 }
 
@@ -246,22 +247,8 @@ void Communication::recevoirDonnees()
     trame += QString(donnees.data());
     qDebug() << Q_FUNC_INFO << "trame" << trame;
 
-    if(trame.contains(ENTETE_DEBUT) && trame.endsWith(ENTETE_FIN))
+    if(trame.contains(DELIMITEUR_DEBUT) && trame.endsWith(DELIMITEUR_FIN))
     {
-        /*
-        QStringList trames = trame.split(ENTETE_FIN, QString::SkipEmptyParts);
-        qDebug() << Q_FUNC_INFO << trames;
-
-        QStringList champsTrame;
-        for(int i = 0; i < trames.count(); ++i)
-        {
-            qDebug() << Q_FUNC_INFO << i << trames[i];
-            champsTrame = trames[i].split(DELIMITEUR_CHAMP);
-            traiterTrame(champsTrame);
-        }
-        trame.clear();
-        */
-
         QStringList champsTrame;
         champsTrame = trame.split(DELIMITEUR_CHAMP);
         traiterTrame(champsTrame);
@@ -276,7 +263,7 @@ void Communication::recevoirDonnees()
  */
 Communication::TypeTrame Communication::recupererTypeTrame(QString champType)
 {
-    QVector<QString> typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET" };
+    QVector<QString> typesTrame = { "SEANCE", "START", "TIR", "STOP", "RESET", "FIN" };
     for(int i = 0; i < typesTrame.size(); i++)
     {
         if(typesTrame[i] == champType)
@@ -298,7 +285,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
     {
         case TypeTrame::Seance:
             qDebug() << Q_FUNC_INFO << "SEANCE";
-            emit partieConfiguree(champsTrame[NOM_EQUIPE1],
+            emit seanceConfiguree(champsTrame[NOM_EQUIPE1],
                                   champsTrame[NOM_EQUIPE2],
                                   champsTrame[NB_PANIERS].toInt(),
                                   champsTrame[TEMPS_TOUR_MAX].toInt(),
@@ -307,7 +294,7 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Start:
             qDebug() << Q_FUNC_INFO << "START";
-            emit partieDemarree(champsTrame[NUMERO_PARTIE].toInt());
+            emit mancheDemarree(champsTrame[NUMERO_Seance].toInt());
             break;
         case TypeTrame::Tir:
             qDebug() << Q_FUNC_INFO << "TIR";
@@ -316,11 +303,11 @@ void Communication::traiterTrame(const QStringList& champsTrame)
             break;
         case TypeTrame::Stop:
             qDebug() << Q_FUNC_INFO << "STOP";
-            emit partieArretee(champsTrame[NUMERO_PARTIE].toInt());
+            emit mancheTerminee(champsTrame[NUMERO_Seance].toInt());
             break;
         case TypeTrame::Reset:
             qDebug() << Q_FUNC_INFO << "RESET";
-            emit partieReinitialisee();
+            emit seanceReinitialisee();
             break;
         default:
             qDebug() << Q_FUNC_INFO << "type trame inconnu !"
@@ -329,22 +316,53 @@ void Communication::traiterTrame(const QStringList& champsTrame)
     }
 }
 
+/**
+ * @fn Communication::getNomPeripheriqueLocal()
+ * @brief Retourne le nom du peripherique local
+ */
 QString Communication::getNomPeripheriqueLocal()
 {
     return nomPeripheriqueLocal;
 }
 
+/**
+ * @fn Communication::getAdressePeripheriqueLocal()
+ * @brief Retourne l'adresse du peripherique local
+ */
 QString Communication::getAdressePeripheriqueLocal()
 {
     return adressePeripheriqueLocal;
 }
 
+/**
+ * @fn Communication::estValide()
+ * @brief Retourne si le peripherique local est valide
+ */
 bool Communication::estValide()
 {
     return peripheriqueLocal.isValid();
 }
 
+/**
+ * @fn Communication::estConnecte()
+ * @brief Retourne si le peripherique est connecté
+ */
 bool Communication::estConnecte()
 {
     return connecte;
+}
+
+/**
+ * @fn Communication::envoyer()
+ * @brief méthode pour envoyer une trame au module de gestion
+ */
+void Communication::envoyer(QString envoyerTrame)
+{
+    if (socket == NULL || !socket->isOpen())
+    {
+        return;
+    }
+    socket->write(envoyerTrame.toLocal8Bit());
+    qDebug() << Q_FUNC_INFO << envoyerTrame;
+
 }

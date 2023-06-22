@@ -1,7 +1,16 @@
 <RCC>
     <qresource prefix="/">
-        <file>ressources/jetonJaune.png</file>
-        <file>ressources/jetonRouge.png</file>
-        <file>ressources/puissance4_7.png</file>
+        <file>ressources/images/jetonJaune.png</file>
+        <file>ressources/images/puissance4_7.png</file>
+        <file>ressources/images/jetonRouge.png</file>
+        <file>ressources/sons/finManche.wav</file>
+        <file>ressources/sons/tirReussi.wav</file>
+        <file>ressources/sons/finSeance.wav</file>
+        <file>ressources/images/puissance4_6.png</file>
+        <file>ressources/images/puissance4_5.png</file>
+        <file>ressources/images/puissance4_4.png</file>
+        <file>ressources/images/puissance4_3.png</file>
+        <file>ressources/images/puissance4_2.png</file>
+        <file>ressources/images/logo-basketgame.png</file>
     </qresource>
 </RCC>

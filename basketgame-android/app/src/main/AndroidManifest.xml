@@ -18,14 +18,7 @@
         android:theme="@style/Theme.Basketgame"
         tools:targetApi="24">
         <activity
-            android:name=".PartieTerminee"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
-            android:name=".PartieInterrompue"
+            android:name=".PartieArretee"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

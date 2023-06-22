@@ -1,5 +1,5 @@
 /**
- * @file Communication.java
+ * @file CommunicationBluetooth.java
  * @brief Déclaration de la classe CommunicationBluetooth
  * @author Guillaumet Florent
  */
@@ -23,7 +23,7 @@ import java.util.UUID;
 import java.util.Vector;
 
 /**
- * @class Communication
+ * @class CommunicationBluetooth
  * @brief Définit la classe de communication bluetooth
  */
 public class CommunicationBluetooth
@@ -33,20 +33,17 @@ public class CommunicationBluetooth
      */
     private static final String TAG = "_CommunicationBluetooth"; //!< TAG pour les logs (cf. Logcat)
     private static final UUID   identifiantUUID =
-      UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+            UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
     public final static int CONNEXION_BLUETOOTH     = 0;
     public final static int RECEPTION_BLUETOOTH     = 1;
     public final static int DECONNEXION_BLUETOOTH   = 2;
-    public final static String NOM_MODULE_DETECTION     = "basket-detection"; // émission/réception
+    public final static String NOM_MODULE_DETECTION     = "Basket-detection"; // émission/réception
     public final static String NOM_MODULE_SIGNALISATION = "basket-signalisation"; // émission
-    public final static String NOM_MODULE_ECRAN         = "basket-ecran"; // émission
-    public final static int ID_MODULE_DETECTION     = 0; // émission/réception
-    public final static int ID_MODULE_SIGNALISATION = 1; // émission
-    public final static int ID_MODULE_ECRAN         = 2; // émission
+    public final static String NOM_MODULE_ECRAN         = "basket-ecran"; // émission/réception
+    public final static int ID_MODULE_DETECTION     = 0;
+    public final static int ID_MODULE_SIGNALISATION = 1;
+    public final static int ID_MODULE_ECRAN         = 2;
     public final static int NB_MODULES              = 3;
-    public final static String DELIMITEUR_DEBUT_TRAME         = "$BASKET"; // délimiteur début trame
-    public final static String DELIMITEUR_FIN_TRAME         = "\r\n"; // délimiteur fin trame
-    public final static String DELIMITEUR_CHAMPS_TRAME         = ";"; // délimiteur champs trame
 
     /**
      * Attributs
@@ -55,15 +52,10 @@ public class CommunicationBluetooth
     private BluetoothAdapter              adaptateurBluetooth = null;
     private Vector<BluetoothDevice>       peripheriques;
     private Vector<BluetoothSocket>       socketsBluetooth;
-    private InputStream                   inputStream         = null; // pour le module de détection
-    private Thread                        filExecutionReception;
+    private Vector<InputStream> inputStream;
+    private Vector<Thread> filsExecutionReception;
     private Handler                       handler = null;
-    public enum Type {
-        SEANCE, START, TIR, STOP, RESET
-    }
-    public enum CouleurEquipe {
-        ROUGE, JAUNE
-    }
+
 
     /**
      * @fn getInstance
@@ -91,10 +83,14 @@ public class CommunicationBluetooth
         Log.d(TAG, "CommunicationBluetooth()");
         this.peripheriques = new Vector<BluetoothDevice>();
         this.socketsBluetooth = new Vector<BluetoothSocket>();
+        this.inputStream = new Vector<InputStream>();
+        this.filsExecutionReception = new Vector<Thread>();
         for(int i = 0; i < NB_MODULES; i++)
         {
             this.peripheriques.add(null);
             this.socketsBluetooth.add(null);
+            this.inputStream.add(null);
+            this.filsExecutionReception.add(null);
         }
         activer();
     }
@@ -107,10 +103,14 @@ public class CommunicationBluetooth
         Log.d(TAG, "CommunicationBluetooth(handler)");
         this.peripheriques = new Vector<BluetoothDevice>();
         this.socketsBluetooth = new Vector<BluetoothSocket>();
+        this.inputStream = new Vector<InputStream>();
+        this.filsExecutionReception = new Vector<Thread>();
         for(int i = 0; i < NB_MODULES; i++)
         {
             this.peripheriques.add(null);
             this.socketsBluetooth.add(null);
+            this.inputStream.add(null);
+            this.filsExecutionReception.add(null);
         }
         this.handler = handler;
         activer();
@@ -182,8 +182,8 @@ public class CommunicationBluetooth
         else
         {
             Log.d(TAG,
-                  "Appareil Bluetooth " + peripheriques.get(idModule).getName() +
-                    " trouvé : " + peripheriques.get(idModule).getAddress());
+                    "Appareil Bluetooth " + peripheriques.get(idModule).getName() +
+                            " trouvé : " + peripheriques.get(idModule).getAddress());
             return creerSocket(idModule);
         }
     }
@@ -209,8 +209,8 @@ public class CommunicationBluetooth
         try
         {
             this.socketsBluetooth.set(
-              idModule,
-              peripheriques.get(idModule).createRfcommSocketToServiceRecord(identifiantUUID));
+                    idModule,
+                    peripheriques.get(idModule).createRfcommSocketToServiceRecord(identifiantUUID));
         }
         catch(IOException e)
         {
@@ -221,23 +221,20 @@ public class CommunicationBluetooth
         try
         {
             this.socketsBluetooth.get(idModule).connect();
-            if(idModule == ID_MODULE_DETECTION)
-            {
-                inputStream = this.socketsBluetooth.get(idModule).getInputStream();
-            }
+            inputStream.set(idModule, this.socketsBluetooth.get(idModule).getInputStream());
+
             if(handler != null)
             {
-                Log.d(TAG, "Message handler");
+                Log.d(TAG, "handler.sendMessage() CONNEXION_BLUETOOTH");
                 Message messageHandler = new Message();
                 messageHandler.what    = CONNEXION_BLUETOOTH;
                 messageHandler.obj     = peripheriques.get(idModule).getName();
                 handler.sendMessage(messageHandler);
             }
-            if(idModule == ID_MODULE_DETECTION)
-            {
-                // Démarrer la reception
-                recevoir();
-            }
+
+            // Démarrer la reception
+            recevoir(idModule);
+
             Log.d(TAG, "Canal Bluetooth connecté");
             return true;
         }
@@ -272,7 +269,7 @@ public class CommunicationBluetooth
             {
                 if(inputStream != null)
                 {
-                    inputStream.close();
+                    inputStream.get(idModule).close();
                 }
             }
             if(this.socketsBluetooth.get(idModule) != null)
@@ -307,13 +304,16 @@ public class CommunicationBluetooth
                 {
                     try
                     {
-                        Log.d(TAG, "envoyer() " + message);
+                        Log.d(TAG, "envoyer() idModule = " + idModule + " - Message = " + message);
                         socketsBluetooth.get(idModule).getOutputStream().write(message.getBytes());
                         socketsBluetooth.get(idModule).getOutputStream().flush();
+                        sleep(250);
                     }
                     catch(IOException e)
                     {
                         Log.e(TAG, "Erreur lors de l'envoi de données");
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
                     }
                 }
             }.start();
@@ -323,26 +323,27 @@ public class CommunicationBluetooth
     /**
      * @brief Pour recevoir des messages via le Bluetooth
      */
-    public void recevoir()
+    public void recevoir(int idModule)
     {
-        Log.d(TAG, "recevoir()");
-        filExecutionReception = new Thread(new Runnable() {
+        Log.d(TAG, "recevoir() idModule = " + idModule);
+        filsExecutionReception.set(idModule, new Thread(new Runnable() {
             @Override
             public void run()
             {
-                Log.d(TAG, "recevoir() thread démarré");
-                while(socketsBluetooth.get(ID_MODULE_DETECTION).isConnected())
+                Log.d(TAG, "recevoir() thread démarré pour idModule " + idModule);
+                while(socketsBluetooth.get(idModule).isConnected())
                 {
                     try
                     {
                         byte[] donnees = new byte[32];
-                        int  n = inputStream.read(donnees);
+                        int  n = inputStream.get(idModule).read(donnees);
                         if(n > 0)
                         {
                             if(handler != null)
                             {
                                 Message messageHandler = new Message();
                                 messageHandler.what    = RECEPTION_BLUETOOTH;
+                                // @todo Indiquer la provanance de récaption par l'idModule
                                 messageHandler.obj     = new String(Arrays.copyOfRange(donnees,0,n));
                                 handler.sendMessage(messageHandler);
                             }
@@ -351,12 +352,12 @@ public class CommunicationBluetooth
                     catch(IOException e)
                     {
                         Log.e(TAG, "Erreur lors de la réception de données");
-                        seDeconnecter(ID_MODULE_DETECTION);
+                        seDeconnecter(idModule);
                     }
                 }
                 Log.d(TAG, "recevoir() thread arrêté");
             }
-        });
-        filExecutionReception.start();
+        }));
+        filsExecutionReception.get(idModule).start();
     }
 }

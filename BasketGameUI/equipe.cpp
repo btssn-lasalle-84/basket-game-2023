@@ -17,7 +17,7 @@
  *
  */
 Equipe::Equipe(const QString& nom, QObject* parent) :
-    QObject(parent), nom(nom), score(0)
+    QObject(parent), nom(nom), scorePanier(0) , scoreManche(0)
 {
     qDebug() << Q_FUNC_INFO << "nom" << nom;
 }
@@ -30,32 +30,74 @@ Equipe::Equipe(const QString& nom, QObject* parent) :
  */
 Equipe::~Equipe()
 {
-    qDebug() << Q_FUNC_INFO;}
+    qDebug() << Q_FUNC_INFO;
+}
 
+
+/**
+ * @fn Equipe::getNom()
+ * @brief Retourne le nom de l'équipe
+ */
 QString Equipe::getNom() const
 {
     return nom;
 }
 
+/**
+ * @fn Equipe::setNom()
+ * @brief Modifie le nom de l'équipe
+ */
 void Equipe::setNom(const QString& nom)
 {
     this->nom = nom;
     qDebug() << Q_FUNC_INFO << "nom" << nom;
 }
 
-int Equipe::getScore() const
+/**
+ * @fn Equipe::getScore()
+ * @brief Retourne le score de l'équipe
+ */
+int Equipe::getScorePanier() const
 {
-    return score;
+    return scorePanier;
 }
 
-void Equipe::setScore(int score)
+/**
+ * @fn Equipe::setScore()
+ * @brief  Modifie le score de l'équipe
+ */
+void Equipe::setScorePanier(int scorePanier)
 {
-    this->score = score;
-    qDebug() << Q_FUNC_INFO << "score" << score;
+    this->scorePanier = scorePanier;
+    qDebug() << Q_FUNC_INFO << "score" << scorePanier;
+}
+/**
+ * @fn Equipe::getScoreManche()
+ * @brief Retourne le score de l'équipe
+ */
+int Equipe::getScoreManche() const
+{
+    return scoreManche;
 }
 
-void Equipe::incrementerScore()
+void Equipe::setScoreManche(int scoreManche)
 {
-    score++;
-    qDebug() << Q_FUNC_INFO << "score" << score;
+    this->scoreManche = scoreManche;
+    qDebug() << Q_FUNC_INFO << "scoreManche" << scoreManche;
+
+}
+
+/**
+ * @fn Equipe::incrementerScore()
+ * @brief méthode pour incrementer le score de chaque équipe
+ */
+void Equipe::incrementerScorePanier()
+{
+    scorePanier++;
+    qDebug() << Q_FUNC_INFO << "score" << scorePanier;
+}
+
+void Equipe::incrementerScoreManche()
+{
+    scoreManche++;
 }

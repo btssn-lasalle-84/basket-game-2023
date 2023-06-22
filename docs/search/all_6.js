@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['getadresseperipheriquelocal_114',['getAdressePeripheriqueLocal',['../class_communication.html#a5dcc5eba47de83f7ab3ab86517fb6ca7',1,'Communication']]],
-  ['getequipe1_115',['getEquipe1',['../classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2',1,'com::basket_game::Partie']]],
-  ['getequipe2_116',['getEquipe2',['../classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734',1,'com::basket_game::Partie']]],
-  ['getinstance_117',['getInstance',['../classcom_1_1basket__game_1_1_communication_bluetooth.html#a508b81fb5c9ff3e05ac1ed0a7a7bc32d',1,'com::basket_game::CommunicationBluetooth']]],
-  ['getnbmanchesgagnantes_118',['getNbManchesGagnantes',['../classcom_1_1basket__game_1_1_partie.html#a47208b9a58e97ae2c4bd642c09d4d02e',1,'com::basket_game::Partie']]],
-  ['getnbpaniers_119',['getNbPaniers',['../classcom_1_1basket__game_1_1_partie.html#a72049a972000f379dd157e193c1b8e21',1,'com::basket_game::Partie']]],
-  ['getnom_120',['getNom',['../class_equipe.html#ac01112c584b628bfeb2a3ab6f3836eaa',1,'Equipe']]],
-  ['getnomequipe_121',['getNomEquipe',['../classcom_1_1basket__game_1_1_equipe.html#a9a51ba2c9d97dcd507b6f8552b362e51',1,'com::basket_game::Equipe']]],
-  ['getnomperipheriquelocal_122',['getNomPeripheriqueLocal',['../class_communication.html#abd8196826b75fdea1581825ac602555f',1,'Communication']]],
-  ['getscore_123',['getScore',['../class_equipe.html#a8dddab6cff7ae215149790113910ef3d',1,'Equipe']]],
-  ['gettempsmaxtour_124',['getTempsMaxTour',['../classcom_1_1basket__game_1_1_partie.html#a36a4bc98491a1bc559123e9943c3cbc1',1,'com::basket_game::Partie']]]
+  ['gererconnexionbluetooth_156',['gererConnexionBluetooth',['../classcom_1_1basket__game_1_1_partie_suivi.html#ac92d2b25f0e066dd44309daa91594adb',1,'com::basket_game::PartieSuivi']]],
+  ['gererdeconnexionbluetooth_157',['gererDeconnexionBluetooth',['../classcom_1_1basket__game_1_1_partie_suivi.html#a9fa6906c84cace2423a2c863e6741ddb',1,'com::basket_game::PartieSuivi']]],
+  ['gerertir_158',['gererTir',['../class_basketgame.html#a0b198c0845c65e78985d9716953d57d0',1,'Basketgame']]],
+  ['gerertramefin_159',['gererTrameFin',['../classcom_1_1basket__game_1_1_partie_suivi.html#ae06126b03f20233f1a5bb0e10684b3f7',1,'com::basket_game::PartieSuivi']]],
+  ['gerertrametir_160',['gererTrameTir',['../classcom_1_1basket__game_1_1_partie_suivi.html#a3bdcd42ce6537f95ce0bf3e2b625d127',1,'com::basket_game::PartieSuivi']]],
+  ['getadresseperipheriquelocal_161',['getAdressePeripheriqueLocal',['../class_communication.html#a5dcc5eba47de83f7ab3ab86517fb6ca7',1,'Communication']]],
+  ['getequipe1_162',['getEquipe1',['../classcom_1_1basket__game_1_1_partie.html#a8126539b5fece95f87296e5029e5b6b2',1,'com::basket_game::Partie']]],
+  ['getequipe2_163',['getEquipe2',['../classcom_1_1basket__game_1_1_partie.html#afb756711e7411357b3664683be114734',1,'com::basket_game::Partie']]],
+  ['getinstance_164',['getInstance',['../classcom_1_1basket__game_1_1_communication_bluetooth.html#a508b81fb5c9ff3e05ac1ed0a7a7bc32d',1,'com::basket_game::CommunicationBluetooth']]],
+  ['getnbmanchesgagnantes_165',['getNbManchesGagnantes',['../classcom_1_1basket__game_1_1_partie.html#a47208b9a58e97ae2c4bd642c09d4d02e',1,'com::basket_game::Partie']]],
+  ['getnbpaniers_166',['getNbPaniers',['../classcom_1_1basket__game_1_1_partie.html#a72049a972000f379dd157e193c1b8e21',1,'com::basket_game::Partie']]],
+  ['getnom_167',['getNom',['../class_equipe.html#ac01112c584b628bfeb2a3ab6f3836eaa',1,'Equipe']]],
+  ['getnombremanches_168',['getNombreManches',['../class_basketgame.html#acd26ea88cce9a138ba5bf272942d2e16',1,'Basketgame']]],
+  ['getnomequipe_169',['getNomEquipe',['../classcom_1_1basket__game_1_1_equipe.html#a9a51ba2c9d97dcd507b6f8552b362e51',1,'com::basket_game::Equipe']]],
+  ['getnomperipheriquelocal_170',['getNomPeripheriqueLocal',['../class_communication.html#abd8196826b75fdea1581825ac602555f',1,'Communication']]],
+  ['getnumeromanche_171',['getNumeroManche',['../classcom_1_1basket__game_1_1_partie.html#a9ea2695031126f48058df705424106e5',1,'com::basket_game::Partie']]],
+  ['getscoremanche_172',['getScoreManche',['../classcom_1_1basket__game_1_1_equipe.html#ab0d3a32bba350c95ed1730647adeddfd',1,'com.basket_game.Equipe.getScoreManche()'],['../class_equipe.html#a0f9cb9cfcac12dd128d89435229761fd',1,'Equipe::getScoreManche()']]],
+  ['getscorepanier_173',['getScorePanier',['../classcom_1_1basket__game_1_1_equipe.html#a58f4f12617d37b4d88ff1770f1a354c8',1,'com.basket_game.Equipe.getScorePanier()'],['../class_equipe.html#a83ea9908637c7f2c597d082a302a5f98',1,'Equipe::getScorePanier()']]],
+  ['gettempsmaxtour_174',['getTempsMaxTour',['../classcom_1_1basket__game_1_1_partie.html#a36a4bc98491a1bc559123e9943c3cbc1',1,'com::basket_game::Partie']]]
 ];

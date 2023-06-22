@@ -9,8 +9,8 @@
  * @version 1.0
  */
 
-#define ENTETE_DEBUT     "$BASKET"
-#define ENTETE_FIN       "\r\n"
+#define DELIMITEUR_DEBUT     "$BASKET"
+#define DELIMITEUR_FIN       "\r\n"
 #define DELIMITEUR_CHAMP ";"
 #define TYPE_TRAME       1
 // Trame SEANCE :
@@ -21,10 +21,12 @@
 #define NB_PANIERS     5
 #define NB_MANCHES     6
 // Trame START : $BASKET;START;NUMERO_PARTIE;\r\n
-#define NUMERO_PARTIE 2
+#define NUMERO_Seance 2
 // Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n
 #define COULEUR_EQUIPE 2
 #define NUMERO_PANIER  3
+// Trame FIN : $BASKET;FIN;COULEUR;NUMERO_MANCHE;\r\n
+#define TYPE_TRAME_FIN "FIN"
 
 #include <QObject>
 #include <QtBluetooth>
@@ -32,7 +34,7 @@
 
 static const QString serviceUuid(
   QStringLiteral("00001101-0000-1000-8000-00805F9B34FB"));
-static const QString serviceNom(QStringLiteral("BasketGame"));
+static const QString serviceNom(QStringLiteral("74:EB:80:1D:A8:63"));
 
 class Basketgame;
 
@@ -47,7 +49,8 @@ class Communication : public QObject
         Start,
         Tir,
         Stop,
-        Reset
+        Reset,
+        Fin
     };
     Communication(QObject* parent = 0);
     ~Communication();
@@ -61,6 +64,8 @@ class Communication : public QObject
 
     QString getNomPeripheriqueLocal();
     QString getAdressePeripheriqueLocal();
+    void envoyer(QString envoyerTrame);
+    static Communication::TypeTrame recupererTypeTrame(QString champType);
 
   public slots:
 
@@ -74,7 +79,7 @@ class Communication : public QObject
     QString               adressePeripheriqueLocal;
     QString trame; //!< Le contenu des données reçues sur la socket
 
-    Communication::TypeTrame recupererTypeTrame(QString champType);
+
     void                     traiterTrame(const QStringList& champsTrame);
 
   private slots:
@@ -89,18 +94,18 @@ class Communication : public QObject
 
   signals:
     void clientConnecte();
+    void clientReconnecte();
     void clientDeconnecte();
     void tabletteConnectee();
     void tabletteDeconnectee();
-    void trameRecue(QString message);
-    void partieConfiguree(QString nomEquipeRouge,
+    void seanceConfiguree(QString nomEquipeRouge,
                           QString nomEquipeJaune,
-                          int     nombrePaniers,
+                          int     nbPaniers,
                           int     tempsTour,
                           int     nbManches);
-    void partieDemarree(int numeroPartie);
-    void partieArretee(int numeroPartie);
-    void partieReinitialisee();
+    void mancheDemarree(int numeroManche);
+    void mancheTerminee(int numeroManche);
+    void seanceReinitialisee();
     void tirPanier(QString couleurEquipe, int numeroPanier);
 };
 

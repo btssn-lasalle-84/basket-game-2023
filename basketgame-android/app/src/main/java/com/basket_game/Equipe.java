@@ -25,6 +25,8 @@ public class Equipe implements Serializable
      * @brief Attributs
      */
     private String nomEquipe; //!< le nom de l'équipe
+    public int     scorePanier;
+    public int     scoreManche;
 
     /**
      * @brief Constructeur de la classe Equipe
@@ -33,6 +35,8 @@ public class Equipe implements Serializable
     {
         Log.d(TAG, "Equipe()");
         this.nomEquipe = "";
+        this.scorePanier     = 0;
+        this.scoreManche     = 0;
     }
 
     /**
@@ -66,5 +70,59 @@ public class Equipe implements Serializable
     public void setNomEquipe(String nomEquipe)
     {
         this.nomEquipe = nomEquipe;
+    }
+
+    /**
+     * @brief Accesseur Equipe
+     * @fn getScorePanier
+     * @details Retourne le nombre de panier inscrits
+     * @return int
+     */
+    public int getScorePanier()
+    {
+        return scorePanier;
+    }
+
+    /**
+     * @brief Méthode appelée pour réinitialiser le nombre de panier des équipes
+     */
+    public void reinitialiserScorePanier()
+    {
+        this.scorePanier = 0;
+    }
+
+    /**
+     * @brief Méthode appelée pour incrémenter de 1 le scorePanier
+     */
+    public void incrementerScorePanier()
+    {
+        this.scorePanier++;
+    }
+
+    /**
+     * @brief Accesseur Equipe
+     * @fn getScoreManche
+     * @details Retourne le nombre de manche gagnée par l'équipe
+     * @return int
+     */
+    public int getScoreManche()
+    {
+        return scoreManche;
+    }
+
+    /**
+     * @brief Méthode appelée pour réinitialiser le nombre de manche gagnée
+     */
+    public void reinitialiserScoreManche()
+    {
+        this.scoreManche = 0;
+    }
+
+    /**
+     * @brief Méthode appelée pour incrémenter de 1 le nombre de manche gagnée
+     */
+    public void incrementerScoreManche()
+    {
+        this.scoreManche++;
     }
 }

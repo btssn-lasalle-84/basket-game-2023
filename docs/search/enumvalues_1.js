@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inconnu_608',['Inconnu',['../class_communication.html#af5ee9ed1192d7925d64e4249bf307214a7b4bbd3517f9fdb3cf73e72542b8f07c',1,'Communication']]]
+  ['configure_787',['Configure',['../class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7a050cd8e3f59be37ac646776efee12e7c',1,'Basketgame']]]
 ];

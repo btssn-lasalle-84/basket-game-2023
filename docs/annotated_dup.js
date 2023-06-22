@@ -8,10 +8,10 @@ var annotated_dup =
         [ "ExampleInstrumentedTest", "classcom_1_1basket__game_1_1_example_instrumented_test.html", "classcom_1_1basket__game_1_1_example_instrumented_test" ],
         [ "ExampleUnitTest", "classcom_1_1basket__game_1_1_example_unit_test.html", "classcom_1_1basket__game_1_1_example_unit_test" ],
         [ "Partie", "classcom_1_1basket__game_1_1_partie.html", "classcom_1_1basket__game_1_1_partie" ],
-        [ "PartieInterrompue", "classcom_1_1basket__game_1_1_partie_interrompue.html", "classcom_1_1basket__game_1_1_partie_interrompue" ],
+        [ "PartieArretee", "classcom_1_1basket__game_1_1_partie_arretee.html", "classcom_1_1basket__game_1_1_partie_arretee" ],
         [ "PartieParametres", "classcom_1_1basket__game_1_1_partie_parametres.html", "classcom_1_1basket__game_1_1_partie_parametres" ],
         [ "PartieSuivi", "classcom_1_1basket__game_1_1_partie_suivi.html", "classcom_1_1basket__game_1_1_partie_suivi" ],
-        [ "PartieTerminee", "classcom_1_1basket__game_1_1_partie_terminee.html", "classcom_1_1basket__game_1_1_partie_terminee" ]
+        [ "ProtocoleBasket", "classcom_1_1basket__game_1_1_protocole_basket.html", "classcom_1_1basket__game_1_1_protocole_basket" ]
       ] ]
     ] ],
     [ "Basketgame", "class_basketgame.html", "class_basketgame" ],

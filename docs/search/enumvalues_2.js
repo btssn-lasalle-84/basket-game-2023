@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['jaune_609',['JAUNE',['../class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262adbcd15e57c864dd836367bb5d7c15b0e',1,'Puissance4']]],
-  ['jaune_610',['Jaune',['../class_basketgame.html#a6d6d6d04653472972957a6eb87f73519a28e7a287b411a5a0f94a11b835d2b09c',1,'Basketgame']]]
+  ['deconnecte_788',['Deconnecte',['../class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7a475db3d088d2436a36951b23c37ece4d',1,'Basketgame']]],
+  ['demarre_789',['Demarre',['../class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7a355c1ca4a29bd0cf28aec61ce57df0f7',1,'Basketgame']]]
 ];
