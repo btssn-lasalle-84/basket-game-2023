@@ -6,9 +6,10 @@
 
 - [Le projet basket-game 2023](#le-projet-basket-game-2023)
   - [Fonctionnalités](#fonctionnalit%C3%A9s)
+  - [Vidéo](#vid%C3%A9o)
   - [Documentation du code](#documentation-du-code)
   - [Présentations](#pr%C3%A9sentations)
-  - [Vidéo](#vid%C3%A9o)
+  - [Vidéo](#vidc3a9o)
   - [Diagramme de classes](#diagramme-de-classes)
   - [Screenshots](#screenshots)
   - [Historique des versions](#historique-des-versions)
@@ -53,6 +54,9 @@
 | Dialoguer avec le module de gestion de partie | X |  |
 | Produire des sons en fonction de la situation | X |  |
 
+## Vidéo
+
+[<img src="https://img.youtube.com/vi/qUwvlZFmvIg/maxresdefault.jpg" width="50%">](https://youtu.be/NYgA7YLDTxQ)
 
 ## Documentation du code
 
