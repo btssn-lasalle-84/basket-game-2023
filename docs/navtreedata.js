@@ -57,7 +57,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_android_manifest_8xml.html",
-"classcom_1_1basket__game_1_1_partie_interrompue.html#a83568c6514fc6a3dfedc8bf76231de5f"
+"classcom_1_1basket__game_1_1_equipe.html",
+"main_8cpp_source.html"
 ];
 
 var SYNCONMSG = 'cliquez pour désactiver la synchronisation du panel';

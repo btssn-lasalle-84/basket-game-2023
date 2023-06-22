@@ -3,7 +3,7 @@
 \author Nathanaël Chansard <<nathanaelchansard@gmail.com>>
 \author Florent Guillaumet <<florent.guillaumet.pro@gmail.com>>
 \date 2023
-\version 1.0
+\version 1.1
 \see https://github.com/btssn-lasalle-84/basket-game-2023
 
 

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['entete_5fdebut_625',['ENTETE_DEBUT',['../communication_8h.html#ac91f30b1853dcb3c231900051e3db9d4',1,'communication.h']]],
-  ['entete_5ffin_626',['ENTETE_FIN',['../communication_8h.html#afe7c69364112dd0794bbd7c782644bfb',1,'communication.h']]]
+  ['jeton_5fjaune_814',['JETON_JAUNE',['../basketgame_8h.html#a431d5a1bef64ec8bcdf7d87d5a3b6858',1,'basketgame.h']]],
+  ['jeton_5frouge_815',['JETON_ROUGE',['../basketgame_8h.html#a4e07d0ad6c437ce7220b66b4807a01b9',1,'basketgame.h']]]
 ];

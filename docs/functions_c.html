@@ -27,7 +27,7 @@
   <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Projet basket-game
-   &#160;<span id="projectnumber">1.0</span>
+   &#160;<span id="projectnumber">1.1</span>
    </div>
    <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
   </td>
@@ -87,6 +87,15 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 <div class="textblock">Liste de tous les champs de structure et d'union avec des liens vers les structures/unions auxquelles ils appartiennent :</div>
 
 <h3><a id="index_c"></a>- c -</h3><ul>
+<li>CHAMP_COULEUR_EQUIPE
+: <a class="el" href="classcom_1_1basket__game_1_1_protocole_basket.html#a2350b7d23725ef1b6ea488cd6b60fe94">com.basket_game.ProtocoleBasket</a>
+</li>
+<li>CHAMP_NUMERO_PANIER
+: <a class="el" href="classcom_1_1basket__game_1_1_protocole_basket.html#ad509ff462473925b2cc0f6c5bbbce001">com.basket_game.ProtocoleBasket</a>
+</li>
+<li>CHAMP_TYPE_TRAME
+: <a class="el" href="classcom_1_1basket__game_1_1_protocole_basket.html#af6f9770d201c02048856e2d725966a4c">com.basket_game.ProtocoleBasket</a>
+</li>
 <li>chronometrerTour()
 : <a class="el" href="class_basketgame.html#ae4f7523300692fbc62ddd2ba3afea470">Basketgame</a>
 </li>
@@ -95,6 +104,9 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 </li>
 <li>clientDeconnecte()
 : <a class="el" href="class_communication.html#a637454a910c53913ac8f8da7ba648b73">Communication</a>
+</li>
+<li>clientReconnecte()
+: <a class="el" href="class_communication.html#a004d5dcd9e71c54ab5681b82f5aa0924">Communication</a>
 </li>
 <li>colonne
 : <a class="el" href="struct_coup.html#ad2cbc4c902d39eb6714567d624b13152">Coup</a>
@@ -118,6 +130,12 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 <li>compteurTempsTour
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#aa9d15278c64cc890ea927cfb70530d0f">com.basket_game.PartieSuivi</a>
 </li>
+<li>Configure
+: <a class="el" href="class_basketgame.html#ad68c5e5dcec6d2b26be86787bd29dce7a050cd8e3f59be37ac646776efee12e7c">Basketgame</a>
+</li>
+<li>configurerSeance()
+: <a class="el" href="class_basketgame.html#ae699216339567216709b59572c44b2df">Basketgame</a>
+</li>
 <li>connecte
 : <a class="el" href="class_communication.html#a391ebaf73e6cf5a08d3bf5fbae31ccf0">Communication</a>
 </li>
@@ -133,6 +151,18 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 <li>CONNEXION_BLUETOOTH
 : <a class="el" href="classcom_1_1basket__game_1_1_communication_bluetooth.html#a73c37b4138d8b8827abee759b80bc5b5">com.basket_game.CommunicationBluetooth</a>
 </li>
+<li>convertirCouleurRecue()
+: <a class="el" href="class_basketgame.html#a89c8e67e2ca5263475f047d766013b6c">Basketgame</a>
+</li>
+<li>couleur
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#af977ddeec605009b7a32b20bf13bc6b3">com.basket_game.PartieSuivi</a>
+</li>
+<li>COULEUR_EQUIPE_JAUNE
+: <a class="el" href="classcom_1_1basket__game_1_1_protocole_basket.html#aec1036ee23063ae9922c314a05775e19">com.basket_game.ProtocoleBasket</a>
+</li>
+<li>COULEUR_EQUIPE_ROUGE
+: <a class="el" href="classcom_1_1basket__game_1_1_protocole_basket.html#a472102fe2cce15055afae1fcb5d1dc19">com.basket_game.ProtocoleBasket</a>
+</li>
 <li>CouleurEquipe
 : <a class="el" href="class_basketgame.html#a6d6d6d04653472972957a6eb87f73519">Basketgame</a>
 </li>
@@ -140,7 +170,7 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 : <a class="el" href="class_puissance4.html#aad55dd5d85181cf4d311f908e6ef2262">Puissance4</a>
 </li>
 <li>creerBoutonAfficherMenuPrincipal()
-: <a class="el" href="classcom_1_1basket__game_1_1_partie_interrompue.html#a83568c6514fc6a3dfedc8bf76231de5f">com.basket_game.PartieInterrompue</a>
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_arretee.html#a08963557ce5ea7aca43b75bd51cb9fc1">com.basket_game.PartieArretee</a>
 </li>
 <li>creerBoutonArreterPartie()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a68c9d671ca8f90b3464787a82ad28c7c">com.basket_game.PartieSuivi</a>
@@ -155,7 +185,7 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 : <a class="el" href="classcom_1_1basket__game_1_1_partie_suivi.html#a341458f44537bb03db698d90ad81f439">com.basket_game.PartieSuivi</a>
 </li>
 <li>creerBoutonRecommencerPartie()
-: <a class="el" href="classcom_1_1basket__game_1_1_partie_interrompue.html#a4060c6c0e223dfa7c91fea2da875bc6b">com.basket_game.PartieInterrompue</a>
+: <a class="el" href="classcom_1_1basket__game_1_1_partie_arretee.html#a726340f70dfca0c7872edfdfc282ed33">com.basket_game.PartieArretee</a>
 </li>
 <li>creerPlateau()
 : <a class="el" href="class_plateau.html#aa99782d04d23352158bbf8288fa46b16">Plateau</a>
@@ -170,7 +200,7 @@ $(document).ready(function(){initNavTree('functions_c.html',''); initResizable()
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Samedi 27 Mai 2023 09:54:52 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 21:50:12 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
   </ul>
 </div>
 </body>

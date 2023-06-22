@@ -1,7 +1,5 @@
 var classcom_1_1basket__game_1_1_communication_bluetooth =
 [
-    [ "CouleurEquipe", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe.html", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_couleur_equipe" ],
-    [ "Type", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type.html", "enumcom_1_1basket__game_1_1_communication_bluetooth_1_1_type" ],
     [ "CommunicationBluetooth", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a0de0566a4af2da37992b057714e0e77c", null ],
     [ "CommunicationBluetooth", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a946f223651dd931deeb9f666c61c99db", null ],
     [ "activer", "classcom_1_1basket__game_1_1_communication_bluetooth.html#ac08f211641428847993bc809d148ae57", null ],
@@ -17,9 +15,6 @@ var classcom_1_1basket__game_1_1_communication_bluetooth =
     [ "communication", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a0736fbd0b91d6cea508bbfcfe20740aa", null ],
     [ "CONNEXION_BLUETOOTH", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a73c37b4138d8b8827abee759b80bc5b5", null ],
     [ "DECONNEXION_BLUETOOTH", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a4d0ac1f75a0c7d54438d408dd0ef4b9e", null ],
-    [ "DELIMITEUR_CHAMPS_TRAME", "classcom_1_1basket__game_1_1_communication_bluetooth.html#afbd85ee0b1144c8e023cc7894772849e", null ],
-    [ "DELIMITEUR_DEBUT_TRAME", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a05b9cc71f972f7a70798a27525152bb6", null ],
-    [ "DELIMITEUR_FIN_TRAME", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a337b818592d7f929256919973e86a96a", null ],
     [ "filExecutionReception", "classcom_1_1basket__game_1_1_communication_bluetooth.html#ae247b81ba7e139b81d95d45965b87bcc", null ],
     [ "handler", "classcom_1_1basket__game_1_1_communication_bluetooth.html#acbfe146ef7076b0d0ecfbf3ce1f33e83", null ],
     [ "ID_MODULE_DETECTION", "classcom_1_1basket__game_1_1_communication_bluetooth.html#a0efa95ac02dc25723b0422b51100c4cc", null ],

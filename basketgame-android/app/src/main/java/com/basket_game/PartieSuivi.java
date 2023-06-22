@@ -146,6 +146,9 @@ public class PartieSuivi extends AppCompatActivity
     protected void onStop()
     {
         communicationBluetooth.seDeconnecter(CommunicationBluetooth.ID_MODULE_DETECTION);
+        for (int i = 0; i < CommunicationBluetooth.NB_MODULES; i++) {
+            communicationBluetooth.seDeconnecter(i);
+        }
         super.onStop();
         Log.d(TAG, "onStop()");
     }

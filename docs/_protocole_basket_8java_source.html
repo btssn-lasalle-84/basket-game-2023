@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.9.1"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projet basket-game:  Fichier source de ProtocoleBasket.java</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="customdoxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="projet-logo.png"/></td>
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projet basket-game
+   &#160;<span id="projectnumber">1.1</span>
+   </div>
+   <div id="projectbrief">BTS SNIR LaSalle Avignon 2023</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Généré par Doxygen 1.9.1 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+var searchBox = new SearchBox("searchBox", "search",false,'Recherche','.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(function() {
+  initMenu('',true,false,'search.php','Recherche');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('_protocole_basket_8java_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">ProtocoleBasket.java</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="_protocole_basket_8java.html">Aller à la documentation de ce fichier.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">package </span>com.basket_game;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html">   13</a></span>&#160;<span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html">ProtocoleBasket</a></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;{</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#afd74a20ce64565c8c636790523d9bb29">   18</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#afd74a20ce64565c8c636790523d9bb29">DELIMITEUR_DEBUT_TRAME</a>  = <span class="stringliteral">&quot;$BASKET&quot;</span>; <span class="comment">// délimiteur début trame</span></div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a930757a99c73b87a6825ae4b7940b9b9">   19</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a930757a99c73b87a6825ae4b7940b9b9">DELIMITEUR_FIN_TRAME</a>    = <span class="stringliteral">&quot;\r\n&quot;</span>;    <span class="comment">// délimiteur fin trame</span></div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#aa81aa2ceb6e8efac2a5a266a0ef3ff3f">   20</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#aa81aa2ceb6e8efac2a5a266a0ef3ff3f">DELIMITEUR_CHAMPS_TRAME</a> = <span class="stringliteral">&quot;;&quot;</span>;       <span class="comment">// délimiteur champs trame</span></div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#af6f9770d201c02048856e2d725966a4c">   22</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keywordtype">int</span>    <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#af6f9770d201c02048856e2d725966a4c">CHAMP_TYPE_TRAME</a>  = 1;</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a2d124435f98cfe2c098136af9877e7de">   23</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a2d124435f98cfe2c098136af9877e7de">TYPE_TRAME_SEANCE</a> = <span class="stringliteral">&quot;SEANCE&quot;</span>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a9452a6c78e2c3d5e9d0c33de4bce4223">   24</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a9452a6c78e2c3d5e9d0c33de4bce4223">TYPE_TRAME_START</a>  = <span class="stringliteral">&quot;START&quot;</span>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a571617bee946c3746dbc03be9c9b5e5d">   25</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a571617bee946c3746dbc03be9c9b5e5d">TYPE_TRAME_TIR</a>    = <span class="stringliteral">&quot;TIR&quot;</span>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="comment">// Trame TIR : $BASKET;TIR;COULEUR;NUMERO_PANIER;\r\n</span></div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a528759697ae74a2b703e250dc8de6048">   27</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a528759697ae74a2b703e250dc8de6048">TYPE_TRAME_STOP</a>   = <span class="stringliteral">&quot;STOP&quot;</span>;</div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a11bfbf9cf6daea3203de7d2fcf069f4b">   28</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a11bfbf9cf6daea3203de7d2fcf069f4b">TYPE_TRAME_RESET</a>  = <span class="stringliteral">&quot;RESET&quot;</span>;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#ac86aa15aa48ebbe1642ba38f0628028e">   29</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#ac86aa15aa48ebbe1642ba38f0628028e">TYPE_TRAME_PAUSE</a>  = <span class="stringliteral">&quot;PAUSE&quot;</span>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#ae9a43997cb2bca2d31049f97c4e63662">   30</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#ae9a43997cb2bca2d31049f97c4e63662">TYPE_TRAME_FIN</a>  = <span class="stringliteral">&quot;FIN&quot;</span>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a2350b7d23725ef1b6ea488cd6b60fe94">   31</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a2350b7d23725ef1b6ea488cd6b60fe94">CHAMP_COULEUR_EQUIPE</a> = 2;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#ad509ff462473925b2cc0f6c5bbbce001">   32</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#ad509ff462473925b2cc0f6c5bbbce001">CHAMP_NUMERO_PANIER</a>  = 3;</div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#ac5752ca5fef7fcb42095d3c3a17cbcbb">   33</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#ac5752ca5fef7fcb42095d3c3a17cbcbb">NB_CHAMPS_TRAME_TIR</a>  = 4;</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a03e008517f7e52f20753e46034415a6b">   34</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a03e008517f7e52f20753e46034415a6b">NB_CHAMPS_TRAME_FIN</a>  = 3;</div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#a472102fe2cce15055afae1fcb5d1dc19">   35</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#a472102fe2cce15055afae1fcb5d1dc19">COULEUR_EQUIPE_ROUGE</a> = <span class="stringliteral">&quot;ROUGE&quot;</span>;</div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="classcom_1_1basket__game_1_1_protocole_basket.html#aec1036ee23063ae9922c314a05775e19">   36</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">static</span> String <a class="code" href="classcom_1_1basket__game_1_1_protocole_basket.html#aec1036ee23063ae9922c314a05775e19">COULEUR_EQUIPE_JAUNE</a> = <span class="stringliteral">&quot;JAUNE&quot;</span>;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html">   38</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">enum</span> <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html">Type</a></div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    {</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a671dfafbe1bd4ccfdcf5a85c85b30ae0">   40</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a671dfafbe1bd4ccfdcf5a85c85b30ae0">SEANCE</a>,</div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a667e3f270b4f940221b9f0461e3bd3aa">   41</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a667e3f270b4f940221b9f0461e3bd3aa">START</a>,</div>
+<div class="line"><a name="l00042"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a471bbbe5e908114253158d61acfb6e69">   42</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a471bbbe5e908114253158d61acfb6e69">TIR</a>,</div>
+<div class="line"><a name="l00043"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a1bae26be09d8615db187f80252915f8f">   43</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a1bae26be09d8615db187f80252915f8f">STOP</a>,</div>
+<div class="line"><a name="l00044"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a8280814e0e083dbbb14669afb0826752">   44</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a8280814e0e083dbbb14669afb0826752">RESET</a>,</div>
+<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a3dfa17df006d9f77042e7c9008e5abb7">   45</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a3dfa17df006d9f77042e7c9008e5abb7">PAUSE</a>,</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a19c21e0a346ec1b284188a3553dddbfd">   46</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a19c21e0a346ec1b284188a3553dddbfd">RESTART</a>,</div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#abef600dea5d3f7112d0f17d915207bb8">   47</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#abef600dea5d3f7112d0f17d915207bb8">FIN</a>,</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        INCONNU</div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a4afcb77f62f63c91f45a71824e0e2d5c">   49</a></span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html">   50</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">enum</span> <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html">CouleurEquipe</a></div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    {</div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html#a36920a9e1d2d3da81b26b88865c15641">   52</a></span>&#160;        <a class="code" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html#a36920a9e1d2d3da81b26b88865c15641">ROUGE</a>,</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        JAUNE</div>
+<div class="line"><a name="l00054"></a><span class="lineno"><a class="line" href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html#a3a2d0ef053ebc81d4afbc243ab702d17">   54</a></span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html">com.basket_game.ProtocoleBasket</a></div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00013">ProtocoleBasket.java:14</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a03e008517f7e52f20753e46034415a6b"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a03e008517f7e52f20753e46034415a6b">com.basket_game.ProtocoleBasket.NB_CHAMPS_TRAME_FIN</a></div><div class="ttdeci">static final int NB_CHAMPS_TRAME_FIN</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00034">ProtocoleBasket.java:34</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a11bfbf9cf6daea3203de7d2fcf069f4b"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a11bfbf9cf6daea3203de7d2fcf069f4b">com.basket_game.ProtocoleBasket.TYPE_TRAME_RESET</a></div><div class="ttdeci">static final String TYPE_TRAME_RESET</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00028">ProtocoleBasket.java:28</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a2350b7d23725ef1b6ea488cd6b60fe94"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a2350b7d23725ef1b6ea488cd6b60fe94">com.basket_game.ProtocoleBasket.CHAMP_COULEUR_EQUIPE</a></div><div class="ttdeci">static final int CHAMP_COULEUR_EQUIPE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00031">ProtocoleBasket.java:31</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a2d124435f98cfe2c098136af9877e7de"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a2d124435f98cfe2c098136af9877e7de">com.basket_game.ProtocoleBasket.TYPE_TRAME_SEANCE</a></div><div class="ttdeci">static final String TYPE_TRAME_SEANCE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00023">ProtocoleBasket.java:23</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a472102fe2cce15055afae1fcb5d1dc19"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a472102fe2cce15055afae1fcb5d1dc19">com.basket_game.ProtocoleBasket.COULEUR_EQUIPE_ROUGE</a></div><div class="ttdeci">static final String COULEUR_EQUIPE_ROUGE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00035">ProtocoleBasket.java:35</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a528759697ae74a2b703e250dc8de6048"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a528759697ae74a2b703e250dc8de6048">com.basket_game.ProtocoleBasket.TYPE_TRAME_STOP</a></div><div class="ttdeci">static final String TYPE_TRAME_STOP</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00027">ProtocoleBasket.java:27</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a571617bee946c3746dbc03be9c9b5e5d"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a571617bee946c3746dbc03be9c9b5e5d">com.basket_game.ProtocoleBasket.TYPE_TRAME_TIR</a></div><div class="ttdeci">static final String TYPE_TRAME_TIR</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00025">ProtocoleBasket.java:25</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a930757a99c73b87a6825ae4b7940b9b9"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a930757a99c73b87a6825ae4b7940b9b9">com.basket_game.ProtocoleBasket.DELIMITEUR_FIN_TRAME</a></div><div class="ttdeci">static final String DELIMITEUR_FIN_TRAME</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00019">ProtocoleBasket.java:19</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_a9452a6c78e2c3d5e9d0c33de4bce4223"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#a9452a6c78e2c3d5e9d0c33de4bce4223">com.basket_game.ProtocoleBasket.TYPE_TRAME_START</a></div><div class="ttdeci">static final String TYPE_TRAME_START</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00024">ProtocoleBasket.java:24</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_aa81aa2ceb6e8efac2a5a266a0ef3ff3f"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#aa81aa2ceb6e8efac2a5a266a0ef3ff3f">com.basket_game.ProtocoleBasket.DELIMITEUR_CHAMPS_TRAME</a></div><div class="ttdeci">static final String DELIMITEUR_CHAMPS_TRAME</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00020">ProtocoleBasket.java:20</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_ac5752ca5fef7fcb42095d3c3a17cbcbb"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#ac5752ca5fef7fcb42095d3c3a17cbcbb">com.basket_game.ProtocoleBasket.NB_CHAMPS_TRAME_TIR</a></div><div class="ttdeci">static final int NB_CHAMPS_TRAME_TIR</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00033">ProtocoleBasket.java:33</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_ac86aa15aa48ebbe1642ba38f0628028e"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#ac86aa15aa48ebbe1642ba38f0628028e">com.basket_game.ProtocoleBasket.TYPE_TRAME_PAUSE</a></div><div class="ttdeci">static final String TYPE_TRAME_PAUSE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00029">ProtocoleBasket.java:29</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_ad509ff462473925b2cc0f6c5bbbce001"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#ad509ff462473925b2cc0f6c5bbbce001">com.basket_game.ProtocoleBasket.CHAMP_NUMERO_PANIER</a></div><div class="ttdeci">static final int CHAMP_NUMERO_PANIER</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00032">ProtocoleBasket.java:32</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_ae9a43997cb2bca2d31049f97c4e63662"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#ae9a43997cb2bca2d31049f97c4e63662">com.basket_game.ProtocoleBasket.TYPE_TRAME_FIN</a></div><div class="ttdeci">static final String TYPE_TRAME_FIN</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00030">ProtocoleBasket.java:30</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_aec1036ee23063ae9922c314a05775e19"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#aec1036ee23063ae9922c314a05775e19">com.basket_game.ProtocoleBasket.COULEUR_EQUIPE_JAUNE</a></div><div class="ttdeci">static final String COULEUR_EQUIPE_JAUNE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00036">ProtocoleBasket.java:36</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_af6f9770d201c02048856e2d725966a4c"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#af6f9770d201c02048856e2d725966a4c">com.basket_game.ProtocoleBasket.CHAMP_TYPE_TRAME</a></div><div class="ttdeci">static final int CHAMP_TYPE_TRAME</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00022">ProtocoleBasket.java:22</a></div></div>
+<div class="ttc" id="aclasscom_1_1basket__game_1_1_protocole_basket_html_afd74a20ce64565c8c636790523d9bb29"><div class="ttname"><a href="classcom_1_1basket__game_1_1_protocole_basket.html#afd74a20ce64565c8c636790523d9bb29">com.basket_game.ProtocoleBasket.DELIMITEUR_DEBUT_TRAME</a></div><div class="ttdeci">static final String DELIMITEUR_DEBUT_TRAME</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00018">ProtocoleBasket.java:18</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe_html"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html">com.basket_game.ProtocoleBasket.CouleurEquipe</a></div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00050">ProtocoleBasket.java:51</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe_html_a36920a9e1d2d3da81b26b88865c15641"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_couleur_equipe.html#a36920a9e1d2d3da81b26b88865c15641">com.basket_game.ProtocoleBasket.CouleurEquipe.ROUGE</a></div><div class="ttdeci">ROUGE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00052">ProtocoleBasket.java:52</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html">com.basket_game.ProtocoleBasket.Type</a></div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00038">ProtocoleBasket.java:39</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a19c21e0a346ec1b284188a3553dddbfd"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a19c21e0a346ec1b284188a3553dddbfd">com.basket_game.ProtocoleBasket.Type.RESTART</a></div><div class="ttdeci">RESTART</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00046">ProtocoleBasket.java:46</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a1bae26be09d8615db187f80252915f8f"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a1bae26be09d8615db187f80252915f8f">com.basket_game.ProtocoleBasket.Type.STOP</a></div><div class="ttdeci">STOP</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00043">ProtocoleBasket.java:43</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a3dfa17df006d9f77042e7c9008e5abb7"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a3dfa17df006d9f77042e7c9008e5abb7">com.basket_game.ProtocoleBasket.Type.PAUSE</a></div><div class="ttdeci">PAUSE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00045">ProtocoleBasket.java:45</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a471bbbe5e908114253158d61acfb6e69"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a471bbbe5e908114253158d61acfb6e69">com.basket_game.ProtocoleBasket.Type.TIR</a></div><div class="ttdeci">TIR</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00042">ProtocoleBasket.java:42</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a667e3f270b4f940221b9f0461e3bd3aa"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a667e3f270b4f940221b9f0461e3bd3aa">com.basket_game.ProtocoleBasket.Type.START</a></div><div class="ttdeci">START</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00041">ProtocoleBasket.java:41</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a671dfafbe1bd4ccfdcf5a85c85b30ae0"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a671dfafbe1bd4ccfdcf5a85c85b30ae0">com.basket_game.ProtocoleBasket.Type.SEANCE</a></div><div class="ttdeci">SEANCE</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00040">ProtocoleBasket.java:40</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_a8280814e0e083dbbb14669afb0826752"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#a8280814e0e083dbbb14669afb0826752">com.basket_game.ProtocoleBasket.Type.RESET</a></div><div class="ttdeci">RESET</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00044">ProtocoleBasket.java:44</a></div></div>
+<div class="ttc" id="aenumcom_1_1basket__game_1_1_protocole_basket_1_1_type_html_abef600dea5d3f7112d0f17d915207bb8"><div class="ttname"><a href="enumcom_1_1basket__game_1_1_protocole_basket_1_1_type.html#abef600dea5d3f7112d0f17d915207bb8">com.basket_game.ProtocoleBasket.Type.FIN</a></div><div class="ttdeci">FIN</div><div class="ttdef"><b>Definition:</b> <a href="_protocole_basket_8java_source.html#l00047">ProtocoleBasket.java:47</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- HTML footer for doxygen 1.9.1-->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_a6656f64a87b7702517f02e761703739.html">basketgame-android</a></li><li class="navelem"><a class="el" href="dir_a14f1a2f72fc71322e0ea85298eb19a0.html">app</a></li><li class="navelem"><a class="el" href="dir_9e699aaf409e398082f99676dc01c30b.html">src</a></li><li class="navelem"><a class="el" href="dir_52acbc58928ca4d6996f4a4140e480ab.html">main</a></li><li class="navelem"><a class="el" href="dir_fcf243bdb7d3f1e4dbb7721b47967179.html">java</a></li><li class="navelem"><a class="el" href="dir_4c27a4cf9b4cddd1e0374d71053be13c.html">com</a></li><li class="navelem"><a class="el" href="dir_66ee561880210460d1054157dcbc6408.html">basket_game</a></li><li class="navelem"><a class="el" href="_protocole_basket_8java.html">ProtocoleBasket.java</a></li>
+    <li class="footer"><img class="footer" src="lasalle-logo.png" height="31" alt="La Salle Avignon"/>&nbsp;<b>Campus La Salle Avignon</b>&nbsp;-&nbsp;9 Rue Notre Dame des 7 douleurs&nbsp;-&nbsp;BP 50165&nbsp;-&nbsp;84008 Avignon&nbsp;-&nbsp;Généré le Lundi 19 Juin 2023 21:50:12 pour Projet basket-game par&nbsp;<a href="https://www.doxygen.org/index.html">doxygen</a>&nbsp;1.9.1&nbsp;</li>
+  </ul>
+</div>
+</body>
+</html>
